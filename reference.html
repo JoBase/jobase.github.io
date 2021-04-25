@@ -1,0 +1,2098 @@
+<!DOCTYPE html>
+<html lang = "en">
+  	<head>
+    	<meta charset = "UTF-8">
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
+
+		<link rel = "stylesheet" href = "https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+		<link rel = "stylesheet" href = "css/main.css">
+		<link rel = "stylesheet" href = "css/chocolat.css">
+
+		<script src = "js/jquery.js"></script>
+		<script src = "js/chocolat.js"></script>
+		<script src = "js/main.js"></script>
+	
+		<title>JoBase | Reference</title>
+
+		<a href = "#top" class = "back"><em class = "fas fa-chevron-up"></em></a>
+  	</head>
+  
+  	<body>
+		<section class = "top" id = "top">
+			<a href = "index.html">HOME</a>
+			<a href = "about.html">ABOUT</a>
+			<a href = "tutorials.html">TUTORIALS</a>
+			<a href = "examples.html">EXAMPLES</a>
+			<a href = "reference.html" class = "this">REFERENCE</a>
+			<a href = "https://www.paypal.com/donate?hosted_button_id=MTC562EVNRGRE">DONATE</a>
+			<a class = "icon" onclick = "bar()"><em class = "fas fa-bars"></em></a>
+		</section>
+
+		<section class = "main" id = "example0">
+			<a href = "mailto:info@jobase.org" class = "email">info@jobase.org</a>
+
+			<h3>
+			<a href = "#Window">Window</a>
+			<br>
+			<a href = "#Mouse">Mouse</a>
+			<br>
+			<a href = "#Key">Key</a>
+			<br>
+			<a href = "#Circle">Circle</a>
+			<br>
+			<a href = "#Line">Line</a>
+			<br>
+			<a href = "#Image">Image</a>
+			<br>
+			<a href = "#Math">Math Functions</a>
+			<br>
+			<a href = "#Collision">Collision Functions</a>
+			</h3>
+
+			<a id = "Window"></a>
+			<div class = "content">
+				<code class = "class">
+					{class} Window(width, height, caption)
+				</code>
+
+				<div class = "text">
+					This is the class for the main JoBase window.
+					It is very unlikely that you will need to create a new instance of this class.
+					Instead of using this class directly, use the {window} value that is built in to JoBase.
+					Please look at the example below to see how the {window} value should be used.
+
+					<div class = "code">
+						<code>
+							{from} JoBase {import} *
+							<p></p>
+							window.caption = ¦"Window Example"}
+							<br>
+							window.green = 0.5
+							<br>
+							window.size = (300, 300)
+							<p></p>
+							{def} loop():
+							<br>
+							&nbsp&nbsp&nbsp&nbspwindow.red += 0.01
+							<p></p>
+							run()
+						</code>
+					</div>
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					quit()
+				</code>
+
+				<div class = "text">
+					Close the window.
+					<p></p>
+					This forces the window to close.
+					Once it is closed, it can't be opened again.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					maximize()
+				</code>
+
+				<div class = "text">
+					Maximize the window.
+					<p></p>
+					Depending on the computer setup, it will either maximize to a single window or fill the whole screen.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					minimize()
+				</code>
+
+				<div class = "text">
+					Minimize the window.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					make_active()
+				</code>
+
+				<div class = "text">
+					Activates the window.
+					<p></p>
+					On some operating systems, the window may not be activated.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					collides_with(other) = {bool}
+				</code>
+
+				<div class = "text">
+					Checks if another object is on the screen.
+					<p></p>
+					You can check collision with any {JoBase} shape as well as the mouse.
+					If {other} is off the edge of the screen, it will return false.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					red = {float}
+				</code>
+
+				<div class = "text">
+					The red color of the window.
+					<p></p>
+					It should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					green = {float}
+				</code>
+
+				<div class = "text">
+					The green color of the window.
+					<p></p>
+					It should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					blue = {float}
+				</code>
+
+				<div class = "text">
+					The blue color of the window.
+					<p></p>
+					It should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					color = ({float}, {float}, {float})
+				</code>
+
+				<div class = "text">
+					The background color of the window.
+					<p></p>
+					Each value should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					x = {int}
+				</code>
+
+				<div class = "text">
+					The horizontal position of the window.
+					<p></p>
+					It is based on the {left} of the window and the {left} of the screen.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					y = {int}
+				</code>
+
+				<div class = "text">
+					The vertical position of the window.
+					<p></p>
+					It is based on the {top} of the window and the {top} of the screen.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					position = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The position of the window.
+					<p></p>
+					The position is based on the {top-left} of the window and the {top-left} of the screen.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					width = {int}
+				</code>
+
+				<div class = "text">
+					The width of the window.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					height = {int}
+				</code>
+
+				<div class = "text">
+					The height of the window.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					size = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The size of the window.
+					<p></p>
+					The graphics will update slowly if you resize the window every frame.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					caption = {str}
+				</code>
+
+				<div class = "text">
+					The window's caption.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					fullscreen = {bool}
+				</code>
+
+				<div class = "text">
+					Toggles to or from fullscreen.
+					<p></p>
+					The following code is useful for many games.
+
+					<div class = "code">
+						<code>
+							{if} key.f11 {and} key.press: %# the fullscreen is toggled when you press F11}
+							<br>
+							&nbsp&nbsp&nbsp&nbspwindow.fullscreen = {not} window.fullscreen
+						</code>
+					</div>
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					visible = {bool}
+				</code>
+
+				<div class = "text">
+					The visibility of the window.
+					<p></p>
+					When it is false, the window is hidden including the taskbar icon.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					maximum_width = {int}
+				</code>
+
+				<div class = "text">
+					The maximum width of the window.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					maximum_height = {int}
+				</code>
+
+				<div class = "text">
+					The maximum height of the window.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					maximum_size = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The maximum size of the window.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					minimum_width = {int}
+				</code>
+
+				<div class = "text">
+					The minimum width of the window.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					minimum_height = {int}
+				</code>
+
+				<div class = "text">
+					The minimum height of the window.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					minimum_size = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The minimum size of the window.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					key = {bool}
+				</code>
+
+				<div class = "text">
+					Enables or disables the keyboard.
+					<p></p>
+					When it is false, the user can't switch away from the window with keyboard shortcuts.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					mouse = {bool}
+				</code>
+
+				<div class = "text">
+					Enables or disables the mouse.
+					<p></p>
+					When it is false, the mouse disappears and is prevented from leaving the window.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					activate = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the user activates the window. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					deactivate = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the user deactivates the window. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					close = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the user closes the window. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					hide = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the user hides (minimizes) the window. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					move = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the user moves the window. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					resize = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the user resizes the window. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					show = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the user restores the window from being minimized. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					text = {str}
+				</code>
+
+				<div class = "text">
+					This is the text the user is currently typing with their keyboard. {Read only}.
+					<p></p>
+					This value is very useful for games with text input.
+				</div>
+			</div>
+
+			<a id = "Mouse"></a>
+			<div class = "content">
+				<code class = "class">
+					{class} Mouse()
+				</code>
+
+				<div class = "text">
+					This is the class for the mouse.
+					It is very unlikely that you will need to create a new instance of this class.
+					Instead of using this class directly, use the {mouse} value that is built in to JoBase.
+					Please look at the example below to see how the {mouse} value should be used.
+
+					<div class = "code">
+						<code>
+							{from} JoBase {import} *
+							<p></p>
+							mouse.cursor = HAND
+							<br>
+							timer = 5
+							<p></p>
+							{def} loop():
+							<br>
+							&nbsp&nbsp&nbsp&nbsp{global} timer
+							<p></p>
+							&nbsp&nbsp&nbsp&nbsptimer -= 1
+							<p></p>
+							&nbsp&nbsp&nbsp&nbsp{if} timer < 0:
+							<br>
+							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmouse.visible = {not} mouse.visible
+							<br>
+							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsptimer = 5
+							<p></p>
+							run()
+						</code>
+					</div>
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					collides_with(other) = {bool}
+				</code>
+
+				<div class = "text">
+					Detects collision with another object.
+					<p></p>
+					You can check collision with any {JoBase} shape as well as the window.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					x = {int}
+				</code>
+
+				<div class = "text">
+					The horizontal position of the mouse.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					y = {int}
+				</code>
+
+				<div class = "text">
+					The vertical position of the mouse.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					position = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The position of the mouse.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					visible = {bool}
+				</code>
+
+				<div class = "text">
+					The visibility of the mouse.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					cursor = {CURSOR}
+				</code>
+
+				<div class = "text">
+					The mouse appearance.
+					
+					<div class = "code">
+						<code>
+							mouse.cursor = HAND %# changes the mouse icon}
+						</code>
+					</div>
+					
+					The table below shows all the different mouse icons.
+
+					<div style = "overflow-x: auto">
+						<table>
+							<tr>
+								<th>{Name}</th>
+								<th>{Windows XP}</th>
+								<th>{Mac OS X}</th>
+						  	</tr>
+						  	<tr>
+								<th>DEFAULT</th>
+								<td><img src = "resources/default_windows.png" alt = "windows default"></td>
+								<td><img src = "resources/default_mac.png" alt = "mac default"></td>
+						  	</tr>
+						  	<tr>
+								<th>CROSSHAIR</th>
+								<td><img src = "resources/crosshair_windows.png" alt = "windows crosshair"></td>
+								<td><img src = "resources/crosshair_mac.png" alt = "mac crosshair"></td>
+						  	</tr>
+							<tr>
+								<th>HAND</th>
+								<td><img src = "resources/hand_windows.png" alt = "windows hand"></td>
+								<td><img src = "resources/hand_mac.png" alt = "mac hand"></td>
+						  	</tr>
+							<tr>
+								<th>HELP</th>
+								<td><img src = "resources/help_windows.png" alt = "windows help"></td>
+								<td><img src = "resources/default_mac.png" alt = "mac default"></td>
+						  	</tr>
+							<tr>
+								<th>NO</th>
+								<td><img src = "resources/no_windows.png" alt = "windows no"></td>
+								<td><img src = "resources/no_mac.png" alt = "mac no"></td>
+						  	</tr>
+							<tr>
+								<th>SIZE</th>
+								<td><img src = "resources/size_windows.png" alt = "windows size"></td>
+								<td><img src = "resources/default_mac.png" alt = "mac default"></td>
+						  	</tr>
+							<tr>
+								<th>SIZE_DOWN</th>
+								<td><img src = "resources/vertical_windows.png" alt = "windows vertical"></td>
+								<td><img src = "resources/down_mac.png" alt = "mac down"></td>
+						  	</tr>
+							<tr>
+								<th>SIZE_DOWN_LEFT</th>
+								<td><img src = "resources/up_windows.png" alt = "windows up"></td>
+								<td><img src = "resources/default_mac.png" alt = "mac default"></td>
+						  	</tr>
+							<tr>
+								<th>SIZE_DOWN_RIGHT</th>
+								<td><img src = "resources/down_windows.png" alt = "windows down"></td>
+								<td><img src = "resources/default_mac.png" alt = "mac default"></td>
+						  	</tr>
+							<tr>
+								<th>SIZE_LEFT</th>
+								<td><img src = "resources/horizontal_windows.png" alt = "windows horizontal"></td>
+								<td><img src = "resources/left_mac.png" alt = "mac left"></td>
+						  	</tr>
+							<tr>
+								<th>SIZE_LEFT_RIGHT</th>
+								<td><img src = "resources/horizontal_windows.png" alt = "windows horizontal"></td>
+								<td><img src = "resources/horizontal_mac.png" alt = "mac horizontal"></td>
+						  	</tr>
+							<tr>
+								<th>SIZE_RIGHT</th>
+								<td><img src = "resources/horizontal_windows.png" alt = "windows horizontal"></td>
+								<td><img src = "resources/right_mac.png" alt = "mac right"></td>
+						  	</tr>
+							<tr>
+								<th>SIZE_UP</th>
+								<td><img src = "resources/vertical_windows.png" alt = "windows vertical"></td>
+								<td><img src = "resources/up_mac.png" alt = "mac up"></td>
+						  	</tr>
+							<tr>
+								<th>SIZE_UP_DOWN</th>
+								<td><img src = "resources/vertical_windows.png" alt = "windows vertical"></td>
+								<td><img src = "resources/vertical_mac.png" alt = "mac vertical"></td>
+						  	</tr>
+							<tr>
+								<th>SIZE_UP_LEFT</th>
+								<td><img src = "resources/down_windows.png" alt = "windows down"></td>
+								<td><img src = "resources/default_mac.png" alt = "mac default"></td>
+						  	</tr>
+							<tr>
+								<th>SIZE_UP_RIGHT</th>
+								<td><img src = "resources/up_windows.png" alt = "windows up"></td>
+								<td><img src = "resources/default_mac.png" alt = "mac default"></td>
+						  	</tr>
+							<tr>
+								<th>TEXT</th>
+								<td><img src = "resources/text_windows.png" alt = "windows text"></td>
+								<td><img src = "resources/text_mac.png" alt = "mac text"></td>
+						  	</tr>
+							<tr>
+								<th>WAIT</th>
+								<td><img src = "resources/wait_windows.png" alt = "windows wait"></td>
+								<td><img src = "resources/wait_mac.png" alt = "mac wait"></td>
+						  	</tr>
+							<tr>
+								<th>WAIT_ARROW</th>
+								<td><img src = "resources/wait_arrow_windows.png" alt = "windows wait arrow"></td>
+								<td><img src = "resources/default_mac.png" alt = "mac default"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					scroll = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the mouse wheel is being scrolled. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					scroll_x = {float}
+				</code>
+
+				<div class = "text">
+					The horizontal scroll of the mouse. {Read only}.
+					<p></p>
+					Most mice don't have this feature.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					scroll_y = {float}
+				</code>
+
+				<div class = "text">
+					The vertical scroll of the mouse. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					move = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the mouse is being moved. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					move_x = {int}
+				</code>
+
+				<div class = "text">
+					The horizontal distance the mouse was moved. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					move_y = {int}
+				</code>
+
+				<div class = "text">
+					The vertical distance the mouse was moved. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					press = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the mouse is pressed. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					release = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the mouse is released. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					left = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the left button is held. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					middle = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the middle button is held. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					right = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the right button is held. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					enter = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the mouse is moved into the window. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					leave = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the mouse is moved outside the window. {Read only}.
+				</div>
+			</div>
+
+			<a id = "Key"></a>
+			<div class = "content">
+				<code class = "class">
+					{class} Key()
+				</code>
+
+				<div class = "text">
+					This is the class for the keyboard events.
+					It is very unlikely that you will need to create a new instance of this class.
+					Instead of using this class directly, use the {key} value that is built in to JoBase.
+					Please look at the example below to see how the {key} value should be used.
+
+					<div class = "code">
+						<code>
+							{from} JoBase {import} *
+							<p></p>
+							circle = Circle(200, 200)
+							<p></p>
+							{def} loop():
+							<br>
+							&nbsp&nbsp&nbsp&nbspcircle.draw()
+							<p></p>
+							&nbsp&nbsp&nbsp&nbsp{if} key.up:
+							<br>
+							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcircle.y += 3
+							<p></p>
+							&nbsp&nbsp&nbsp&nbsp{elif} key.down:
+							<br>
+							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcircle.y -= 3
+							<p></p>
+							&nbsp&nbsp&nbsp&nbsp{elif} key.left:
+							<br>
+							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcircle.x -= 3
+							<p></p>
+							&nbsp&nbsp&nbsp&nbsp{elif} key.right:
+							<br>
+							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcircle.x += 3
+							<p></p>
+							&nbsp&nbsp&nbsp&nbsp{if} key.press {or} key.release:
+							<br>
+							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcircle.color = (random(), random(), random())
+							<p></p>
+							run()
+						</code>
+					</div>
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					press = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when a key is pressed. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					release = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when a key is released. {Read only}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					name = {bool}
+				</code>
+
+				<div class = "text">
+					Becomes true when the key with a certain name is being held. {Read only}.
+					<p></p>
+					Here is a list of all the key names.
+
+					<div class = "list">
+						<code>mod_shift</code>
+						<code>mod_ctrl</code>
+						<code>mod_alt</code>
+						<code>mod_capslock</code>
+						<code>mod_numlock</code>
+						<code>mod_windows</code>
+						<code>mod_command</code>
+						<code>mod_option</code>
+						<code>mod_scrolllock</code>
+						<code>mod_function</code>
+						<code>mod_accel</code>
+						<code>mod_ctrl</code>
+						<code>mod_cmd</code>
+						<code>backspace</code>
+						<code>tab</code>
+						<code>linefeed</code>
+						<code>clear</code>
+						<code>return</code>
+						<code>enter</code>
+						<code>pause</code>
+						<code>scrolllock</code>
+						<code>sysreq</code>
+						<code>escape</code>
+						<code>space</code>
+						<code>home</code>
+						<code>left</code>
+						<code>up</code>
+						<code>right</code>
+						<code>down</code>
+						<code>pageup</code>
+						<code>pagedown</code>
+						<code>end</code>
+						<code>begin</code>
+						<code>delete</code>
+						<code>select</code>
+						<code>print</code>
+						<code>execute</code>
+						<code>insert</code>
+						<code>undo</code>
+						<code>redo</code>
+						<code>menu</code>
+						<code>find</code>
+						<code>cancel</code>
+						<code>help</code>
+						<code>break</code>
+						<code>modeswitch</code>
+						<code>scriptswitch</code>
+						<code>function</code>
+						<code>motion_up</code>
+						<code>motion_right</code>
+						<code>motion_down</code>
+						<code>motion_left</code>
+						<code>motion_next_word</code>
+						<code>motion_previous_word</code>
+						<code>motion_beginning_of_line</code>
+						<code>motion_end_of_line</code>
+						<code>motion_next_page</code>
+						<code>motion_previous_page</code>
+						<code>motion_beginning_of_file</code>
+						<code>motion_end_of_file</code>
+						<code>motion_backspace</code>
+						<code>motion_delete</code>
+						<code>number pad</code>
+						<code>numlock</code>
+						<code>num_space</code>
+						<code>num_tab</code>
+						<code>num_enter</code>
+						<code>num_f1</code>
+						<code>num_f2</code>
+						<code>num_f3</code>
+						<code>num_f4</code>
+						<code>num_home</code>
+						<code>num_left</code>
+						<code>num_up</code>
+						<code>num_right</code>
+						<code>num_down</code>
+						<code>num_prior</code>
+						<code>num_page_up</code>
+						<code>num_next</code>
+						<code>num_page_down</code>
+						<code>num_end</code>
+						<code>num_begin</code>
+						<code>num_insert</code>
+						<code>num_delete</code>
+						<code>num_equal</code>
+						<code>num_multiply</code>
+						<code>num_add</code>
+						<code>num_separator</code>
+						<code>num_subtract</code>
+						<code>num_decimal</code>
+						<code>num_divide</code>
+						<code>num_0</code>
+						<code>num_1</code>
+						<code>num_2</code>
+						<code>num_3</code>
+						<code>num_4</code>
+						<code>num_5</code>
+						<code>num_6</code>
+						<code>num_7</code>
+						<code>num_8</code>
+						<code>num_9</code>
+						<code>f1</code>
+						<code>f2</code>
+						<code>f3</code>
+						<code>f4</code>
+						<code>f5</code>
+						<code>f6</code>
+						<code>f7</code>
+						<code>f8</code>
+						<code>f9</code>
+						<code>f10</code>
+						<code>f11</code>
+						<code>f12</code>
+						<code>f13</code>
+						<code>f14</code>
+						<code>f15</code>
+						<code>f16</code>
+						<code>f17</code>
+						<code>f18</code>
+						<code>f19</code>
+						<code>f20</code>
+						<code>lshift</code>
+						<code>rshift</code>
+						<code>lctrl</code>
+						<code>rctrl</code>
+						<code>capslock</code>
+						<code>lmeta</code>
+						<code>rmeta</code>
+						<code>lalt</code>
+						<code>ralt</code>
+						<code>lwindows</code>
+						<code>rwindows</code>
+						<code>lcommand</code>
+						<code>rcommand</code>
+						<code>loption</code>
+						<code>roption</code>
+						<code>space</code>
+						<code>exclamation</code>
+						<code>doublequote</code>
+						<code>hash</code>
+						<code>pound</code>
+						<code>dollar</code>
+						<code>percent</code>
+						<code>ampersand</code>
+						<code>apostrophe</code>
+						<code>parenleft</code>
+						<code>parenright</code>
+						<code>asterisk</code>
+						<code>plus</code>
+						<code>comma</code>
+						<code>minus</code>
+						<code>period</code>
+						<code>slash</code>
+						<code>_0</code>
+						<code>_1</code>
+						<code>_2</code>
+						<code>_3</code>
+						<code>_4</code>
+						<code>_5</code>
+						<code>_6</code>
+						<code>_7</code>
+						<code>_8</code>
+						<code>_9</code>
+						<code>colon</code>
+						<code>semicolon</code>
+						<code>less</code>
+						<code>equal</code>
+						<code>greater</code>
+						<code>question</code>
+						<code>at</code>
+						<code>bracketleft</code>
+						<code>backslash</code>
+						<code>bracketright</code>
+						<code>asciicircum</code>
+						<code>underscore</code>
+						<code>grave</code>
+						<code>quoteleft</code>
+						<code>a</code>
+						<code>b</code>
+						<code>c</code>
+						<code>d</code>
+						<code>e</code>
+						<code>f</code>
+						<code>g</code>
+						<code>h</code>
+						<code>i</code>
+						<code>j</code>
+						<code>k</code>
+						<code>l</code>
+						<code>m</code>
+						<code>n</code>
+						<code>o</code>
+						<code>p</code>
+						<code>q</code>
+						<code>r</code>
+						<code>s</code>
+						<code>t</code>
+						<code>u</code>
+						<code>v</code>
+						<code>w</code>
+						<code>x</code>
+						<code>y</code>
+						<code>z</code>
+						<code>braceleft</code>
+						<code>bar</code>
+						<code>braceright</code>
+						<code>asciitilde</code>
+					</div>
+				</div>
+			</div>
+
+			<a id = "Circle"></a>
+			<div class = "content">
+				<code class = "class">
+					{class} Circle(x = 0, y = 0, radius = 50, color = (1, 1, 1), opacity = 1)
+				</code>
+
+				<div class = "text">
+					This is the class for drawing a circle.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					draw()
+				</code>
+
+				<div class = "text">
+					Draw the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					collides_with(other) = {bool}
+				</code>
+
+				<div class = "text">
+					Detects collision with another object.
+					<p></p>
+					You can check collision with any {JoBase} shape as well as the window and the mouse.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					x = {int}
+				</code>
+
+				<div class = "text">
+					The horizontal position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					y = {int}
+				</code>
+
+				<div class = "text">
+					The vertical position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					position = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					scale_x = {float}
+				</code>
+
+				<div class = "text">
+					The horizontal scale of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					scale_y = {float}
+				</code>
+
+				<div class = "text">
+					The vertical scale of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					scale = {float}
+				</code>
+
+				<div class = "text">
+					The overall scale of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					anchor_x = {int}
+				</code>
+
+				<div class = "text">
+					The horizontal anchor position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					anchor_y = {int}
+				</code>
+
+				<div class = "text">
+					The vertical anchor position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					anchor = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The anchor position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					rotation = {float}
+				</code>
+
+				<div class = "text">
+					The rotation of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					red = {float}
+				</code>
+
+				<div class = "text">
+					The red color of the shape.
+					<p></p>
+					It should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					green = {float}
+				</code>
+
+				<div class = "text">
+					The green color of the shape.
+					<p></p>
+					It should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					blue = {float}
+				</code>
+
+				<div class = "text">
+					The blue color of the shape.
+					<p></p>
+					It should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					color = ({float}, {float}, {float})
+				</code>
+
+				<div class = "text">
+					The color of the shape.
+					<p></p>
+					Each value should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					colors = [({float}, {float}, {float}), ...]
+				</code>
+
+				<div class = "text">
+					The individual colors of each vertex as a large list of tuples.
+					<p></p>
+					When you change the {color} value, all of these values change.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					opacity = {float}
+				</code>
+
+				<div class = "text">
+					The opacity of the shape.
+					<p></p>
+					If the opacity is at {0.5}, the shape will blend into the background.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					top = {int}
+				</code>
+
+				<div class = "text">
+					The top of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					bottom = {int}
+				</code>
+
+				<div class = "text">
+					The bottom of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					left = {int}
+				</code>
+
+				<div class = "text">
+					The left of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					right = {int}
+				</code>
+
+				<div class = "text">
+					The right of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					radius = {float}
+				</code>
+
+				<div class = "text">
+					The radius of the circle.
+				</div>
+			</div>
+
+			<a id = "Line"></a>
+			<div class = "content">
+				<code class = "class">
+					{class} Line(x1 = 0, y1 = 0, x2 = 100, y2 = 100, width = 1, color = (1, 1, 1), opacity = 1)
+				</code>
+
+				<div class = "text">
+					This is the class for drawing a line.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					draw()
+				</code>
+
+				<div class = "text">
+					Draw the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					collides_with(other) = {bool}
+				</code>
+
+				<div class = "text">
+					Detects collision with another object.
+					<p></p>
+					You can check collision with any {JoBase} shape as well as the window and the mouse.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					x = {int}
+				</code>
+
+				<div class = "text">
+					The horizontal position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					y = {int}
+				</code>
+
+				<div class = "text">
+					The vertical position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					position = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					scale_x = {float}
+				</code>
+
+				<div class = "text">
+					The horizontal scale of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					scale_y = {float}
+				</code>
+
+				<div class = "text">
+					The vertical scale of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					scale = {float}
+				</code>
+
+				<div class = "text">
+					The overall scale of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					anchor_x = {int}
+				</code>
+
+				<div class = "text">
+					The horizontal anchor position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					anchor_y = {int}
+				</code>
+
+				<div class = "text">
+					The vertical anchor position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					anchor = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The anchor position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					rotation = {float}
+				</code>
+
+				<div class = "text">
+					The rotation of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					red = {float}
+				</code>
+
+				<div class = "text">
+					The red color of the shape.
+					<p></p>
+					It should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					green = {float}
+				</code>
+
+				<div class = "text">
+					The green color of the shape.
+					<p></p>
+					It should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					blue = {float}
+				</code>
+
+				<div class = "text">
+					The blue color of the shape.
+					<p></p>
+					It should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					color = ({float}, {float}, {float})
+				</code>
+
+				<div class = "text">
+					The color of the shape.
+					<p></p>
+					Each value should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					colors = [({float}, {float}, {float}), ...]
+				</code>
+
+				<div class = "text">
+					The individual colors of each vertex as a large list of tuples.
+					<p></p>
+					When you change the {color} value, all of these values change.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					opacity = {float}
+				</code>
+
+				<div class = "text">
+					The opacity of the shape.
+					<p></p>
+					If the opacity is at {0.5}, the shape will blend into the background.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					top = {int}
+				</code>
+
+				<div class = "text">
+					The top of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					bottom = {int}
+				</code>
+
+				<div class = "text">
+					The bottom of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					left = {int}
+				</code>
+
+				<div class = "text">
+					The left of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					right = {int}
+				</code>
+
+				<div class = "text">
+					The right of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					width = {float}
+				</code>
+
+				<div class = "text">
+					The width of the line.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					x1 = {int}
+				</code>
+
+				<div class = "text">
+					The first horizontal position of the line.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					y1 = {int}
+				</code>
+
+				<div class = "text">
+					The first vertical position of the line.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					position1 = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The first position of the line.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					x2 = {int}
+				</code>
+
+				<div class = "text">
+					The second horizontal position of the line.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					y2 = {int}
+				</code>
+
+				<div class = "text">
+					The second vertical position of the line.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					position2 = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The second position of the line.
+				</div>
+			</div>
+
+			<a id = "Image"></a>
+			<div class = "content">
+				<code class = "class">
+					{class} Image(image = MAN, x = 0, y = 0, rotation = 0)
+				</code>
+
+				<div class = "text">
+					This is the class for drawing an image.
+					For the {name} you can put the filename of your own image.
+					It can be in {PNG}, {GIF}, {JPG}, {BMP} or {DDS} format.
+					Depending on your computer setup, you may be able to load other files as well.
+					<p></p>
+					The example below shows you how to load your own image.
+
+					<div class = "code">
+						<code>
+							ball = Image(¦"images/ball.png"})
+						</code>
+					</div>
+
+					Alternatively, you can use a {JoBase} image.
+
+					<div class = "code">
+						<code>
+							rocket = Image(ROCKET)
+						</code>
+					</div>
+
+					Here is a list of all the {JoBase} image names, more are coming.
+
+					<div class = "list">
+						<code>MAN</code>
+						<code>BAD</code>
+						<code>ROCKET</code>
+						<code>ENEMY</code>
+						<code>ASTRONAUT</code>
+					</div>
+
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					draw()
+				</code>
+
+				<div class = "text">
+					Draw the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					collides_with(other) = {bool}
+				</code>
+
+				<div class = "text">
+					Detects collision with another object.
+					<p></p>
+					You can check collision with any {JoBase} shape as well as the window and the mouse.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					x = {int}
+				</code>
+
+				<div class = "text">
+					The horizontal position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					y = {int}
+				</code>
+
+				<div class = "text">
+					The vertical position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					position = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					scale_x = {float}
+				</code>
+
+				<div class = "text">
+					The horizontal scale of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					scale_y = {float}
+				</code>
+
+				<div class = "text">
+					The vertical scale of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					scale = {float}
+				</code>
+
+				<div class = "text">
+					The overall scale of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					anchor_x = {int}
+				</code>
+
+				<div class = "text">
+					The horizontal anchor position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					anchor_y = {int}
+				</code>
+
+				<div class = "text">
+					The vertical anchor position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					anchor = ({int}, {int})
+				</code>
+
+				<div class = "text">
+					The anchor position of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					rotation = {float}
+				</code>
+
+				<div class = "text">
+					The rotation of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					red = {float}
+				</code>
+
+				<div class = "text">
+					The red color of the shape.
+					<p></p>
+					It should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					green = {float}
+				</code>
+
+				<div class = "text">
+					The green color of the shape.
+					<p></p>
+					It should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					blue = {float}
+				</code>
+
+				<div class = "text">
+					The blue color of the shape.
+					<p></p>
+					It should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					color = ({float}, {float}, {float})
+				</code>
+
+				<div class = "text">
+					The color of the shape.
+					<p></p>
+					Each value should be in the range of {0} to {1}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					colors = [({float}, {float}, {float}), ...]
+				</code>
+
+				<div class = "text">
+					The individual colors of each vertex as a large list of tuples.
+					<p></p>
+					When you change the {color} value, all of these values change.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					opacity = {float}
+				</code>
+
+				<div class = "text">
+					The opacity of the shape.
+					<p></p>
+					If the opacity is at {0.5}, the shape will blend into the background.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					top = {int}
+				</code>
+
+				<div class = "text">
+					The top of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					bottom = {int}
+				</code>
+
+				<div class = "text">
+					The bottom of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					left = {int}
+				</code>
+
+				<div class = "text">
+					The left of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					right = {int}
+				</code>
+
+				<div class = "text">
+					The right of the shape.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					width = {int}
+				</code>
+
+				<div class = "text">
+					The width of the image.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					height = {int}
+				</code>
+
+				<div class = "text">
+					The height of the image.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					image = {str}
+				</code>
+
+				<div class = "text">
+					The image filename.
+					<p></p>
+					If you change this value during the game, it will load the new image.
+				</div>
+			</div>
+
+			<a id = "Math"></a>
+			<div class = "content">
+				<code class = "function">
+					{def} distance(x1, y1, x2, y2) = {float}
+				</code>
+
+				<div class = "text">
+					Find the distance between two points.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					{def} angle(x1, y1, x2, y2) = {float}
+				</code>
+
+				<div class = "text">
+					Find the angle of the two points in degrees.
+					<p></p>
+					Returns a number between {0} and {360}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					{def} direction(length, angle) = ({float}, {float})
+				</code>
+
+				<div class = "text">
+					Find the horizontal and vertical length of a line based on the length and angle.
+					<p></p>
+					This function is useful for making an object travel in a specific direction.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					{def} random_number(number1, number2) = {int}
+				</code>
+
+				<div class = "text">
+					Returns a random whole number between {number1} and {number2}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					{def} random_decimal(number1, number2) = {float}
+				</code>
+
+				<div class = "text">
+					Returns a random decimal between {number1} and {number2}.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					{def} rotate_point(x, y, center_x, center_y, rotation) = ({float}, {float})
+				</code>
+
+				<div class = "text">
+					Rotates a point around a central position.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					{def} rotate_toward_goal(current, goal, increment = 1) = {float}
+				</code>
+
+				<div class = "text">
+					Changes the {current} angle to match the {goal} angle.
+					<p></p>
+					This function was made with space ships in mind.
+					It is useful for making an object rotate slowly to point to another object.
+				</div>
+			</div>
+
+			<a id = "Collision"></a>
+			<div class = "content">
+				<code class = "function">
+					{def} point_collides_with_shape(x, y, shape) = {bool}
+				</code>
+
+				<div class = "text">
+					Check if a point collides with a shape.
+					<p></p>
+					The shape needs to be a list of points.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					{def} shape_collides_with_shape(shape1, shape2) = {bool}
+				</code>
+
+				<div class = "text">
+					Check if the shapes collide with each other.
+					<p></p>
+					The shapes need to be a list of points.
+				</div>
+			</div>
+
+			<div class = "content">
+				<code class = "function">
+					{def} point_collides_with_point(x1, y1, x2, y2) = {bool}
+				</code>
+
+				<div class = "text">
+					Check if the points collide with each other.
+					<p></p>
+					This function is slightly pointless, we added it for consistency.
+				</div>
+			</div>
+
+			<footer>&copy Copyright ^ JoBase</footer>
+		</section>
+  	</body>
+</html>
