@@ -2,7 +2,7 @@
 
 @font-face {
 	font-family: dyslexic;
-	src: url(../resources/font/regular.otf);
+	src: url(../resources/font/dyslexic.otf);
 }
 
 html {
@@ -125,7 +125,7 @@ body {
 
 .code {
 	padding: 0.5rem 1rem;
-	font-family: Consolas;
+	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 	font-size: 0.9rem;
 	color: #a0a0a0;
 	background-color: #f3f6fa;
@@ -137,7 +137,7 @@ body {
 
 .code code {
 	color: #2b3c44;
-	font-family: Consolas;
+	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 	font-size: 0.9rem;
 }
 
@@ -152,7 +152,7 @@ body {
 }
 
 .content .class {
-	font-family: Consolas;
+	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 	padding: 0.3rem 1rem;
 	font-size: 1.3rem;
 	background-color: #edf6ff;
@@ -164,7 +164,7 @@ body {
 }
 
 .content .function {
-	font-family: Consolas;
+	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 	padding: 0.2rem 1rem;
 	font-size: 1rem;
 	background-color: #f1f1f1;
