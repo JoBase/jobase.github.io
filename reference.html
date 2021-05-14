@@ -65,21 +65,18 @@
 					Please look at the example below to see how the {window} value should be used.
 
 					<div class = "code">
-						<code>
-							{from} JoBase {import} *
-							<p></p>
-							window.caption = ¦"Window Example"}
-							<br>
-							window.green = 0.5
-							<br>
-							window.size = (300, 300)
-							<p></p>
-							{def} loop():
-							<br>
-							&nbsp&nbsp&nbsp&nbspwindow.red += 0.01
-							<p></p>
-							run()
-						</code>
+<pre>
+{from} JoBase {import} *
+
+window.caption = ¦"Window Example"}
+window.green = 0.5
+window.size = (300, 300)
+
+{def} loop():
+    window.red += 0.01
+
+run()
+</pre>
 					</div>
 				</div>
 			</div>
@@ -281,11 +278,10 @@
 					The following code is useful for many games.
 
 					<div class = "code">
-						<code>
-							{if} key.f11 {and} key.press: %# the fullscreen is toggled when you press F11}
-							<br>
-							&nbsp&nbsp&nbsp&nbspwindow.fullscreen = {not} window.fullscreen
-						</code>
+<pre>
+{if} key.f11 {and} key.press: %# the fullscreen is toggled when you press F11}
+    window.fullscreen = {not} window.fullscreen
+</pre>
 					</div>
 				</div>
 			</div>
@@ -481,27 +477,23 @@
 					Please look at the example below to see how the {mouse} value should be used.
 
 					<div class = "code">
-						<code>
-							{from} JoBase {import} *
-							<p></p>
-							mouse.cursor = HAND
-							<br>
-							timer = 5
-							<p></p>
-							{def} loop():
-							<br>
-							&nbsp&nbsp&nbsp&nbsp{global} timer
-							<p></p>
-							&nbsp&nbsp&nbsp&nbsptimer -= 1
-							<p></p>
-							&nbsp&nbsp&nbsp&nbsp{if} timer < 0:
-							<br>
-							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmouse.visible = {not} mouse.visible
-							<br>
-							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsptimer = 5
-							<p></p>
-							run()
-						</code>
+<pre>
+{from} JoBase {import} *
+
+mouse.cursor = HAND
+timer = 5
+
+{def} loop():
+    {global} timer
+
+    timer -= 1
+
+    {if} timer < 0:
+        mouse.visible = {not} mouse.visible
+        timer = 5
+
+run()
+</pre>
 					</div>
 				</div>
 			</div>
@@ -567,9 +559,9 @@
 					The mouse appearance.
 					
 					<div class = "code">
-						<code>
-							mouse.cursor = HAND %# changes the mouse icon}
-						</code>
+<pre>
+mouse.cursor = HAND %# changes the mouse icon}
+</pre>
 					</div>
 					
 					The table below shows all the different mouse icons.
@@ -826,37 +818,31 @@
 					Please look at the example below to see how the {key} value should be used.
 
 					<div class = "code">
-						<code>
-							{from} JoBase {import} *
-							<p></p>
-							circle = Circle(200, 200)
-							<p></p>
-							{def} loop():
-							<br>
-							&nbsp&nbsp&nbsp&nbspcircle.draw()
-							<p></p>
-							&nbsp&nbsp&nbsp&nbsp{if} key.up:
-							<br>
-							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcircle.y += 3
-							<p></p>
-							&nbsp&nbsp&nbsp&nbsp{elif} key.down:
-							<br>
-							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcircle.y -= 3
-							<p></p>
-							&nbsp&nbsp&nbsp&nbsp{elif} key.left:
-							<br>
-							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcircle.x -= 3
-							<p></p>
-							&nbsp&nbsp&nbsp&nbsp{elif} key.right:
-							<br>
-							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcircle.x += 3
-							<p></p>
-							&nbsp&nbsp&nbsp&nbsp{if} key.press {or} key.release:
-							<br>
-							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcircle.color = (random(), random(), random())
-							<p></p>
-							run()
-						</code>
+<pre>
+{from} JoBase {import} *
+
+circle = Circle(200, 200)
+
+{def} loop():
+    circle.draw()
+
+        {if} key.up:
+    circle.y += 3
+
+    {elif} key.down:
+        circle.y -= 3
+
+    {elif} key.left:
+        circle.x -= 3
+
+    {elif} key.right:
+        circle.x += 3
+
+    {if} key.press {or} key.release:
+        circle.color = (random(), random(), random())
+
+run()
+</pre>
 					</div>
 				</div>
 			</div>
@@ -1688,17 +1674,17 @@
 					The example below shows you how to load your own image.
 
 					<div class = "code">
-						<code>
-							ball = Image(¦"images/ball.png"})
-						</code>
+<pre>
+ball = Image(¦"images/ball.png"})
+</pre>
 					</div>
 
 					Alternatively, you can use a {JoBase} image.
 
 					<div class = "code">
-						<code>
-							rocket = Image(ROCKET)
-						</code>
+<pre>
+rocket = Image(ROCKET)
+</pre>
 					</div>
 
 					Here is a list of all the {JoBase} image names, more are coming.
