@@ -1,7 +1,7 @@
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-4QT94Y9S9B');
+gtag('config', 'G-DKHQZ28TR3');
 
 let load = false
 window.addEventListener("DOMContentLoaded", loaded)
