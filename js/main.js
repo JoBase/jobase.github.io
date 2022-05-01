@@ -1,32 +1,49 @@
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-DKHQZ28TR3');
+"use strict"
 
-let load = false
-window.addEventListener("DOMContentLoaded", loaded)
+const mutation = new MutationObserver(() => {
+    if (!document.body) return
 
-window.onscroll = function() {
-    if (load) {
-        if (document.scrollingElement.scrollTop > 100) $('.back').fadeIn()
-        else $('.back').fadeOut()
-    }
+    const theme = localStorage.getItem("theme")
+    const dark = matchMedia("(prefers-color-scheme: dark)").matches
+    const current = theme ? theme : dark ? "dark" : "light"
+    const icon = document.querySelector(".theme")
+
+    document.body.setAttribute("theme", current)
+    icon.className += ` fa-solid fa-${current == "dark" ? "moon" : "sun"}`
+    mutation.disconnect()
+})
+
+mutation.observe(document.documentElement, {childList: true})
+
+function toggleBars(element) {
+    const top = element.parentNode
+
+    if (top.className == "top")
+        top.className += " active"
+
+    else top.className = "top"
 }
 
-function loaded() {
-	document.body.innerHTML = document.body.innerHTML
-	.replace(/¦/g, "<font color = '77b13e'>")
-	.replace(/%/g, "<font color = '999999'>")
-	.replace(/{/g, "<font color = '3e77b1'>")
-	.replace(/}/g, "</font>")
-	.replace("^", new Date().getFullYear().toString())
+function toggleTheme(element) {
+    const theme = document.body.getAttribute("theme")
+    const current = theme == "dark" ? "light" : "dark"
 
-    load = true
+    localStorage.setItem("theme", current)
+    document.body.setAttribute("theme", current)
+
+    element.className = element.className.replace(
+        /(moon|sun)/, current == "dark" ? "moon" : "sun")
 }
 
-function bar() {
-	let top = document.getElementById("top")
-	
-	if (top.className === "top") top.className += " responsive"	
-	else top.className = "top"
+onload = () => {
+    const code = document.querySelectorAll("pre,code")
+    year.textContent = new Date().getFullYear()
+
+    code.forEach(e => {
+        const parts = e.textContent.split("\n")
+        const min = Math.min(...parts.map(s => s.search(/\S/)).filter(e => e > 0))
+        const string = parts.map(s => s.substring(min)).join("\n")
+
+        e.innerHTML = hljs.highlight(string || e.textContent, {language: "python"}).value
+    })
 }

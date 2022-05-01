@@ -1,92 +1,46 @@
 <!DOCTYPE html>
-<html lang = "en">
-  	<head>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src = "https://www.googletagmanager.com/gtag/js?id=G-4QT94Y9S9B"></script>
+<html>
+    <head>
+        <meta name = viewport content = "width = device-width, initial-scale = 1">
+        <meta name = description content = "Welcome to JoBase. Learn how to code with the fastest Python tools.">
 
-    	<meta charset = "UTF-8">
-		<meta name = "viewport" content = "width = device-width, initial-scale = 1">
-		<meta name = "description" content = "Python Game Library">
-		<meta name = "keywords" content = "python coding, coding in python, pygame alternative, pygame zero alternative, beginner coding in python, coding, beginner coding, coding for beginners,
-		introduction to coding, python games, making games in python, simple games in python, scratch alternative, pyglet, learn python, computer science, educational resource">
+        <script async src = "https://www.googletagmanager.com/gtag/js?id=G-4QT94Y9S9B"></script>
+        <script src = js/analytics.js></script>
+        <script src = js/main.js></script>
 
-		<link rel = "stylesheet" href = "https://use.fontawesome.com/releases/v5.0.7/css/all.css">
-		<link rel = "stylesheet" href = "css/main.css">
-		<link rel = "stylesheet" href = "css/chocolat.css">
+        <link href = assets/fontawesome/css/fontawesome.css rel = stylesheet>
+        <link href = assets/fontawesome/css/solid.css rel = stylesheet>
+        <link rel = stylesheet href = main.css>
 
-		<script src = "js/jquery.js"></script>
-		<script src = "js/chocolat.js"></script>
-		<script src = "js/main.js"></script>
-	
-		<title>JoBase | Home</title>
-  	</head>
-  
-  	<body>
-		<section class = "top" id = "top">
-			<a href = "index.html" class = "this">HOME</a>
-			<a href = "about.html">ABOUT</a>
-			<a href = "tutorials.html">TUTORIALS</a>
-			<a href = "examples.html">EXAMPLES</a>
-			<a href = "reference.html">REFERENCE</a>
-			<a href = "https://www.paypal.com/donate?hosted_button_id=MTC562EVNRGRE">DONATE</a>
-			<a class = "icon" onclick = "bar()"><em class = "fa fa-bars"></em></a>
-		</section>
+        <title>JoBase · The Fast Python Game LIbrary</title>
+    </head>
 
-		<section class = "header">
-			<img src = "resources/man.png" alt = "man"><span class = "base">JoBase</span>
-      		<span class = "line">Fast Python Game Library</span>
-		</section>
+    <body>
+        <section class = top>
+            <a href = "/">JoBase</a>
+            <i onclick = toggleBars(this) class = "fa-solid fa-bars"></i>
+            <i onclick = toggleTheme(this) class = theme></i>
+            <a href = "/" class = this>Home</a>
+            <a href = examples>Examples</a>
+            <a href = reference>Reference</a>
+        </section>
 
-		<section class = "main" id = "example0">
-			<h2>Welcome to JoBase</h2>
-			JoBase is aimed at beginner coders who want to have fun making games with Python.
-			<p></p>
-			Follow steps below to prepare your computer for JoBase.
-			<!--After that, you can get coding straight away without any previous coding knowledge.
-			Our set of tutorials will help you start even if you don't know anything about code.-->
+        <section class = main>
+            <div class = header>
+                <div><img src = assets/images/logo.svg>JoBase</div>
+            </div>
 
-			<h3>Download Python</h3>
-			The instructions below will show you how to set up Python on Windows.
-			<p></p>
-			Find the {Python Downloads} page or click the link <a href = "https://python.org/downloads">here</a>.
-			On the screen you will see a yellow download button.
-			Click on it and save the file.
-			<p></p>
-			When you have downloaded the file, run it.
-			A new window should appear.
-			BEFORE you press the {Install Now} button, tick the box that says {Add Python to PATH}.
-			Your screen should look like <a class = "chocolat-image" href = "resources/python_1.png" title = "Python Installer">this</a>.
-			Once you have done that, click {Install Now} and then {YES}.
-			Python will start installing. This may take a while.
-			Once Python has been successfully installed, you can take a break.
+            <h2>Welcome to JoBase</h2>
+            
+            JoBase is a really fast Python game library for beginner coders.
+            It is written in pure C and uses the same modern tools as high-end games like Minecraft.
+        </section>
 
-			<h3>Install JoBase</h3>
-			Now it's time to install JoBase.
-			<p></p>
-			Open the {Command Terminal} on your computer.
-			It's a black screen with white text.
-			You can find it by typing {cmd} into your computer's search bar.
-			Once you've opened it, type the following command into the terminal.
-
-			<div class = "code">
-				<pre>pip install JoBase</pre>
-			</div>
-
-			Press {ENTER} and wait for JoBase to install.
-			The command terminal should look similar to <a class = "chocolat-image" href = "resources/command_1.png" title = "Install JoBase">this</a>.
-			Because all operating systems are different, your command terminal may vary from the image.
-			<p></p>
-			If there aren't any errors (shown in red) then JoBase has been sucessfully installed.
-			<p></p>
-			If you have problems when installing JoBase, you may need to run the command terminal as administrator.
-			To do this, open the command terminal by right clicking and selecting {Run as administrator} instead of just clicking on it.
-			<p></p>
-			If you are still struggling to set up JoBase, then ask a friend to help.
-			<p></p>
-			You have completed all the installation steps.
-			<!--Please visit our tutorials page to get started with JoBase.-->
-
-			<footer>&copy Copyright ^ JoBase</footer>
-		</section>
-  	</body>
+        <footer>
+            <span>
+                © Copyright <span id = year></span> JoBase ·
+                <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+            </span>
+        </footer>
+    </body>
 </html>

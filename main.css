@@ -1,0 +1,237 @@
+@font-face {
+    font-family: dyslexic;
+    src: url(assets/font/bold.otf)
+}
+
+@font-face {
+    font-family: nunito;
+    src: url(assets/font/nunito.ttf)
+}
+
+:root {
+    --radius: 0.3em;
+    --padding: 0.4em;
+    --small: 16px
+}
+
+body[theme = light] {
+    --background: #ddd;
+    --text: #666;
+    --mark: #444;
+    --link: #47b;
+    --main: #777;
+    --button: #ccc;
+    --blank: #bbb;
+    --block: #eee;
+    --comment: #999;
+    --code: #555;
+    --string: #370;
+    --keyword: #83b;
+    --built_in: #088;
+    --number: #960;
+    --attr: #960;
+    --literal: #960;
+    --tag: #555;
+    --function: #555;
+    --attribute: #555;
+    --variable: #d55;
+    --name: #d55;
+    --selector-tag: #d55;
+    --title: #06c;
+    --selector-id: #06c;
+    --meta: #06c;
+    --params: #d55;
+    --property: #d55;
+    --regexp: #d55;
+}
+
+body[theme = dark] {
+    --background: #333;
+    --text: #aaa;
+    --mark: #ccc;
+    --link: #5af;
+    --main: #aaa;
+    --button: #555;
+    --blank: #666;
+    --block: #222;
+    --comment: #888;
+    --code: #bbb;
+    --string: #8c5;
+    --keyword: #c7f;
+    --built_in: #2cc;
+    --number: #d92;
+    --attr: #d92;
+    --literal: #d92;
+    --tag: #bbb;
+    --function: #bbb;
+    --attribute: #bbb;
+    --variable: #f66;
+    --name: #f66;
+    --selector-tag: #f66;
+    --title: #6af;
+    --selector-id: #6af;
+    --meta: #6af;
+    --params: #f66;
+    --property: #f66;
+    --regexp: #f66;
+}
+
+body {
+    margin: 0;
+    font-size: var(--font);
+    background-color: var(--background);
+    font-family: nunito;
+    color: var(--text)
+}
+
+mark {
+    color: var(--mark);
+    background: none
+}
+
+.hljs-string {color: var(--string)}
+.hljs-keyword {color: var(--keyword)}
+.hljs-built_in {color: var(--built_in)}
+.hljs-comment {color: var(--comment)}
+.hljs-number {color: var(--number)}
+.hljs-attr {color: var(--attr)}
+.hljs-literal {color: var(--literal)}
+.hljs-tag {color: var(--tag)}
+.hljs-function {color: var(--function)}
+.hljs-attribute {color: var(--attribute)}
+.hljs-variable {color: var(--variable)}
+.hljs-name {color: var(--name)}
+.hljs-selector-tag {color: var(--selector-tag)}
+.hljs-title {color: var(--title)}
+.hljs-selector-id {color: var(--selector-id)}
+.hljs-meta {color: var(--meta)}
+.hljs-params {color: var(--params)}
+.hljs-property {color: var(--property)}
+.hljs-regexp {color: var(--regexp)}
+
+pre, code {
+    padding: 0.8em;
+    border-radius: var(--radius);
+    background-color: var(--block);
+    margin: 1em 0;
+    font-size: var(--small);
+    font-family: monospace;
+    color: var(--code)
+}
+
+code {
+    display: inline-block;
+    font-weight: bold
+}
+
+a {
+    color: var(--link);
+    text-decoration: none
+}
+
+footer {
+    width: 100%;
+    padding: var(--padding);
+    font-size: var(--small)
+}
+
+pre {display: block}
+footer span {color: var(--text)}
+a:hover {color: var(--comment)}
+
+.large {font-size: var(--font)}
+.small {font-size: var(--small)}
+.indent {margin-left: 2em}
+
+.top {
+    overflow: hidden;
+    font-weight: bold
+}
+
+.top a:first-child {
+    font-family: dyslexic;
+    font-size: 40px;
+    padding-right: 0.2em;
+    color: var(--main)
+}
+
+.top a:not(:first-child), .top i {
+    cursor: pointer;
+    color: var(--comment)
+}
+
+.top i {
+    float: right;
+    padding-bottom: 1em
+}
+
+.top a:not(:first-child) {
+    font-family: nunito;
+    padding-left: 1em
+}
+
+.top i.fa-bars {display: none}
+.top a {text-decoration: none}
+.top a.this, .top a:not(:first-child):hover, .top i:hover {color: var(--link)}
+
+.header {
+    height: 10em;
+    background-color: #999;
+    color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.header div {
+    font-size: 100px;
+    font-family: dyslexic;
+    height: 60%
+}
+
+.header img {
+    height: 100%;
+    margin-right: 0.5em;
+    float: left
+}
+
+@media screen and (min-width: 64em) {
+    .top {
+        max-width: 64em;
+        padding: 2em 6em;
+        margin: 0 auto
+    }
+
+    .main {
+        max-width: 64em;
+        padding: 1em 6em;
+        margin: 0 auto
+    }
+
+    :root {--font: 20px}
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em) {
+    .top {padding: 2em 4em}
+    .main {padding: 1em 4em}
+    :root {--font: 18px}
+}
+
+@media screen and (max-width: 42em) {
+    .top {padding: 2em 1em}
+    .main {padding: 1em 1em 2em 1em}
+    :root {--font: 16px}
+
+    .top a:not(:first-child), .top i.theme {display: none}
+    .top i.fa-bars {display: block}
+
+    .top.active a:not(:first-child) {
+        padding-top: var(--padding);
+        display: block
+    }
+}
+
+* {
+    transition-duration: 0.2s;
+    box-sizing: border-box
+}
