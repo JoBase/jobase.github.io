@@ -31,6 +31,12 @@
         </section>
 
         <section class = main>
+            <details>
+                <summary>Contents</summary>
+                <a href = #Window>Window</a>
+                <a href = #Camera>Camera</a>
+            </details>
+
             <p>
                 Welcome to the JoBase reference manual.
                 Please look at the examples below before you carry on.
@@ -62,7 +68,7 @@
             </code>
 
             <div class = indent>
-                This class is for managing main window.
+                This class is for managing the main window.
                 The inbuilt <mark>window</mark> variable is an instance of this class.
                 Do not try to instance this class directly.
 
@@ -193,9 +199,34 @@
                 </div>
             </div>
 
-            <p>
-                More coming soon...
-            </p>
+            <code class = large id = Camera>
+                class Camera()
+            </code>
+
+            <div class = indent>
+                This class is for managing the game camera.
+                By moving it around, you can change your view of the objects on the screen.
+                The inbuilt <mark>camera</mark> variable is an instance of this class.
+                Do not try to instance this class directly.
+
+                <code class = small id = Camera.x>x: float</code>
+
+                <div class = indent>
+                    The x position of the camera.
+                </div>
+
+                <code class = small id = Camera.y>y: float</code>
+
+                <div class = indent>
+                    The y position of the camera.
+                </div>
+
+                <code class = small id = Camera.position>position: (float, float)</code>
+
+                <div class = indent>
+                    The position of the camera.
+                </div>
+            </div>
         </section>
 
         <footer>

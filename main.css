@@ -109,6 +109,18 @@ mark {
 .hljs-property {color: var(--property)}
 .hljs-regexp {color: var(--regexp)}
 
+details {
+    background-color: var(--block);
+    border-radius: var(--radius);
+    padding: var(--padding);
+    margin-bottom: var(--padding)
+}
+
+details a {
+    display: block;
+    margin-left: 2em
+}
+
 pre, code {
     padding: 0.8em;
     border-radius: var(--radius);
@@ -120,7 +132,7 @@ pre, code {
 }
 
 code {
-    display: inline-block;
+    display: table;
     font-weight: bold
 }
 
@@ -138,6 +150,7 @@ footer {
 pre {display: block}
 footer span {color: var(--text)}
 a:hover {color: var(--comment)}
+html {scroll-behavior: smooth}
 
 .large {font-size: var(--font)}
 .small {font-size: var(--small)}
