@@ -160,7 +160,7 @@ a:hover {color: var(--comment)}
     color: var(--comment)
 }
 
-.top i {
+.top > i {
     float: right;
     padding-bottom: 1em
 }
@@ -173,6 +173,7 @@ a:hover {color: var(--comment)}
 .top i.fa-bars {display: none}
 .top a {text-decoration: none}
 .top a.this, .top a:not(:first-child):hover, .top i:hover {color: var(--link)}
+.main {min-height: 100vh}
 
 .header {
     height: 10em;
@@ -184,7 +185,7 @@ a:hover {color: var(--comment)}
 }
 
 .header div {
-    font-size: 100px;
+    font-size: 5em;
     font-family: dyslexic;
     height: 60%
 }
