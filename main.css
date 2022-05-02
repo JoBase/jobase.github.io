@@ -156,6 +156,23 @@ html {scroll-behavior: smooth}
 .small {font-size: var(--small)}
 .indent {margin-left: 2em}
 
+.list {
+    margin: 0.6em 0;
+    display: flex;
+    flex-wrap: wrap
+}
+
+.list span {
+    font-family: monospace;
+    font-size: var(--small);
+    display: inline-block;
+    border-radius: var(--radius);
+    background-color: var(--block);
+    border: 1px solid var(--button);
+    padding: 0.5em 1em;
+    margin: 0.2em
+}
+
 .top {
     overflow: hidden;
     font-weight: bold
