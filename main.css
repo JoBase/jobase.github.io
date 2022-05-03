@@ -121,7 +121,7 @@ details a {
     margin-left: 2em
 }
 
-pre, code {
+pre {
     padding: 0.8em;
     border-radius: var(--radius);
     background-color: var(--block);
@@ -129,11 +129,6 @@ pre, code {
     font-size: var(--small);
     font-family: monospace;
     color: var(--code)
-}
-
-code {
-    display: table;
-    font-weight: bold
 }
 
 a {
@@ -152,9 +147,15 @@ footer span {color: var(--text)}
 a:hover {color: var(--comment)}
 html {scroll-behavior: smooth}
 
+.indent {margin-left: 2em}
 .large {font-size: var(--font)}
 .small {font-size: var(--small)}
-.indent {margin-left: 2em}
+
+.large, .small {
+    display: table;
+    font-weight: bold;
+    margin: 2em 0 0.6em 0
+}
 
 .list {
     margin: 0.6em 0;

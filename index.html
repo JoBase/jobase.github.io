@@ -62,9 +62,21 @@
 
             <pre>python -m JoBase.examples.coin_collector</pre>
 
-            If everything works, you are ready to start coding! You can start by
-            choosing an example on our <a href = examples>examples</a> page.
+            If everything works, you are ready to start coding!
+            Please look at the minimal example below to understand the structure of a JoBase application.
             If you find probelms, please let us know.
+
+            <pre>
+                from JoBase import *
+
+                window.caption = "JoBase Example"
+                man = Image(MAN)
+
+                def loop():
+                    man.draw()
+
+                run()
+            </pre>
         </section>
 
         <footer>
