@@ -121,7 +121,7 @@ details a {
     margin-left: 2em
 }
 
-pre {
+pre, code {
     padding: 0.8em;
     border-radius: var(--radius);
     background-color: var(--block);
@@ -215,15 +215,14 @@ html {scroll-behavior: smooth}
     align-items: center
 }
 
-.header div {
+.header h1 {
     font-size: 5em;
     font-family: dyslexic;
-    height: 60%
+    margin-left: 0.4em
 }
 
 .header img {
-    height: 100%;
-    margin-right: 0.5em;
+    height: 60%;
     float: left
 }
 
