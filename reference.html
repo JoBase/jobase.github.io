@@ -40,6 +40,7 @@
                 <a href = #Shape>Shape</a>
                 <a href = #Rectangle>Rectangle</a>
                 <a href = #Image>Image</a>
+                <a href = #Text>Text</a>
             </details>
 
             <details>
@@ -50,29 +51,51 @@
 
             <p>
                 Welcome to the JoBase reference manual.
-                Please look at the examples below before you carry on.
+                Please look at the guide below before you carry on.
             </p>
 
             <p>
-                All colours are lists of three or four values.
-                The values are <mark>red</mark>, <mark>green</mark>, <mark>blue</mark> and <mark>alpha</mark>.
-                With these values, you can create any colour.
-                The values are decimals and they range between <mark>0</mark> and <mark>1</mark>.
-                Whenever you set the colour of an object, you can pass a <mark>list</mark>, <mark>tuple</mark> or <mark>dictionary</mark>.
-
-                <pre>
-                    color = [1, 0, 0] # red
-                    color = (0.5, 0, 1) # purple
-                    color = {"red": 1, "green": 1, "blue": 0} # yellow
-                    color = (0, 1, 0, 0.5) # translucent green
-                </pre>
+                Whenever you come accross a size, color or position like the one below, it may seem like a <mark>tuple</mark> object.
+                Although we have displayed it as a <mark>tuple</mark>, it behaves quite differently.
             </p>
+
+            <pre class = small>position: (float, float)</pre>
 
             <p>
-                All positions or sizes are made of two values - an <mark>x</mark> and a <mark>y</mark>.
-                These values are units in pixels from the centre of the window.
-                Just like colours, you can pass a <mark>list</mark>, <mark>tuple</mark> or <mark>dictionary</mark> when you set the position or size of an object.
+                The variable above is actually a <mark>JoBase Vector</mark>.
+                This means that its properties are keys.
+                The example below illustrates how a this variable can be used.
             </p>
+
+            <pre>
+                position.x = 2
+                position.y = 3
+                print(position) # (2, 3)
+
+                position = [4, 0]
+                position.y = 6
+                print(position) # (4, 6)
+
+                position = {"x": 0, "y": 0}
+                print(position) # (0, 0)
+            </pre>
+
+            <p>
+                In future versions of <mark>JoBase</mark>, we hope to add numerical comparisons between these variables.
+                The following code illustrates this, although it currently <mark>does not work</mark>.
+            </p>
+
+            <pre>
+                position = (5, 7)
+                position += 1
+                print(position) # (6, 8)
+
+                position = (4, 1)
+                position *= 2
+                print(position) # (8, 2)
+
+                print(position is position) # True
+            </pre>
 
             <code class = large id = Window>
                 class Window(caption = "JoBase", width = 640, height = 480, color = (1, 1, 1))
@@ -102,25 +125,37 @@
                     The title of the window.
                 </div>
 
-                <pre class = small id = Window.red>red: float</pre>
+                <pre class = small id = Window.red>
+                    red: float
+                    color.red: float
+                </pre>
 
                 <div class = indent>
                     The red color of the window.
                 </div>
 
-                <pre class = small id = Window.green>green: float</pre>
+                <pre class = small id = Window.green>
+                    green: float
+                    color.green: float
+                </pre>
 
                 <div class = indent>
                     The green color of the window.
                 </div>
 
-                <pre class = small id = Window.blue>blue: float</pre>
+                <pre class = small id = Window.blue>
+                    blue: float
+                    color.blue: float
+                </pre>
 
                 <div class = indent>
                     The blue color of the window.
                 </div>
 
-                <pre class = small id = Window.alpha>alpha: float</pre>
+                <pre class = small id = Window.alpha>
+                    alpha: float
+                    color.alpha: float
+                </pre>
 
                 <div class = indent>
                     The transparency of the window.
@@ -132,13 +167,19 @@
                     The color of the window.
                 </div>
 
-                <pre class = small id = Window.width>width: float</pre>
+                <pre class = small id = Window.width>
+                    width: float
+                    size.x: float
+                </pre>
 
                 <div class = indent>
                     The width of the window in pixels.
                 </div>
 
-                <pre class = small id = Window.height>height: float</pre>
+                <pre class = small id = Window.height>
+                    height: float
+                    size.y: float
+                </pre>
 
                 <div class = indent>
                     The height of the window in pixels.
@@ -220,13 +261,19 @@
                 The inbuilt <mark>camera</mark> variable is an instance of this class.
                 Do not try to instance this class directly.
 
-                <pre class = small id = Camera.x>x: float</pre>
+                <pre class = small id = Camera.x>
+                    x: float
+                    position.x: float
+                </pre>
 
                 <div class = indent>
                     The x position of the camera.
                 </div>
 
-                <pre class = small id = Camera.y>y: float</pre>
+                <pre class = small id = Camera.y>
+                    y: float
+                    position.y: float
+                </pre>
 
                 <div class = indent>
                     The y position of the camera.
@@ -248,13 +295,19 @@
                 The inbuilt <mark>cursor</mark> variable is an instance of this class.
                 Do not try to instance this class directly.
 
-                <pre class = small id = Cursor.x>x: float</pre>
+                <pre class = small id = Cursor.x>
+                    x: float
+                    position.x: float
+                </pre>
 
                 <div class = indent>
                     The x position of the cursor.
                 </div>
 
-                <pre class = small id = Cursor.y>y: float</pre>
+                <pre class = small id = Cursor.y>
+                    y: float
+                    position.y: float
+                </pre>
 
                 <div class = indent>
                     The y position of the cursor.
@@ -477,13 +530,19 @@
                 The attributes of this class are shared with all other shapes.
                 Do not try to instance this class directly.
 
-                <pre class = small id = Shape.x>x: float</pre>
+                <pre class = small id = Shape.x>
+                    x: float
+                    position.x: float
+                </pre>
 
                 <div class = indent>
                     The x position of the shape.
                 </div>
 
-                <pre class = small id = Shape.y>y: float</pre>
+                <pre class = small id = Shape.y>
+                    y: float
+                    position.y: float
+                </pre>
 
                 <div class = indent>
                     The y position of the shape.
@@ -495,10 +554,34 @@
                     The position of the shape.
                 </div>
 
+                <pre class = small id = Shape.scale.x>scale.x: float</pre>
+
+                <div class = indent>
+                    The horizontal scale of the shape.
+                </div>
+
+                <pre class = small id = Shape.scale.y>scale.y: float</pre>
+
+                <div class = indent>
+                    The vertical scale of the shape.
+                </div>
+
                 <pre class = small id = Shape.scale>scale: (float, float)</pre>
 
                 <div class = indent>
                     The scale of the shape.
+                </div>
+
+                <pre class = small id = Shape.anchor.x>anchor.x: float</pre>
+
+                <div class = indent>
+                    The horizontal origin of the shape.
+                </div>
+
+                <pre class = small id = Shape.anchor.y>anchor.y: float</pre>
+
+                <div class = indent>
+                    The vertical origin of the shape.
                 </div>
 
                 <pre class = small id = Shape.anchor>anchor: (float, float)</pre>
@@ -513,25 +596,37 @@
                     The angle of the shape.
                 </div>
 
-                <pre class = small id = Shape.red>red: float</pre>
+                <pre class = small id = Shape.red>
+                    red: float
+                    color.red: float
+                </pre>
 
                 <div class = indent>
                     The red color of the shape.
                 </div>
 
-                <pre class = small id = Shape.green>green: float</pre>
+                <pre class = small id = Shape.green>
+                    green: float
+                    color.green: float
+                </pre>
 
                 <div class = indent>
                     The green color of the shape.
                 </div>
 
-                <pre class = small id = Shape.blue>blue: float</pre>
+                <pre class = small id = Shape.blue>
+                    blue: float
+                    color.blue: float
+                </pre>
 
                 <div class = indent>
                     The blue color of the shape.
                 </div>
 
-                <pre class = small id = Shape.alpha>alpha: float</pre>
+                <pre class = small id = Shape.alpha>
+                    alpha: float
+                    color.alpha: float
+                </pre>
 
                 <div class = indent>
                     The transparency of the shape.
@@ -552,13 +647,19 @@
                 This class is for drawing rectangles.
                 Because it extends the <a href = #Shape>Shape</a> class, it contains all the same attributes.
 
-                <pre class = small id = Rectangle.width>width: float</pre>
+                <pre class = small id = Rectangle.width>
+                    width: float
+                    size.x: float
+                </pre>
 
                 <div class = indent>
                     The width of the rectangle in pixels.
                 </div>
 
-                <pre class = small id = Rectangle.height>height: float</pre>
+                <pre class = small id = Rectangle.height>
+                    height: float
+                    size.y: float
+                </pre>
 
                 <div class = indent>
                     The height of the rectangle in pixels.
@@ -619,6 +720,65 @@
                     def loop():
                         coin.draw()
                 </pre>
+            </div>
+
+            <code class = large id = Text>
+                class Text(content = "Text", x = 0, y = 0, size = 50, angle = 0, color = (0, 0, 0), font = DEFAULT)
+            </code>
+
+            <div class = indent>
+                This class is for drawing text messages.
+                Because it extends the <a href = #Rectangle>Rectangle</a> class, it contains all the same attributes.
+
+                <pre class = small id = Text.content>content: str</pre>
+
+                <div class = indent>
+                    The string content of the text.
+                </div>
+
+                <pre class = small id = Text.font>font: str</pre>
+
+                <div class = indent>
+                    The filepath to the font family of the text.
+                    JoBase contains the following built in fonts.
+
+                    <div class = list>
+                        <span>CODE</span>
+                        <span>DEFAULT</span>
+                        <span>HANDWRITING</span>
+                        <span>JOINED</span>
+                        <span>PENCIL</span>
+                        <span>SERIF</span>
+                        <span>TYPEWRITER</span>
+                    </div>
+
+                    The example below loads the pencil font and draws the text.
+
+                    <pre>
+                        text = Text("Hello", font = PENCIL)
+
+                        def loop():
+                            text.draw()
+                    </pre>
+                </div>
+
+                <pre class = small id = Text.char.x>char.x: float</pre>
+
+                <div class = indent>
+                    The width of each text character.
+                </div>
+
+                <pre class = small id = Text.char.y>char.y: float</pre>
+
+                <div class = indent>
+                    The height of each text character.
+                </div>
+
+                <pre class = small id = Text.char>char: (float, float)</pre>
+
+                <div class = indent>
+                    The dimensions of each text character.
+                </div>
             </div>
 
             <code class = large id = random>
