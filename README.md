@@ -21,7 +21,7 @@ python -m JoBase.examples.coin_collector
 ```
 
 If everything works, you are ready to start coding!
-Please look at the minimal example below to understand the structure of a JoBase application.
+The minimal Python example below demonstrates the structure of a basic JoBase application.
 
 ```
 from JoBase import *

@@ -1,6 +1,6 @@
 @font-face {
     font-family: dyslexic;
-    src: url(assets/font/bold.otf)
+    src: url(assets/font/dyslexic.otf)
 }
 
 @font-face {
@@ -142,18 +142,24 @@ footer {
     font-size: var(--small)
 }
 
-pre {display: block}
+pre {
+    display: block;
+    color: var(--comment)
+}
+
 footer span {color: var(--text)}
 a:hover {color: var(--comment)}
 html {scroll-behavior: smooth}
 
 .indent {margin-left: 2em}
 .large {font-size: var(--font)}
+.code {color: var(--code)}
 .small {font-size: var(--small)}
 
-.large, .small {
+code {
     display: table;
     font-weight: bold;
+    white-space: pre-wrap;
     margin: 2em 0 0.6em 0
 }
 

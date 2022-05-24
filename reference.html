@@ -51,7 +51,6 @@
 
             <p>
                 Welcome to the JoBase reference manual.
-                Please look at the guide below before you carry on.
             </p>
 
             <p>
@@ -59,16 +58,16 @@
                 Although we have displayed it as a <mark>tuple</mark>, it behaves quite differently.
             </p>
 
-            <pre class = small>position: (float, float)</pre>
+            <code class = small>position: (float, float)</code>
 
             <p>
                 The variable above is actually a <mark>JoBase Vector</mark>.
                 This means that its properties are keys.
-                The example below illustrates how a this variable can be used.
+                The example below illustrates how this variable can be used.
             </p>
 
             <pre>
-                position.x = 2
+                ‡position.x = 2
                 position.y = 3
                 print(position) # (2, 3)
 
@@ -77,7 +76,7 @@
                 print(position) # (4, 6)
 
                 position = {"x": 0, "y": 0}
-                print(position) # (0, 0)
+                print(position) # (0, 0)‡
             </pre>
 
             <p>
@@ -86,7 +85,7 @@
             </p>
 
             <pre>
-                position = (5, 7)
+                ‡position = (5, 7)
                 position += 1
                 print(position) # (6, 8)
 
@@ -94,12 +93,10 @@
                 position *= 2
                 print(position) # (8, 2)
 
-                print(position is position) # True
+                print(position is position) # True‡
             </pre>
 
-            <code class = large id = Window>
-                class Window(caption = "JoBase", width = 640, height = 480, color = (1, 1, 1))
-            </code>
+            <code class = large id = Window>class Window(caption = "JoBase", width = 640, height = 480, color = (1, 1, 1))</code>
 
             <div class = indent>
                 This class is for managing the main window.
@@ -107,7 +104,7 @@
                 Do not try to instance this class directly.
 
                 <pre>
-                    from JoBase import *
+                    ‡from JoBase import *
 
                     window.caption = "Window Example"
                     window.color = (0, 1, 0.2)
@@ -116,134 +113,116 @@
                     def loop():
                         window.red += 0.01
 
-                    run()
+                    run()‡
                 </pre>
 
-                <pre class = small id = Window.caption>caption: str</pre>
+                <code class = small id = Window.caption>caption: str</code>
 
                 <div class = indent>
                     The title of the window.
                 </div>
 
-                <pre class = small id = Window.red>
-                    red: float
-                    color.red: float
-                </pre>
+                <code class = small id = Window.red>red, color.red: float</code>
 
                 <div class = indent>
                     The red color of the window.
                 </div>
 
-                <pre class = small id = Window.green>
-                    green: float
-                    color.green: float
-                </pre>
+                <code class = small id = Window.green>green, color.green: float</code>
 
                 <div class = indent>
                     The green color of the window.
                 </div>
 
-                <pre class = small id = Window.blue>
-                    blue: float
-                    color.blue: float
-                </pre>
+                <code class = small id = Window.blue>blue, color.blue: float</code>
 
                 <div class = indent>
                     The blue color of the window.
                 </div>
 
-                <pre class = small id = Window.alpha>
-                    alpha: float
-                    color.alpha: float
-                </pre>
+                <code class = small id = Window.alpha>alpha, color.alpha: float</code>
 
                 <div class = indent>
                     The transparency of the window.
                 </div>
 
-                <pre class = small id = Window.color>color: (float, float, float, float)</pre>
+                <code class = small id = Window.color>color: (float, float, float, float)</code>
 
                 <div class = indent>
                     The color of the window.
                 </div>
 
-                <pre class = small id = Window.width>
-                    width: float
-                    size.x: float
-                </pre>
+                <code class = small id = Window.width>width, size.x: float</code>
 
                 <div class = indent>
                     The width of the window in pixels.
                 </div>
 
-                <pre class = small id = Window.height>
-                    height: float
-                    size.y: float
-                </pre>
+                <code class = small id = Window.height>height, size.y: float</code>
 
                 <div class = indent>
                     The height of the window in pixels.
                 </div>
 
-                <pre class = small id = Window.size>size: (float, float)</pre>
+                <code class = small id = Window.size>size: (float, float)</code>
 
                 <div class = indent>
                     The dimensions of the window in pixels.
                 </div>
 
-                <pre class = small id = Window.top>top: float</pre>
+                <code class = small id = Window.top>top: float</code>
 
                 <div class = indent>
                     The top of the window in pixels.
                 </div>
 
-                <pre class = small id = Window.bottom>bottom: float</pre>
+                <code class = small id = Window.bottom>bottom: float</code>
 
                 <div class = indent>
                     The bottom of the window in pixels.
                 </div>
 
-                <pre class = small id = Window.left>left: float</pre>
+                <code class = small id = Window.left>left: float</code>
 
                 <div class = indent>
                     The left of the window in pixels.
                 </div>
 
-                <pre class = small id = Window.right>right: float</pre>
+                <code class = small id = Window.right>right: float</code>
 
                 <div class = indent>
                     The right of the window in pixels.
                 </div>
 
-                <pre class = small id = Window.close>close()</pre>
+                <code class = small id = Window.close>close()</code>
 
                 <div class = indent>
                     Close the window.
                     The program finishes and the window cannot be opened again.
                 </div>
 
-                <pre class = small id = Window.maximize>maximize()</pre>
+                <code class = small id = Window.maximize>maximize()</code>
 
                 <div class = indent>
                     Maximize the window.
                     You can restore the maximized window with the <a href = #Window.restore>restore</a> method.
                 </div>
 
-                <pre class = small id = Window.minimize>minimize()</pre>
+                <code class = small id = Window.minimize>minimize()</code>
 
                 <div class = indent>
                     Minimize the window.
                     You can restore the minimized window with the <a href = #Window.restore>restore</a> method.
                 </div>
 
-                <pre class = small id = Window.restore>restore()</pre>
+                <code class = small id = Window.restore>restore()</code>
 
                 <div class = indent>
                     Restore the window from maximized or minimized.
                     The window returns to its normal state.
                 </div>
 
-                <pre class = small id = Window.focus>focus()</pre>
+                <code class = small id = Window.focus>focus()</code>
 
                 <div class = indent>
                     Give the window input focus.
@@ -251,9 +230,7 @@
                 </div>
             </div>
 
-            <code class = large id = Camera>
-                class Camera()
-            </code>
+            <code class = large id = Camera>class Camera()</code>
 
             <div class = indent>
                 This class is for managing the game camera.
@@ -261,137 +238,121 @@
                 The inbuilt <mark>camera</mark> variable is an instance of this class.
                 Do not try to instance this class directly.
 
-                <pre class = small id = Camera.x>
-                    x: float
-                    position.x: float
-                </pre>
+                <code class = small id = Camera.x>x, position.x: float</code>
 
                 <div class = indent>
                     The x position of the camera.
                 </div>
 
-                <pre class = small id = Camera.y>
-                    y: float
-                    position.y: float
-                </pre>
+                <code class = small id = Camera.y>y, position.y: float</code>
 
                 <div class = indent>
                     The y position of the camera.
                 </div>
 
-                <pre class = small id = Camera.position>position: (float, float)</pre>
+                <code class = small id = Camera.position>position: (float, float)</code>
 
                 <div class = indent>
                     The position of the camera.
                 </div>
             </div>
 
-            <code class = large id = Cursor>
-                class Cursor()
-            </code>
+            <code class = large id = Cursor>class Cursor()</code>
 
             <div class = indent>
                 This class represents the cursor.
                 The inbuilt <mark>cursor</mark> variable is an instance of this class.
                 Do not try to instance this class directly.
 
-                <pre class = small id = Cursor.x>
-                    x: float
-                    position.x: float
-                </pre>
+                <code class = small id = Cursor.x>x, position.x: float</code>
 
                 <div class = indent>
                     The x position of the cursor.
                 </div>
 
-                <pre class = small id = Cursor.y>
-                    y: float
-                    position.y: float
-                </pre>
+                <code class = small id = Cursor.y>y, position.y: float</code>
 
                 <div class = indent>
                     The y position of the cursor.
                 </div>
 
-                <pre class = small id = Cursor.position>position: (float, float)</pre>
+                <code class = small id = Cursor.position>position: (float, float)</code>
 
                 <div class = indent>
                     The position of the cursor.
                 </div>
 
-                <pre class = small id = Cursor.move>move: bool</pre>
+                <code class = small id = Cursor.move>move: bool</code>
 
                 <div class = indent>
                     The cursor has moved.
                 </div>
 
-                <pre class = small id = Cursor.enter>enter: bool</pre>
+                <code class = small id = Cursor.enter>enter: bool</code>
 
                 <div class = indent>
                     The cursor has entered the window.
                 </div>
 
-                <pre class = small id = Cursor.leave>leave: bool</pre>
+                <code class = small id = Cursor.leave>leave: bool</code>
 
                 <div class = indent>
                     The cursor has left the window.
                 </div>
 
-                <pre class = small id = Cursor.press>press: bool</pre>
+                <code class = small id = Cursor.press>press: bool</code>
 
                 <div class = indent>
                     A cursor button is pressed.
                 </div>
 
-                <pre class = small id = Cursor.release>release: bool</pre>
+                <code class = small id = Cursor.release>release: bool</code>
 
                 <div class = indent>
                     A cursor button is released.
                 </div>
             </div>
 
-            <code class = large id = Key>
-                class Key()
-            </code>
+            <code class = large id = Key>class Key()</code>
 
             <div class = indent>
                 This class is for detecting keyboard input.
                 The inbuilt <mark>key</mark> variable is an instance of this class.
                 Do not try to instance this class directly.
 
-                <pre class = small id = Key.press>press: bool</pre>
+                <code class = small id = Key.press>press: bool</code>
 
                 <div class = indent>
                     A key is pressed down.
                 </div>
 
-                <pre class = small id = Key.release>release: bool</pre>
+                <code class = small id = Key.release>release: bool</code>
 
                 <div class = indent>
                     A key is released.
                 </div>
 
-                <pre class = small id = Key.repeat>repeat: bool</pre>
+                <code class = small id = Key.repeat>repeat: bool</code>
 
                 <div class = indent>
                     When the user holds a key down, a series of events are fired.
                     These events do not occur every frame.
                 </div>
 
-                <pre class = small id = Key.[name]>[name]: {"press": bool, "release": bool, "repeat": bool} or False</pre>
+                <code class = small id = Key.[name]>[name]: {"press": bool, "release": bool, "repeat": bool} or False</code>
 
                 <div class = indent>
                     Access the state of a specific key.
 
                     <pre>
-                        if key.left:
+                        ‡if key.left:
                             # the left arrow key is held down
 
                             if key.left.release:
                                 # the left arrow key is released
 
                         if key.right and key.right.press:
-                            # the right arrow key was pressed down
+                            # the right arrow key was pressed down‡
                     </pre>
 
                     If a key is not being held down, it's properties cannot be accessed.
@@ -521,184 +482,154 @@
                 </div>
             </div>
 
-            <code class = large id = Shape>
-                class Shape()
-            </code>
+            <code class = large id = Shape>class Shape()</code>
 
             <div class = indent>
                 This is the base class for all drawing primitives.
                 The attributes of this class are shared with all other shapes.
                 Do not try to instance this class directly.
 
-                <pre class = small id = Shape.x>
-                    x: float
-                    position.x: float
-                </pre>
+                <code class = small id = Shape.x>x, position.x: float</code>
 
                 <div class = indent>
                     The x position of the shape.
                 </div>
 
-                <pre class = small id = Shape.y>
-                    y: float
-                    position.y: float
-                </pre>
+                <code class = small id = Shape.y>y, position.y: float</code>
 
                 <div class = indent>
                     The y position of the shape.
                 </div>
 
-                <pre class = small id = Shape.position>position: (float, float)</pre>
+                <code class = small id = Shape.position>position: (float, float)</code>
 
                 <div class = indent>
                     The position of the shape.
                 </div>
 
-                <pre class = small id = Shape.scale.x>scale.x: float</pre>
+                <code class = small id = Shape.scale.x>scale.x: float</code>
 
                 <div class = indent>
                     The horizontal scale of the shape.
                 </div>
 
-                <pre class = small id = Shape.scale.y>scale.y: float</pre>
+                <code class = small id = Shape.scale.y>scale.y: float</code>
 
                 <div class = indent>
                     The vertical scale of the shape.
                 </div>
 
-                <pre class = small id = Shape.scale>scale: (float, float)</pre>
+                <code class = small id = Shape.scale>scale: (float, float)</code>
 
                 <div class = indent>
                     The scale of the shape.
                 </div>
 
-                <pre class = small id = Shape.anchor.x>anchor.x: float</pre>
+                <code class = small id = Shape.anchor.x>anchor.x: float</code>
 
                 <div class = indent>
                     The horizontal origin of the shape.
                 </div>
 
-                <pre class = small id = Shape.anchor.y>anchor.y: float</pre>
+                <code class = small id = Shape.anchor.y>anchor.y: float</code>
 
                 <div class = indent>
                     The vertical origin of the shape.
                 </div>
 
-                <pre class = small id = Shape.anchor>anchor: (float, float)</pre>
+                <code class = small id = Shape.anchor>anchor: (float, float)</code>
 
                 <div class = indent>
                     The rotational origin of the shape.
                 </div>
 
-                <pre class = small id = Shape.angle>angle: float</pre>
+                <code class = small id = Shape.angle>angle: float</code>
 
                 <div class = indent>
                     The angle of the shape.
                 </div>
 
-                <pre class = small id = Shape.red>
-                    red: float
-                    color.red: float
-                </pre>
+                <code class = small id = Shape.red>red, color.red: float</code>
 
                 <div class = indent>
                     The red color of the shape.
                 </div>
 
-                <pre class = small id = Shape.green>
-                    green: float
-                    color.green: float
-                </pre>
+                <code class = small id = Shape.green>green, color.green: float</code>
 
                 <div class = indent>
                     The green color of the shape.
                 </div>
 
-                <pre class = small id = Shape.blue>
-                    blue: float
-                    color.blue: float
-                </pre>
+                <code class = small id = Shape.blue>blue, color.blue: float</code>
 
                 <div class = indent>
                     The blue color of the shape.
                 </div>
 
-                <pre class = small id = Shape.alpha>
-                    alpha: float
-                    color.alpha: float
-                </pre>
+                <code class = small id = Shape.alpha>alpha, color.alpha: float</code>
 
                 <div class = indent>
                     The transparency of the shape.
                 </div>
 
-                <pre class = small id = Shape.color>color: (float, float, float, float)</pre>
+                <code class = small id = Shape.color>color: (float, float, float, float)</code>
 
                 <div class = indent>
                     The color of the shape.
                 </div>
             </div>
 
-            <code class = large id = Rectangle>
-                class Rectangle(x = 0, y = 0, width = 50, height = 50, angle = 0, color = (0, 0, 0))
-            </code>
+            <code class = large id = Rectangle>class Rectangle(x = 0, y = 0, width = 50, height = 50, angle = 0, color = (0, 0, 0))</code>
 
             <div class = indent>
                 This class is for drawing rectangles.
                 Because it extends the <a href = #Shape>Shape</a> class, it contains all the same attributes.
 
-                <pre class = small id = Rectangle.width>
-                    width: float
-                    size.x: float
-                </pre>
+                <code class = small id = Rectangle.width>width, size.x: float</code>
 
                 <div class = indent>
                     The width of the rectangle in pixels.
                 </div>
 
-                <pre class = small id = Rectangle.height>
-                    height: float
-                    size.y: float
-                </pre>
+                <code class = small id = Rectangle.height>height, size.y: float</code>
 
                 <div class = indent>
                     The height of the rectangle in pixels.
                 </div>
 
-                <pre class = small id = Rectangle.size>size: (float, float)</pre>
+                <code class = small id = Rectangle.size>size: (float, float)</code>
 
                 <div class = indent>
                     The dimensions of the rectangle in pixels.
                 </div>
 
-                <pre class = small id = Rectangle.left>left: float</pre>
+                <code class = small id = Rectangle.left>left: float</code>
 
                 <div class = indent>
                     The left of the rectangle in pixels.
                 </div>
 
-                <pre class = small id = Rectangle.top>top: float</pre>
+                <code class = small id = Rectangle.top>top: float</code>
 
                 <div class = indent>
                     The top of the rectangle in pixels.
                 </div>
 
-                <pre class = small id = Rectangle.right>right: float</pre>
+                <code class = small id = Rectangle.right>right: float</code>
 
                 <div class = indent>
                     The right of the rectangle in pixels.
                 </div>
 
-                <pre class = small id = Rectangle.bottom>bottom: float</pre>
+                <code class = small id = Rectangle.bottom>bottom: float</code>
 
                 <div class = indent>
                     The bottom of the rectangle in pixels.
                 </div>
             </div>
 
-            <code class = large id = Image>
-                class Image(name = MAN, x = 0, y = 0, width = 50, height = 50, angle = 0, color = (0, 0, 0))
-            </code>
+            <code class = large id = Image>class Image(name = MAN, x = 0, y = 0, width = 50, height = 50, angle = 0, color = (0, 0, 0))</code>
 
             <div class = indent>
                 This class is for drawing images.
@@ -715,28 +646,26 @@
                 The example below loads the coin image and draws it.
 
                 <pre>
-                    coin = Image(COIN)
+                    ‡coin = Image(COIN)
 
                     def loop():
-                        coin.draw()
+                        coin.draw()‡
                 </pre>
             </div>
 
-            <code class = large id = Text>
-                class Text(content = "Text", x = 0, y = 0, size = 50, angle = 0, color = (0, 0, 0), font = DEFAULT)
-            </code>
+            <code class = large id = Text>class Text(content = "Text", x = 0, y = 0, size = 50, angle = 0, color = (0, 0, 0), font = DEFAULT)</code>
 
             <div class = indent>
                 This class is for drawing text messages.
                 Because it extends the <a href = #Rectangle>Rectangle</a> class, it contains all the same attributes.
 
-                <pre class = small id = Text.content>content: str</pre>
+                <code class = small id = Text.content>content: str</code>
 
                 <div class = indent>
                     The string content of the text.
                 </div>
 
-                <pre class = small id = Text.font>font: str</pre>
+                <code class = small id = Text.font>font: str</code>
 
                 <div class = indent>
                     The filepath to the font family of the text.
@@ -755,43 +684,39 @@
                     The example below loads the pencil font and draws the text.
 
                     <pre>
-                        text = Text("Hello", font = PENCIL)
+                        ‡text = Text("Hello", font = PENCIL)
 
                         def loop():
-                            text.draw()
+                            text.draw()‡
                     </pre>
                 </div>
 
-                <pre class = small id = Text.char.x>char.x: float</pre>
+                <code class = small id = Text.char.x>char.x: float</code>
 
                 <div class = indent>
                     The width of each text character.
                 </div>
 
-                <pre class = small id = Text.char.y>char.y: float</pre>
+                <code class = small id = Text.char.y>char.y: float</code>
 
                 <div class = indent>
                     The height of each text character.
                 </div>
 
-                <pre class = small id = Text.char>char: (float, float)</pre>
+                <code class = small id = Text.char>char: (float, float)</code>
 
                 <div class = indent>
                     The dimensions of each text character.
                 </div>
             </div>
 
-            <code class = large id = random>
-                def random(a: float, b: float) -> float
-            </code>
+            <code class = large id = random>def random(a: float, b: float) -> float</code>
 
             <div class = indent>
                 Find a random decimal between <mark>a</mark> and <mark>b</mark>.
             </div>
 
-            <code class = large id = run>
-                def run()
-            </code>
+            <code class = large id = run>def run()</code>
 
             <div class = indent>
                 Activate the main game loop and display the window.
