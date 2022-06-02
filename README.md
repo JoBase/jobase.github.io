@@ -2,6 +2,10 @@
 JoBase is a really fast Python game library for beginner coders.
 It is written in pure C and uses the same modern tools as high-end games like Minecraft.
 
+We now support an online JoBase editor!
+Feel free to use it before installing JoBase on your local computer.
+Click [here](https://jobase.org/Browser) to try it now.
+
 #### Download Python
 To start using JoBase, you will need Python installed.
 Visit [python.org](https://www.python.org/downloads) and download the latest version for your computer.
