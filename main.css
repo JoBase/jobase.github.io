@@ -1,11 +1,11 @@
 @font-face {
     font-family: dyslexic;
-    src: url(assets/font/dyslexic.otf)
+    src: url(assets/fonts/dyslexic.otf)
 }
 
 @font-face {
     font-family: nunito;
-    src: url(assets/font/nunito.ttf)
+    src: url(assets/fonts/nunito.ttf)
 }
 
 :root {
