@@ -131,11 +131,11 @@ mark {
 
 .editor button {
     border: none;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding: 0.5em 0.5em;
     background-color: var(--button);
     font-size: var(--small);
     color: var(--mark);
+    margin: 0;
     cursor: pointer
 }
 
