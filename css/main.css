@@ -1,57 +1,17 @@
 @font-face {
     font-family: dyslexic;
-    src: url(assets/fonts/dyslexic.otf)
+    src: url(/assets/fonts/dyslexic.otf)
 }
 
 @font-face {
     font-family: nunito;
-    src: url(assets/fonts/nunito.ttf)
+    src: url(/assets/fonts/nunito.ttf)
 }
 
 :root {
     --radius: 0.3em;
     --padding: 0.4em;
     --small: 16px
-}
-
-body[theme = light] {
-    --dim: #fff;
-    --background: #ddd;
-    --text: #666;
-    --mark: #444;
-    --link: #47b;
-    --main: #777;
-    --button: #ccc;
-    --blank: #bbb;
-    --block: #eee;
-    --comment: #999;
-    --code: #555;
-    --string: #370;
-    --keyword: #83b;
-    --built_in: #088;
-    --number: #960;
-    --variable: #d55;
-    --title: #06c;
-}
-
-body[theme = dark] {
-    --dim: #444;
-    --background: #333;
-    --text: #aaa;
-    --mark: #ccc;
-    --link: #5af;
-    --main: #aaa;
-    --button: #555;
-    --blank: #666;
-    --block: #222;
-    --comment: #888;
-    --code: #bbb;
-    --string: #8c5;
-    --keyword: #c7f;
-    --built_in: #2cc;
-    --number: #d92;
-    --variable: #f66;
-    --title: #6af;
 }
 
 body {
@@ -66,26 +26,6 @@ mark {
     color: var(--mark);
     background: none
 }
-
-.hljs-string,
-.cm-string, .cm-string-2 {color: var(--string)}
-
-.hljs-keyword,
-.cm-keyword {color: var(--keyword)}
-
-.hljs-built_in,
-.cm-builtin, .cm-operator {color: var(--built_in)}
-
-.hljs-comment {color: var(--comment)}
-
-.hljs-number, .hljs-attr, .hljs-literal,
-.cm-number {color: var(--number)}
-
-.hljs-variable, .hljs-name, .hljs-selector-tag, .hljs-params, .hljs-property, .hljs-regexp,
-.cm-variable, .cm-variable-2, .cm-variable-3, .cm-property {color: var(--variable)}
-
-.hljs-title, .hljs-selector-id, .hljs-meta,
-.cm-def, .cm-meta {color: var(--title)}
 
 .CodeMirror-cursor {border-left-color: var(--mark)}
 .CodeMirror-focused .CodeMirror-selected,
@@ -184,6 +124,7 @@ footer span {color: var(--text)}
 a:hover {color: var(--comment)}
 html {scroll-behavior: smooth}
 canvas {transition-duration: 0s}
+canvas:focus {outline: none}
 
 .indent {margin-left: 2em}
 .large {font-size: var(--font)}

@@ -1,20 +1,32 @@
 "use strict"
 
-const mutation = new MutationObserver(() => {
-    if (!document.body) return
+function toggleBars(element) {
+    const top = element.parentNode
 
-    const theme = localStorage.getItem("theme")
-    const dark = matchMedia("(prefers-color-scheme: dark)").matches
-    const current = theme ? theme : dark ? "dark" : "light"
+    if (top.className == "top")
+        top.className += " active"
+
+    else top.className = "top"
+}
+
+function toggleTheme(element) {
+    const theme = document.body.getAttribute("theme")
+    const current = theme == "dark" ? "light" : "dark"
+
+    localStorage.setItem("theme", current)
+    document.body.setAttribute("theme", current)
+
+    element.className = element.className.replace(
+        /(moon|sun)/, current == "dark" ? "moon" : "sun")
+}
+
+onload = () => {
     const icon = document.querySelector(".theme")
-
     const code = document.querySelectorAll("code")
     const pre = document.querySelectorAll("pre[code")
     const script = document.querySelector("pre[editor]")
 
-    mutation.disconnect()
-    document.body.setAttribute("theme", current)
-    icon.className += ` fa-solid fa-${current == "dark" ? "moon" : "sun"}`
+    icon.className += ` fa-solid fa-${document.body.getAttribute("theme") == "dark" ? "moon" : "sun"}`
     year.textContent = new Date().getFullYear()
 
     const reduce = content => {
@@ -103,27 +115,5 @@ const mutation = new MutationObserver(() => {
     square.className = "fa-solid fa-stop"
 
     a.textContent = " Run"
-    b.textContent = " Stop"
-})
-
-mutation.observe(document.documentElement, {childList: true})
-
-function toggleBars(element) {
-    const top = element.parentNode
-
-    if (top.className == "top")
-        top.className += " active"
-
-    else top.className = "top"
-}
-
-function toggleTheme(element) {
-    const theme = document.body.getAttribute("theme")
-    const current = theme == "dark" ? "light" : "dark"
-
-    localStorage.setItem("theme", current)
-    document.body.setAttribute("theme", current)
-
-    element.className = element.className.replace(
-        /(moon|sun)/, current == "dark" ? "moon" : "sun")
+    b.textContent = " Stop"    
 }
