@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = viewport content = "width = device-width, initial-scale = 1">
+        <link rel = icon href = /assets/images/favicon.ico sizes = "16x16 32x32 48x48 64x64" type = image/vnd.microsoft.icon>
+
+        <script async src = "//www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
+        <script src = /js/setup.js></script>
+        <script src = /js/highlight.min.js></script>
+        <script src = /js/main.js></script>
+
+        <script src = /Browser/skulpt/skulpt.min.js></script>
+        <script src = /Browser/skulpt/skulpt-stdlib.js></script>
+        <script src = /assets/codemirror/lib/codemirror.js></script>
+        <script src = /assets/codemirror/mode/python/python.js></script>
+        
+        <link rel = stylesheet href = /assets/codemirror/lib/codemirror.css>
+        <link rel = stylesheet href = /assets/fontawesome/css/fontawesome.min.css>
+        <link rel = stylesheet href = /assets/fontawesome/css/all.min.css>
+
+        <link rel = stylesheet href = /css/color.css>
+        <link rel = stylesheet href = /css/main.css>
+    
+        <title>JoBase · Examples · Coin Collector</title>
+    </head>
+  
+    <body>
+        <section class = top>
+            <a href = "/">JoBase</a>
+            <i onclick = toggleBars(this) class = "fa-solid fa-bars"></i>
+            <i onclick = toggleTheme(this) class = theme></i>
+            <a href = "/">Home</a>
+            <a href = /examples class = this>Examples</a>
+            <a href = /reference>Reference</a>
+
+            <a href = //github.com/JoBase target = _blank>
+                <i class = "fa-brands fa-github"></i>
+            </a>
+        </section>
+
+        <section class = main>
+            <h2>Coin Collector</h2>
+
+            <pre editor>
+                from JoBase import *
+
+                man = Image(MAN)
+                coin = Image(COIN)
+                enemy = Image(ENEMY)
+
+                text = Text("Score: 0", font_size = 30)
+                score = 0
+
+                window.caption = "Coin Collector"
+
+                def loop():
+                    global score
+
+                    man.draw()
+                    coin.draw()
+                    enemy.draw()
+                    text.draw()
+
+                    if key.up: man.y += 3
+                    elif key.down: man.y -= 3
+                    elif key.left: man.x -= 3
+                    elif key.right: man.x += 3
+
+                    enemy.look_at(coin)
+                    enemy.move_toward(coin, 1.5)
+
+                    if man.collides_with(coin):
+                        coin.x = random(window.left, window.right)
+                        coin.y = random(window.bottom, window.top)
+
+                        score += 1
+                        text.content = "Score: " + str(score)
+
+                    if enemy.collides_with(coin):
+                        coin.x = random(window.left, window.right)
+                        coin.y = random(window.bottom, window.top)
+
+                        score -= 1
+                        text.content = "Score: " + str(score)
+
+                    text.bottom = window.bottom
+                    text.left = window.left + 5
+
+                run()
+            </pre>
+        </section>
+
+        <footer>
+            <span>
+                © Copyright <span id = year></span> JoBase ·
+                <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+            </span>
+        </footer>
+    </body>
+</html>
