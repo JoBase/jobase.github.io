@@ -3,14 +3,21 @@
     <head>
         <meta name = viewport content = "width = device-width, initial-scale = 1">
         <meta name = description content = "Welcome to JoBase. Learn how to code with the fastest Python tools.">
+        <link rel = icon href = /assets/images/favicon.ico sizes = "16x16 32x32 48x48 64x64" type = image/vnd.microsoft.icon>
 
-        <script async src = "https://www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
+        <script async src = "//www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
         <script src = js/analytics.js></script>
         <script src = js/highlight.min.js></script>
         <script src = js/main.js></script>
 
-        <link href = assets/fontawesome/css/fontawesome.min.css rel = stylesheet>
-        <link href = assets/fontawesome/css/all.min.css rel = stylesheet>
+        <script src = /Browser/skulpt/skulpt.min.js></script>
+        <script src = /Browser/skulpt/skulpt-stdlib.js></script>
+        <script src = /assets/codemirror/lib/codemirror.js></script>
+        <script src = /assets/codemirror/mode/python/python.js></script>
+        
+        <link rel = stylesheet href = /assets/codemirror/lib/codemirror.css>
+        <link rel = stylesheet href = assets/fontawesome/css/fontawesome.min.css>
+        <link rel = stylesheet href = assets/fontawesome/css/all.min.css>
         <link rel = stylesheet href = main.css>
 
         <title>JoBase · The Fast Python Game Library</title>
@@ -25,7 +32,7 @@
             <a href = examples>Examples</a>
             <a href = reference>Reference</a>
 
-            <a href = https://github.com/JoBase target = _blank>
+            <a href = //github.com/JoBase target = _blank>
                 <i class = "fa-brands fa-github"></i>
             </a>
         </section>
@@ -52,7 +59,7 @@
             <h3>Download Python</h3>
 
             To start using <mark>JoBase</mark>, you will need <mark>Python</mark> installed.
-            Visit <a href = https://www.python.org/downloads target = _blank>python.org</a>
+            Visit <a href = //www.python.org/downloads target = _blank>python.org</a>
             and download the latest version for your computer.
 
             <h3>Install JoBase</h3>
@@ -60,7 +67,7 @@
             To install <mark>JoBase</mark>, type the following into the
             <mark>Command Terminal</mark>.
 
-            <pre>‡pip install JoBase‡</pre>
+            <pre code>‡pip install JoBase‡</pre>
 
             If the installation fails, please contact us at
             <a href = mailto:problem@jobase.org>problem@jobase.org</a>
@@ -68,13 +75,13 @@
             If the installation succeeded, you can continue by typing the
             following command to run a basic exmaple.
 
-            <pre>‡python -m JoBase.examples.coin_collector‡</pre>
+            <pre code>‡python -m JoBase.examples.coin_collector‡</pre>
 
             If everything works, you are ready to start coding!
             The minimal Python example below demonstrates the structure of a basic JoBase application.
 
-            <pre>
-                ‡from JoBase import *
+            <pre editor>
+                from JoBase import *
 
                 window.caption = "JoBase Example"
                 man = Image(MAN)
@@ -82,7 +89,7 @@
                 def loop():
                     man.draw()
 
-                run()‡
+                run()
             </pre>
         </section>
 

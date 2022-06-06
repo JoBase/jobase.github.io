@@ -15,6 +15,7 @@
 }
 
 body[theme = light] {
+    --dim: #fff;
     --background: #ddd;
     --text: #666;
     --mark: #444;
@@ -29,23 +30,12 @@ body[theme = light] {
     --keyword: #83b;
     --built_in: #088;
     --number: #960;
-    --attr: #960;
-    --literal: #960;
-    --tag: #555;
-    --function: #555;
-    --attribute: #555;
     --variable: #d55;
-    --name: #d55;
-    --selector-tag: #d55;
     --title: #06c;
-    --selector-id: #06c;
-    --meta: #06c;
-    --params: #d55;
-    --property: #d55;
-    --regexp: #d55;
 }
 
 body[theme = dark] {
+    --dim: #444;
     --background: #333;
     --text: #aaa;
     --mark: #ccc;
@@ -60,20 +50,8 @@ body[theme = dark] {
     --keyword: #c7f;
     --built_in: #2cc;
     --number: #d92;
-    --attr: #d92;
-    --literal: #d92;
-    --tag: #bbb;
-    --function: #bbb;
-    --attribute: #bbb;
     --variable: #f66;
-    --name: #f66;
-    --selector-tag: #f66;
     --title: #6af;
-    --selector-id: #6af;
-    --meta: #6af;
-    --params: #f66;
-    --property: #f66;
-    --regexp: #f66;
 }
 
 body {
@@ -89,25 +67,77 @@ mark {
     background: none
 }
 
-.hljs-string {color: var(--string)}
-.hljs-keyword {color: var(--keyword)}
-.hljs-built_in {color: var(--built_in)}
+.hljs-string,
+.cm-string, .cm-string-2 {color: var(--string)}
+
+.hljs-keyword,
+.cm-keyword {color: var(--keyword)}
+
+.hljs-built_in,
+.cm-builtin, .cm-operator {color: var(--built_in)}
+
 .hljs-comment {color: var(--comment)}
-.hljs-number {color: var(--number)}
-.hljs-attr {color: var(--attr)}
-.hljs-literal {color: var(--literal)}
-.hljs-tag {color: var(--tag)}
-.hljs-function {color: var(--function)}
-.hljs-attribute {color: var(--attribute)}
-.hljs-variable {color: var(--variable)}
-.hljs-name {color: var(--name)}
-.hljs-selector-tag {color: var(--selector-tag)}
-.hljs-title {color: var(--title)}
-.hljs-selector-id {color: var(--selector-id)}
-.hljs-meta {color: var(--meta)}
-.hljs-params {color: var(--params)}
-.hljs-property {color: var(--property)}
-.hljs-regexp {color: var(--regexp)}
+
+.hljs-number, .hljs-attr, .hljs-literal,
+.cm-number {color: var(--number)}
+
+.hljs-variable, .hljs-name, .hljs-selector-tag, .hljs-params, .hljs-property, .hljs-regexp,
+.cm-variable, .cm-variable-2, .cm-variable-3, .cm-property {color: var(--variable)}
+
+.hljs-title, .hljs-selector-id, .hljs-meta,
+.cm-def, .cm-meta {color: var(--title)}
+
+.CodeMirror-cursor {border-left-color: var(--mark)}
+.CodeMirror-focused .CodeMirror-selected,
+.CodeMirror-selected {background-color: var(--background)}
+
+.CodeMirror pre.CodeMirror-line {padding: 0 0.8em}
+.CodeMirror-lines {padding: 0.8em 0}
+
+.CodeMirror {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 100%
+} 
+
+.editor > div:last-child {
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex
+}
+
+.editor button[active],
+.editor button:hover {background-color: var(--blank)}
+
+.editor > div:first-child {
+    background-color: var(--dim);
+    font-size: 0
+}
+
+.editor > div:last-child > div:last-child {
+    flex: 1 1 0;
+    width: 0
+}
+
+.editor {
+    mask-image: radial-gradient(#fff, #000);
+    border-radius: 0.4em;
+    height: 20em;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 1em 0
+}
+
+.editor button {
+    border: none;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    background-color: var(--button);
+    font-size: var(--small);
+    color: var(--mark);
+    cursor: pointer
+}
 
 details {
     background-color: var(--block);
@@ -121,14 +151,11 @@ details a {
     margin-left: 2em
 }
 
-pre, code {
-    padding: 0.8em;
-    border-radius: var(--radius);
+pre, code, .CodeMirror {
     background-color: var(--block);
-    margin: 1em 0;
+    color: var(--code);
     font-size: var(--small);
-    font-family: monospace;
-    color: var(--code)
+    font-family: monospace
 }
 
 a {
@@ -147,9 +174,16 @@ pre {
     color: var(--comment)
 }
 
+pre, code {
+    padding: 0.8em;
+    margin: 1em 0;
+    border-radius: var(--radius)
+}
+
 footer span {color: var(--text)}
 a:hover {color: var(--comment)}
 html {scroll-behavior: smooth}
+canvas {transition-duration: 0s}
 
 .indent {margin-left: 2em}
 .large {font-size: var(--font)}

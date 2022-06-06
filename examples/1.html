@@ -2,14 +2,21 @@
 <html>
     <head>
         <meta name = viewport content = "width = device-width, initial-scale = 1">
+        <link rel = icon href = /assets/images/favicon.ico sizes = "16x16 32x32 48x48 64x64" type = image/vnd.microsoft.icon>
 
-        <script async src = "https://www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
+        <script async src = "//www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
         <script src = /js/analytics.js></script>
         <script src = /js/highlight.min.js></script>
         <script src = /js/main.js></script>
 
-        <link href = /assets/fontawesome/css/fontawesome.min.css rel = stylesheet>
-        <link href = /assets/fontawesome/css/all.min.css rel = stylesheet>
+        <script src = /Browser/skulpt/skulpt.min.js></script>
+        <script src = /Browser/skulpt/skulpt-stdlib.js></script>
+        <script src = /assets/codemirror/lib/codemirror.js></script>
+        <script src = /assets/codemirror/mode/python/python.js></script>
+        
+        <link rel = stylesheet href = /assets/codemirror/lib/codemirror.css>
+        <link rel = stylesheet href = /assets/fontawesome/css/fontawesome.min.css>
+        <link rel = stylesheet href = /assets/fontawesome/css/all.min.css>
         <link rel = stylesheet href = /main.css>
     
         <title>JoBase · Examples · First Steps</title>
@@ -24,7 +31,7 @@
             <a href = /examples class = this>Examples</a>
             <a href = /reference>Reference</a>
 
-            <a href = https://github.com/JoBase target = _blank>
+            <a href = //github.com/JoBase target = _blank>
                 <i class = "fa-brands fa-github"></i>
             </a>
         </section>
@@ -33,16 +40,16 @@
             <h2>First Steps</h2>
 
             <p>
-                To get started with JoBase you need <mark>Python</mark> installed.
-                Please follow the steps on the <a href = "/">homepage</a> if you haven't installed <mark>Python</mark> already.
+                To get started with JoBase, you can use the online editor <a href = "/">here</a>.
+                When you are ready, follow the steps on the <a href = "/">homepage</a> to install JoBase on your local computer.
             </p>
 
             <p>
-                Open the <mark>Python IDLE</mark> (or your favourite editor) and create a new file.
+                At the start of every JoBase application, you need to import JoBase.
                 Start by typing the following code.
             </p>
 
-            <pre>‡from JoBase import *‡</pre>
+            <pre code>‡from JoBase import *‡</pre>
 
             <p>
                 This imports and initialises all the tools from the <mark>JoBase</mark> library.
@@ -50,7 +57,7 @@
                 Now we need to display the window for our game.
             </p>
 
-            <pre>
+            <pre code>
                 from JoBase import *
 
                 ‡run()‡
@@ -67,7 +74,7 @@
                 The code below shows how you can create this loop.
             </p>
 
-            <pre>
+            <pre code>
                 from JoBase import *
 
                 ‡print("start")
@@ -84,13 +91,13 @@
                 Now we can start drawing things on the screen.
             </p>
 
-            <pre>
+            <pre editor>
                 from JoBase import *
 
-                ‡text = Text("Hello World")‡
+                text = Text("Hello World")
 
                 def loop():
-                    ‡text.draw()‡
+                    text.draw()
 
                 run()
             </pre>
