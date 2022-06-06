@@ -64,7 +64,7 @@ mark {
 .editor {
     mask-image: radial-gradient(#fff, #000);
     border-radius: 0.4em;
-    height: 25em;
+    height: 20em;
     display: flex;
     flex-direction: column;
     overflow: hidden;
