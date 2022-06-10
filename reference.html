@@ -62,11 +62,9 @@
 
             <code class = small>position: (float, float)</code>
 
-            <p>
-                The variable above is actually a <mark>JoBase Vector</mark>.
-                This means that its properties are keys.
-                The example below illustrates how this variable can be used.
-            </p>
+            The variable above is actually a <mark>JoBase Vector</mark>.
+            This means that its properties are keys.
+            The example below illustrates how this variable can be used.
 
             <pre code>
                 ‡position.x = 2
@@ -75,27 +73,23 @@
 
                 position = [4, 0]
                 position.y = 6
-                print(position) # (4, 6)
-
-                position = {"x": 0, "y": 0}
-                print(position) # (0, 0)‡
+                print(position) # (4, 6)‡
             </pre>
 
-            <p>
-                In future versions of <mark>JoBase</mark>, we hope to add numerical comparisons between these variables.
-                The following code illustrates this, although it currently <mark>does not work</mark>.
-            </p>
+            <mark>JoBase Vectors</mark> also support rich comparisons and numerical operations.
 
             <pre code>
-                ‡position = (5, 7)
+                ‡a = (5, 7)
+                b = [5, 7]
+                print(a == b) # True
+                
+                position = (5, 7)
                 position += 1
                 print(position) # (6, 8)
 
                 position = (4, 1)
                 position *= 2
-                print(position) # (8, 2)
-
-                print(position is position) # True‡
+                print(position) # (8, 2)‡
             </pre>
 
             <code class = large id = Window>class Window(caption = "JoBase", width = 640, height = 480, color = (1, 1, 1))</code>
@@ -240,13 +234,13 @@
                 The inbuilt <mark>camera</mark> variable is an instance of this class.
                 Do not try to instance this class directly.
 
-                <code class = small id = Camera.x>x, position.x: float</code>
+                <code class = small id = Camera.x>x, pos.x, position.x: float</code>
 
                 <div class = indent>
                     The x position of the camera.
                 </div>
 
-                <code class = small id = Camera.y>y, position.y: float</code>
+                <code class = small id = Camera.y>y, pos.y, position.y: float</code>
 
                 <div class = indent>
                     The y position of the camera.
@@ -266,13 +260,13 @@
                 The inbuilt <mark>cursor</mark> variable is an instance of this class.
                 Do not try to instance this class directly.
 
-                <code class = small id = Cursor.x>x, position.x: float</code>
+                <code class = small id = Cursor.x>x, pos.x, position.x: float</code>
 
                 <div class = indent>
                     The x position of the cursor.
                 </div>
 
-                <code class = small id = Cursor.y>y, position.y: float</code>
+                <code class = small id = Cursor.y>y, pos.y, position.y: float</code>
 
                 <div class = indent>
                     The y position of the cursor.
@@ -491,13 +485,13 @@
                 The attributes of this class are shared with all other shapes.
                 Do not try to instance this class directly.
 
-                <code class = small id = Shape.x>x, position.x: float</code>
+                <code class = small id = Shape.x>x, pos.x, position.x: float</code>
 
                 <div class = indent>
                     The x position of the shape.
                 </div>
 
-                <code class = small id = Shape.y>y, position.y: float</code>
+                <code class = small id = Shape.y>y, pos.y, position.y: float</code>
 
                 <div class = indent>
                     The y position of the shape.
@@ -580,6 +574,20 @@
                 <div class = indent>
                     The color of the shape.
                 </div>
+
+                <code class = small id = Shape.look_at>look_at(other: object)</code>
+
+                <div class = indent>
+                    Rotate the shape to look at another object.
+                    The object must be a <mark>Shape</mark> instance or the cursor.
+                </div>
+
+                <code class = small id = Shape.move_toward>move_toward(other: object, speed = 1)</code>
+
+                <div class = indent>
+                    Move the shape toward another object at a certain speed.
+                    The object must be a <mark>Shape</mark> instance or the cursor.
+                </div>
             </div>
 
             <code class = large id = Rectangle>class Rectangle(x = 0, y = 0, width = 50, height = 50, angle = 0, color = (0, 0, 0))</code>
@@ -631,7 +639,7 @@
                 </div>
             </div>
 
-            <code class = large id = Image>class Image(name = MAN, x = 0, y = 0, width = 50, height = 50, angle = 0, color = (0, 0, 0))</code>
+            <code class = large id = Image>class Image(name = MAN, x = 0, y = 0, width = 0, height = 0, angle = 0, color = (0, 0, 0))</code>
 
             <div class = indent>
                 This class is for drawing images.
@@ -655,7 +663,7 @@
                 </pre>
             </div>
 
-            <code class = large id = Text>class Text(content = "Text", x = 0, y = 0, size = 50, angle = 0, color = (0, 0, 0), font = DEFAULT)</code>
+            <code class = large id = Text>class Text(content = "Text", x = 0, y = 0, font_size = 50, angle = 0, color = (0, 0, 0), font = DEFAULT)</code>
 
             <div class = indent>
                 This class is for drawing text messages.
@@ -693,22 +701,10 @@
                     </pre>
                 </div>
 
-                <code class = small id = Text.char.x>char.x: float</code>
+                <code class = small id = Text.font_size>font_size: float</code>
 
                 <div class = indent>
-                    The width of each text character.
-                </div>
-
-                <code class = small id = Text.char.y>char.y: float</code>
-
-                <div class = indent>
-                    The height of each text character.
-                </div>
-
-                <code class = small id = Text.char>char: (float, float)</code>
-
-                <div class = indent>
-                    The dimensions of each text character.
+                    The size of the font.
                 </div>
             </div>
 
