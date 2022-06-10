@@ -27,15 +27,11 @@ mark {
     background: none
 }
 
-.CodeMirror-cursor {border-left-color: var(--mark)}
-.CodeMirror-focused .CodeMirror-selected,
-.CodeMirror-selected {background-color: var(--background)}
-
 .CodeMirror pre.CodeMirror-line {padding: 0 0.8em}
 .CodeMirror-lines {padding: 0.8em 0}
 
 .CodeMirror {
-    transition-duration: 1s;
+    transition-duration: 0.5s;
     flex: 0 0 auto;
     width: 100%;
     height: 100%
@@ -55,7 +51,7 @@ mark {
     font-size: 0
 }
 
-.editor > div:last-child > div:last-child {
+.editor canvas {
     background-color: #fff;
     flex: 1 1 0;
     width: 0
@@ -125,7 +121,6 @@ pre, code {
 footer span {color: var(--text)}
 a:hover {color: var(--comment)}
 html {scroll-behavior: smooth}
-canvas {transition-duration: 0s}
 canvas:focus {outline: none}
 
 .indent {margin-left: 2em}

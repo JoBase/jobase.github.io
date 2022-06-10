@@ -53,7 +53,7 @@ onload = () => {
     const editor = create("div")
     const buttons = create("div")
     const main = create("div")
-    const canvas = create("div")
+    const canvas = create("canvas")
     const run = create("button")
     const cancel = create("button")
     const gear = create("i")
@@ -95,6 +95,11 @@ onload = () => {
 
         delete Sk.execLimit
     }
+
+    new ResizeObserver(() => {
+        canvas.width = canvas.offsetWidth * devicePixelRatio
+        canvas.height = canvas.offsetHeight * devicePixelRatio
+    }).observe(canvas)
 
     run.append(gear, a)
     cancel.append(square, b)

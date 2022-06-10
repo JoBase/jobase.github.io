@@ -57,3 +57,7 @@ body[theme = dark] {
 
 .hljs-title, .hljs-selector-id, .hljs-meta,
 .cm-def, .cm-meta {color: var(--title)}
+
+.CodeMirror-cursor {border-left-color: var(--mark)}
+.CodeMirror-focused .CodeMirror-selected,
+.CodeMirror-selected {background-color: var(--background)}
