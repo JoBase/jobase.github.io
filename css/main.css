@@ -101,7 +101,7 @@ a {
     text-decoration: none
 }
 
-video {
+video, .main > img {
     width: 100%;
     border-radius: var(--radius);
 }

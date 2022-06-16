@@ -47,7 +47,8 @@ body[theme = dark] {
 .hljs-built_in,
 .cm-builtin, .cm-operator {color: var(--built_in)}
 
-.hljs-comment {color: var(--comment)}
+.hljs-comment,
+.cm-comment {color: var(--comment)}
 
 .hljs-number, .hljs-attr, .hljs-literal,
 .cm-number {color: var(--number)}
