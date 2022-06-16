@@ -43,6 +43,7 @@
                 <a href = #Rectangle>Rectangle</a>
                 <a href = #Image>Image</a>
                 <a href = #Text>Text</a>
+                <a href = #Physics>Physics</a>
             </details>
 
             <details>
@@ -51,46 +52,56 @@
                 <a href = #run>run</a>
             </details>
 
+            <details>
+                <summary>Examples</summary>
+                <a href = #coin_collector>coin_collector</a>
+                <a href = #box_physics>box_physics</a>
+            </details>
+
             <p>
                 Welcome to the JoBase reference manual.
             </p>
 
             <p>
-                Whenever you come accross a size, color or position like the one below, it may seem like a <mark>tuple</mark> object.
+                Whenever you come across a position, color or size like the one below, it may seem like a <mark>tuple</mark> object.
                 Although we have displayed it as a <mark>tuple</mark>, it behaves quite differently.
             </p>
 
-            <code class = small>position: (float, float)</code>
+            <code class = small>size: (float, float)</code>
 
             The variable above is actually a <mark>JoBase Vector</mark>.
             This means that its properties are keys.
             The example below illustrates how this variable can be used.
 
             <pre code>
-                ‡position.x = 2
-                position.y = 3
-                print(position) # (2, 3)
+                ‡box = Rectangle(width = 20, height = 20)
+                print(box.size) # (20, 20)
 
-                position = [4, 0]
-                position.y = 6
-                print(position) # (4, 6)‡
+                box.size = (30, 10)
+                print(box.size) # (30, 10)
+
+                box.size.x = 40
+                print(box.size) # (40, 10)
+                box.size = 100
+                print(box.size) # (100, 100)‡
             </pre>
 
             <mark>JoBase Vectors</mark> also support rich comparisons and numerical operations.
 
             <pre code>
-                ‡a = (5, 7)
-                b = [5, 7]
-                print(a == b) # True
+                ‡box.size = (5, 7)
+                box.pos = [5, 7]
+                print(box.size == box.pos) # True
                 
-                position = (5, 7)
-                position += 1
-                print(position) # (6, 8)
-
-                position = (4, 1)
-                position *= 2
-                print(position) # (8, 2)‡
+                box.pos += 1
+                print(box.pos) # (6, 8)
+                box.pos *= 2
+                print(box.pos) # (12, 16)‡
             </pre>
+
+            The <a href = #Shape>Shape</a> class contains attributes that are only useful when it is added to the JoBase <a href = #Physics>Physics Engine</a>.
+
+            <h1>Classes</h1>
 
             <code class = large id = Window>class Window(caption = "JoBase", width = 640, height = 480, color = (1, 1, 1))</code>
 
@@ -136,13 +147,7 @@
                     The blue color of the window.
                 </div>
 
-                <code class = small id = Window.alpha>alpha, color.alpha: float</code>
-
-                <div class = indent>
-                    The transparency of the window.
-                </div>
-
-                <code class = small id = Window.color>color: (float, float, float, float)</code>
+                <code class = small id = Window.color>color: (float, float, float)</code>
 
                 <div class = indent>
                     The color of the window.
@@ -246,16 +251,25 @@
                     The y position of the camera.
                 </div>
 
-                <code class = small id = Camera.position>position: (float, float)</code>
+                <code class = small id = Camera.position>pos, position: (float, float)</code>
 
                 <div class = indent>
                     The position of the camera.
                 </div>
 
-                <code class = small id = Camera.pos>pos: (float, float)</code>
+                <code class = small id = Camera.move_toward>move_toward(other: object, speed = 1)</code>
 
                 <div class = indent>
-                    Same as <a href = #Camera.position>position</a>.
+                    Move the camera toward another object at a constant speed.
+                    The object must be a <mark>Shape</mark> instance or the cursor.
+                </div>
+
+                <code class = small id = Camera.move_toward_smooth>move_toward_smooth(other: object, speed = 0.1)</code>
+
+                <div class = indent>
+                    Move the camera smoothly toward another object.
+                    Preferebly keep the speed between <mark>0</mark> (not moving) and <mark>1</mark> (instant snapping).
+                    The object must be a <mark>Shape</mark> instance or the cursor.
                 </div>
             </div>
 
@@ -278,16 +292,10 @@
                     The y position of the cursor.
                 </div>
 
-                <code class = small id = Cursor.position>position: (float, float)</code>
+                <code class = small id = Cursor.position>pos, position: (float, float)</code>
 
                 <div class = indent>
                     The position of the cursor.
-                </div>
-
-                <code class = small id = Cursor.pos>pos: (float, float)</code>
-
-                <div class = indent>
-                    Same as <a href = #Cursor.position>position</a>.
                 </div>
 
                 <code class = small id = Cursor.move>move: bool</code>
@@ -368,10 +376,10 @@
                         ‡if key.left:
                             # the left arrow key is held down
 
-                            if key.left.release:
+                            if key.left["release"]:
                                 # the left arrow key is released
 
-                        if key.right and key.right.press:
+                        if key.right and key.right["press"]:
                             # the right arrow key was pressed down‡
                     </pre>
 
@@ -521,16 +529,10 @@
                     The y position of the shape.
                 </div>
 
-                <code class = small id = Shape.position>position: (float, float)</code>
+                <code class = small id = Shape.position>pos, position: (float, float)</code>
 
                 <div class = indent>
                     The position of the shape.
-                </div>
-
-                <code class = small id = Shape.pos>pos: (float, float)</code>
-
-                <div class = indent>
-                    Same as <a href = #Shape.position>position</a>.
                 </div>
 
                 <code class = small id = Shape.scale.x>scale.x: float</code>
@@ -605,6 +607,64 @@
                     The color of the shape.
                 </div>
 
+                <code class = small id = Shape.type>type: int</code>
+
+                <div class = indent>
+                    The physics body type of the shape.
+                    It can be <mark>STATIC</mark> or <mark>DYNAMIC</mark> (default).
+                </div>
+
+                <code class = small id = Shape.mass>mass: float</code>
+
+                <div class = indent>
+                    The physics weight of the shape - high means heavy.
+                </div>
+
+                <code class = small id = Shape.elasticity>elasticity: float</code>
+
+                <div class = indent>
+                    The physics bounciness of the shape.
+                    In most cases, it is best to keep this value between <mark>0</mark> (not bouncy) and <mark>1</mark> (perfectly bouncy).
+                </div>
+
+                <code class = small id = Shape.friction>friction: float</code>
+
+                <div class = indent>
+                    The physics roughness of the shape.
+                    In most cases, it is best to keep this value between <mark>0</mark> (not slippery) and <mark>1</mark> (really slippery).
+                </div>
+
+                <code class = small id = Shape.velocity.x>velocity.x, speed.x: float</code>
+
+                <div class = indent>
+                    The physics x speed of the shape.
+                </div>
+
+                <code class = small id = Shape.velocity.y>velocity.y, speed.y: float</code>
+
+                <div class = indent>
+                    The physics y speed of the shape.
+                </div>
+
+                <code class = small id = Shape.velocity>velocity, speed: (float, float)</code>
+
+                <div class = indent>
+                    The physics speed of the shape.
+                </div>
+
+                <code class = small id = Shape.angular_velocity>angular_velocity, rotate_speed: float</code>
+
+                <div class = indent>
+                    The physics rotation speed of the shape (how fast it's spinning).
+                </div>
+
+                <code class = small id = Shape.rotate>rotate: bool</code>
+
+                <div class = indent>
+                    The shape is allowed to rotate in a physics engine.
+                    Set it to <mark>False</mark> if you want the shape to stay the same angle.
+                </div>
+
                 <code class = small id = Shape.look_at>look_at(other: object)</code>
 
                 <div class = indent>
@@ -615,7 +675,7 @@
                 <code class = small id = Shape.move_toward>move_toward(other: object, speed = 1)</code>
 
                 <div class = indent>
-                    Move the shape toward another object at a certain speed.
+                    Move the shape toward another object at a constant speed.
                     The object must be a <mark>Shape</mark> instance or the cursor.
                 </div>
             </div>
@@ -678,9 +738,9 @@
                 JoBase contains the following built in images.
 
                 <div class = list>
-                    <span>MAN</span>
-                    <span>COIN</span>
-                    <span>ENEMY</span>
+                    <span><a href = Browser/JoBase/images/man.png target = _blank>MAN</a></span>
+                    <span><a href = Browser/JoBase/images/coin.png target = _blank>COIN</a></span>
+                    <span><a href = Browser/JoBase/images/enemy.png target = _blank>ENEMY</a></span>
                 </div>
 
                 The example below loads the coin image and draws it.
@@ -738,6 +798,93 @@
                 </div>
             </div>
 
+            <code class = large id = Physics>class Physics(gravity_x: 0, gravity_y: -500)</code>
+
+            <div class = indent>
+                This class is a physics engine environment.
+                Add shapes to give them realistic physics.
+                You can run a basic demo by typing the following command into the terminal.
+
+                <pre code>‡python -m JoBase.examples.box_physics‡</pre>
+
+                The example below creates a box that bounces on the ground.
+
+                <pre code>
+                    ‡from JoBase import *
+
+                    floor = Rectangle(width = window.width, height = 20)
+                    floor.bottom = window.bottom
+                    floor.type = STATIC
+                    floor.elasticity = 0.9
+
+                    box = Rectangle(angle = 10)
+                    box.elasticity = 0.9
+
+                    engine = Physics()
+                    engine.add(floor)
+                    engine.add(box)
+
+                    def loop():
+                        engine.update()
+
+                        floor.draw()
+                        box.draw()
+
+                    run()‡
+                </pre>
+
+                If you are adding many objects to the physics engine, you can draw them all by iterating the class.
+
+                <pre code>
+                    ‡engine = Physics()
+
+                    # add lots of things
+
+                    for thing in engine:
+                        thing.draw()‡
+                </pre>
+
+                <code class = small id = Physics.gravity.x>gravity.x: float</code>
+
+                <div class = indent>
+                    The horizontal gravity.
+                </div>
+
+                <code class = small id = Physics.gravity.y>gravity.y: float</code>
+
+                <div class = indent>
+                    The vertical gravity.
+                    A negative number makes the objects fall to the bottom.
+                </div>
+
+                <code class = small id = Physics.gravity>gravity: (float, float)</code>
+
+                <div class = indent>
+                    The gravity in the physics environment.
+                </div>
+
+                <code class = small id = Physics.add>add(other: object)</code>
+
+                <div class = indent>
+                    Add a <a href = #Shape>Shape</a> to the physics engine.
+                </div>
+
+                <code class = small id = Physics.remove>remove(other: object)</code>
+
+                <div class = indent>
+                    Remove a <a href = #Shape>Shape</a> from the physics engine.
+                </div>
+
+                <code class = small id = Physics.update>update()</code>
+
+                <div class = indent>
+                    Calculate the next frame for the physics.
+                    It is best to call this function every frame.
+                </div>
+            </div>
+
+            <h1>Methods</h1>
+
             <code class = large id = random>def random(a: float, b: float) -> float</code>
 
             <div class = indent>
@@ -749,6 +896,120 @@
             <div class = indent>
                 Activate the main game loop and display the window.
                 Always call this method at the bottom of your code.
+            </div>
+
+            <h1>Examples</h1>
+
+            <code class = large id = coin_collector>coin_collector.py</code>
+
+            <div class = indent>
+                To run this example, type the following command into the terminal.
+
+                <pre code>‡python -m JoBase.examples.coin_collector‡</pre>
+
+                Source code below.
+
+                <pre code>
+                    ‡from JoBase import *
+
+                    man = Image(MAN)
+                    coin = Image(COIN)
+                    enemy = Image(ENEMY)
+
+                    text = Text("Score: 0", font_size = 30)
+                    score = 0
+
+                    window.caption = "Coin Collector"
+
+                    def loop():
+                        global score
+
+                        man.draw()
+                        coin.draw()
+                        enemy.draw()
+                        text.draw()
+
+                        if key.up: man.y += 3
+                        elif key.down: man.y -= 3
+                        elif key.left: man.x -= 3
+                        elif key.right: man.x += 3
+
+                        enemy.look_at(coin)
+                        enemy.move_toward(coin, 1.5)
+
+                        if man.collides_with(coin):
+                            coin.x = random(window.left, window.right)
+                            coin.y = random(window.bottom, window.top)
+
+                            score += 1
+                            text.content = "Score: " + str(score)
+
+                        if enemy.collides_with(coin):
+                            coin.x = random(window.left, window.right)
+                            coin.y = random(window.bottom, window.top)
+
+                            score -= 1
+                            text.content = "Score: " + str(score)
+
+                        text.bottom = window.bottom
+                        text.left = window.left + 5
+
+                    run()‡
+                </pre>
+            </div>
+
+            <code class = large id = box_physics>box_physics.py</code>
+
+            <div class = indent>
+                To run this example, type the following command into the terminal.
+
+                <pre code>‡python -m JoBase.examples.box_physics‡</pre>
+
+                Source code below.
+
+                <pre code>
+                    ‡from JoBase import *
+
+                    window.size = (1024, 576)
+                    window.color = (0, 0, 0)
+
+                    engine = Physics()
+                    time = 0
+
+                    floor = Rectangle(width = window.width - 300, height = 20)
+                    floor.color = (1, 1, 1)
+                    floor.type = STATIC
+                    floor.bottom = window.bottom
+                    engine.add(floor)
+
+                    def loop():
+                        global time
+
+                        engine.update()
+                        time += 1
+
+                        if cursor.press:
+                            rect = Rectangle(width = 60, height = 60)
+                            rect.pos = cursor.pos
+                            rect.mass = 100
+                            rect.color = (1, 1, 1)
+                            engine.add(rect)
+
+                        if not time % 5:
+                            box = Rectangle(y = window.top + 100)
+                            box.size = (random(20, 30), random(20, 30))
+                            box.color = (random(0, 1), random(0, 1), random(0, 1))
+                            engine.add(box)
+
+                        for rect in engine:
+                            if rect.top &lt; window.bottom:
+                                engine.remove(rect)
+
+                        for rect in engine:
+                            rect.draw()
+
+                    run()‡
+                </pre>
             </div>
         </section>
 
