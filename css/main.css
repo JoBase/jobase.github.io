@@ -101,6 +101,11 @@ a {
     text-decoration: none
 }
 
+video {
+    width: 100%;
+    border-radius: var(--radius);
+}
+
 footer {
     width: 100%;
     padding: var(--padding);
