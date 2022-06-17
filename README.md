@@ -43,7 +43,7 @@ As you can see, the program above sets the window caption.
 We then load an image and draw it in the game loop.
 Please follow our [examples](https://jobase.org/examples) for an introduction to the features of JoBase.
 
-#### Performance
+### Performance
 
 ![JoBase Performance Comparison](https://jobase.org/assets/images/graph.png)
 
