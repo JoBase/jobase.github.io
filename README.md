@@ -38,3 +38,33 @@ def loop():
 
 run()
 ```
+
+As you can see, the program above sets the window caption.
+We then load an image and draw it in the game loop.
+Please follow our [examples](https://jobase.org/examples) for an introduction to the features of JoBase.
+
+#### Performance
+
+![JoBase Performance Comparison](https://jobase.org/assets/images/graph.png)
+
+Above is a JoBase speed comparison with other popular Python libraries.
+The the graph compares the performance of the libraries without batch rendering.
+Hundreds of images were drawn on the screen in random places and rotated in the game loop.
+
+```
+from JoBase import *
+images = []
+
+for i in range(100):
+    man = Image(MAN, random(window.left, window.right), random(window.top, window.bottom))
+    man.angle = random(1, 360)
+
+    images.append(man)
+
+def loop():
+    for man in images:
+        man.angle += 1
+        man.draw()
+
+run()
+```
