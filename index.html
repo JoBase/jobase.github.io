@@ -103,28 +103,25 @@
             <img src = assets/images/graph.png>
 
             <p>
-                Above is a speed comparison with other popular Python libraries.
-                The Python program below was rewritten for the individual libraries with and increasing number of images.
+                Above is a JoBase speed comparison with other popular Python libraries.
+                The the graph compares the performance of the libraries without <mark>batch rendering</mark>.
+                Hundreds of images were drawn on the screen in random places and rotated in the game loop.
             </p>
 
             <pre code>
                 ‡from JoBase import *
-
-                window.size = (1920, 1080)
-                array = []
+                images = []
 
                 for i in range(100):
                     man = Image(MAN, random(window.left, window.right), random(window.top, window.bottom))
                     man.angle = random(1, 360)
 
-                    array.append(man)
+                    images.append(man)
 
                 def loop():
-                    for image in array:
-                        image.angle += 1
-
-                        if image.angle % 360 &lt; 90:
-                            image.draw()
+                    for man in images:
+                        man.angle += 1
+                        man.draw()
 
                 run()‡
             </pre>
