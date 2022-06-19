@@ -43,23 +43,34 @@
                 <a href = #Rectangle>Rectangle</a>
                 <a href = #Image>Image</a>
                 <a href = #Text>Text</a>
+                <a href = #Circle>Circle</a>
                 <a href = #Physics>Physics</a>
             </details>
 
             <details>
                 <summary>Methods</summary>
                 <a href = #random>random</a>
+                <a href = #randint>randint</a>
                 <a href = #run>run</a>
             </details>
 
             <details>
                 <summary>Examples</summary>
                 <a href = #coin_collector>coin_collector</a>
-                <a href = #box_physics>box_physics</a>
+                <a href = #physics>physics</a>
+                <a href = #tennis>tennis</a>
             </details>
 
             <p>
                 Welcome to the JoBase reference manual.
+            </p>
+
+            <p>
+                Below is a list of JoBase built in colors.
+
+                <div class = colors>
+                    <span color = "(1, 1, 1)">WHITE</span>
+                </div>
             </p>
 
             <p>
@@ -77,7 +88,7 @@
                 ‡box = Rectangle(width = 20, height = 20)
                 print(box.size) # (20, 20)
 
-                box.size = (30, 10)
+                box.size = 30, 10
                 print(box.size) # (30, 10)
 
                 box.size.x = 40
@@ -99,11 +110,9 @@
                 print(box.pos) # (12, 16)‡
             </pre>
 
-            The <a href = #Shape>Shape</a> class contains attributes that are only useful when it is added to the JoBase <a href = #Physics>Physics Engine</a>.
-
             <h1>Classes</h1>
 
-            <code class = large id = Window>class Window(caption = "JoBase", width = 640, height = 480, color = (1, 1, 1))</code>
+            <code class = large id = Window>class Window(caption = "JoBase", width = 640, height = 480, color = WHITE)</code>
 
             <div class = indent>
                 This class is for managing the main window.
@@ -333,6 +342,13 @@
                 <div class = indent>
                     A cursor button is held down.
                 </div>
+
+                <code class = small id = Cursor.collides_with>collides_with(other: object)</code>
+
+                <div class = indent>
+                    Check if the cursor collides with the another object.
+                    The object must be a <mark>Shape</mark> instance.
+                </div>
             </div>
 
             <code class = large id = Key>class Key()</code>
@@ -513,9 +529,12 @@
             <code class = large id = Shape>class Shape()</code>
 
             <div class = indent>
-                This is the base class for all drawing primitives.
-                The attributes of this class are shared with all other shapes.
-                Do not try to instance this class directly.
+                <p>
+                    This is the base class for all drawing primitives.
+                    The attributes of this class are shared with all other shapes.
+                    Some of the attributes are only useful when a shape is added to the JoBase <a href = #Physics>Physics Engine</a>.
+                    Do not try to instance this class directly.
+                </p>
 
                 <code class = small id = Shape.x>x, pos.x, position.x: float</code>
 
@@ -533,6 +552,30 @@
 
                 <div class = indent>
                     The position of the shape.
+                </div>
+
+                <code class = small id = Shape.left>left: float</code>
+
+                <div class = indent>
+                    The left position of the shape.
+                </div>
+
+                <code class = small id = Shape.top>top: float</code>
+
+                <div class = indent>
+                    The top position of the shape.
+                </div>
+
+                <code class = small id = Shape.right>right: float</code>
+
+                <div class = indent>
+                    The right position of the shape.
+                </div>
+
+                <code class = small id = Shape.bottom>bottom: float</code>
+
+                <div class = indent>
+                    The bottom position of the shape.
                 </div>
 
                 <code class = small id = Shape.scale.x>scale.x: float</code>
@@ -678,9 +721,16 @@
                     Move the shape toward another object at a constant speed.
                     The object must be a <mark>Shape</mark> instance or the cursor.
                 </div>
+
+                <code class = small id = Shape.collides_with>collides_with(other: object)</code>
+
+                <div class = indent>
+                    Check if the shape collides with the another object.
+                    The object must be a <mark>Shape</mark> instance or the cursor.
+                </div>
             </div>
 
-            <code class = large id = Rectangle>class Rectangle(x = 0, y = 0, width = 50, height = 50, angle = 0, color = (0, 0, 0))</code>
+            <code class = large id = Rectangle>class Rectangle(x = 0, y = 0, width = 50, height = 50, angle = 0, color = BLACK)</code>
 
             <div class = indent>
                 This class is for drawing rectangles.
@@ -703,33 +753,9 @@
                 <div class = indent>
                     The dimensions of the rectangle in pixels.
                 </div>
-
-                <code class = small id = Rectangle.left>left: float</code>
-
-                <div class = indent>
-                    The left of the rectangle in pixels.
-                </div>
-
-                <code class = small id = Rectangle.top>top: float</code>
-
-                <div class = indent>
-                    The top of the rectangle in pixels.
-                </div>
-
-                <code class = small id = Rectangle.right>right: float</code>
-
-                <div class = indent>
-                    The right of the rectangle in pixels.
-                </div>
-
-                <code class = small id = Rectangle.bottom>bottom: float</code>
-
-                <div class = indent>
-                    The bottom of the rectangle in pixels.
-                </div>
             </div>
 
-            <code class = large id = Image>class Image(name = MAN, x = 0, y = 0, width = 0, height = 0, angle = 0, color = (0, 0, 0))</code>
+            <code class = large id = Image>class Image(name = MAN, x = 0, y = 0, width = 0, height = 0, angle = 0, color = WHITE)</code>
 
             <div class = indent>
                 This class is for drawing images.
@@ -753,7 +779,7 @@
                 </pre>
             </div>
 
-            <code class = large id = Text>class Text(content = "Text", x = 0, y = 0, font_size = 50, angle = 0, color = (0, 0, 0), font = DEFAULT)</code>
+            <code class = large id = Text>class Text(content = "Text", x = 0, y = 0, font_size = 50, angle = 0, color = BLACK, font = DEFAULT)</code>
 
             <div class = indent>
                 This class is for drawing text messages.
@@ -795,6 +821,25 @@
 
                 <div class = indent>
                     The size of the font.
+                </div>
+            </div>
+
+            <code class = large id = Circle>class Circle(x = 0, y = 0, diameter = 50, color = BLACK)</code>
+
+            <div class = indent>
+                This class is for drawing circles.
+                Because it extends the <a href = #Shape>Shape</a> class, it contains all the same attributes.
+
+                <code class = small id = Circle.diameter>diameter: float</code>
+
+                <div class = indent>
+                    The width of the circle.
+                </div>
+
+                <code class = small id = Circle.radius>radius: float</code>
+
+                <div class = indent>
+                    The radius of the circle (half of the diameter).
                 </div>
             </div>
 
@@ -891,6 +936,12 @@
                 Find a random decimal between <mark>a</mark> and <mark>b</mark>.
             </div>
 
+            <code class = large id = randint>def randint(a: int, b: int) -> int</code>
+
+            <div class = indent>
+                Find a random integer between <mark>a</mark> and <mark>b</mark> inclusive.
+            </div>
+
             <code class = large id = run>def run()</code>
 
             <div class = indent>
@@ -958,56 +1009,160 @@
                 </pre>
             </div>
 
-            <code class = large id = box_physics>box_physics.py</code>
+            <code class = large id = physics>physics.py</code>
 
             <div class = indent>
                 To run this example, type the following command into the terminal.
 
-                <pre code>‡python -m JoBase.examples.box_physics‡</pre>
+                <pre code>‡python -m JoBase.examples.physics‡</pre>
 
                 Source code below.
 
                 <pre code>
                     ‡from JoBase import *
 
-                    window.size = (1024, 576)
-                    window.color = (0, 0, 0)
-
+                    window.caption = "Physics"
+                    window.size = 1024, 576
+                    
                     engine = Physics()
                     time = 0
-
-                    floor = Rectangle(width = window.width - 300, height = 20)
-                    floor.color = (1, 1, 1)
+                    
+                    floor = Rectangle(width = window.width - 300, height = 20, color = GRAY)
                     floor.type = STATIC
                     floor.bottom = window.bottom
                     engine.add(floor)
-
+                    
                     def loop():
                         global time
-
+                    
                         engine.update()
                         time += 1
-
+                    
                         if cursor.press:
-                            rect = Rectangle(width = 60, height = 60)
-                            rect.pos = cursor.pos
-                            rect.mass = 100
-                            rect.color = (1, 1, 1)
-                            engine.add(rect)
-
-                        if not time % 5:
-                            box = Rectangle(y = window.top + 100)
-                            box.size = (random(20, 30), random(20, 30))
-                            box.color = (random(0, 1), random(0, 1), random(0, 1))
+                            box = Rectangle()
+                            box.size = 60
+                            box.pos = cursor.pos
+                            box.mass = 100
+                            box.color = BLACK
+                    
                             engine.add(box)
+                    
+                        if not time % 5:
+                            thing = None
+                    
+                            if randint(0, 1):
+                                thing = Rectangle(
+                                    width = random(20, 30),
+                                    height = random(20, 30))
+                    
+                            else: thing = Circle(diameter = random(20, 30))
+                            
+                            thing.y = window.top + 100
+                            thing.color = random(0, 1), random(0, 1), random(0, 1)
+                            engine.add(thing)
+                    
+                        for thing in engine:
+                            if thing.top &lt; window.bottom:
+                                engine.remove(thing)
+                    
+                        for thing in engine:
+                            thing.draw()
+                    
+                    run()‡
+                </pre>
+            </div>
 
-                        for rect in engine:
-                            if rect.top &lt; window.bottom:
-                                engine.remove(rect)
+            <code class = large id = tennis>tennis.py</code>
 
-                        for rect in engine:
-                            rect.draw()
+            <div class = indent>
+                To run this example, type the following command into the terminal.
 
+                <pre code>‡python -m JoBase.examples.tennis‡</pre>
+
+                Source code below.
+
+                <pre code>
+                    ‡from JoBase import *
+
+                    top = Rectangle(height = 500)
+                    bottom = Rectangle(height = 500)
+                    
+                    player_1 = Rectangle(width = 30, height = 150, color = WHITE)
+                    player_2 = Rectangle(width = 30, height = 150, color = WHITE)
+                    
+                    text = Text(color = WHITE)
+                    ball = Circle(diameter = 30, color = ORANGE)
+                    blob = Rectangle(width = 15, height = 5, color = BLACK)
+                    engine = Physics(0, 0)
+                    
+                    score_1 = 0
+                    score_2 = 0
+                    
+                    window.color = BLACK
+                    window.caption = "Tennis"
+                    window.size = 1024, 576
+                    
+                    player_1.type = player_2.type = STATIC
+                    player_1.elasticity = player_2.elasticity = 1.2
+                    
+                    top.type = bottom.type = STATIC
+                    top.elasticity = bottom.elasticity = 1
+                    top.friction = bottom.friction = 0
+                    
+                    ball.elasticity = 1
+                    ball.friction = 1
+                    
+                    engine.add(top)
+                    engine.add(bottom)
+                    engine.add(player_1)
+                    engine.add(player_2)
+                    engine.add(ball)
+                    
+                    def reset():
+                        text.content = str(score_1) + " - " + str(score_2)
+                        ball.speed.x = -300 if randint(0, 1) else 300
+                        ball.speed.y = random(-100, 100)
+                        ball.pos = 0
+                    
+                    def loop():
+                        global score_1, score_2
+                    
+                        if window.resize:
+                            top.width = bottom.width = window.width
+                            top.top = window.bottom
+                            bottom.bottom = window.top
+                    
+                            text.top = window.top
+                            player_1.left = window.left
+                            player_2.right = window.right
+                    
+                        if key.w: player_1.speed.y = 400
+                        elif key.s: player_1.speed.y = -400
+                        else: player_1.speed.y = 0
+                    
+                        if key.up: player_2.speed.y = 400
+                        elif key.down: player_2.speed.y = -400
+                        else: player_2.speed.y = 0
+                    
+                        engine.update()
+                        blob.angle = ball.angle
+                        blob.pos = ball.pos
+                    
+                        if ball.left > window.right:
+                            score_1 += 1
+                            reset()
+                    
+                        elif ball.right &lt; window.left:
+                            score_2 += 1
+                            reset()
+                    
+                        player_1.draw()
+                        player_2.draw()
+                        ball.draw()
+                        blob.draw()
+                        text.draw()
+                    
+                    reset()
                     run()‡
                 </pre>
             </div>

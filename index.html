@@ -113,22 +113,23 @@
                 Hundreds of images were drawn on the screen in random places and rotated in the game loop.
             </p>
 
-            <pre code>
-                ‡from JoBase import *
+            <pre editor>
+                from JoBase import *
                 images = []
 
                 for i in range(100):
-                    man = Image(MAN, random(window.left, window.right), random(window.top, window.bottom))
-                    man.angle = random(1, 360)
-
-                    images.append(man)
+                    images.append(Image(MAN, angle = random(1, 360)))
 
                 def loop():
+                    if window.resize:
+                        for man in images:
+                            man.pos = random(window.left, window.right), random(window.top, window.bottom)
+
                     for man in images:
                         man.angle += 1
                         man.draw()
 
-                run()‡
+                run()
             </pre>
         </section>
 

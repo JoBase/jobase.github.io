@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = viewport content = "width = device-width, initial-scale = 1">
+        <link rel = icon href = /assets/images/favicon.ico sizes = "16x16 32x32 48x48 64x64" type = image/vnd.microsoft.icon>
+
+        <script async src = "//www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
+        <script src = /js/setup.js></script>
+        <script src = /js/highlight.min.js></script>
+        <script src = /js/main.js></script>
+
+        <link rel = stylesheet href = /assets/fontawesome/css/fontawesome.min.css>
+        <link rel = stylesheet href = /assets/fontawesome/css/all.min.css>
+
+        <link rel = stylesheet href = /css/color.css>
+        <link rel = stylesheet href = /css/main.css>
+    
+        <title>JoBase · Examples · Tennis</title>
+    </head>
+  
+    <body>
+        <section class = top>
+            <a href = "/">JoBase</a>
+            <i onclick = toggleBars(this) class = "fa-solid fa-bars"></i>
+            <i onclick = toggleTheme(this) class = theme></i>
+            <a href = "/">Home</a>
+            <a href = /examples class = this>Examples</a>
+            <a href = /reference>Reference</a>
+
+            <a href = //github.com/JoBase target = _blank>
+                <i class = "fa-brands fa-github"></i>
+            </a>
+        </section>
+
+        <section class = main>
+            <h2>Tennis</h2>
+
+            Run this example by typing the following command into the terminal.
+
+            <pre code>‡python -m JoBase.examples.tennis‡</pre>
+
+            <video controls autoplay><source src = /assets/videos/tennis.mp4></video>
+
+            <pre code>
+                ‡from JoBase import *
+
+                top = Rectangle(height = 500)
+                bottom = Rectangle(height = 500)
+                
+                player_1 = Rectangle(width = 30, height = 150, color = WHITE)
+                player_2 = Rectangle(width = 30, height = 150, color = WHITE)
+                
+                text = Text(color = WHITE)
+                ball = Circle(diameter = 30, color = ORANGE)
+                blob = Rectangle(width = 15, height = 5, color = BLACK)
+                engine = Physics(0, 0)
+                
+                score_1 = 0
+                score_2 = 0
+                
+                window.color = BLACK
+                window.caption = "Tennis"
+                window.size = 1024, 576
+                
+                player_1.type = player_2.type = STATIC
+                player_1.elasticity = player_2.elasticity = 1.2
+                
+                top.type = bottom.type = STATIC
+                top.elasticity = bottom.elasticity = 1
+                top.friction = bottom.friction = 0
+                
+                ball.elasticity = 1
+                ball.friction = 1
+                
+                engine.add(top)
+                engine.add(bottom)
+                engine.add(player_1)
+                engine.add(player_2)
+                engine.add(ball)
+                
+                def reset():
+                    text.content = str(score_1) + " - " + str(score_2)
+                    ball.speed.x = -300 if randint(0, 1) else 300
+                    ball.speed.y = random(-100, 100)
+                    ball.pos = 0
+                
+                def loop():
+                    global score_1, score_2
+                
+                    if window.resize:
+                        top.width = bottom.width = window.width
+                        top.top = window.bottom
+                        bottom.bottom = window.top
+                
+                        text.top = window.top
+                        player_1.left = window.left
+                        player_2.right = window.right
+                
+                    if key.w: player_1.speed.y = 400
+                    elif key.s: player_1.speed.y = -400
+                    else: player_1.speed.y = 0
+                
+                    if key.up: player_2.speed.y = 400
+                    elif key.down: player_2.speed.y = -400
+                    else: player_2.speed.y = 0
+                
+                    engine.update()
+                    blob.angle = ball.angle
+                    blob.pos = ball.pos
+                
+                    if ball.left > window.right:
+                        score_1 += 1
+                        reset()
+                
+                    elif ball.right < window.left:
+                        score_2 += 1
+                        reset()
+                
+                    player_1.draw()
+                    player_2.draw()
+                    ball.draw()
+                    blob.draw()
+                    text.draw()
+                
+                reset()
+                run()‡
+            </pre>
+        </section>
+
+        <footer>
+            <span>
+                © Copyright <span id = year></span> JoBase ·
+                <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+            </span>
+        </footer>
+    </body>
+</html>

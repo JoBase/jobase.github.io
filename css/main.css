@@ -120,7 +120,8 @@ pre {
 pre, code {
     padding: 0.8em;
     margin: 1em 0;
-    border-radius: var(--radius)
+    border-radius: var(--radius);
+    overflow: auto
 }
 
 footer span {color: var(--text)}
