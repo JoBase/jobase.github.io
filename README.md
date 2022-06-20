@@ -17,11 +17,12 @@ To install JoBase, type the following into the Command Terminal.
 pip install JoBase
 ```
 
-If the installation fails, please contact us at <problem@jobase.org> with a full copy of the error and the name of your operating system.
-If the installation succeeded, you can continue by typing the following command to run a basic exmaple.
+If the installation fails, check your version of Python isn't too old.
+JoBase supports Python 3.6 or greater.
+If the installation succeeds, you can continue by typing the following command to run a basic exmaple.
 
 ```
-python -m JoBase.examples.coin_collector
+python -m JoBase.examples.physics
 ```
 
 If everything works, you are ready to start coding!
@@ -56,12 +57,13 @@ from JoBase import *
 images = []
 
 for i in range(100):
-    man = Image(MAN, random(window.left, window.right), random(window.top, window.bottom))
-    man.angle = random(1, 360)
-
-    images.append(man)
+    images.append(Image(MAN, angle = random(1, 360)))
 
 def loop():
+    if window.resize:
+        for man in images:
+            man.pos = random(window.left, window.right), random(window.top, window.bottom)
+
     for man in images:
         man.angle += 1
         man.draw()
