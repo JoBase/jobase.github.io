@@ -31,10 +31,10 @@ The minimal Python example below demonstrates the structure of a basic JoBase ap
 ```
 from JoBase import *
 
-window.caption = "JoBase Example"
 man = Image(MAN)
 
 def loop():
+    man.angle += 1
     man.draw()
 
 run()
