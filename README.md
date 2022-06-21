@@ -40,8 +40,7 @@ def loop():
 run()
 ```
 
-As you can see, the program above sets the window caption.
-We then load an image and draw it in the game loop.
+In the example above, we load an image and draw it in the game loop, increasing its angle by one each frame.
 Please follow our [examples](https://jobase.org/examples) for an introduction to the features of JoBase.
 
 ### Performance
