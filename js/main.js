@@ -17,40 +17,39 @@ function toggleTheme(element) {
     document.body.setAttribute("theme", current)
 
     element.className = element.className.replace(
-        /(moon|sun)/, current == "dark" ? "moon" : "sun")
+        /moon|sun/, current == "dark" ? "moon" : "sun")
 }
 
 onload = () => {
     const icon = document.querySelector(".theme")
-    const code = document.querySelectorAll("code")
-    const pre = document.querySelectorAll("pre[code")
-    const scripts = document.querySelectorAll("pre[editor]")
+    const code = document.querySelectorAll("code, pre[code]")
+    const editors = document.querySelectorAll("pre[editor]")
+
+    const data = [
+        {class: "string", regex: /("""[\s\S]*?"""|".*?"|'.*?'|#.*)/},
+        {class: "keyword", regex: /\b(and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|nonlocal|not|or|pass|raise|return|try|while|with|yield)\b/},
+        {class: "number", regex: /\b(True|False|None|\d+)\b/},
+        {class: "builtin", regex: /\b(abs|all|any|ascii|bin|bool|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dict|dir|divmod|enumerate|eval|exec|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|isinstance|issubclass|iter|len|list|locals|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|range|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|vars|zip)\b/},
+        {class: "method", regex: /\b(\w+\()/, item: /\w+/},
+        {class: "variable", regex: /\b(\w+)\b/},
+        {class: "operator", regex: /([\/\*\+<>%=-]+)/}
+    ]
+
+    const loop = (s, i = 0) => {
+        const span = (c, e) => `<span class=${c}>${e}</span>`
+        const group = data[i]
+
+        return s.split(group.regex).map((e, j) => j % 2 ? group.item ? e.replace(
+            group.item, a => span(group.class, a)) : span(group.class, e) :
+            i + 1 == data.length ? e : loop(e, i + 1)).join("")
+    }
 
     icon.className += ` fa-solid fa-${document.body.getAttribute("theme") == "dark" ? "moon" : "sun"}`
     year.textContent = new Date().getFullYear()
+    code.forEach(e => e.innerHTML = loop(e.textContent.trim()))
+    editors.length && Sk.configure({output: text => console.log(text)})
 
-    const reduce = content => {
-        const parts = content.split("\n")
-        const min = Math.min(...parts.map(s => s.search(/\S/)).filter(e => e > 0))
-        const string = parts.map(s => s.substring(min)).join("\n")
-
-        return (string || content).trim()
-    }
-
-    if (scripts.length) {
-        Sk.configure({output: text => console.log(text)})
-        Sk.timeoutMsg = () => "Aborted"
-    }
-
-    code.forEach(e => e.innerHTML = hljs.highlight(
-        reduce(e.textContent), {language: "python"}).value.replace(
-            /<\/span> <span/g, "</span><span> </span><span"))
-
-    pre.forEach(e => e.innerHTML = reduce(e.textContent).replace(
-        /‡[\s\S]*?‡/g, a => `<span class=code>${hljs.highlight(
-            a.slice(1, -1), {language: "python"}).value}</span>`))
-
-    scripts.forEach(e => {
+    editors.forEach(e => {
         const create = n => document.createElement(n)
         const program = {}
 
@@ -65,6 +64,13 @@ onload = () => {
         const a = create("span")
         const b = create("span")
 
+        const resize = () => {
+            canvas.width = editor.clientWidth * devicePixelRatio
+            canvas.height = canvas.offsetHeight * devicePixelRatio
+        }
+
+        new ResizeObserver(resize).observe(editor)
+
         run.onclick = async () => {
             const code = mirror.getWrapperElement()
             await cancel.onclick()
@@ -75,6 +81,7 @@ onload = () => {
             gear.className = "fa-solid fa-arrows-rotate fa-spin"
             code.style.width = 0
             Sk.JoBase = canvas
+            resize()
     
             try {
                 await (program.promise = Sk.misceval.asyncToPromise(() =>
@@ -97,11 +104,6 @@ onload = () => {
             delete Sk.execLimit
         }
     
-        new ResizeObserver(() => {
-            canvas.width = canvas.offsetWidth * devicePixelRatio
-            canvas.height = canvas.offsetHeight * devicePixelRatio
-        }).observe(canvas)
-    
         run.append(gear, a)
         cancel.append(square, b)
         buttons.append(run, cancel)
@@ -111,9 +113,10 @@ onload = () => {
         const mirror = CodeMirror(main, {
             mode: "python",
             theme: "none", 
-            value: reduce(e.textContent)
+            value: e.textContent.trim()
         })
     
+        mirror.refresh()
         main.appendChild(canvas)
         cancel.setAttribute("active", true)
         editor.className = "editor"

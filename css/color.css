@@ -29,7 +29,6 @@ body[theme = dark] {
     --blank: #666;
     --block: #222;
     --comment: #888;
-    --code: #bbb;
     --string: #8c5;
     --keyword: #c7f;
     --built_in: #2cc;
@@ -38,26 +37,13 @@ body[theme = dark] {
     --title: #6af;
 }
 
-.hljs-string,
-.cm-string, .cm-string-2 {color: var(--string)}
-
-.hljs-keyword,
-.cm-keyword {color: var(--keyword)}
-
-.hljs-built_in,
-.cm-builtin, .cm-operator {color: var(--built_in)}
-
-.hljs-comment,
-.cm-comment {color: var(--comment)}
-
-.hljs-number, .hljs-attr, .hljs-literal,
-.cm-number {color: var(--number)}
-
-.hljs-variable, .hljs-name, .hljs-selector-tag, .hljs-params, .hljs-property, .hljs-regexp,
-.cm-variable, .cm-variable-2, .cm-variable-3, .cm-property {color: var(--variable)}
-
-.hljs-title, .hljs-selector-id, .hljs-meta,
-.cm-def, .cm-meta {color: var(--title)}
+.string, .cm-string, .cm-string-2 {color: var(--string)}
+.keyword, .cm-keyword {color: var(--keyword)}
+.builtin, .operator, .cm-builtin, .cm-operator {color: var(--built_in)}
+.comment, .cm-comment {color: var(--comment)}
+.number, .cm-number {color: var(--number)}
+.variable, .cm-variable, .cm-variable-2, .cm-variable-3, .cm-property {color: var(--variable)}
+.method, .cm-def, .cm-meta {color: var(--title)}
 
 .CodeMirror-cursor {border-left-color: var(--mark)}
 .CodeMirror-focused .CodeMirror-selected,

@@ -31,7 +31,7 @@ mark {
 .CodeMirror-lines {padding: 0.8em 0}
 
 .CodeMirror {
-    transition-duration: 0.5s;
+    transition: width 0.5s;
     flex: 0 0 auto;
     width: 100%;
     height: 100%
@@ -69,7 +69,7 @@ mark {
 
 .editor button {
     border: none;
-    padding: 0.5em 0.5em;
+    padding: 0.2em 0.5em;
     background-color: var(--button);
     font-size: var(--small);
     color: var(--mark);
@@ -91,7 +91,7 @@ details a {
 
 pre, code, .CodeMirror {
     background-color: var(--block);
-    color: var(--code);
+    color: var(--mark);
     font-size: var(--small);
     font-family: monospace
 }
@@ -112,11 +112,6 @@ footer {
     font-size: var(--small)
 }
 
-pre {
-    display: block;
-    color: var(--comment)
-}
-
 pre, code {
     padding: 0.8em;
     margin: 1em 0;
@@ -131,7 +126,6 @@ canvas:focus {outline: none}
 
 .indent {margin-left: 2em}
 .large {font-size: var(--font)}
-.code {color: var(--code)}
 .small {font-size: var(--small)}
 
 code {

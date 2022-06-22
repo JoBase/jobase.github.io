@@ -6,7 +6,6 @@
 
         <script async src = "//www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
         <script src = /js/setup.js></script>
-        <script src = /js/highlight.min.js></script>
         <script src = /js/main.js></script>
 
         <script src = /Browser/skulpt/skulpt.min.js></script>
@@ -47,67 +46,98 @@
             </p>
 
             <p>
-                At the start of every JoBase application, you need to import JoBase.
-                Start by typing the following code.
+                Let's start by importing JoBase.
             </p>
 
-            <pre code>‡from JoBase import *‡</pre>
+            <pre code>from JoBase import *</pre>
 
             <p>
-                This imports and initialises all the tools from the <mark>JoBase</mark> library.
+                This imports and initialises all the tools in the JoBase library.
                 When you run the code, it should print <mark>Welcome to JoBase</mark> in the <mark>Python Shell</mark>.
-                Now we need to display the window for our game.
+                Now add the following code.
             </p>
 
             <pre code>
-                from JoBase import *
+from JoBase import *
 
-                ‡run()‡
+run()
             </pre>
 
             <p>
-                The <mark>run()</mark> method displays the window and activates a game loop.
-                When you run the code, you should have a blank, resisable window.
-                These two lines of code are necessary for every <mark>JoBase</mark> application. 
+                The <mark>run</mark> method displays the window.
+                When you run the code, you should have a blank, resizable window.
+                If you are using JoBase in the browser, the program will keep running until you stop it.
+                These two lines of code are necessary for every JoBase game. 
             </p>
 
             <p>
-                All games run inside a loop; this loop runs continuously for every frame.
-                The code below shows how you can create this loop.
+                Now let's create some text.
             </p>
 
             <pre code>
-                from JoBase import *
+from JoBase import *
 
-                ‡print("start")
+text = Text("Hello World")
 
-                def loop():
-                    print("loop")‡
-
-                run()
+run()
             </pre>
 
             <p>
-                You may notice that we print <mark>"start"</mark> outside the loop and we print <mark>"loop"</mark> inside the loop.
-                When you run the code, the <mark>Python Shell</mark> will keep printing until you close the program.
-                Now we can start drawing things on the screen.
+                The line of code above creates some text, we can draw it by making a game loop.
             </p>
 
             <pre editor>
-                from JoBase import *
+from JoBase import *
 
-                text = Text("Hello World")
+text = Text("Hello World")
 
-                def loop():
-                    text.draw()
+def loop():
+    text.draw()
 
-                run()
+run()
             </pre>
 
             <p>
                 This will render a <mark>Hello World</mark> message on the screen.
                 Remember to always draw things in the game loop so that they are displayed every frame.
             </p>
+
+            <p>
+                Now we can make it more interesting.
+            </p>
+
+            <pre code>
+from JoBase import *
+
+text = Text("Hello World", color = NAVY)
+
+def loop():
+    text.angle += 1
+    text.draw()
+
+run()
+            </pre>
+
+            <p>
+                In the code above, we give the text colour and rotate it in the loop.
+                Now let's make it interactive.
+            </p>
+
+            <pre editor>
+from JoBase import *
+
+text = Text("Hello World", color = NAVY)
+
+def loop():
+    text.angle += 1
+    text.draw()
+
+    if cursor.press:
+        text.content = "Click!"
+        text.color = RED
+
+run()
+            </pre>
 
             <p>
                 Now you understand the basics of a JoBase application, you can create your first game.

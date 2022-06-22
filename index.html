@@ -7,7 +7,6 @@
 
         <script async src = "//www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
         <script src = js/setup.js></script>
-        <script src = js/highlight.min.js></script>
         <script src = js/main.js></script>
 
         <script src = Browser/skulpt/skulpt.min.js></script>
@@ -74,27 +73,28 @@
             To install <mark>JoBase</mark>, type the following into the
             <mark>Command Terminal</mark>.
 
-            <pre code>‡pip install JoBase‡</pre>
+            <pre>pip install JoBase</pre>
 
             If the installation fails, check your version of Python isn't too old.
             JoBase supports Python 3.6 or greater.
             If the installation succeeds, you can continue by typing the following command to run a basic exmaple.
 
-            <pre code>‡python -m JoBase.examples.physics‡</pre>
+            <pre>python -m JoBase.examples.physics</pre>
 
             If everything works, you are ready to start coding!
             The minimal Python example below demonstrates the structure of a basic JoBase application.
 
             <pre editor>
-                from JoBase import *
+from JoBase import *
 
-                man = Image(MAN)
+window.color = AQUA
+man = Image(MAN, color = GOLD)
 
-                def loop():
-                    man.angle += 1
-                    man.draw()
+def loop():
+    man.angle += 1
+    man.draw()
 
-                run()
+run()
             </pre>
 
             In the example above, we load an image and draw it in the game loop, increasing its angle by one each frame.
@@ -111,22 +111,22 @@
             </p>
 
             <pre editor>
-                from JoBase import *
-                images = []
+from JoBase import *
+images = []
 
-                for i in range(100):
-                    images.append(Image(MAN, angle = random(1, 360)))
+for i in range(100):
+    man = Image(MAN, angle = random(1, 360))
+    man.x = random(window.left, window.right)
+    man.y = random(window.top, window.bottom)
 
-                def loop():
-                    if window.resize:
-                        for man in images:
-                            man.pos = random(window.left, window.right), random(window.top, window.bottom)
+    images.append(man)
 
-                    for man in images:
-                        man.angle += 1
-                        man.draw()
+def loop():
+    for man in images:
+        man.angle += 1
+        man.draw()
 
-                run()
+run()
             </pre>
         </section>
 

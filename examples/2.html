@@ -6,7 +6,6 @@
 
         <script async src = "//www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
         <script src = /js/setup.js></script>
-        <script src = /js/highlight.min.js></script>
         <script src = /js/main.js></script>
 
         <script src = /Browser/skulpt/skulpt.min.js></script>
@@ -43,54 +42,54 @@
 
             Run this example by typing the following command into the terminal.
 
-            <pre code>‡python -m JoBase.examples.coin_collector‡</pre>
+            <pre>python -m JoBase.examples.coin_collector</pre>
 
             <pre editor>
-                from JoBase import *
+from JoBase import *
 
-                man = Image(MAN)
-                coin = Image(COIN)
-                enemy = Image(ENEMY)
+man = Image(MAN)
+coin = Image(COIN)
+enemy = Image(ENEMY)
 
-                text = Text("Score: 0", font_size = 30)
-                score = 0
+text = Text("Score: 0", font_size = 30)
+score = 0
 
-                window.caption = "Coin Collector"
+window.caption = "Coin Collector"
 
-                def loop():
-                    global score
+def loop():
+    global score
 
-                    man.draw()
-                    coin.draw()
-                    enemy.draw()
-                    text.draw()
+    man.draw()
+    coin.draw()
+    enemy.draw()
+    text.draw()
 
-                    if key.up: man.y += 3
-                    elif key.down: man.y -= 3
-                    elif key.left: man.x -= 3
-                    elif key.right: man.x += 3
+    if key.up: man.y += 3
+    elif key.down: man.y -= 3
+    elif key.left: man.x -= 3
+    elif key.right: man.x += 3
 
-                    enemy.look_at(coin)
-                    enemy.move_toward(coin, 1.5)
+    enemy.look_at(coin)
+    enemy.move_toward(coin, 1.5)
 
-                    if man.collides_with(coin):
-                        coin.x = random(window.left, window.right)
-                        coin.y = random(window.bottom, window.top)
+    if man.collides_with(coin):
+        coin.x = random(window.left, window.right)
+        coin.y = random(window.bottom, window.top)
 
-                        score += 1
-                        text.content = "Score: " + str(score)
+        score += 1
+        text.content = "Score: " + str(score)
 
-                    if enemy.collides_with(coin):
-                        coin.x = random(window.left, window.right)
-                        coin.y = random(window.bottom, window.top)
+    if enemy.collides_with(coin):
+        coin.x = random(window.left, window.right)
+        coin.y = random(window.bottom, window.top)
 
-                        score -= 1
-                        text.content = "Score: " + str(score)
+        score -= 1
+        text.content = "Score: " + str(score)
 
-                    text.bottom = window.bottom
-                    text.left = window.left + 5
+    text.bottom = window.bottom
+    text.left = window.left + 5
 
-                run()
+run()
             </pre>
         </section>
 

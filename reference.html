@@ -6,9 +6,14 @@
 
         <script async src = "//www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
         <script src = js/setup.js></script>
-        <script src = js/highlight.min.js></script>
         <script src = js/main.js></script>
 
+        <script src = Browser/skulpt/skulpt.min.js></script>
+        <script src = Browser/skulpt/skulpt-stdlib.js></script>
+        <script src = assets/codemirror/lib/codemirror.js></script>
+        <script src = assets/codemirror/mode/python/python.js></script>
+
+        <link rel = stylesheet href = /assets/codemirror/lib/codemirror.css>
         <link rel = stylesheet href = assets/fontawesome/css/fontawesome.min.css>
         <link rel = stylesheet href = assets/fontawesome/css/all.min.css>
 
@@ -72,34 +77,36 @@
 
             <code class = small>size: (float, float)</code>
 
-            The variable above is actually a <mark>JoBase Vector</mark>.
-            This means that its properties are keys.
-            The example below illustrates how this variable can be used.
+            <p>
+                The variable above is actually a JoBase vector.
+                This means that its properties are keys.
+                The example below illustrates how this variable can be used.
+            </p>
 
             <pre code>
-                ‡box = Rectangle(width = 20, height = 20)
-                print(box.size) # (20, 20)
+box = Rectangle(width = 20, height = 20)
+print(box.size) # (20, 20)
 
-                box.size = 30, 10
-                print(box.size) # (30, 10)
+box.size = 30, 10
+print(box.size) # (30, 10)
 
-                box.size.x = 40
-                print(box.size) # (40, 10)
-                box.size = 100
-                print(box.size) # (100, 100)‡
+box.size.x = 40
+print(box.size) # (40, 10)
+box.size = 100
+print(box.size) # (100, 100)
             </pre>
 
-            <mark>JoBase Vectors</mark> also support rich comparisons and numerical operations.
+            JoBase vectors also support rich comparisons and numerical operations.
 
             <pre code>
-                ‡box.size = (5, 7)
-                box.pos = [5, 7]
-                print(box.size == box.pos) # True
-                
-                box.pos += 1
-                print(box.pos) # (6, 8)
-                box.pos *= 2
-                print(box.pos) # (12, 16)‡
+box.size = (5, 7)
+box.pos = [5, 7]
+print(box.size == box.pos) # True
+
+box.pos += 1
+print(box.pos) # (6, 8)
+box.pos *= 2
+print(box.pos) # (12, 16)
             </pre>
 
             <h1>Classes</h1>
@@ -111,17 +118,16 @@
                 The inbuilt <mark>window</mark> variable is an instance of this class.
                 Do not try to instance this class directly.
 
-                <pre code>
-                    ‡from JoBase import *
+                <pre editor>
+from JoBase import *
 
-                    window.caption = "Window Example"
-                    window.color = (0, 1, 0.2)
-                    window.size = (300, 300)
+window.color = BLUE
+window.size = 300, 300
 
-                    def loop():
-                        window.red += 0.01
+def loop():
+    window.red += 0.01
 
-                    run()‡
+run()
                 </pre>
 
                 <code class = small id = Window.caption>caption: str</code>
@@ -381,14 +387,14 @@
                     Access the state of a specific key.
 
                     <pre code>
-                        ‡if key.left:
-                            # the left arrow key is held down
+if key.left:
+    # the left arrow key is held down
 
-                            if key.left["release"]:
-                                # the left arrow key is released
+    if key.left["release"]:
+        # the left arrow key is released
 
-                        if key.right and key.right["press"]:
-                            # the right arrow key was pressed down‡
+if key.right and key.right["press"]:
+    # the right arrow key was pressed down
                     </pre>
 
                     If a key is not being held down, it's properties cannot be accessed.
@@ -763,11 +769,15 @@
 
                 The example below loads the coin image and draws it.
 
-                <pre code>
-                    ‡coin = Image(COIN)
+                <pre editor>
+from JoBase import *
 
-                    def loop():
-                        coin.draw()‡
+coin = Image(COIN)
+
+def loop():
+    coin.draw()
+
+run()
                 </pre>
             </div>
 
@@ -801,11 +811,16 @@
 
                     The example below loads the pencil font and draws the text.
 
-                    <pre code>
-                        ‡text = Text("Hello", font = PENCIL)
+                    <pre editor>
+from JoBase import *
 
-                        def loop():
-                            text.draw()‡
+text = Text("Pencil Font", font = PENCIL)
+text.font_size = 80
+
+def loop():
+    text.draw()
+
+run()
                     </pre>
                 </div>
 
@@ -842,43 +857,43 @@
                 Add shapes to give them realistic physics.
                 You can run a basic demo by typing the following command into the terminal.
 
-                <pre code>‡python -m JoBase.examples.box_physics‡</pre>
+                <pre>python -m JoBase.examples.box_physics</pre>
 
                 The example below creates a box that bounces on the ground.
 
                 <pre code>
-                    ‡from JoBase import *
+from JoBase import *
 
-                    floor = Rectangle(width = window.width, height = 20)
-                    floor.bottom = window.bottom
-                    floor.type = STATIC
-                    floor.elasticity = 0.9
+floor = Rectangle(width = window.width, height = 20)
+floor.bottom = window.bottom
+floor.type = STATIC
+floor.elasticity = 0.9
 
-                    box = Rectangle(angle = 10)
-                    box.elasticity = 0.9
+box = Rectangle(angle = 10)
+box.elasticity = 0.9
 
-                    engine = Physics()
-                    engine.add(floor)
-                    engine.add(box)
+engine = Physics()
+engine.add(floor)
+engine.add(box)
 
-                    def loop():
-                        engine.update()
+def loop():
+    engine.update()
 
-                        floor.draw()
-                        box.draw()
+    floor.draw()
+    box.draw()
 
-                    run()‡
+run()
                 </pre>
 
                 If you are adding many objects to the physics engine, you can draw them all by iterating the class.
 
                 <pre code>
-                    ‡engine = Physics()
+engine = Physics()
 
-                    # add lots of things
+# add lots of things
 
-                    for thing in engine:
-                        thing.draw()‡
+for thing in engine:
+    thing.draw()
                 </pre>
 
                 <code class = small id = Physics.gravity.x>gravity.x: float</code>
@@ -948,56 +963,56 @@
             <div class = indent>
                 To run this example, type the following command into the terminal.
 
-                <pre code>‡python -m JoBase.examples.coin_collector‡</pre>
+                <pre>python -m JoBase.examples.coin_collector</pre>
 
                 Source code below.
 
                 <pre code>
-                    ‡from JoBase import *
+from JoBase import *
 
-                    man = Image(MAN)
-                    coin = Image(COIN)
-                    enemy = Image(ENEMY)
+man = Image(MAN)
+coin = Image(COIN)
+enemy = Image(ENEMY)
 
-                    text = Text("Score: 0", font_size = 30)
-                    score = 0
+text = Text("Score: 0", font_size = 30)
+score = 0
 
-                    window.caption = "Coin Collector"
+window.caption = "Coin Collector"
 
-                    def loop():
-                        global score
+def loop():
+    global score
 
-                        man.draw()
-                        coin.draw()
-                        enemy.draw()
-                        text.draw()
+    man.draw()
+    coin.draw()
+    enemy.draw()
+    text.draw()
 
-                        if key.up: man.y += 3
-                        elif key.down: man.y -= 3
-                        elif key.left: man.x -= 3
-                        elif key.right: man.x += 3
+    if key.up: man.y += 3
+    elif key.down: man.y -= 3
+    elif key.left: man.x -= 3
+    elif key.right: man.x += 3
 
-                        enemy.look_at(coin)
-                        enemy.move_toward(coin, 1.5)
+    enemy.look_at(coin)
+    enemy.move_toward(coin, 1.5)
 
-                        if man.collides_with(coin):
-                            coin.x = random(window.left, window.right)
-                            coin.y = random(window.bottom, window.top)
+    if man.collides_with(coin):
+        coin.x = random(window.left, window.right)
+        coin.y = random(window.bottom, window.top)
 
-                            score += 1
-                            text.content = "Score: " + str(score)
+        score += 1
+        text.content = "Score: " + str(score)
 
-                        if enemy.collides_with(coin):
-                            coin.x = random(window.left, window.right)
-                            coin.y = random(window.bottom, window.top)
+    if enemy.collides_with(coin):
+        coin.x = random(window.left, window.right)
+        coin.y = random(window.bottom, window.top)
 
-                            score -= 1
-                            text.content = "Score: " + str(score)
+        score -= 1
+        text.content = "Score: " + str(score)
 
-                        text.bottom = window.bottom
-                        text.left = window.left + 5
+    text.bottom = window.bottom
+    text.left = window.left + 5
 
-                    run()‡
+run()
                 </pre>
             </div>
 
@@ -1006,61 +1021,61 @@
             <div class = indent>
                 To run this example, type the following command into the terminal.
 
-                <pre code>‡python -m JoBase.examples.physics‡</pre>
+                <pre code>python -m JoBase.examples.physics</pre>
 
                 Source code below.
 
                 <pre code>
-                    ‡from JoBase import *
+from JoBase import *
 
-                    window.caption = "Physics"
-                    window.size = 1024, 576
-                    
-                    engine = Physics()
-                    time = 0
-                    
-                    floor = Rectangle(width = window.width - 300, height = 20, color = GRAY)
-                    floor.type = STATIC
-                    floor.bottom = window.bottom
-                    engine.add(floor)
-                    
-                    def loop():
-                        global time
-                    
-                        engine.update()
-                        time += 1
-                    
-                        if cursor.press:
-                            box = Rectangle()
-                            box.size = 60
-                            box.pos = cursor.pos
-                            box.mass = 100
-                            box.color = BLACK
-                    
-                            engine.add(box)
-                    
-                        if not time % 5:
-                            thing = None
-                    
-                            if randint(0, 1):
-                                thing = Rectangle(
-                                    width = random(20, 30),
-                                    height = random(20, 30))
-                    
-                            else: thing = Circle(diameter = random(20, 30))
-                            
-                            thing.y = window.top + 100
-                            thing.color = random(0, 1), random(0, 1), random(0, 1)
-                            engine.add(thing)
-                    
-                        for thing in engine:
-                            if thing.top &lt; window.bottom:
-                                engine.remove(thing)
-                    
-                        for thing in engine:
-                            thing.draw()
-                    
-                    run()‡
+window.caption = "Physics"
+window.size = 1024, 576
+
+engine = Physics()
+time = 0
+
+floor = Rectangle(width = window.width - 300, height = 20, color = GRAY)
+floor.type = STATIC
+floor.bottom = window.bottom
+engine.add(floor)
+
+def loop():
+    global time
+
+    engine.update()
+    time += 1
+
+    if cursor.press:
+        box = Rectangle()
+        box.size = 60
+        box.pos = cursor.pos
+        box.mass = 100
+        box.color = BLACK
+
+        engine.add(box)
+
+    if not time % 5:
+        thing = None
+
+        if randint(0, 1):
+            thing = Rectangle(
+                width = random(20, 30),
+                height = random(20, 30))
+
+        else: thing = Circle(diameter = random(20, 30))
+        
+        thing.y = window.top + 100
+        thing.color = random(0, 1), random(0, 1), random(0, 1)
+        engine.add(thing)
+
+    for thing in engine:
+        if thing.top < window.bottom:
+            engine.remove(thing)
+
+    for thing in engine:
+        thing.draw()
+
+run()
                 </pre>
             </div>
 
@@ -1069,93 +1084,93 @@
             <div class = indent>
                 To run this example, type the following command into the terminal.
 
-                <pre code>‡python -m JoBase.examples.tennis‡</pre>
+                <pre code>python -m JoBase.examples.tennis</pre>
 
                 Source code below.
 
                 <pre code>
-                    ‡from JoBase import *
+from JoBase import *
 
-                    top = Rectangle(height = 500)
-                    bottom = Rectangle(height = 500)
-                    
-                    player_1 = Rectangle(width = 30, height = 150, color = WHITE)
-                    player_2 = Rectangle(width = 30, height = 150, color = WHITE)
-                    
-                    text = Text(color = WHITE)
-                    ball = Circle(diameter = 30, color = ORANGE)
-                    blob = Rectangle(width = 15, height = 5, color = BLACK)
-                    engine = Physics(0, 0)
-                    
-                    score_1 = 0
-                    score_2 = 0
-                    
-                    window.color = BLACK
-                    window.caption = "Tennis"
-                    window.size = 1024, 576
-                    
-                    player_1.type = player_2.type = STATIC
-                    player_1.elasticity = player_2.elasticity = 1.2
-                    
-                    top.type = bottom.type = STATIC
-                    top.elasticity = bottom.elasticity = 1
-                    top.friction = bottom.friction = 0
-                    
-                    ball.elasticity = 1
-                    ball.friction = 1
-                    
-                    engine.add(top)
-                    engine.add(bottom)
-                    engine.add(player_1)
-                    engine.add(player_2)
-                    engine.add(ball)
-                    
-                    def reset():
-                        text.content = str(score_1) + " - " + str(score_2)
-                        ball.speed.x = -300 if randint(0, 1) else 300
-                        ball.speed.y = random(-100, 100)
-                        ball.pos = 0
-                    
-                    def loop():
-                        global score_1, score_2
-                    
-                        if window.resize:
-                            top.width = bottom.width = window.width
-                            top.top = window.bottom
-                            bottom.bottom = window.top
-                    
-                            text.top = window.top
-                            player_1.left = window.left
-                            player_2.right = window.right
-                    
-                        if key.w: player_1.speed.y = 400
-                        elif key.s: player_1.speed.y = -400
-                        else: player_1.speed.y = 0
-                    
-                        if key.up: player_2.speed.y = 400
-                        elif key.down: player_2.speed.y = -400
-                        else: player_2.speed.y = 0
-                    
-                        engine.update()
-                        blob.angle = ball.angle
-                        blob.pos = ball.pos
-                    
-                        if ball.left > window.right:
-                            score_1 += 1
-                            reset()
-                    
-                        elif ball.right &lt; window.left:
-                            score_2 += 1
-                            reset()
-                    
-                        player_1.draw()
-                        player_2.draw()
-                        ball.draw()
-                        blob.draw()
-                        text.draw()
-                    
-                    reset()
-                    run()‡
+top = Rectangle(height = 500)
+bottom = Rectangle(height = 500)
+
+player_1 = Rectangle(width = 30, height = 150, color = WHITE)
+player_2 = Rectangle(width = 30, height = 150, color = WHITE)
+
+text = Text(color = WHITE)
+ball = Circle(diameter = 30, color = ORANGE)
+blob = Rectangle(width = 15, height = 5, color = BLACK)
+engine = Physics(0, 0)
+
+score_1 = 0
+score_2 = 0
+
+window.color = BLACK
+window.caption = "Tennis"
+window.size = 1024, 576
+
+player_1.type = player_2.type = STATIC
+player_1.elasticity = player_2.elasticity = 1.2
+
+top.type = bottom.type = STATIC
+top.elasticity = bottom.elasticity = 1
+top.friction = bottom.friction = 0
+
+ball.elasticity = 1
+ball.friction = 1
+
+engine.add(top)
+engine.add(bottom)
+engine.add(player_1)
+engine.add(player_2)
+engine.add(ball)
+
+def reset():
+    text.content = str(score_1) + " - " + str(score_2)
+    ball.speed.x = -300 if randint(0, 1) else 300
+    ball.speed.y = random(-100, 100)
+    ball.pos = 0
+
+def loop():
+    global score_1, score_2
+
+    if window.resize:
+        top.width = bottom.width = window.width
+        top.top = window.bottom
+        bottom.bottom = window.top
+
+        text.top = window.top
+        player_1.left = window.left
+        player_2.right = window.right
+
+    if key.w: player_1.speed.y = 400
+    elif key.s: player_1.speed.y = -400
+    else: player_1.speed.y = 0
+
+    if key.up: player_2.speed.y = 400
+    elif key.down: player_2.speed.y = -400
+    else: player_2.speed.y = 0
+
+    engine.update()
+    blob.angle = ball.angle
+    blob.pos = ball.pos
+
+    if ball.left > window.right:
+        score_1 += 1
+        reset()
+
+    elif ball.right < window.left:
+        score_2 += 1
+        reset()
+
+    player_1.draw()
+    player_2.draw()
+    ball.draw()
+    blob.draw()
+    text.draw()
+
+reset()
+run()
                 </pre>
             </div>
         </section>
