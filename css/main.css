@@ -69,7 +69,7 @@ mark {
 
 .editor button {
     border: none;
-    padding: 0.2em 0.5em;
+    padding: 0.4em 0.5em;
     background-color: var(--button);
     font-size: var(--small);
     color: var(--mark);
