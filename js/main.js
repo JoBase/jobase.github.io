@@ -22,7 +22,7 @@ function toggleTheme(element) {
 
 onload = () => {
     const icon = document.querySelector(".theme")
-    const code = document.querySelectorAll("code, pre[code]")
+    const code = document.querySelectorAll("pre[large], pre[small], pre[code]")
     const editors = document.querySelectorAll("pre[editor]")
 
     const data = [

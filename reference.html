@@ -21,6 +21,136 @@
         <link rel = stylesheet href = css/main.css>
 
         <title>JoBase · Reference</title>
+
+        <style>
+            @font-face {
+                font-family: "code";
+                src: url(/Browser/JoBase/fonts/code.ttf)
+            }
+
+            @font-face {
+                font-family: "default";
+                src: url(/Browser/JoBase/fonts/default.ttf)
+            }
+
+            @font-face {
+                font-family: "handwriting";
+                src: url(/Browser/JoBase/fonts/handwriting.ttf)
+            }
+
+            @font-face {
+                font-family: "joined";
+                src: url(/Browser/JoBase/fonts/joined.ttf)
+            }
+
+            @font-face {
+                font-family: "pencil";
+                src: url(/Browser/JoBase/fonts/pencil.ttf)
+            }
+
+            @font-face {
+                font-family: "serif";
+                src: url(/Browser/JoBase/fonts/serif.ttf)
+            }
+
+            @font-face {
+                font-family: "typewriter";
+                src: url(/Browser/JoBase/fonts/typewriter.ttf)
+            }
+
+            div[font = code] {font-family: "code"}
+            div[font = default] {font-family: "default"}
+            div[font = handwriting] {font-family: "handwriting"}
+            div[font = joined] {font-family: "joined"}
+            div[font = pencil] {font-family: "pencil"}
+            div[font = serif] {font-family: "serif"}
+            div[font = typewriter] {font-family: "typewriter"}
+
+            .indent {margin-left: 2em}
+            pre[large] {font-size: var(--font)}
+            pre[small] {font-size: var(--small)}
+
+            pre[small], pre[large] {
+                display: table;
+                font-weight: bold;
+                white-space: pre-wrap;
+                margin: 2em 0 0.6em 0
+            }
+
+            details {
+                background-color: var(--block);
+                border-radius: var(--radius);
+                padding: var(--padding);
+                margin-bottom: var(--padding)
+            }
+
+            details a {
+                display: block;
+                margin-left: 2em
+            }
+
+            .list {
+                margin: 0.6em 0;
+                display: flex;
+                flex-wrap: wrap
+            }
+
+            .list span {
+                position: relative;
+                font-family: monospace;
+                font-size: var(--small);
+                display: inline-block;
+                border-radius: var(--radius);
+                background-color: var(--block);
+                border: 1px solid var(--button);
+                padding: 0.5em 1em;
+                cursor: pointer;
+                margin: 0.2em
+            }
+
+            .list section {
+                display: block;
+                float: left;
+                margin-right: 0.5em;
+                border-radius: var(--radius);
+                width: 1.2em;
+                height: 1.2em
+            }
+
+            .list span div {
+                visibility: hidden;
+                position: absolute;
+                background-color: #eee;
+                transform: translateX(50%);
+                bottom: calc(100% + 0.5em);
+                border-radius: var(--radius);
+                padding: var(--padding);
+                font-size: var(--font);
+                box-shadow: 0 0 5px var(--text);
+                color: #000;
+                z-index: 1;
+                right: 50%
+            }
+
+            .list span div::after {
+                border-color: #eee transparent transparent transparent;
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -0.3em;
+                border-width: 0.3em;
+                border-style: solid
+            }
+
+            .list img {
+                display: block
+            }
+
+            .list span:hover div {
+                visibility: visible
+            }
+        </style>
     </head>
 
     <body>
@@ -68,6 +198,32 @@
 
             <p>
                 Welcome to the JoBase reference manual.
+                Below are a list of built in colors.
+
+                <div class = list>
+                    <span color = 1-1-1><section></section>WHITE</span>
+                    <span color = 0-0-0><section></section>BLACK</span>
+                    <span color = .5-.5-.5><section></section>GRAY</span>
+                    <span color = .6-.2-.2><section></section>BROWN</span>
+                    <span color = .8-.7-.6><section></section>TAN</span>
+                    <span color = 1-0-0><section></section>RED</span>
+                    <span color = .6-0-0><section></section>DARK_RED</span>
+                    <span color = 1-.5-.5><section></section>SALMON</span>
+                    <span color = 1-.5-0><section></section>ORANGE</span>
+                    <span color = 1-.8-0><section></section>GOLD</span>
+                    <span color = 1-1-0><section></section>YELLOW</span>
+                    <span color = .5-.5-0><section></section>OLIVE</span>
+                    <span color = 0-1-0><section></section>LIME</span>
+                    <span color = 0-.4-0><section></section>DARK_GREEN</span>
+                    <span color = 0-.5-0><section></section>GREEN</span>
+                    <span color = 0-1-1><section></section>AQUA</span>
+                    <span color = 0-0-1><section></section>BLUE</span>
+                    <span color = .9-1-1><section></section>AZURE</span>
+                    <span color = 0-0-.5><section></section>NAVY</span>
+                    <span color = .5-0-.5><section></section>PURPLE</span>
+                    <span color = 1-.75-.8><section></section>PINK</span>
+                    <span color = 1-0-1><section></section>MAGENTA</span>
+                </div>
             </p>
 
             <p>
@@ -75,7 +231,7 @@
                 Although we have displayed it as a <mark>tuple</mark>, it behaves quite differently.
             </p>
 
-            <code class = small>size: (float, float)</code>
+            <pre code>size: (float, float)</pre>
 
             <p>
                 The variable above is actually a JoBase vector.
@@ -111,7 +267,7 @@ print(box.pos) # (12, 16)
 
             <h1>Classes</h1>
 
-            <code class = large id = Window>class Window(caption = "JoBase", width = 640, height = 480, color = WHITE)</code>
+            <pre id = Window large>class Window(caption = "JoBase", width = 640, height = 480, color = WHITE)</pre>
 
             <div class = indent>
                 This class is for managing the main window.
@@ -130,107 +286,107 @@ def loop():
 run()
                 </pre>
 
-                <code class = small id = Window.caption>caption: str</code>
+                <pre id = Window.caption small>caption: str</pre>
 
                 <div class = indent>
                     The title of the window.
                 </div>
 
-                <code class = small id = Window.red>red, color.red: float</code>
+                <pre id = Window.red small>red, color.red: float</pre>
 
                 <div class = indent>
                     The red color of the window.
                 </div>
 
-                <code class = small id = Window.green>green, color.green: float</code>
+                <pre id = Window.green small>green, color.green: float</pre>
 
                 <div class = indent>
                     The green color of the window.
                 </div>
 
-                <code class = small id = Window.blue>blue, color.blue: float</code>
+                <pre id = Window.blue small>blue, color.blue: float</pre>
 
                 <div class = indent>
                     The blue color of the window.
                 </div>
 
-                <code class = small id = Window.color>color: (float, float, float)</code>
+                <pre id = Window.color small>color: (float, float, float)</pre>
 
                 <div class = indent>
                     The color of the window.
                 </div>
 
-                <code class = small id = Window.width>width, size.x: float</code>
+                <pre id = Window.width small>width, size.x: float</pre>
 
                 <div class = indent>
                     The width of the window in pixels.
                 </div>
 
-                <code class = small id = Window.height>height, size.y: float</code>
+                <pre id = Window.height small>height, size.y: float</pre>
 
                 <div class = indent>
                     The height of the window in pixels.
                 </div>
 
-                <code class = small id = Window.size>size: (float, float)</code>
+                <pre id = Window.size small>size: (float, float)</pre>
 
                 <div class = indent>
                     The dimensions of the window in pixels.
                 </div>
 
-                <code class = small id = Window.top>top: float</code>
+                <pre id = Window.top small>top: float</pre>
 
                 <div class = indent>
                     The top of the window in pixels.
                 </div>
 
-                <code class = small id = Window.bottom>bottom: float</code>
+                <pre id = Window.bottom small>bottom: float</pre>
 
                 <div class = indent>
                     The bottom of the window in pixels.
                 </div>
 
-                <code class = small id = Window.left>left: float</code>
+                <pre id = Window.left small>left: float</pre>
 
                 <div class = indent>
                     The left of the window in pixels.
                 </div>
 
-                <code class = small id = Window.right>right: float</code>
+                <pre id = Window.right small>right: float</pre>
 
                 <div class = indent>
                     The right of the window in pixels.
                 </div>
 
-                <code class = small id = Window.close>close()</code>
+                <pre id = Window.close small>close()</pre>
 
                 <div class = indent>
                     Close the window.
                     The program finishes and the window cannot be opened again.
                 </div>
 
-                <code class = small id = Window.maximize>maximize()</code>
+                <pre id = Window.maximize small>maximize()</pre>
 
                 <div class = indent>
                     Maximize the window.
                     You can restore the maximized window with the <a href = #Window.restore>restore</a> method.
                 </div>
 
-                <code class = small id = Window.minimize>minimize()</code>
+                <pre id = Window.minimize small>minimize()</pre>
 
                 <div class = indent>
                     Minimize the window.
                     You can restore the minimized window with the <a href = #Window.restore>restore</a> method.
                 </div>
 
-                <code class = small id = Window.restore>restore()</code>
+                <pre id = Window.restore small>restore()</pre>
 
                 <div class = indent>
                     Restore the window from maximized or minimized.
                     The window returns to its normal state.
                 </div>
 
-                <code class = small id = Window.focus>focus()</code>
+                <pre id = Window.focus small>focus()</pre>
 
                 <div class = indent>
                     Give the window input focus.
@@ -238,7 +394,7 @@ run()
                 </div>
             </div>
 
-            <code class = large id = Camera>class Camera()</code>
+            <pre id = Camera large>class Camera()</pre>
 
             <div class = indent>
                 This class is for managing the game camera.
@@ -246,32 +402,32 @@ run()
                 The inbuilt <mark>camera</mark> variable is an instance of this class.
                 Do not try to instance this class directly.
 
-                <code class = small id = Camera.x>x, pos.x, position.x: float</code>
+                <pre id = Camera.x small>x, pos.x, position.x: float</pre>
 
                 <div class = indent>
                     The x position of the camera.
                 </div>
 
-                <code class = small id = Camera.y>y, pos.y, position.y: float</code>
+                <pre id = Camera.y small>y, pos.y, position.y: float</pre>
 
                 <div class = indent>
                     The y position of the camera.
                 </div>
 
-                <code class = small id = Camera.position>pos, position: (float, float)</code>
+                <pre id = Camera.position small>pos, position: (float, float)</pre>
 
                 <div class = indent>
                     The position of the camera.
                 </div>
 
-                <code class = small id = Camera.move_toward>move_toward(other: object, speed = 1)</code>
+                <pre id = Camera.move_toward small>move_toward(other: object, speed = 1)</pre>
 
                 <div class = indent>
                     Move the camera toward another object at a constant speed.
                     The object must be a <mark>Shape</mark> instance or the cursor.
                 </div>
 
-                <code class = small id = Camera.move_toward_smooth>move_toward_smooth(other: object, speed = 0.1)</code>
+                <pre id = Camera.move_toward_smooth small>move_toward_smooth(other: object, speed = 0.1)</pre>
 
                 <div class = indent>
                     Move the camera smoothly toward another object.
@@ -280,68 +436,68 @@ run()
                 </div>
             </div>
 
-            <code class = large id = Cursor>class Cursor()</code>
+            <pre id = Cursor large>class Cursor()</pre>
 
             <div class = indent>
                 This class represents the cursor.
                 The inbuilt <mark>cursor</mark> variable is an instance of this class.
                 Do not try to instance this class directly.
 
-                <code class = small id = Cursor.x>x, pos.x, position.x: float</code>
+                <pre id = Cursor.x small>x, pos.x, position.x: float</pre>
 
                 <div class = indent>
                     The x position of the cursor.
                 </div>
 
-                <code class = small id = Cursor.y>y, pos.y, position.y: float</code>
+                <pre id = Cursor.y small>y, pos.y, position.y: float</pre>
 
                 <div class = indent>
                     The y position of the cursor.
                 </div>
 
-                <code class = small id = Cursor.position>pos, position: (float, float)</code>
+                <pre id = Cursor.position small>pos, position: (float, float)</pre>
 
                 <div class = indent>
                     The position of the cursor.
                 </div>
 
-                <code class = small id = Cursor.move>move: bool</code>
+                <pre id = Cursor.move small>move: bool</pre>
 
                 <div class = indent>
                     The cursor has moved.
                 </div>
 
-                <code class = small id = Cursor.enter>enter: bool</code>
+                <pre id = Cursor.enter small>enter: bool</pre>
 
                 <div class = indent>
                     The cursor has entered the window.
                 </div>
 
-                <code class = small id = Cursor.leave>leave: bool</code>
+                <pre id = Cursor.leave small>leave: bool</pre>
 
                 <div class = indent>
                     The cursor has left the window.
                 </div>
 
-                <code class = small id = Cursor.press>press: bool</code>
+                <pre id = Cursor.press small>press: bool</pre>
 
                 <div class = indent>
                     A cursor button is pressed.
                 </div>
 
-                <code class = small id = Cursor.release>release: bool</code>
+                <pre id = Cursor.release small>release: bool</pre>
 
                 <div class = indent>
                     A cursor button is released.
                 </div>
 
-                <code class = small id = Cursor.hold>hold: bool</code>
+                <pre id = Cursor.hold small>hold: bool</pre>
 
                 <div class = indent>
                     A cursor button is held down.
                 </div>
 
-                <code class = small id = Cursor.collides_with>collides_with(other: object)</code>
+                <pre id = Cursor.collides_with small>collides_with(other: object)</pre>
 
                 <div class = indent>
                     Check if the cursor collides with the another object.
@@ -349,39 +505,39 @@ run()
                 </div>
             </div>
 
-            <code class = large id = Key>class Key()</code>
+            <pre id = Key large>class Key()</pre>
 
             <div class = indent>
                 This class is for detecting keyboard input.
                 The inbuilt <mark>key</mark> variable is an instance of this class.
                 Do not try to instance this class directly.
 
-                <code class = small id = Key.press>press: bool</code>
+                <pre id = Key.press small>press: bool</pre>
 
                 <div class = indent>
                     A key is pressed down.
                 </div>
 
-                <code class = small id = Key.release>release: bool</code>
+                <pre id = Key.release small>release: bool</pre>
 
                 <div class = indent>
                     A key is released.
                 </div>
 
-                <code class = small id = Key.repeat>repeat: bool</code>
+                <pre id = Key.repeat small>repeat: bool</pre>
 
                 <div class = indent>
                     When the user holds a key down, a series of events are fired.
                     These events do not occur every frame.
                 </div>
 
-                <code class = small id = Key.hold>hold: bool</code>
+                <pre id = Key.hold small>hold: bool</pre>
 
                 <div class = indent>
                     A key is held down.
                 </div>
 
-                <code class = small id = Key.[name]>[name]: {"press": bool, "release": bool, "repeat": bool} or False</code>
+                <pre id = Key.[name] small>[name]: {"press": bool, "release": bool, "repeat": bool} or False</pre>
 
                 <div class = indent>
                     Access the state of a specific key.
@@ -524,7 +680,7 @@ if key.right and key.right["press"]:
                 </div>
             </div>
 
-            <code class = large id = Shape>class Shape()</code>
+            <pre id = Shape large>class Shape()</pre>
 
             <div class = indent>
                 <p>
@@ -534,193 +690,193 @@ if key.right and key.right["press"]:
                     Do not try to instance this class directly.
                 </p>
 
-                <code class = small id = Shape.x>x, pos.x, position.x: float</code>
+                <pre id = Shape.x small>x, pos.x, position.x: float</pre>
 
                 <div class = indent>
                     The x position of the shape.
                 </div>
 
-                <code class = small id = Shape.y>y, pos.y, position.y: float</code>
+                <pre id = Shape.y small>y, pos.y, position.y: float</pre>
 
                 <div class = indent>
                     The y position of the shape.
                 </div>
 
-                <code class = small id = Shape.position>pos, position: (float, float)</code>
+                <pre id = Shape.position small>pos, position: (float, float)</pre>
 
                 <div class = indent>
                     The position of the shape.
                 </div>
 
-                <code class = small id = Shape.left>left: float</code>
+                <pre id = Shape.left small>left: float</pre>
 
                 <div class = indent>
                     The left position of the shape.
                 </div>
 
-                <code class = small id = Shape.top>top: float</code>
+                <pre id = Shape.top small>top: float</pre>
 
                 <div class = indent>
                     The top position of the shape.
                 </div>
 
-                <code class = small id = Shape.right>right: float</code>
+                <pre id = Shape.right small>right: float</pre>
 
                 <div class = indent>
                     The right position of the shape.
                 </div>
 
-                <code class = small id = Shape.bottom>bottom: float</code>
+                <pre id = Shape.bottom small>bottom: float</pre>
 
                 <div class = indent>
                     The bottom position of the shape.
                 </div>
 
-                <code class = small id = Shape.scale.x>scale.x: float</code>
+                <pre id = Shape.scale.x small>scale.x: float</pre>
 
                 <div class = indent>
                     The horizontal scale of the shape.
                 </div>
 
-                <code class = small id = Shape.scale.y>scale.y: float</code>
+                <pre id = Shape.scale.y small>scale.y: float</pre>
 
                 <div class = indent>
                     The vertical scale of the shape.
                 </div>
 
-                <code class = small id = Shape.scale>scale: (float, float)</code>
+                <pre id = Shape.scale small>scale: (float, float)</pre>
 
                 <div class = indent>
                     The scale of the shape.
                 </div>
 
-                <code class = small id = Shape.anchor.x>anchor.x: float</code>
+                <pre id = Shape.anchor.x small>anchor.x: float</pre>
 
                 <div class = indent>
                     The horizontal origin of the shape.
                 </div>
 
-                <code class = small id = Shape.anchor.y>anchor.y: float</code>
+                <pre id = Shape.anchor.y small>anchor.y: float</pre>
 
                 <div class = indent>
                     The vertical origin of the shape.
                 </div>
 
-                <code class = small id = Shape.anchor>anchor: (float, float)</code>
+                <pre id = Shape.anchor small>anchor: (float, float)</pre>
 
                 <div class = indent>
                     The rotational origin of the shape.
                 </div>
 
-                <code class = small id = Shape.angle>angle: float</code>
+                <pre id = Shape.angle small>angle: float</pre>
 
                 <div class = indent>
                     The angle of the shape.
                 </div>
 
-                <code class = small id = Shape.red>red, color.red: float</code>
+                <pre id = Shape.red small>red, color.red: float</pre>
 
                 <div class = indent>
                     The red color of the shape.
                 </div>
 
-                <code class = small id = Shape.green>green, color.green: float</code>
+                <pre id = Shape.green small>green, color.green: float</pre>
 
                 <div class = indent>
                     The green color of the shape.
                 </div>
 
-                <code class = small id = Shape.blue>blue, color.blue: float</code>
+                <pre id = Shape.blue small>blue, color.blue: float</pre>
 
                 <div class = indent>
                     The blue color of the shape.
                 </div>
 
-                <code class = small id = Shape.alpha>alpha, color.alpha: float</code>
+                <pre id = Shape.alpha small>alpha, color.alpha: float</pre>
 
                 <div class = indent>
                     The transparency of the shape.
                 </div>
 
-                <code class = small id = Shape.color>color: (float, float, float, float)</code>
+                <pre id = Shape.color small>color: (float, float, float, float)</pre>
 
                 <div class = indent>
                     The color of the shape.
                 </div>
 
-                <code class = small id = Shape.type>type: int</code>
+                <pre id = Shape.type small>type: int</pre>
 
                 <div class = indent>
                     The physics body type of the shape.
                     It can be <mark>STATIC</mark> or <mark>DYNAMIC</mark> (default).
                 </div>
 
-                <code class = small id = Shape.mass>mass: float</code>
+                <pre id = Shape.mass small>mass: float</pre>
 
                 <div class = indent>
                     The physics weight of the shape - high means heavy.
                 </div>
 
-                <code class = small id = Shape.elasticity>elasticity: float</code>
+                <pre id = Shape.elasticity small>elasticity: float</pre>
 
                 <div class = indent>
                     The physics bounciness of the shape.
                     In most cases, it is best to keep this value between <mark>0</mark> (not bouncy) and <mark>1</mark> (perfectly bouncy).
                 </div>
 
-                <code class = small id = Shape.friction>friction: float</code>
+                <pre id = Shape.friction small>friction: float</pre>
 
                 <div class = indent>
                     The physics roughness of the shape.
                     In most cases, it is best to keep this value between <mark>0</mark> (not slippery) and <mark>1</mark> (really slippery).
                 </div>
 
-                <code class = small id = Shape.velocity.x>velocity.x, speed.x: float</code>
+                <pre id = Shape.velocity.x small>velocity.x, speed.x: float</pre>
 
                 <div class = indent>
                     The physics x speed of the shape.
                 </div>
 
-                <code class = small id = Shape.velocity.y>velocity.y, speed.y: float</code>
+                <pre id = Shape.velocity.y small>velocity.y, speed.y: float</pre>
 
                 <div class = indent>
                     The physics y speed of the shape.
                 </div>
 
-                <code class = small id = Shape.velocity>velocity, speed: (float, float)</code>
+                <pre id = Shape.velocity small>velocity, speed: (float, float)</pre>
 
                 <div class = indent>
                     The physics speed of the shape.
                 </div>
 
-                <code class = small id = Shape.angular_velocity>angular_velocity, rotate_speed: float</code>
+                <pre id = Shape.angular_velocity small>angular_velocity, rotate_speed: float</pre>
 
                 <div class = indent>
                     The physics rotation speed of the shape (how fast it's spinning).
                 </div>
 
-                <code class = small id = Shape.rotate>rotate: bool</code>
+                <pre id = Shape.rotate small>rotate: bool</pre>
 
                 <div class = indent>
                     The shape is allowed to rotate in a physics engine.
                     Set it to <mark>False</mark> if you want the shape to stay the same angle.
                 </div>
 
-                <code class = small id = Shape.look_at>look_at(other: object)</code>
+                <pre id = Shape.look_at small>look_at(other: object)</pre>
 
                 <div class = indent>
                     Rotate the shape to look at another object.
                     The object must be a <mark>Shape</mark> instance or the cursor.
                 </div>
 
-                <code class = small id = Shape.move_toward>move_toward(other: object, speed = 1)</code>
+                <pre id = Shape.move_toward small>move_toward(other: object, speed = 1)</pre>
 
                 <div class = indent>
                     Move the shape toward another object at a constant speed.
                     The object must be a <mark>Shape</mark> instance or the cursor.
                 </div>
 
-                <code class = small id = Shape.collides_with>collides_with(other: object)</code>
+                <pre id = Shape.collides_with small>collides_with(other: object)</pre>
 
                 <div class = indent>
                     Check if the shape collides with the another object.
@@ -728,32 +884,32 @@ if key.right and key.right["press"]:
                 </div>
             </div>
 
-            <code class = large id = Rectangle>class Rectangle(x = 0, y = 0, width = 50, height = 50, angle = 0, color = BLACK)</code>
+            <pre id = Rectangle large>class Rectangle(x = 0, y = 0, width = 50, height = 50, angle = 0, color = BLACK)</pre>
 
             <div class = indent>
                 This class is for drawing rectangles.
                 Because it extends the <a href = #Shape>Shape</a> class, it contains all the same attributes.
 
-                <code class = small id = Rectangle.width>width, size.x: float</code>
+                <pre id = Rectangle.width small>width, size.x: float</pre>
 
                 <div class = indent>
                     The width of the rectangle in pixels.
                 </div>
 
-                <code class = small id = Rectangle.height>height, size.y: float</code>
+                <pre id = Rectangle.height small>height, size.y: float</pre>
 
                 <div class = indent>
                     The height of the rectangle in pixels.
                 </div>
 
-                <code class = small id = Rectangle.size>size: (float, float)</code>
+                <pre id = Rectangle.size small>size: (float, float)</pre>
 
                 <div class = indent>
                     The dimensions of the rectangle in pixels.
                 </div>
             </div>
 
-            <code class = large id = Image>class Image(name = MAN, x = 0, y = 0, width = 0, height = 0, angle = 0, color = WHITE)</code>
+            <pre id = Image large>class Image(name = MAN, x = 0, y = 0, width = 0, height = 0, angle = 0, color = WHITE)</pre>
 
             <div class = indent>
                 This class is for drawing images.
@@ -762,9 +918,9 @@ if key.right and key.right["press"]:
                 JoBase contains the following built in images.
 
                 <div class = list>
-                    <span><a href = Browser/JoBase/images/man.png target = _blank>MAN</a></span>
-                    <span><a href = Browser/JoBase/images/coin.png target = _blank>COIN</a></span>
-                    <span><a href = Browser/JoBase/images/enemy.png target = _blank>ENEMY</a></span>
+                    <span>MAN<div><img src = Browser/JoBase/images/man.png></div></span>
+                    <span>COIN<div><img src = Browser/JoBase/images/coin.png></div></span>
+                    <span>ENEMY<div><img src = Browser/JoBase/images/enemy.png></div></span>
                 </div>
 
                 The example below loads the coin image and draws it.
@@ -781,32 +937,32 @@ run()
                 </pre>
             </div>
 
-            <code class = large id = Text>class Text(content = "Text", x = 0, y = 0, font_size = 50, angle = 0, color = BLACK, font = DEFAULT)</code>
+            <pre id = Text large>class Text(content = "Text", x = 0, y = 0, font_size = 50, angle = 0, color = BLACK, font = DEFAULT)</pre>
 
             <div class = indent>
                 This class is for drawing text messages.
                 Because it extends the <a href = #Rectangle>Rectangle</a> class, it contains all the same attributes.
 
-                <code class = small id = Text.content>content: str</code>
+                <pre id = Text.content small>content: str</pre>
 
                 <div class = indent>
                     The string content of the text.
                 </div>
 
-                <code class = small id = Text.font>font: str</code>
+                <pre id = Text.font small>font: str</pre>
 
                 <div class = indent>
                     The filepath to the font family of the text.
                     JoBase contains the following built in fonts.
 
                     <div class = list>
-                        <span>CODE</span>
-                        <span>DEFAULT</span>
-                        <span>HANDWRITING</span>
-                        <span>JOINED</span>
-                        <span>PENCIL</span>
-                        <span>SERIF</span>
-                        <span>TYPEWRITER</span>
+                        <span>CODE<div font = code>Code</div></span>
+                        <span>DEFAULT<div font = default>Default</div></span>
+                        <span>HANDWRITING<div font = handwriting>Handwriting</div></span>
+                        <span>JOINED<div font = joined>Joined</div></span>
+                        <span>PENCIL<div font = pencil>Pencil</div></span>
+                        <span>SERIF<div font = serif>Serif</div></span>
+                        <span>TYPEWRITER<div font = typewriter>Typewriter</div></span>
                     </div>
 
                     The example below loads the pencil font and draws the text.
@@ -824,33 +980,33 @@ run()
                     </pre>
                 </div>
 
-                <code class = small id = Text.font_size>font_size: float</code>
+                <pre id = Text.font_size small>font_size: float</pre>
 
                 <div class = indent>
                     The size of the font.
                 </div>
             </div>
 
-            <code class = large id = Circle>class Circle(x = 0, y = 0, diameter = 50, color = BLACK)</code>
+            <pre id = Circle large>class Circle(x = 0, y = 0, diameter = 50, color = BLACK)</pre>
 
             <div class = indent>
                 This class is for drawing circles.
                 Because it extends the <a href = #Shape>Shape</a> class, it contains all the same attributes.
 
-                <code class = small id = Circle.diameter>diameter: float</code>
+                <pre id = Circle.diameter small>diameter: float</pre>
 
                 <div class = indent>
                     The width of the circle.
                 </div>
 
-                <code class = small id = Circle.radius>radius: float</code>
+                <pre id = Circle.radius small>radius: float</pre>
 
                 <div class = indent>
                     The radius of the circle (half of the diameter).
                 </div>
             </div>
 
-            <code class = large id = Physics>class Physics(gravity_x: 0, gravity_y: -500)</code>
+            <pre id = Physics large>class Physics(gravity_x: 0, gravity_y: -500)</pre>
 
             <div class = indent>
                 This class is a physics engine environment.
@@ -896,38 +1052,38 @@ for thing in engine:
     thing.draw()
                 </pre>
 
-                <code class = small id = Physics.gravity.x>gravity.x: float</code>
+                <pre id = Physics.gravity.x small>gravity.x: float</pre>
 
                 <div class = indent>
                     The horizontal gravity.
                 </div>
 
-                <code class = small id = Physics.gravity.y>gravity.y: float</code>
+                <pre id = Physics.gravity.y small>gravity.y: float</pre>
 
                 <div class = indent>
                     The vertical gravity.
                     A negative number makes the objects fall to the bottom.
                 </div>
 
-                <code class = small id = Physics.gravity>gravity: (float, float)</code>
+                <pre id = Physics.gravity small>gravity: (float, float)</pre>
 
                 <div class = indent>
                     The gravity in the physics environment.
                 </div>
 
-                <code class = small id = Physics.add>add(other: object)</code>
+                <pre id = Physics.add small>add(other: object)</pre>
 
                 <div class = indent>
                     Add a <a href = #Shape>Shape</a> to the physics engine.
                 </div>
 
-                <code class = small id = Physics.remove>remove(other: object)</code>
+                <pre id = Physics.remove small>remove(other: object)</pre>
 
                 <div class = indent>
                     Remove a <a href = #Shape>Shape</a> from the physics engine.
                 </div>
 
-                <code class = small id = Physics.update>update()</code>
+                <pre id = Physics.update small>update()</pre>
 
                 <div class = indent>
                     Calculate the next frame for the physics.
@@ -937,19 +1093,19 @@ for thing in engine:
 
             <h1>Methods</h1>
 
-            <code class = large id = random>def random(a: float, b: float) -> float</code>
+            <pre id = random large>def random(a: float, b: float) -> float</pre>
 
             <div class = indent>
                 Find a random decimal between <mark>a</mark> and <mark>b</mark>.
             </div>
 
-            <code class = large id = randint>def randint(a: int, b: int) -> int</code>
+            <pre id = randint large>def randint(a: int, b: int) -> int</pre>
 
             <div class = indent>
                 Find a random integer between <mark>a</mark> and <mark>b</mark> inclusive.
             </div>
 
-            <code class = large id = run>def run()</code>
+            <pre id = run large>def run()</pre>
 
             <div class = indent>
                 Activate the main game loop and display the window.
@@ -958,7 +1114,7 @@ for thing in engine:
 
             <h1>Examples</h1>
 
-            <code class = large id = coin_collector>coin_collector.py</code>
+            <pre id = coin_collector large>coin_collector.py</pre>
 
             <div class = indent>
                 To run this example, type the following command into the terminal.
@@ -1014,7 +1170,7 @@ run()
                 </pre>
             </div>
 
-            <code class = large id = physics>physics.py</code>
+            <pre id = physics large>physics.py</pre>
 
             <div class = indent>
                 To run this example, type the following command into the terminal.
@@ -1075,7 +1231,7 @@ run()
                 </pre>
             </div>
 
-            <code class = large id = tennis>tennis.py</code>
+            <pre id = tennis large>tennis.py</pre>
 
             <div class = indent>
                 To run this example, type the following command into the terminal.
@@ -1175,5 +1331,14 @@ run()
                 <a href = mailto:hello@jobase.org>hello@jobase.org</a>
             </span>
         </footer>
+
+        <script>
+            const colors = document.querySelectorAll("span[color]")
+
+            colors.forEach(e => {
+                const parts = e.getAttribute("color").split("-").map(e => Number(e) * 255)
+                e.firstElementChild.style.backgroundColor = `rgb(${parts.join(",")})`
+            })
+        </script>
     </body>
 </html>
