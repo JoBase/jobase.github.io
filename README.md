@@ -1,4 +1,5 @@
 ### Welcome to JoBase
+
 JoBase is a really fast Python game library for beginner coders.
 It is written in pure C and uses the same modern tools as high-end games like Minecraft.
 
@@ -6,11 +7,16 @@ We now support an online JoBase editor!
 Feel free to use it before installing JoBase on your local computer.
 Click [here](https://jobase.org/Browser) to try it now.
 
+Unfortunately, JoBase has execution issues on MacOS.
+Please use the online version instead.
+
 #### Download Python
-To start using JoBase, you will need Python installed.
-Visit [python.org](https://www.python.org/downloads) and download the latest version for your computer.
+
+To start using JoBase on your local computer, you will need Python installed.
+Visit [python.org](https://python.org/downloads) and download the latest version for your computer.
 
 #### Install JoBase
+
 To install JoBase, type the following into the Command Terminal.
 
 ```
@@ -18,7 +24,7 @@ pip install JoBase
 ```
 
 If the installation fails, check your version of Python isn't too old.
-JoBase supports Python 3.6 or greater.
+JoBase is compatible on Python 3.6 or greater.
 If the installation succeeds, you can continue by typing the following command to run a basic exmaple.
 
 ```
@@ -31,7 +37,8 @@ The minimal Python example below demonstrates the structure of a basic JoBase ap
 ```
 from JoBase import *
 
-man = Image(MAN)
+window.color = AQUA
+man = Image(MAN, color = GOLD)
 
 def loop():
     man.angle += 1
@@ -48,7 +55,7 @@ Please follow our [examples](https://jobase.org/examples) for an introduction to
 ![JoBase Performance Comparison](https://jobase.org/assets/images/graph.png)
 
 Above is a JoBase speed comparison with other popular Python libraries.
-The the graph compares the performance of the libraries **without batch rendering**.
+The graph compares the performance of the libraries without batch rendering.
 Hundreds of images were drawn on the screen in random places and rotated in the game loop.
 
 ```
@@ -56,13 +63,13 @@ from JoBase import *
 images = []
 
 for i in range(100):
-    images.append(Image(MAN, angle = random(1, 360)))
+    man = Image(MAN, angle = random(1, 360))
+    man.x = random(window.left, window.right)
+    man.y = random(window.top, window.bottom)
+
+    images.append(man)
 
 def loop():
-    if window.resize:
-        for man in images:
-            man.pos = random(window.left, window.right), random(window.top, window.bottom)
-
     for man in images:
         man.angle += 1
         man.draw()
