@@ -120,7 +120,7 @@
             .list span div {
                 visibility: hidden;
                 position: absolute;
-                background-color: #eee;
+                background-color: #fff;
                 transform: translateX(50%);
                 bottom: calc(100% + 0.5em);
                 border-radius: var(--radius);
@@ -133,7 +133,7 @@
             }
 
             .list span div::after {
-                border-color: #eee transparent transparent transparent;
+                border-color: #fff transparent transparent transparent;
                 content: "";
                 position: absolute;
                 top: 100%;
@@ -928,7 +928,7 @@ if key.right and key.right["press"]:
                 <pre editor>
 from JoBase import *
 
-coin = Image(COIN)
+coin = Image(ENEMY)
 
 def loop():
     coin.draw()
