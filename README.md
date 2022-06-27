@@ -54,7 +54,7 @@ Please follow our [examples](https://jobase.org/examples) for an introduction to
 
 ![JoBase Performance Comparison](https://jobase.org/assets/images/graph.png)
 
-Above is a JoBase speed comparison with other popular Python libraries.
+Above is a speed comparison with other popular Python libraries.
 The graph compares the performance of the libraries without batch rendering.
 Hundreds of images were drawn on the screen in random places and rotated in the game loop.
 
