@@ -37,7 +37,7 @@ The minimal Python example below demonstrates the structure of a basic JoBase ap
 ```
 from JoBase import *
 
-window.color = AQUA
+window.color = LIGHT_BLUE
 man = Image(MAN, color = GOLD)
 
 def loop():
