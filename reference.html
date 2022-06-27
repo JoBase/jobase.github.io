@@ -104,7 +104,6 @@
                 background-color: var(--block);
                 border: 1px solid var(--button);
                 padding: 0.5em 1em;
-                cursor: pointer;
                 margin: 0.2em
             }
 
@@ -174,11 +173,12 @@
                 <a href = #Camera>Camera</a>
                 <a href = #Cursor>Cursor</a>
                 <a href = #Key>Key</a>
-                <a href = #Shape>Shape</a>
+                <a href = #Base>Base</a>
                 <a href = #Rectangle>Rectangle</a>
                 <a href = #Image>Image</a>
                 <a href = #Text>Text</a>
                 <a href = #Circle>Circle</a>
+                <a href = #Shape>Shape</a>
                 <a href = #Physics>Physics</a>
             </details>
 
@@ -204,6 +204,8 @@
                     <span color = 1-1-1><section></section>WHITE</span>
                     <span color = 0-0-0><section></section>BLACK</span>
                     <span color = .5-.5-.5><section></section>GRAY</span>
+                    <span color = .2-.2-.2><section></section>DARK_GRAY</span>
+                    <span color = .8-.8-.8><section></section>LIGHT_GRAY</span>
                     <span color = .6-.2-.2><section></section>BROWN</span>
                     <span color = .8-.7-.6><section></section>TAN</span>
                     <span color = 1-0-0><section></section>RED</span>
@@ -214,11 +216,12 @@
                     <span color = 1-1-0><section></section>YELLOW</span>
                     <span color = .5-.5-0><section></section>OLIVE</span>
                     <span color = 0-1-0><section></section>LIME</span>
-                    <span color = 0-.4-0><section></section>DARK_GREEN</span>
                     <span color = 0-.5-0><section></section>GREEN</span>
+                    <span color = 0-.4-0><section></section>DARK_GREEN</span>
                     <span color = 0-1-1><section></section>AQUA</span>
-                    <span color = 0-0-1><section></section>BLUE</span>
                     <span color = .9-1-1><section></section>AZURE</span>
+                    <span color = .5-.8-1><section></section>LIGHT_BLUE</span>
+                    <span color = 0-0-1><section></section>BLUE</span>
                     <span color = 0-0-.5><section></section>NAVY</span>
                     <span color = .5-0-.5><section></section>PURPLE</span>
                     <span color = 1-.75-.8><section></section>PINK</span>
@@ -424,7 +427,6 @@ run()
 
                 <div class = indent>
                     Move the camera toward another object at a constant speed.
-                    The object must be a <mark>Shape</mark> instance or the cursor.
                 </div>
 
                 <pre id = Camera.move_toward_smooth small>move_toward_smooth(other: object, speed = 0.1)</pre>
@@ -432,7 +434,6 @@ run()
                 <div class = indent>
                     Move the camera smoothly toward another object.
                     Preferebly keep the speed between <mark>0</mark> (not moving) and <mark>1</mark> (instant snapping).
-                    The object must be a <mark>Shape</mark> instance or the cursor.
                 </div>
             </div>
 
@@ -501,7 +502,6 @@ run()
 
                 <div class = indent>
                     Check if the cursor collides with the another object.
-                    The object must be a <mark>Shape</mark> instance.
                 </div>
             </div>
 
@@ -680,207 +680,204 @@ if key.right and key.right["press"]:
                 </div>
             </div>
 
-            <pre id = Shape large>class Shape()</pre>
+            <pre id = Base large>class Base()</pre>
 
             <div class = indent>
                 <p>
                     This is the base class for all drawing primitives.
-                    The attributes of this class are shared with all other shapes.
-                    Some of the attributes are only useful when a shape is added to the JoBase <a href = #Physics>physics engine</a>.
+                    The attributes of this class are shared with other objects.
+                    Some of the attributes are only useful when the object is added to the <a href = #Physics>physics engine</a>.
                     Do not try to instance this class directly.
                 </p>
 
-                <pre id = Shape.x small>x, pos.x, position.x: float</pre>
+                <pre id = Base.x small>x, pos.x, position.x: float</pre>
 
                 <div class = indent>
-                    The x position of the shape.
+                    The x position of the object.
                 </div>
 
-                <pre id = Shape.y small>y, pos.y, position.y: float</pre>
+                <pre id = Base.y small>y, pos.y, position.y: float</pre>
 
                 <div class = indent>
-                    The y position of the shape.
+                    The y position of the object.
                 </div>
 
-                <pre id = Shape.position small>pos, position: (float, float)</pre>
+                <pre id = Base.position small>pos, position: (float, float)</pre>
 
                 <div class = indent>
-                    The position of the shape.
+                    The position of the object.
                 </div>
 
-                <pre id = Shape.left small>left: float</pre>
+                <pre id = Base.left small>left: float</pre>
 
                 <div class = indent>
-                    The left position of the shape.
+                    The left position of the object.
                 </div>
 
-                <pre id = Shape.top small>top: float</pre>
+                <pre id = Base.top small>top: float</pre>
 
                 <div class = indent>
-                    The top position of the shape.
+                    The top position of the object.
                 </div>
 
-                <pre id = Shape.right small>right: float</pre>
+                <pre id = Base.right small>right: float</pre>
 
                 <div class = indent>
-                    The right position of the shape.
+                    The right position of the object.
                 </div>
 
-                <pre id = Shape.bottom small>bottom: float</pre>
+                <pre id = Base.bottom small>bottom: float</pre>
 
                 <div class = indent>
-                    The bottom position of the shape.
+                    The bottom position of the object.
                 </div>
 
-                <pre id = Shape.scale.x small>scale.x: float</pre>
+                <pre id = Base.scale.x small>scale.x: float</pre>
 
                 <div class = indent>
-                    The horizontal scale of the shape.
+                    The horizontal scale of the object.
                 </div>
 
-                <pre id = Shape.scale.y small>scale.y: float</pre>
+                <pre id = Base.scale.y small>scale.y: float</pre>
 
                 <div class = indent>
-                    The vertical scale of the shape.
+                    The vertical scale of the object.
                 </div>
 
-                <pre id = Shape.scale small>scale: (float, float)</pre>
+                <pre id = Base.scale small>scale: (float, float)</pre>
 
                 <div class = indent>
-                    The scale of the shape.
+                    The scale of the object.
                 </div>
 
-                <pre id = Shape.anchor.x small>anchor.x: float</pre>
+                <pre id = Base.anchor.x small>anchor.x: float</pre>
 
                 <div class = indent>
-                    The horizontal origin of the shape.
+                    The horizontal origin of the object.
                 </div>
 
-                <pre id = Shape.anchor.y small>anchor.y: float</pre>
+                <pre id = Base.anchor.y small>anchor.y: float</pre>
 
                 <div class = indent>
-                    The vertical origin of the shape.
+                    The vertical origin of the object.
                 </div>
 
-                <pre id = Shape.anchor small>anchor: (float, float)</pre>
+                <pre id = Base.anchor small>anchor: (float, float)</pre>
 
                 <div class = indent>
-                    The rotational origin of the shape.
+                    The rotational origin of the object.
                 </div>
 
-                <pre id = Shape.angle small>angle: float</pre>
+                <pre id = Base.angle small>angle: float</pre>
 
                 <div class = indent>
-                    The angle of the shape.
+                    The angle of the object.
                 </div>
 
-                <pre id = Shape.red small>red, color.red: float</pre>
+                <pre id = Base.red small>red, color.red: float</pre>
 
                 <div class = indent>
-                    The red color of the shape.
+                    The red color of the object.
                 </div>
 
-                <pre id = Shape.green small>green, color.green: float</pre>
+                <pre id = Base.green small>green, color.green: float</pre>
 
                 <div class = indent>
-                    The green color of the shape.
+                    The green color of the object.
                 </div>
 
-                <pre id = Shape.blue small>blue, color.blue: float</pre>
+                <pre id = Base.blue small>blue, color.blue: float</pre>
 
                 <div class = indent>
-                    The blue color of the shape.
+                    The blue color of the object.
                 </div>
 
-                <pre id = Shape.alpha small>alpha, color.alpha: float</pre>
+                <pre id = Base.alpha small>alpha, color.alpha: float</pre>
 
                 <div class = indent>
-                    The transparency of the shape.
+                    The transparency of the object.
                 </div>
 
-                <pre id = Shape.color small>color: (float, float, float, float)</pre>
+                <pre id = Base.color small>color: (float, float, float, float)</pre>
 
                 <div class = indent>
-                    The color of the shape.
+                    The color of the object.
                 </div>
 
-                <pre id = Shape.type small>type: int</pre>
+                <pre id = Base.type small>type: int</pre>
 
                 <div class = indent>
-                    The physics body type of the shape.
+                    The physics body type of the object.
                     It can be <mark>STATIC</mark> or <mark>DYNAMIC</mark> (default).
                 </div>
 
-                <pre id = Shape.mass small>mass: float</pre>
+                <pre id = Base.mass small>mass: float</pre>
 
                 <div class = indent>
-                    The physics weight of the shape - high means heavy.
+                    The physics weight of the object - high means heavy.
                 </div>
 
-                <pre id = Shape.elasticity small>elasticity: float</pre>
+                <pre id = Base.elasticity small>elasticity: float</pre>
 
                 <div class = indent>
-                    The physics bounciness of the shape.
+                    The physics bounciness of the object.
                     In most cases, it is best to keep this value between <mark>0</mark> (not bouncy) and <mark>1</mark> (perfectly bouncy).
                 </div>
 
-                <pre id = Shape.friction small>friction: float</pre>
+                <pre id = Base.friction small>friction: float</pre>
 
                 <div class = indent>
-                    The physics roughness of the shape.
+                    The physics roughness of the object.
                     In most cases, it is best to keep this value between <mark>0</mark> (not slippery) and <mark>1</mark> (really slippery).
                 </div>
 
-                <pre id = Shape.velocity.x small>velocity.x, speed.x: float</pre>
+                <pre id = Base.velocity.x small>velocity.x, speed.x: float</pre>
 
                 <div class = indent>
-                    The physics x speed of the shape.
+                    The physics x speed of the object.
                 </div>
 
-                <pre id = Shape.velocity.y small>velocity.y, speed.y: float</pre>
+                <pre id = Base.velocity.y small>velocity.y, speed.y: float</pre>
 
                 <div class = indent>
-                    The physics y speed of the shape.
+                    The physics y speed of the object.
                 </div>
 
-                <pre id = Shape.velocity small>velocity, speed: (float, float)</pre>
+                <pre id = Base.velocity small>velocity, speed: (float, float)</pre>
 
                 <div class = indent>
-                    The physics speed of the shape.
+                    The physics speed of the object.
                 </div>
 
-                <pre id = Shape.angular_velocity small>angular_velocity, rotate_speed: float</pre>
+                <pre id = Base.angular_velocity small>angular_velocity, rotate_speed: float</pre>
 
                 <div class = indent>
-                    The physics rotation speed of the shape (how fast it's spinning).
+                    The physics rotation speed of the object (how fast it's spinning).
                 </div>
 
-                <pre id = Shape.rotate small>rotate: bool</pre>
+                <pre id = Base.rotate small>rotate: bool</pre>
 
                 <div class = indent>
-                    The shape is allowed to rotate in a physics engine.
-                    Set it to <mark>False</mark> if you want the shape to stay the same angle.
+                    The object is allowed to rotate in a physics engine.
+                    Set it to <mark>False</mark> if you want the object to stay the same angle.
                 </div>
 
-                <pre id = Shape.look_at small>look_at(other: object)</pre>
+                <pre id = Base.look_at small>look_at(other: object)</pre>
 
                 <div class = indent>
-                    Rotate the shape to look at another object.
-                    The object must be a <mark>Shape</mark> instance or the cursor.
+                    Rotate the object to look at another object.
                 </div>
 
-                <pre id = Shape.move_toward small>move_toward(other: object, speed = 1)</pre>
+                <pre id = Base.move_toward small>move_toward(other: object, speed = 1)</pre>
 
                 <div class = indent>
-                    Move the shape toward another object at a constant speed.
-                    The object must be a <mark>Shape</mark> instance or the cursor.
+                    Move the object toward another object at a constant speed.
                 </div>
 
-                <pre id = Shape.collides_with small>collides_with(other: object)</pre>
+                <pre id = Base.collides_with small>collides_with(other: object)</pre>
 
                 <div class = indent>
-                    Check if the shape collides with the another object.
-                    The object must be a <mark>Shape</mark> instance or the cursor.
+                    Check if the object collides with the another object.
                 </div>
             </div>
 
@@ -888,7 +885,7 @@ if key.right and key.right["press"]:
 
             <div class = indent>
                 This class is for drawing rectangles.
-                Because it extends the <a href = #Shape>Shape</a> class, it contains all the same attributes.
+                Because it extends the <a href = #Base>Base</a> class, it contains all the same attributes.
 
                 <pre id = Rectangle.width small>width, size.x: float</pre>
 
@@ -991,7 +988,7 @@ run()
 
             <div class = indent>
                 This class is for drawing circles.
-                Because it extends the <a href = #Shape>Shape</a> class, it contains all the same attributes.
+                Because it extends the <a href = #Base>Base</a> class, it contains all the same attributes.
 
                 <pre id = Circle.diameter small>diameter: float</pre>
 
@@ -1006,11 +1003,18 @@ run()
                 </div>
             </div>
 
+            <pre id = Shape large>class Shape(points = ((0, 25), (25, -25), (-25, -25)), x = 0, y = 0, angle = 0, color = BLACK)</pre>
+
+            <div class = indent>
+                This class is for drawing polygon shapes.
+                Because it extends the <a href = #Base>Base</a> class, it contains all the same attributes.
+            </div>
+
             <pre id = Physics large>class Physics(gravity_x: 0, gravity_y: -500)</pre>
 
             <div class = indent>
                 This class is a physics engine environment.
-                Add shapes to give them realistic physics.
+                Add objects to give them realistic physics.
                 You can run a basic demo by typing the following command into the terminal.
 
                 <pre>python -m JoBase.examples.box_physics</pre>
@@ -1021,7 +1025,7 @@ run()
 from JoBase import *
 
 floor = Rectangle(width = window.width, height = 20)
-floor.bottom = window.bottom
+floor.bottom = camera.bottom
 floor.type = STATIC
 floor.elasticity = 0.9
 
@@ -1074,13 +1078,13 @@ for thing in engine:
                 <pre id = Physics.add small>add(other: object)</pre>
 
                 <div class = indent>
-                    Add a <a href = #Shape>Shape</a> to the physics engine.
+                    Add a <a href = #Base>Base</a> object to the physics engine.
                 </div>
 
                 <pre id = Physics.remove small>remove(other: object)</pre>
 
                 <div class = indent>
-                    Remove a <a href = #Shape>Shape</a> from the physics engine.
+                    Remove a <a href = #Base>Base</a> object from the physics engine.
                 </div>
 
                 <pre id = Physics.update small>update()</pre>

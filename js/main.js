@@ -46,7 +46,7 @@ onload = () => {
 
     icon.className += ` fa-solid fa-${document.body.getAttribute("theme") == "dark" ? "moon" : "sun"}`
     year.textContent = new Date().getFullYear()
-    code.forEach(e => e.innerHTML = loop(e.textContent.trim()))
+    code.forEach(e => e.innerHTML = loop(e.textContent.trim()).replace(/(<\/span>) (<span)/g, "$1$2> $1$2"))
     editors.length && Sk.configure({output: text => console.log(text)})
 
     editors.forEach(e => {
