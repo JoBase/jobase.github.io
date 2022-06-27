@@ -114,8 +114,8 @@ images = []
 
 for i in range(100):
     man = Image(MAN, angle = random(1, 360))
-    man.x = random(window.left, window.right)
-    man.y = random(window.top, window.bottom)
+    man.x = random(camera.left, camera.right)
+    man.y = random(camera.top, camera.bottom)
 
     images.append(man)
 
