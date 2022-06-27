@@ -337,30 +337,6 @@ run()
                     The dimensions of the window in pixels.
                 </div>
 
-                <pre id = Window.top small>top: float</pre>
-
-                <div class = indent>
-                    The top of the window in pixels.
-                </div>
-
-                <pre id = Window.bottom small>bottom: float</pre>
-
-                <div class = indent>
-                    The bottom of the window in pixels.
-                </div>
-
-                <pre id = Window.left small>left: float</pre>
-
-                <div class = indent>
-                    The left of the window in pixels.
-                </div>
-
-                <pre id = Window.right small>right: float</pre>
-
-                <div class = indent>
-                    The right of the window in pixels.
-                </div>
-
                 <pre id = Window.close small>close()</pre>
 
                 <div class = indent>
@@ -429,11 +405,35 @@ run()
                     Move the camera toward another object at a constant speed.
                 </div>
 
-                <pre id = Camera.move_toward_smooth small>move_toward_smooth(other: object, speed = 0.1)</pre>
+                <pre id = Camera.move_smooth small>move_smooth(other: object, speed = 0.1)</pre>
 
                 <div class = indent>
                     Move the camera smoothly toward another object.
-                    Preferebly keep the speed between <mark>0</mark> (not moving) and <mark>1</mark> (instant snapping).
+                    It is best to keep the speed between <mark>0</mark> (not moving) and <mark>1</mark> (instant snapping).
+                </div>
+
+                <pre id = Camera.top small>top: float</pre>
+
+                <div class = indent>
+                    The top of the viewport.
+                </div>
+
+                <pre id = Camera.bottom small>bottom: float</pre>
+
+                <div class = indent>
+                    The bottom of the viewport.
+                </div>
+
+                <pre id = Camera.left small>left: float</pre>
+
+                <div class = indent>
+                    The left of the viewport.
+                </div>
+
+                <pre id = Camera.right small>right: float</pre>
+
+                <div class = indent>
+                    The right of the viewport.
                 </div>
             </div>
 
