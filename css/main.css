@@ -144,26 +144,6 @@ canvas:focus {outline: none}
 .top a.this, .top a:not(:first-child):hover, .top i:hover {color: var(--link)}
 .main {min-height: 100vh}
 
-.header {
-    height: 10em;
-    background-color: #999;
-    color: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center
-}
-
-.header h1 {
-    font-size: 5em;
-    font-family: dyslexic;
-    margin-left: 0.4em
-}
-
-.header img {
-    height: 60%;
-    float: left
-}
-
 @media screen and (min-width: 64em) {
     .top {
         max-width: 64em;
