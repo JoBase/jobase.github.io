@@ -157,19 +157,19 @@ canvas:focus {outline: none}
         margin: 0 auto
     }
 
-    :root {--font: 20px}
+    :root {--font: 20px; --large: 110px}
 }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
     .top {padding: 2em 4em}
     .main {padding: 1em 4em}
-    :root {--font: 18px}
+    :root {--font: 18px; --large: 90px}
 }
 
 @media screen and (max-width: 42em) {
     .top {padding: 2em 1em}
     .main {padding: 1em 1em 2em 1em}
-    :root {--font: 16px}
+    :root {--font: 16px; --large: 70px}
 
     .top a:not(:first-child), .top i.theme {display: none}
     .top i.fa-bars {display: block}
