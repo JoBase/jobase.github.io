@@ -491,6 +491,46 @@ run()
                     A cursor button is held down.
                 </div>
 
+                <pre id = Cursor.[name] small>[name]: bool</pre>
+
+                <div class = indent>
+                    Access the state of a specific mouse button.
+
+                    <pre code>
+if cursor.middle:
+    # the middle mouse button is held down
+
+if cursor.middle.release:
+    # the middle mouse button is released
+                    </pre>
+
+                    Below is a list of all the mouse button names.
+                    Some buttons are not present on all devices.
+
+                    <div class = list>
+                        <span>left</span>
+                        <span>right</span>
+                        <span>middle</span>
+                        <span>_4</span>
+                        <span>_5</span>
+                        <span>_6</span>
+                        <span>_7</span>
+                        <span>_8</span>
+                    </div>
+                </div>
+
+                <pre id = Cursor.[name].press small>[name].press: bool</pre>
+
+                <div class = indent>
+                    A specific button is pressed.
+                </div>
+
+                <pre id = Cursor.[name].release small>[name].release: bool</pre>
+
+                <div class = indent>
+                    A specific button is released.
+                </div>
+
                 <pre id = Cursor.collides_with small>collides_with(other: object)</pre>
 
                 <div class = indent>
@@ -530,7 +570,7 @@ run()
                     A key is held down.
                 </div>
 
-                <pre id = Key.[name] small>[name]: {"press": bool, "release": bool, "repeat": bool} or False</pre>
+                <pre id = Key.[name] small>[name]: bool</pre>
 
                 <div class = indent>
                     Access the state of a specific key.
@@ -539,15 +579,10 @@ run()
 if key.left:
     # the left arrow key is held down
 
-    if key.left["release"]:
-        # the left arrow key is released
-
-if key.right and key.right["press"]:
-    # the right arrow key was pressed down
+if key.left.release:
+    # the left arrow key is released
                     </pre>
 
-                    If a key is not being held down, it's properties cannot be accessed.
-                    Make sure you check that the key state is not <mark>False</mark> before trying to access a property.
                     Below is a list of all the key names.
 
                     <div class = list>
@@ -670,6 +705,24 @@ if key.right and key.right["press"]:
                         <span>right_super</span>
                         <span>menu</span>
                     </div>
+                </div>
+
+                <pre id = Key.[name].press small>[name].press: bool</pre>
+
+                <div class = indent>
+                    A specific key is pressed.
+                </div>
+
+                <pre id = Key.[name].release small>[name].release: bool</pre>
+
+                <div class = indent>
+                    A specific key is released.
+                </div>
+
+                <pre id = Key.[name].repeat small>[name].repeat: bool</pre>
+
+                <div class = indent>
+                    The repeat attribute of a specific key is triggered.
                 </div>
             </div>
 
