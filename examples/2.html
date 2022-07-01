@@ -90,7 +90,7 @@ run()
 
             <p>
                 As you can see, the code is getting a bit long.
-                We can shorten it by getting rid of the key word labels.
+                We can shorten it by getting rid of the keyword labels.
             </p>
 
             <pre code>
@@ -111,36 +111,32 @@ run()
             </p>
 
             <p>
-                Now let's rotate our rectangle.
+                Now let's rotate our rectangle with the <mark>angle</mark> attribute.
             </p>
 
             <pre editor>
 from JoBase import *
 
-box = Rectangle(-150, 0, 100, 30, 30)
+box = Rectangle(-150, 0, 100, 30, 50)
 
 def loop():
-    box.angle += 1
     box.draw()
 
 run()
             </pre>
 
             <p>
-                The new line of code above increments the angle of the rectangle by one each frame.
                 Let's add a circle.
             </p>
 
             <pre code>
 from JoBase import *
 
-box = Rectangle(-150, 0, 100, 30, 30)
-circle = Circle(diameter = 80, color = TAN)
+box = Rectangle(-150, 0, 100, 30, 50)
+circle = Circle(diameter = 80, color = GOLD)
 
 def loop():
-    box.angle += 1
     box.draw()
-
     circle.draw()
 
 run()
@@ -154,13 +150,11 @@ run()
             <pre editor>
 from JoBase import *
 
-box = Rectangle(-150, 0, 100, 30, 30)
-circle = Circle(150, 0, 80, TAN)
+box = Rectangle(-150, 0, 100, 30, 50)
+circle = Circle(150, 0, 80, GOLD)
 
 def loop():
-    box.angle += 1
     box.draw()
-
     circle.draw()
 
 run()
@@ -177,15 +171,13 @@ run()
             <pre code>
 from JoBase import *
 
-box = Rectangle(-150, 0, 100, 30, 30)
-circle = Circle(150, 0, 80, TAN)
+box = Rectangle(-150, 0, 100, 30, 50)
+circle = Circle(150, 0, 80, GOLD)
 
 shape = Shape(((-50, -20), (0, 50), (20, 0)), color = LIGHT_BLUE)
 
 def loop():
-    box.angle += 1
     box.draw()
-
     circle.draw()
     shape.draw()
 
@@ -201,8 +193,8 @@ run()
             <pre editor>
 from JoBase import *
 
-box = Rectangle(-150, 0, 100, 30, 30)
-circle = Circle(150, 0, 80, TAN)
+box = Rectangle(-150, 0, 100, 30, 50)
+circle = Circle(150, 0, 80, GOLD)
 
 shape = Shape((
     (0, 50), (15, 15),
@@ -211,12 +203,8 @@ shape = Shape((
     (-50, 0), (-15, 15)), color = LIGHT_BLUE)
 
 def loop():
-    box.angle += 1
     box.draw()
-
     circle.draw()
-
-    shape.angle -= 1
     shape.draw()
 
 run()

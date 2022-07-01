@@ -54,7 +54,7 @@ Please follow our [examples](https://jobase.org/examples) for an introduction to
 
 ![JoBase Performance Comparison](https://jobase.org/assets/images/graph.png)
 
-Above is a JoBase speed comparison with other popular Python libraries.
+Above is a speed comparison with other popular Python libraries.
 The graph compares the performance of the libraries without batch rendering.
 Hundreds of images were drawn on the screen in random places and rotated in the game loop.
 
@@ -64,8 +64,8 @@ images = []
 
 for i in range(100):
     man = Image(MAN, angle = random(1, 360))
-    man.x = random(window.left, window.right)
-    man.y = random(window.top, window.bottom)
+    man.x = random(camera.left, camera.right)
+    man.y = random(camera.top, camera.bottom)
 
     images.append(man)
 

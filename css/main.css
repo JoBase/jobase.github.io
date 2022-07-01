@@ -144,26 +144,6 @@ canvas:focus {outline: none}
 .top a.this, .top a:not(:first-child):hover, .top i:hover {color: var(--link)}
 .main {min-height: 100vh}
 
-.header {
-    height: 10em;
-    background-color: #999;
-    color: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center
-}
-
-.header h1 {
-    font-size: 5em;
-    font-family: dyslexic;
-    margin-left: 0.4em
-}
-
-.header img {
-    height: 60%;
-    float: left
-}
-
 @media screen and (min-width: 64em) {
     .top {
         max-width: 64em;
@@ -177,19 +157,19 @@ canvas:focus {outline: none}
         margin: 0 auto
     }
 
-    :root {--font: 20px}
+    :root {--font: 20px; --large: 110px}
 }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
     .top {padding: 2em 4em}
     .main {padding: 1em 4em}
-    :root {--font: 18px}
+    :root {--font: 18px; --large: 90px}
 }
 
 @media screen and (max-width: 42em) {
     .top {padding: 2em 1em}
     .main {padding: 1em 1em 2em 1em}
-    :root {--font: 16px}
+    :root {--font: 16px; --large: 70px}
 
     .top a:not(:first-child), .top i.theme {display: none}
     .top i.fa-bars {display: block}
