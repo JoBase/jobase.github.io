@@ -7,9 +7,6 @@ We now support an online JoBase editor!
 Feel free to use it before installing JoBase on your local computer.
 Click [here](https://jobase.org/Browser) to try it now.
 
-Unfortunately, JoBase has execution issues on MacOS.
-Please use the online version instead.
-
 #### Download Python
 
 To start using JoBase on your local computer, you will need Python installed.
