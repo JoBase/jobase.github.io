@@ -49,7 +49,7 @@
                 Let's start by importing JoBase.
             </p>
 
-            <pre code>from JoBase import *</pre>
+            <pre code><span>from JoBase import *</span></pre>
 
             <p>
                 This imports and initialises all the tools in the JoBase library.
@@ -60,7 +60,7 @@
             <pre code>
 from JoBase import *
 
-run()
+<span>run()</span>
             </pre>
 
             <p>
@@ -77,7 +77,7 @@ run()
             <pre code>
 from JoBase import *
 
-text = Text("Hello World")
+<span>text = Text("Hello World")</span>
 
 run()
             </pre>
@@ -109,10 +109,10 @@ run()
             <pre code>
 from JoBase import *
 
-text = Text("Hello World", color = NAVY)
+text = Text("Hello World"<span>, color = NAVY</span>)
 
 def loop():
-    text.angle += 1
+    <span>text.angle += 1</span>
     text.draw()
 
 run()

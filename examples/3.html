@@ -40,11 +40,252 @@
         <section class = main>
             <h2>Coin Collector</h2>
 
-            Run this example by typing the following command into the terminal.
+            <p>
+                If you are new to JoBase, please visit the previous tutorials to understand the the basic setup.
+                You can run this game by typing the following command into the terminal.
+            </p>
 
             <pre>python -m JoBase.examples.coin_collector</pre>
 
+            <p>
+                To build this game ourselves, we need to start by drawing our character.
+                To do this, we need to load an image.
+                There are a set of default images that come when you install JoBase.
+                For our character, we are going to use the <a href = reference#Image>MAN</a> image.
+            </p>
+
+            <pre code>
+<span>from JoBase import *
+
+man = Image(MAN)
+
+def loop():
+    man.draw()
+
+run()</span>
+            </pre>
+
+            <p>
+                You should see our character in the middle of the screen.
+                Now we can start moving it.
+            </p>
+
+            <pre code>
+def loop():
+    man.draw()
+
+    <span>man.y = man.y + 1</span>
+
+run()
+            </pre>
+
+            <p>
+                Each frame, the character's vertical position is increased, this makes him move up.
+                In the actual game, we want him to move up when we press the arrow key, let's sort that out now.
+            </p>
+
+            <pre code>
+def loop():
+    man.draw()
+
+    <span>if key.up:</span>
+        man.y = man.y + 1
+
+run()
+            </pre>
+
+            <p>
+                When you run the program, the player will only move when you press the up arrow key.
+                We can make the code slightly smaller by using a new coding feature.
+            </p>
+
+            <pre code>
+    man.draw()
+
+    if key.up:
+        man.y <span>+=</span> 1
+
+run()
+            </pre>
+
+            <p>
+                Now we can do the same for the other arrow keys.
+            </p>
+
+            <pre code>
+    man.draw()
+
+    if key.up:
+        man.y += 1
+
+    <span>if key.down:
+        man.y -= 1
+
+    if key.left:
+        man.x -= 1
+
+    if key.right:
+        man.x += 1</span>
+
+run()
+            </pre>
+
+            <p>
+                To prevent the player from moving diagonally, we should stop him from moving in one direction if he is already moving in another direction.
+                To do this, we can use the Python <mark>elif</mark> (else if) feature.
+                We can also make our player faster by changing the numbers.
+            </p>
+
             <pre editor>
+from JoBase import *
+
+man = Image(MAN)
+
+def loop():
+    man.draw()
+
+    if key.up:
+        man.y += 3
+
+    elif key.down:
+        man.y -= 3
+
+    elif key.left:
+        man.x -= 3
+
+    elif key.right:
+        man.x += 3
+
+run()
+            </pre>
+
+            <p>
+                Now we can add the coin.
+            </p>
+
+            <pre code>
+from JoBase import *
+
+man = Image(MAN)
+<span>coin = Image(COIN)</span>
+
+def loop():
+    man.draw()
+    <span>coin.draw()</span>
+
+    if key.up:
+        man.y += 3
+            </pre>
+
+            <p>
+                Whenever the player collides with the coin, we want the coin to jump to a new random position.
+                This makes it look like the coin has been collected.
+            </p>
+
+            <pre editor>
+from JoBase import *
+
+man = Image(MAN)
+coin = Image(COIN)
+
+def loop():
+    man.draw()
+    coin.draw()
+
+    if key.up:
+        man.y += 3
+
+    elif key.down:
+        man.y -= 3
+
+    elif key.left:
+        man.x -= 3
+
+    elif key.right:
+        man.x += 3
+
+    if man.collides_with(coin):
+        coin.x = random(camera.left, camera.right)
+        coin.y = random(camera.bottom, camera.top)
+
+run()
+            </pre>
+
+            <p>
+                In the code above, the <a href = reference#random>random</a> function is used to position the coin randomly on the screen (or camera).
+            </p>
+
+            <p>
+                Let's add the enemy.
+            </p>
+
+            <pre code>
+man = Image(MAN)
+coin = Image(COIN)
+<span>enemy = Enemy(ENEMY)</span>
+
+def loop():
+    man.draw()
+    coin.draw()
+    <span>enemy.draw()</span>
+
+    if key.up:
+        man.y += 3
+            </pre>
+
+            <p>
+                Now we want the emeny to eat the coins.
+            </p>
+
+            <pre editor>
+from JoBase import *
+
+man = Image(MAN)
+coin = Image(COIN)
+enemy = Image(ENEMY)
+
+def loop():
+    man.draw()
+    coin.draw()
+    enemy.draw()
+
+    if key.up:
+        man.y += 3
+
+    elif key.down:
+        man.y -= 3
+
+    elif key.left:
+        man.x -= 3
+
+    elif key.right:
+        man.x += 3
+
+    enemy.look_at(coin)
+    enemy.move_toward(coin, 1.5)
+
+    if man.collides_with(coin):
+        coin.x = random(camera.left, camera.right)
+        coin.y = random(camera.bottom, camera.top)
+
+    if enemy.collides_with(coin):
+        coin.x = random(camera.left, camera.right)
+        coin.y = random(camera.bottom, camera.top)
+
+run()
+            </pre>
+
+            <p>
+                The <a href = reference#Base.look_at>look_at</a> function makes the enemy face the coin.
+                Then we use the <a href = reference#Base.move_toward>move_toward</a> function to make the enemy move towards the coin.
+                We have set the speed of the enemy to <mark>1.5</mark> to give the player a chance (though it is quite fun to set the speed to <mark>10</mark>).
+            </p>
+
+            <p>
+                The next part of this tutorial (the score) is coming soon.
+            </p>
+
+            <!-- <pre editor>
 from JoBase import *
 
 man = Image(MAN)
@@ -90,7 +331,7 @@ def loop():
     text.left = camera.left + 5
 
 run()
-            </pre>
+            </pre> -->
         </section>
 
         <footer>

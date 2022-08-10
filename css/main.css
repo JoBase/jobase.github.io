@@ -9,8 +9,8 @@
 }
 
 :root {
-    --radius: 0.3em;
-    --padding: 0.4em;
+    --radius: .3em;
+    --padding: .4em;
     --small: 16px
 }
 
@@ -27,11 +27,16 @@ mark {
     background: none
 }
 
-.CodeMirror pre.CodeMirror-line {padding: 0 0.8em}
-.CodeMirror-lines {padding: 0.8em 0}
+.CodeMirror pre.CodeMirror-line {
+    padding: 0 .8em
+}
+
+.CodeMirror-lines {
+    padding: .8em 0
+}
 
 .CodeMirror {
-    transition: width 0.5s;
+    transition: width .5s;
     flex: 0 0 auto;
     width: 100%;
     height: 100%
@@ -43,8 +48,9 @@ mark {
     display: flex
 }
 
-.editor button[active],
-.editor button:hover {background-color: var(--blank)}
+.editor button[active], .editor button:hover {
+    background-color: var(--blank)
+}
 
 .editor > div:first-child {
     background-color: var(--dim);
@@ -59,7 +65,7 @@ mark {
 
 .editor {
     mask-image: radial-gradient(#fff, #000);
-    border-radius: 0.4em;
+    border-radius: .4em;
     height: 20em;
     display: flex;
     flex-direction: column;
@@ -69,7 +75,7 @@ mark {
 
 .editor button {
     border: none;
-    padding: 0.4em 0.5em;
+    padding: .4em .5em;
     background-color: var(--button);
     font-size: var(--small);
     color: var(--mark);
@@ -82,6 +88,14 @@ pre, .CodeMirror {
     color: var(--mark);
     font-size: var(--small);
     font-family: monospace
+}
+
+pre[code] {
+    color: var(--comment)
+}
+
+pre span {
+    color: var(--mark)
 }
 
 a {
@@ -101,16 +115,27 @@ footer {
 }
 
 pre {
-    padding: 0.8em;
+    padding: .8em;
     margin: 1em 0;
     border-radius: var(--radius);
     overflow: auto
 }
 
-footer span {color: var(--text)}
-a:hover {color: var(--comment)}
-html {scroll-behavior: smooth}
-canvas:focus {outline: none}
+footer span {
+    color: var(--text)
+}
+
+a:hover {
+    color: var(--comment)
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+canvas:focus {
+    outline: none
+}
 
 .top {
     overflow: hidden;
@@ -120,7 +145,7 @@ canvas:focus {outline: none}
 .top a:first-child {
     font-family: dyslexic;
     font-size: 40px;
-    padding-right: 0.2em;
+    padding-right: .2em;
     color: var(--main)
 }
 
@@ -139,10 +164,21 @@ canvas:focus {outline: none}
     padding-left: 1em
 }
 
-.top i.fa-bars {display: none}
-.top a {text-decoration: none}
-.top a.this, .top a:not(:first-child):hover, .top i:hover {color: var(--link)}
-.main {min-height: 100vh}
+.top i.fa-bars {
+    display: none
+}
+
+.top a {
+    text-decoration: none
+}
+
+.top a.this, .top a:not(:first-child):hover, .top i:hover {
+    color: var(--link)
+}
+
+.main {
+    min-height: 100vh
+}
 
 @media screen and (min-width: 64em) {
     .top {
@@ -157,22 +193,48 @@ canvas:focus {outline: none}
         margin: 0 auto
     }
 
-    :root {--font: 20px; --large: 110px}
+    :root {
+        --font: 20px;
+        --large: 110px
+    }
 }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
-    .top {padding: 2em 4em}
-    .main {padding: 1em 4em}
-    :root {--font: 18px; --large: 90px}
+    .top {
+        padding: 2em 4em
+    }
+
+    .main {
+        padding: 1em 4em
+    }
+
+    :root {
+        --font: 18px;
+        --large: 90px
+    }
 }
 
 @media screen and (max-width: 42em) {
-    .top {padding: 2em 1em}
-    .main {padding: 1em 1em 2em 1em}
-    :root {--font: 16px; --large: 70px}
+    .top {
+        padding: 2em 1em
+    }
 
-    .top a:not(:first-child), .top i.theme {display: none}
-    .top i.fa-bars {display: block}
+    .main {
+        padding: 1em 1em 2em 1em
+    }
+
+    :root {
+        --font: 16px;
+        --large: 70px
+    }
+
+    .top a:not(:first-child), .top i.theme {
+        display: none
+    }
+
+    .top i.fa-bars {
+        display: block
+    }
 
     .top.active a:not(:first-child) {
         padding-top: var(--padding);
@@ -181,6 +243,6 @@ canvas:focus {outline: none}
 }
 
 * {
-    transition-duration: 0.2s;
+    transition-duration: .2s;
     box-sizing: border-box
 }
