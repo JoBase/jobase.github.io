@@ -16,6 +16,7 @@ body[theme = light] {
     --number: #960;
     --variable: #d55;
     --title: #06c;
+    color-scheme: light
 }
 
 body[theme = dark] {
@@ -35,6 +36,7 @@ body[theme = dark] {
     --number: #d92;
     --variable: #f66;
     --title: #6af;
+    color-scheme: dark
 }
 
 .string, .cm-string, .cm-string-2 {color: var(--string)}

@@ -282,10 +282,86 @@ run()
             </p>
 
             <p>
-                The next part of this tutorial (the score) is coming soon.
+                To add the score, we need to draw some text.
+                Let's do that now.
             </p>
 
-            <!-- <pre editor>
+            <pre code>
+coin = Image(COIN)
+enemy = Image(ENEMY)
+
+<span>text = Text("Score: 0", font_size = 30)</span>
+
+def loop():
+    man.draw()
+    coin.draw()
+    enemy.draw()
+    <span>text.draw()</span>
+
+    if key.up:
+        man.y += 3
+            </pre>
+
+            <pre code>
+    if enemy.collides_with(coin):
+        coin.x = random(camera.left, camera.right)
+        coin.y = random(camera.bottom, camera.top)
+
+    <span>text.bottom = camera.bottom
+    text.left = camera.left + 5</span>
+
+run()
+            </pre>
+
+            <p>
+                At the end of the game loop, we position the text in the bottom left corner of the camera.
+                To make the text change, we need store it as a variable.
+            </p>
+
+            <pre code>
+enemy = Image(ENEMY)
+
+text = Text("Score: 0", font_size = 30)
+<span>score = 0</span>
+
+def loop():
+    <span>global score</span>
+
+    man.draw()
+    coin.draw()
+            </pre>
+
+            <pre code>
+    if man.collides_with(coin):
+        coin.x = random(camera.left, camera.right)
+        coin.y = random(camera.bottom, camera.top)
+
+        <span>score += 1
+        print(score)</span>
+
+    if enemy.collides_with(coin):
+        coin.x = random(camera.left, camera.right)
+        coin.y = random(camera.bottom, camera.top)
+
+        <span>score -= 1
+        print(score)</span>
+
+    text.bottom = camera.bottom
+    text.left = camera.left + 5
+            </pre>
+
+            <p>
+                In the code above, we initialize the score variable at <mark>0</mark>, then we update it whenever the player or enemy collides with the coin.
+                We wrote <mark>global score</mark> at the top of the game loop to tell Python that the score variable can be accessed any where in the program.
+                If this doesn't really make sense, don't worry; just make sure you include it at the top of the loop.
+            </p>
+
+            <p>
+                When you run the code, the score is printed whenever the coin is collected.
+                Instead of printing it, let's update the text.
+            </p>
+
+            <pre editor>
 from JoBase import *
 
 man = Image(MAN)
@@ -295,8 +371,6 @@ enemy = Image(ENEMY)
 text = Text("Score: 0", font_size = 30)
 score = 0
 
-window.caption = "Coin Collector"
-
 def loop():
     global score
 
@@ -305,10 +379,17 @@ def loop():
     enemy.draw()
     text.draw()
 
-    if key.up: man.y += 3
-    elif key.down: man.y -= 3
-    elif key.left: man.x -= 3
-    elif key.right: man.x += 3
+    if key.up:
+        man.y += 3
+
+    elif key.down:
+        man.y -= 3
+
+    elif key.left:
+        man.x -= 3
+
+    elif key.right:
+        man.x += 3
 
     enemy.look_at(coin)
     enemy.move_toward(coin, 1.5)
@@ -331,7 +412,18 @@ def loop():
     text.left = camera.left + 5
 
 run()
-            </pre> -->
+            </pre>
+
+            <p>
+                You may notice that we added the score variable to the end of the <mark>"Score: "</mark> string, this is called concatenation (joining two strings together).
+                The <mark>str</mark> function turns the score into a string before joining it.
+            </p>
+
+            <p>
+                Well done, that's it for the game.
+                You can make it more interesting by adding multiple enimies, a countdown timer, or even another player (controlled with different keys).
+                Please email any of your final projects to <a href = mailto:hello@jobase.org>hello@jobase.org</a>.
+            </p>
         </section>
 
         <footer>

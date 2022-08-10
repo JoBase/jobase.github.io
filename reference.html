@@ -58,23 +58,51 @@
                 src: url(/Browser/JoBase/fonts/typewriter.ttf)
             }
 
-            div[font = code] {font-family: "code"}
-            div[font = default] {font-family: "default"}
-            div[font = handwriting] {font-family: "handwriting"}
-            div[font = joined] {font-family: "joined"}
-            div[font = pencil] {font-family: "pencil"}
-            div[font = serif] {font-family: "serif"}
-            div[font = typewriter] {font-family: "typewriter"}
+            div[font = code] {
+                font-family: "code"
+            }
 
-            .indent {margin-left: 2em}
-            pre[large] {font-size: var(--font)}
-            pre[small] {font-size: var(--small)}
+            div[font = default] {
+                font-family: "default"
+            }
+
+            div[font = handwriting] {
+                font-family: "handwriting"
+            }
+
+            div[font = joined] {
+                font-family: "joined"
+            }
+
+            div[font = pencil] {
+                font-family: "pencil"
+            }
+
+            div[font = serif] {
+                font-family: "serif"
+            }
+
+            div[font = typewriter] {
+                font-family: "typewriter"
+            }
+
+            .indent {
+                margin-left: 2em
+            }
+
+            pre[large] {
+                font-size: var(--font)
+            }
+
+            pre[small] {
+                font-size: var(--small)
+            }
 
             pre[small], pre[large] {
                 display: table;
                 font-weight: bold;
                 white-space: pre-wrap;
-                margin: 2em 0 0.6em 0
+                margin: 2em 0 .6em 0
             }
 
             details {
@@ -90,7 +118,7 @@
             }
 
             .list {
-                margin: 0.6em 0;
+                margin: .6em 0;
                 display: flex;
                 flex-wrap: wrap
             }
@@ -103,14 +131,14 @@
                 border-radius: var(--radius);
                 background-color: var(--block);
                 border: 1px solid var(--button);
-                padding: 0.5em 1em;
-                margin: 0.2em
+                padding: .5em 1em;
+                margin: .2em
             }
 
             .list section {
                 display: block;
                 float: left;
-                margin-right: 0.5em;
+                margin-right: .5em;
                 border-radius: var(--radius);
                 width: 1.2em;
                 height: 1.2em
@@ -121,7 +149,7 @@
                 position: absolute;
                 background-color: #fff;
                 transform: translateX(50%);
-                bottom: calc(100% + 0.5em);
+                bottom: calc(100% + .5em);
                 border-radius: var(--radius);
                 padding: var(--padding);
                 font-size: var(--font);
@@ -137,8 +165,8 @@
                 position: absolute;
                 top: 100%;
                 left: 50%;
-                margin-left: -0.3em;
-                border-width: 0.3em;
+                margin-left: -.3em;
+                border-width: .3em;
                 border-style: solid
             }
 
@@ -227,7 +255,7 @@
                 Although we have displayed it as a <mark>tuple</mark>, it behaves quite differently.
             </p>
 
-            <pre code>size: (float, float)</pre>
+            <pre code><span>size: (float, float)</span></pre>
 
             <p>
                 The variable above is actually a JoBase vector.
@@ -236,7 +264,7 @@
             </p>
 
             <pre code>
-box = Rectangle(width = 20, height = 20)
+<span>box = Rectangle(width = 20, height = 20)
 print(box.size) # (20, 20)
 
 box.size = 30, 10
@@ -245,20 +273,20 @@ print(box.size) # (30, 10)
 box.size.x = 40
 print(box.size) # (40, 10)
 box.size = 100
-print(box.size) # (100, 100)
+print(box.size) # (100, 100)</span>
             </pre>
 
             JoBase vectors also support rich comparisons and numerical operations.
 
             <pre code>
-box.size = (5, 7)
+<span>box.size = (5, 7)
 box.pos = [5, 7]
 print(box.size == box.pos) # True
 
 box.pos += 1
 print(box.pos) # (6, 8)
 box.pos *= 2
-print(box.pos) # (12, 16)
+print(box.pos) # (12, 16)</span>
             </pre>
 
             <h1>Classes</h1>
@@ -516,11 +544,14 @@ run()
                     Access the state of a specific mouse button.
 
                     <pre code>
-if cursor.middle:
+<span>if cursor.middle:
     # the middle mouse button is held down
 
+if cursor.right.press:
+    # the right mouse button is pressed
+
 if cursor.middle.release:
-    # the middle mouse button is released
+    # the middle mouse button is released</span>
                     </pre>
 
                     Below is a list of all the mouse button names.
@@ -550,7 +581,7 @@ if cursor.middle.release:
                     A specific button is released.
                 </div>
 
-                <pre id = Cursor.collides_with small>collides_with(other: object)</pre>
+                <pre id = Cursor.collide small>collide, collides_with(other: object) -> bool</pre>
 
                 <div class = indent>
                     Check if the cursor collides with the another object.
@@ -595,14 +626,14 @@ if cursor.middle.release:
                     Access the state of a specific key.
 
                     <pre code>
-if key.left:
+<span>if key.left:
     # the left arrow key is held down
 
 if key.press:
     # the left arrow key is pressed
 
 if key.left.release:
-    # the left arrow key is released
+    # the left arrow key is released</span>
                     </pre>
 
                     Below is a list of all the key names.
@@ -942,7 +973,7 @@ if key.left.release:
                     Move the object toward another object at a constant speed.
                 </div>
 
-                <pre id = Base.collides_with small>collide, collides_with(other: object)</pre>
+                <pre id = Base.collide small>collide, collides_with(other: object) -> bool</pre>
 
                 <div class = indent>
                     Check if the object collides with the another object.
@@ -1090,7 +1121,7 @@ run()
                 The example below creates a box that bounces on the ground.
 
                 <pre code>
-from JoBase import *
+<span>from JoBase import *
 
 floor = Rectangle(width = window.width, height = 20)
 floor.bottom = camera.bottom
@@ -1110,18 +1141,18 @@ def loop():
     floor.draw()
     box.draw()
 
-run()
+run()</span>
                 </pre>
 
                 If you are adding many objects to the physics engine, you can draw them all by iterating the class.
 
                 <pre code>
-engine = Physics()
+<span>engine = Physics()
 
 # add lots of things
 
 for thing in engine:
-    thing.draw()
+    thing.draw()</span>
                 </pre>
 
                 <pre id = Physics.gravity.x small>gravity.x: float</pre>
@@ -1180,7 +1211,7 @@ for thing in engine:
             <pre id = run large>def run()</pre>
 
             <div class = indent>
-                Activate the main game loop and display the window.
+                Run the game and display the window.
                 Always call this method at the bottom of your code.
             </div>
         </section>
