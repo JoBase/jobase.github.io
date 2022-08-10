@@ -22,7 +22,8 @@ function toggleTheme(element) {
 
 onload = () => {
     const icon = document.querySelector(".theme")
-    const code = document.querySelectorAll("pre[large], pre[small], pre[code]")
+    const code = document.querySelectorAll("pre[large], pre[small]")
+    const pre = document.querySelectorAll("pre[code]")
     const editors = document.querySelectorAll("pre[editor]")
 
     const data = [
@@ -44,9 +45,19 @@ onload = () => {
             i + 1 == data.length ? e : loop(e, i + 1)).join("")
     }
 
+    const highlight = e => {
+        const html = loop(e.textContent.trim())
+        e.innerHTML = html.replace(/(<\/span>) (<span)/g, "$1$2> $1$2")
+    }
+
+    pre.forEach(e => {
+        e.querySelectorAll("span").forEach(highlight)
+        e.innerHTML = e.innerHTML.replace(/(^\n|\n\s+$)/g, "")
+    })
+
+    code.forEach(highlight)
     icon.className += ` fa-solid fa-${document.body.getAttribute("theme") == "dark" ? "moon" : "sun"}`
     year.textContent = new Date().getFullYear()
-    code.forEach(e => e.innerHTML = loop(e.textContent.trim()).replace(/(<\/span>) (<span)/g, "$1$2> $1$2"))
     editors.length && Sk.configure({output: text => console.log(text)})
 
     editors.forEach(e => {
@@ -82,12 +93,12 @@ onload = () => {
             code.style.width = 0
             Sk.JoBase = canvas
             resize()
-    
+
             try {
-                await (program.promise = Sk.misceval.asyncToPromise(() =>
-                    Sk.importMainWithBody("<stdin>", false, mirror.getValue(), true)))
+                const run = () => Sk.importMainWithBody("<stdin>", false, mirror.getValue(), true)
+                await (program.promise = Sk.misceval.asyncToPromise(run))
             } catch (error) {console.error(error.toString())}
-    
+
             run.removeAttribute("active")
             cancel.setAttribute("active", true)
     
@@ -126,4 +137,9 @@ onload = () => {
         a.textContent = " Run"
         b.textContent = " Stop"
     })
+}
+
+onkeydown = event => {
+    const options = ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]
+    options.includes(event.code) && event.preventDefault()
 }
