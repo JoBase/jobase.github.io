@@ -14,7 +14,7 @@
         <link rel = stylesheet href = /css/color.css>
         <link rel = stylesheet href = /css/main.css>
     
-        <title>JoBase · Examples · Tennis</title>
+        <title>JoBase · Examples · Physics</title>
     </head>
   
     <body>
@@ -32,95 +32,65 @@
         </section>
 
         <section class = main>
-            <h2>Tennis</h2>
-
-            <video controls autoplay><source src = /assets/videos/tennis.mp4></video>
+            <h2>Physics</h2>
 
             <p>
-                Run this example by typing the following command into the terminal.
+                If you have JoBase installed locally, you can run this example by typing the following command into the terminal.
             </p>
 
-            <pre>python -m JoBase.examples.tennis</pre>
+            <pre>python -m JoBase.examples.physics</pre>
 
             <pre code>
-from JoBase import *
+<span>from JoBase import *
 
-top = Rectangle(height = 500)
-bottom = Rectangle(height = 500)
-
-player_1 = Rectangle(width = 30, height = 150, color = WHITE)
-player_2 = Rectangle(width = 30, height = 150, color = WHITE)
-
-text = Text(color = WHITE)
-ball = Circle(diameter = 30, color = ORANGE)
-engine = Physics(0, 0)
-
-score_1 = 0
-score_2 = 0
-
-window.color = DARK_GRAY
-window.caption = "Tennis"
+window.caption = "Physics"
 window.size = 1024, 576
 
-player_1.type = player_2.type = STATIC
-player_1.elasticity = player_2.elasticity = 1.2
+engine = Physics()
+time = 0
 
-top.type = bottom.type = STATIC
-top.elasticity = bottom.elasticity = 1
-top.friction = bottom.friction = 0
-
-ball.elasticity = 1
-ball.friction = 1
-
-engine.add(top)
-engine.add(bottom)
-engine.add(player_1)
-engine.add(player_2)
-engine.add(ball)
-
-def reset():
-    text.content = str(score_1) + " - " + str(score_2)
-    ball.speed.x = -300 if randint(0, 1) else 300
-    ball.speed.y = random(-100, 100)
-    ball.pos = 0
+floor = Rectangle(width = window.width - 300, height = 20, color = GRAY)
+floor.type = STATIC
+floor.bottom = camera.bottom
+engine.add(floor)
 
 def loop():
-    global score_1, score_2
-
-    if window.resize:
-        top.width = bottom.width = window.width
-        top.top = camera.bottom
-        bottom.bottom = camera.top
-
-        text.top = camera.top
-        player_1.left = camera.left
-        player_2.right = camera.right
-
-    if key.w: player_1.speed.y = 400
-    elif key.s: player_1.speed.y = -400
-    else: player_1.speed.y = 0
-
-    if key.up: player_2.speed.y = 400
-    elif key.down: player_2.speed.y = -400
-    else: player_2.speed.y = 0
+    global time
 
     engine.update()
+    time += 1
 
-    if ball.left > camera.right:
-        score_1 += 1
-        reset()
+    if cursor.press:
+        box = Rectangle()
+        box.size = 60
+        box.pos = cursor.pos
+        box.mass = 100
+        box.color = BLACK
 
-    elif ball.right < camera.left:
-        score_2 += 1
-        reset()
+        engine.add(box)
 
-    player_1.draw()
-    player_2.draw()
-    ball.draw()
-    text.draw()
+    if not time % 5:
+        thing = None
 
-reset()
-run()
+        if randint(0, 1):
+            thing = Rectangle(
+                width = random(20, 30),
+                height = random(20, 30))
+
+        else: thing = Circle(diameter = random(20, 30))
+        
+        thing.y = camera.top + 100
+        thing.color = random(0, 1), random(0, 1), random(0, 1)
+        engine.add(thing)
+
+    for thing in engine:
+        if thing.top < camera.bottom:
+            engine.remove(thing)
+
+    for thing in engine:
+        thing.draw()
+
+run()</span>
             </pre>
         </section>
 

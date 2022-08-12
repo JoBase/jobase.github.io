@@ -8,13 +8,19 @@
         <script src = /js/setup.js></script>
         <script src = /js/main.js></script>
 
+        <script src = /Browser/skulpt/skulpt.min.js></script>
+        <script src = /Browser/skulpt/skulpt-stdlib.js></script>
+        <script src = /assets/codemirror/lib/codemirror.js></script>
+        <script src = /assets/codemirror/mode/python/python.js></script>
+
+        <link rel = stylesheet href = /assets/codemirror/lib/codemirror.css>
         <link rel = stylesheet href = /assets/fontawesome/css/fontawesome.min.css>
         <link rel = stylesheet href = /assets/fontawesome/css/all.min.css>
 
         <link rel = stylesheet href = /css/color.css>
         <link rel = stylesheet href = /css/main.css>
     
-        <title>JoBase · Examples · Physics</title>
+        <title>JoBase · Examples · Tennis</title>
     </head>
   
     <body>
@@ -32,66 +38,72 @@
         </section>
 
         <section class = main>
-            <h2>Physics</h2>
-
-            <video controls autoplay><source src = /assets/videos/physics.mp4></video>
+            <h2>Tennis</h2>
 
             <p>
-                Run this example by typing the following command into the terminal.
+                If you have JoBase installed locally, you can run this example by typing the following command into the terminal.
             </p>
 
-            <pre>python -m JoBase.examples.physics</pre>
+            <pre>python -m JoBase.examples.tennis</pre>
 
-            <pre code>
+            <pre editor>
 from JoBase import *
 
-window.caption = "Physics"
-window.size = 1024, 576
+player = Rectangle(width = 150, height = 30, color = WHITE)
+text = Text(color = LIGHT_BLUE, font_size = 20)
+ball = Circle(diameter = 30, color = ORANGE)
 
-engine = Physics()
-time = 0
+score = 0
+best = 0
 
-floor = Rectangle(width = window.width - 300, height = 20, color = GRAY)
-floor.type = STATIC
-floor.bottom = camera.bottom
-engine.add(floor)
+window.color = DARK_GRAY
+window.caption = "Tennis"
+
+def update():
+    text.content = "Score: " + str(score) + ", Best: " + str(best)
+
+def reset():
+    ball.pos.y = 200
+    ball.speed.x = -2 if randint(0, 1) else 2
+    ball.speed.y = 0
+
+    update()
 
 def loop():
-    global time
+    global score, best
 
-    engine.update()
-    time += 1
+    if ball.top < camera.bottom:
+        if score > best:
+            best = score
 
-    if cursor.press:
-        box = Rectangle()
-        box.size = 60
-        box.pos = cursor.pos
-        box.mass = 100
-        box.color = BLACK
+        score = 0
+        reset()
 
-        engine.add(box)
+    if ball.collides_with(player):
+        ball.speed.y = abs(ball.speed.y)
+        ball.speed.x *= 1.1
 
-    if not time % 5:
-        thing = None
+        score += 1
+        update()
 
-        if randint(0, 1):
-            thing = Rectangle(
-                width = random(20, 30),
-                height = random(20, 30))
+    if ball.right > camera.right or ball.left < camera.left:
+        ball.speed.x *= -1
 
-        else: thing = Circle(diameter = random(20, 30))
-        
-        thing.y = camera.top + 100
-        thing.color = random(0, 1), random(0, 1), random(0, 1)
-        engine.add(thing)
+    if key.left: player.x -= 5
+    if key.right: player.x += 5
 
-    for thing in engine:
-        if thing.top < camera.bottom:
-            engine.remove(thing)
+    player.bottom = camera.bottom
+    text.left = camera.left + 10
+    text.top = camera.top - 10
 
-    for thing in engine:
-        thing.draw()
+    ball.speed.y -= 0.1
+    ball.pos += ball.speed
 
+    player.draw()
+    ball.draw()
+    text.draw()
+
+reset()
 run()
             </pre>
         </section>
