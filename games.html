@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = viewport content = "width=device-width,initial-scale=1">
+        <link rel = icon href = assets/images/favicon.ico sizes = "16x16 32x32 48x48 64x64" type = image/vnd.microsoft.icon>
+
+        <script async src = "//www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
+        <script src = js/setup.js></script>
+        <script src = js/main.js></script>
+
+        <link rel = stylesheet href = assets/fontawesome/css/fontawesome.min.css>
+        <link rel = stylesheet href = assets/fontawesome/css/all.min.css>
+        
+        <link rel = stylesheet href = css/color.css>
+        <link rel = stylesheet href = css/main.css>
+    
+        <title>JoBase · Games</title>
+
+        <style>
+            .main {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-gap: 1.5em;
+                align-items: stretch
+            }
+
+            .main img {
+                max-width: 100%;
+                border-radius: var(--radius)
+            }
+
+            .main a {
+                text-align: center;
+                font-weight: bold;
+                color: var(--mark);
+                cursor: pointer
+            }
+
+            .main a:hover img {
+                opacity: .5
+            }
+        </style>
+    </head>
+  
+    <body>
+        <section class = top>
+            <a href = "/">JoBase</a>
+            <i onclick = toggleBars(this) class = "fa-solid fa-bars"></i>
+            <i onclick = toggleTheme(this) class = theme></i>
+            <a href = "/">Home</a>
+            <a href = tutorials>Tutorials</a>
+            <a href = games class = this>Games</a>
+            <a href = reference>Reference</a>
+
+            <a href = //github.com/JoBase target = _blank>
+                <i class = "fa-brands fa-github"></i>
+            </a>
+        </section>
+
+        <section class = main>
+            <a href = "/play?file=blue_hue/__main__" target = _blank>
+                <img src = assets/images/blue_hue.png>
+                Blue Hue
+            </a>
+
+            <a href = "/play?file=coin_collector" target = _blank>
+                <img src = assets/images/coin_collector.png>
+                Coin Collector
+            </a>
+
+            <a href = "/play?file=tennis" target = _blank>
+                <img src = assets/images/tennis.png>
+                Tennis
+            </a>
+        </section>
+
+        <footer>
+            <span>
+                © Copyright <span id = year></span> JoBase ·
+                <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+            </span>
+        </footer>
+    </body>
+</html>
