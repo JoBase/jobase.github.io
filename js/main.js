@@ -80,8 +80,6 @@ onload = () => {
             canvas.height = canvas.offsetHeight * devicePixelRatio
         }
 
-        new ResizeObserver(resize).observe(editor)
-
         run.onclick = async () => {
             const code = mirror.getWrapperElement()
             await cancel.onclick()
@@ -111,16 +109,18 @@ onload = () => {
                 Sk.execLimit = 0
                 await program.promise
             } catch {}
-    
+
             delete Sk.execLimit
         }
-    
+
+        new ResizeObserver(resize).observe(editor)
+        e.replaceWith(editor)
+
         run.append(gear, a)
         cancel.append(square, b)
         buttons.append(run, cancel)
         editor.append(buttons, main)
-        e.replaceWith(editor)
-    
+
         const mirror = CodeMirror(main, {
             mode: "python",
             theme: "none", 
