@@ -1,4 +1,6 @@
 body[theme = light] {
+    --green: #4a4;
+    --hover: #393;
     --dim: #fff;
     --background: #ddd;
     --text: #666;
@@ -20,6 +22,8 @@ body[theme = light] {
 }
 
 body[theme = dark] {
+    --green: #393;
+    --hover: #282;
     --dim: #333;
     --background: #444;
     --text: #aaa;

@@ -15,31 +15,6 @@
         <link rel = stylesheet href = css/main.css>
     
         <title>JoBase · Games</title>
-
-        <style>
-            .main {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                grid-gap: 1.5em;
-                align-items: stretch
-            }
-
-            .main img {
-                max-width: 100%;
-                border-radius: var(--radius)
-            }
-
-            .main a {
-                text-align: center;
-                font-weight: bold;
-                color: var(--mark);
-                cursor: pointer
-            }
-
-            .main a:hover img {
-                opacity: .5
-            }
-        </style>
     </head>
   
     <body>
@@ -58,20 +33,46 @@
         </section>
 
         <section class = main>
-            <a href = "/play?file=blue_hue/__main__" target = _blank>
-                <img src = assets/images/blue_hue.png>
-                Blue Hue
-            </a>
+            <div class = image>
+                <a href = "Browser?file=blue_hue/__main__">
+                    <img src = assets/images/blue_hue.png>
+                </a>
 
-            <a href = "/play?file=coin_collector" target = _blank>
-                <img src = assets/images/coin_collector.png>
-                Coin Collector
-            </a>
+                <div>
+                    <h2>Blue Hue</h2>
+                    <pre>python -m JoBase.examples.blue_hue</pre>
+                    
+                    A platform game by Joachim Ford.
+                    Use the arrow keys - WASD or ZQSD - to control the player around each level.
+                </div>
+            </div>
 
-            <a href = "/play?file=tennis" target = _blank>
-                <img src = assets/images/tennis.png>
-                Tennis
-            </a>
+            <div class = image>
+                <a href = "Browser?file=coin_collector">
+                    <img src = assets/images/coin_collector.png>
+                </a>
+
+                <div>
+                    <h2>Coin Collector</h2>
+                    <pre>python -m JoBase.examples.coin_collector</pre>
+
+                    This game is a begginer's introduction to JoBase.
+                    Learn how to make it on our tutorials page.
+                </div>
+            </div>
+
+            <div class = image>
+                <a href = "Browser?file=tennis">
+                    <img src = assets/images/tennis.png>
+                </a>
+
+                <div>
+                    <h2>Tennis</h2>
+                    <pre>python -m JoBase.examples.tennis</pre>
+
+                    Use the arrow keys to control the paddle.
+                </div>
+            </div>
         </section>
 
         <footer>
