@@ -138,8 +138,3 @@ onload = () => {
         b.textContent = " Stop"
     })
 }
-
-onkeydown = event => {
-    const options = ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]
-    options.includes(event.code) && event.preventDefault()
-}
