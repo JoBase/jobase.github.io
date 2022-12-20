@@ -207,6 +207,7 @@
                 <a href = #Image>Image</a>
                 <a href = #Text>Text</a>
                 <a href = #Circle>Circle</a>
+                <a href = #Line>Line</a>
                 <a href = #Shape>Shape</a>
                 <a href = #Physics>Physics</a>
             </details>
@@ -1101,6 +1102,20 @@ run()
                 <div class = indent>
                     The radius of the circle (half of the diameter).
                 </div>
+            </div>
+
+            <pre id = Line large>class Line(points = ((-25, -25), (25, 25)), width = 1, color = BLACK)</pre>
+
+            <div class = indent>
+                This class is for drawing lines.
+                Although lines are limited, we hope to improve them soon.
+                Because it extends the <a href = #Base>Base</a> class, it contains all the same attributes.
+            </div>
+
+            <pre id = Line.diameter small>width: float</pre>
+
+            <div class = indent>
+                The thickness of the line.
             </div>
 
             <pre id = Shape large>class Shape(points = ((0, 25), (25, -25), (-25, -25)), x = 0, y = 0, angle = 0, color = BLACK)</pre>
