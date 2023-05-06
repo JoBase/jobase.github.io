@@ -2,83 +2,79 @@
 <html>
     <head>
         <meta name = viewport content = "width=device-width,initial-scale=1">
-        <link rel = icon href = assets/images/favicon.ico sizes = "16x16 32x32 48x48 64x64" type = image/vnd.microsoft.icon>
+        <link rel = icon href = data/images/favicon.ico sizes = "16x16 32x32 48x48 64x64">
 
-        <script async src = "//www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
-        <script src = js/setup.js></script>
-        <script src = js/main.js></script>
+        <script src = data/js/setup.js></script>
+        <script src = data/js/code.js></script>
 
-        <link rel = stylesheet href = assets/fontawesome/css/fontawesome.min.css>
-        <link rel = stylesheet href = assets/fontawesome/css/all.min.css>
-        
-        <link rel = stylesheet href = css/color.css>
-        <link rel = stylesheet href = css/main.css>
-    
-        <title>JoBase · Games</title>
+        <link rel = stylesheet href = data/css/fontawesome.css>
+        <link rel = stylesheet href = data/css/solid.css>
+        <link rel = stylesheet href = data/css/main.css>
+
+        <title>JoBase &middot; Games</title>
     </head>
   
     <body>
         <section class = top>
             <a href = "/">JoBase</a>
-            <i onclick = toggleBars(this) class = "fa-solid fa-bars"></i>
-            <i onclick = toggleTheme(this) class = theme></i>
+            <i class = "fa-solid fa-bars"></i>
+            <i class = "fa-solid fa-sun"></i>
             <a href = "/">Home</a>
-            <a href = tutorials>Tutorials</a>
+            <a href = lessons>Lessons</a>
             <a href = games class = this>Games</a>
             <a href = reference>Reference</a>
 
-            <a href = //github.com/JoBase target = _blank>
+            <a href = https://github.com/JoBase target = _blank>
                 <i class = "fa-brands fa-github"></i>
             </a>
         </section>
 
         <section class = main>
             <div class = image>
-                <a href = "Browser?file=blue_hue/__main__">
-                    <img src = assets/images/blue_hue.png>
+                <a href = "games/squirtcopter">
+                    <img src = data/images/squirtcopter.png>
+                </a>
+
+                <div>
+                    <h2>Squirtcopter</h2>
+                    <pre>python -m JoBase.examples.squirtcopter</pre>
+
+                    Use the arrow keys WASD or ZQSD to control the player through an infinite world.
+                    Reach the checkpoints and upgrade your helicopter.
+                </div>
+            </div>
+
+            <div class = image>
+                <a href = "games/blue-hue">
+                    <img src = data/images/blue_hue.png>
                 </a>
 
                 <div>
                     <h2>Blue Hue</h2>
                     <pre>python -m JoBase.examples.blue_hue</pre>
-                    
+
                     A platform game by Joachim Ford.
                     Use the arrow keys WASD or ZQSD to control the player around each level.
                 </div>
             </div>
 
             <div class = image>
-                <a href = "Browser?file=coin_collector">
-                    <img src = assets/images/coin_collector.png>
+                <a href = "games/physics">
+                    <img src = data/images/physics.png>
                 </a>
 
                 <div>
-                    <h2>Coin Collector</h2>
-                    <pre>python -m JoBase.examples.coin_collector</pre>
+                    <h2>Physics</h2>
+                    <pre>python -m JoBase.examples.physics</pre>
 
-                    This game is a begginer's introduction to JoBase.
-                    Learn how to make it on our tutorials page.
-                </div>
-            </div>
-
-            <div class = image>
-                <a href = "Browser?file=tennis">
-                    <img src = assets/images/tennis.png>
-                </a>
-
-                <div>
-                    <h2>Tennis</h2>
-                    <pre>python -m JoBase.examples.tennis</pre>
-
-                    Use the arrow keys to control the paddle.
+                    A simple demo of the JoBase physics engine.
                 </div>
             </div>
         </section>
 
         <footer>
             <span>
-                © Copyright <span id = year></span> JoBase ·
-                <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+                &copy; Copyright <span id = year></span> JoBase &middot; <a href = mailto:hello@jobase.org>hello@jobase.org</a>
             </span>
         </footer>
     </body>

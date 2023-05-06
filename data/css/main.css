@@ -1,0 +1,438 @@
+@font-face {
+    font-family: dyslexic;
+    src: url(/data/webfonts/dyslexic.otf)
+}
+
+@font-face {
+    font-family: varela;
+    src: url(/data/webfonts/varela.ttf)
+}
+
+@media screen and (min-width: 48em) and (max-width: 64em) {
+    .top {
+        padding: 2em 4em
+    }
+
+    .main {
+        padding: 1em 4em
+    }
+
+    .image img {
+        max-width: 60%
+    }
+
+    :root {
+        --font: 18px;
+        --header: 90px
+    }
+}
+
+@media screen and (max-width: 48em) {
+    .top {
+        padding: 2em 1em
+    }
+
+    .main {
+        padding: 1em 1em 2em 1em
+    }
+
+    .image img {
+        max-width: 80%
+    }
+
+    :root {
+        --font: 16px;
+        --header: 60px
+    }
+
+    .top a:not(:first-child), .top i.theme {
+        display: none
+    }
+
+    .top i.fa-bars {
+        display: block
+    }
+
+    .top.active a:not(:first-child) {
+        padding-top: .4em;
+        display: block
+    }
+}
+
+@media screen and (min-width: 64em) {
+    .top {
+        max-width: 64em;
+        padding: 2em 6em;
+        margin: 0 auto
+    }
+
+    .main {
+        max-width: 64em;
+        padding: 1em 6em;
+        margin: 0 auto
+    }
+
+    .image img {
+        max-width: 50%
+    }
+
+    :root {
+        --font: 20px;
+        --header: 110px
+    }
+}
+
+body[theme = sun] {
+    --background: #eee;
+    --text: #666;
+    --mark: #444;
+    --border: #bbb;
+    --off: #ddd;
+    --block: #fff;
+    --shade: #ccc;
+    --box: #ccc;
+    --green: #6c6;
+    --hover: #4a4;
+    --red: #e66;
+    --float: #c44;
+    --gold: #c82;
+    --shine: #a60;
+    --link: #47b;
+
+    --comment: #999;
+    --code: #555;
+    --string: #6a3;
+    --keyword: #83b;
+    --built_in: #0aa;
+    --number: #c71;
+    --variable: #d55;
+    --title: #06c;
+
+    /* --green: #4a4;
+    --hover: #393;
+    --dim: #fff;
+    --background: #eee;
+    --text: #666;
+    --mark: #444;
+    --link: #47b;
+    --main: #777;
+    --button: #ccc;
+    --blank: #bbb;
+    --block: #eee;
+    --comment: #999;
+    --code: #555;
+    --string: #370;
+    --keyword: #83b;
+    --built_in: #088;
+    --number: #960;
+    --variable: #d55;
+    --title: #06c;
+    color-scheme: light */
+}
+
+body[theme = moon] {
+    --background: #333;
+    --text: #bbb;
+    --mark: #ddd;
+    --border: #666;
+    --off: #444;
+    --block: #222;
+    --shade: #555;
+    --box: #333;
+    --green: #393;
+    --hover: #5b5;
+    --red: #b33;
+    --float: #d55;
+    --gold: #d93;
+    --shine: #fb5;
+    --link: #5af;
+
+    --comment: #888;
+    --string: #8c5;
+    --keyword: #c7f;
+    --built_in: #2cc;
+    --number: #d92;
+    --variable: #f66;
+    --title: #6af;
+
+    /* --green: #393;
+    --hover: #282;
+    --dim: #444;
+    --background: #333;
+    --text: #aaa;
+    --mark: #ccc;
+    --link: #5af;
+    --main: #aaa;
+    --button: #555;
+    --blank: #666;
+    --block: #222;
+    --comment: #888;
+    --string: #8c5;
+    --keyword: #c7f;
+    --built_in: #2cc;
+    --number: #d92;
+    --variable: #f66;
+    --title: #6af;
+    color-scheme: dark */
+}
+
+:root {
+    --fade: .2s;
+    --radius: .3em;
+    --small: 16px
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    margin: 0;
+    font-size: var(--font);
+    background-color: var(--background);
+    font-family: varela;
+    color: var(--text)
+}
+
+mark {
+    color: var(--mark);
+    background: none
+}
+
+.full {
+    overflow: hidden
+}
+
+.full canvas {
+    width: 100vw;
+    height: 100vh
+}
+
+.cm-string, .cm-string-2 {
+    color: var(--string)
+}
+
+.cm-keyword {
+    color: var(--keyword)
+}
+
+.cm-builtin, .cm-operator {
+    color: var(--built_in)
+}
+
+.cm-comment {
+    color: var(--comment)
+}
+
+.cm-number {
+    color: var(--number)
+}
+
+.cm-variable, .cm-variable-2, .cm-variable-3, .cm-property {
+    color: var(--variable)
+}
+
+.cm-def, .cm-meta {
+    color: var(--title)
+}
+
+.CodeMirror-cursor {
+    border-left-color: var(--mark)
+}
+
+.CodeMirror-focused .CodeMirror-selected, .CodeMirror-selected {
+    background-color: var(--background)
+}
+
+.CodeMirror-lines {
+    padding: .8em 0
+}
+
+.CodeMirror-gutters {
+    background-color: var(--block);
+    border-color: var(--box)
+}
+
+.CodeMirror-linenumber {
+    color: var(--border)
+}
+
+.CodeMirror {
+    background: none;
+    height: 100%
+}
+
+.editor {
+    margin: 1em 0;
+    position: relative;
+    mask-image: radial-gradient(#fff, #000);
+    border-radius: var(--radius);
+    height: 12em;
+    display: flex;
+    flex-direction: column
+}
+
+.editor > section {
+    text-shadow: 0px 0px 5px var(--background);
+    cursor: pointer;
+    position: absolute;
+    top: 1em;
+    right: 1em
+}
+
+.editor > section:hover {
+    color: var(--mark)
+}
+
+.editor > div:first-child {
+    position: relative;
+    overflow: hidden;
+    flex: 1 1 0
+}
+
+.editor > div > div {
+    transition: background-color var(--fade), right 1s;
+    background-color: var(--block);
+    position: absolute;
+    display: flex;
+    width: 200%;
+    height: 100%;
+    right: -100%
+}
+
+.editor > div > div > * {
+    flex: 1 1 0
+}
+
+.console {
+    overflow: auto;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: var(--small);
+    background-color: var(--box);
+    flex: 0 0 4em;
+    padding: .8em
+}
+
+.error {
+    color: var(--float)
+}
+
+pre {
+    background-color: var(--block);
+    padding: .8em;
+    margin: 1em 0;
+    border-radius: var(--radius);
+    overflow: auto
+}
+
+pre, .CodeMirror {
+    color: var(--mark);
+    font-size: var(--small);
+    font-family: monospace
+}
+
+a {
+    color: var(--link);
+    text-decoration: none
+}
+
+video, .main > img {
+    width: 100%;
+    border-radius: var(--radius);
+}
+
+footer {
+    width: 100%;
+    padding: .4em;
+    font-size: var(--small)
+}
+
+footer span {
+    color: var(--text)
+}
+
+a:hover {
+    color: var(--comment)
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+canvas:focus {
+    outline: none
+}
+
+.top {
+    overflow: hidden;
+    font-weight: bold
+}
+
+.top a:first-child {
+    font-family: dyslexic;
+    font-size: 40px;
+    padding-right: .2em;
+    color: var(--main)
+}
+
+.top a:not(:first-child), .top i {
+    cursor: pointer;
+    color: var(--comment)
+}
+
+.top > i {
+    float: right;
+    padding-bottom: 1em
+}
+
+.top a:not(:first-child) {
+    font-family: varela;
+    padding-left: 1em
+}
+
+.top i.fa-bars {
+    display: none
+}
+
+.top a {
+    text-decoration: none
+}
+
+.top a.this, .top a:not(:first-child):hover, .top i:hover {
+    color: var(--link)
+}
+
+.main {
+    min-height: 100vh
+}
+
+.image {
+    margin-bottom: 2em
+}
+
+.image img {
+    border-radius: var(--radius);
+    margin-right: 1em
+}
+
+.image div {
+    display: inline-block;
+    inline-size: min-content;
+    vertical-align: top
+}
+
+.image h2 {
+    color: var(--link);
+    margin: .2em 0 .5em 0
+}
+
+.image img:hover {
+    opacity: .5
+}
+
+* {
+    transition-property: color, border-radius, border-color, background-color, opacity;
+    transition-duration: var(--fade);
+    box-sizing: border-box
+}

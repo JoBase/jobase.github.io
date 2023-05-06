@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = viewport content = "width=device-width,initial-scale=1">
+        <link rel = icon href = /assets/images/favicon.ico sizes = "16x16 32x32 48x48 64x64" type = image/vnd.microsoft.icon>
+
+        <script async src = "//www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
+        <script src = /js/setup.js></script>
+        <script src = /js/main.js></script>
+
+        <script src = /Browser/dist/skulpt.js></script>
+        <script src = /Browser/dist/skulpt-stdlib.js></script>
+        <script src = /assets/codemirror/lib/codemirror.js></script>
+        <script src = /assets/codemirror/mode/python/python.js></script>
+        
+        <link rel = stylesheet href = /assets/codemirror/lib/codemirror.css>
+        <link rel = stylesheet href = /assets/fontawesome/css/fontawesome.min.css>
+        <link rel = stylesheet href = /assets/fontawesome/css/all.min.css>
+
+        <link rel = stylesheet href = /css/color.css>
+        <link rel = stylesheet href = /css/main.css>
+    
+        <title>JoBase · Examples · Drawing Things</title>
+    </head>
+  
+    <body>
+        <section class = top>
+            <a href = "/">JoBase</a>
+            <i onclick = toggleBars(this) class = "fa-solid fa-bars"></i>
+            <i onclick = toggleTheme(this) class = theme></i>
+            <a href = "/">Home</a>
+            <a href = /tutorials class = this>Tutorials</a>
+            <a href = /games>Games</a>
+            <a href = /reference>Reference</a>
+
+            <a href = //github.com/JoBase target = _blank>
+                <i class = "fa-brands fa-github"></i>
+            </a>
+        </section>
+
+        <section class = main>
+            <h2>Drawing Things</h2>
+
+            <p>
+                The <a href = 1>last example</a> explained how to render text on the screen.
+                In a proper game, though, we are likely to want to add more than plain text.
+                In the example below, we will start by drawing a rectangle.
+            </p>
+
+            <pre code>
+<span>from JoBase import *
+
+box = Rectangle()
+
+def loop():
+    box.draw()
+
+run()</span>
+            </pre>
+
+            <p>
+                You should now see a default black square on the screen.
+                We can turn it into a rectangle by changing its size.
+            </p>
+
+            <pre code>
+from JoBase import *
+
+box = Rectangle(<span>width = 100, height = 30</span>)
+
+def loop():
+    box.draw()
+            </pre>
+
+            <p>
+                We can also position the rectangle.
+            </p>
+
+            <pre code>
+from JoBase import *
+
+box = Rectangle(<span>x = -150, y = 0,</span> width = 100, height = 30)
+
+def loop():
+    box.draw()
+            </pre>
+
+            <p>
+                As you can see, the code is getting a bit long.
+                We can shorten it by getting rid of the keyword labels.
+            </p>
+
+            <pre code>
+from JoBase import *
+
+box = Rectangle(<span>-150, 0, 100, 30</span>)
+
+def loop():
+    box.draw()
+            </pre>
+
+            <p>
+                In the example above, we removed the word labels to shorten the code.
+                Remember that when removing the labels, you need to keep the numbers in the right order.
+                When creating rectangles, the numbers go in the order of <mark>x</mark>, <mark>y</mark>, <mark>width</mark>, <mark>height</mark>, <mark>angle</mark> and <mark>color</mark>.
+            </p>
+
+            <p>
+                Now let's rotate our rectangle with the <mark>angle</mark> attribute.
+            </p>
+
+            <pre editor>
+from JoBase import *
+
+box = Rectangle(-150, 0, 100, 30, 50)
+
+def loop():
+    box.draw()
+
+run()
+            </pre>
+
+            <p>
+                Let's add a circle.
+            </p>
+
+            <pre code>
+from JoBase import *
+
+box = Rectangle(-150, 0, 100, 30, 50)
+<span>circle = Circle(diameter = 80, color = GOLD)</span>
+
+def loop():
+    box.draw()
+    <span>circle.draw()</span>
+
+run()
+            </pre>
+
+            <p>
+                This will draw a circle in the middle of the screen.
+                Like before we can position our circle and remove the labels.
+            </p>
+
+            <pre editor>
+from JoBase import *
+
+box = Rectangle(-150, 0, 100, 30, 50)
+circle = Circle(150, 0, 80, GOLD)
+
+def loop():
+    box.draw()
+    circle.draw()
+
+run()
+            </pre>
+
+            <p>
+                Remember the attributes of a circle go in the order of <mark>x</mark>, <mark>y</mark>, <mark>diameter</mark> and <mark>color</mark>.
+            </p>
+
+            <p>
+                We can make our demo even more exciting by inventing our own custom shapes.
+            </p>
+
+            <pre code>
+box = Rectangle(-150, 0, 100, 30, 50)
+circle = Circle(150, 0, 80, GOLD)
+
+<span>shape = Shape(((-50, -20), (0, 50), (20, 0)), color = LIGHT_BLUE)</span>
+
+def loop():
+    box.draw()
+    circle.draw()
+    <span>shape.draw()</span>
+
+run()
+            </pre>
+
+            <p>
+                In the code above, we create our own shape by defining a set of three positions.
+                This makes a blue triangle in the middle of the screen.
+                The great thing about custom shapes is that you can make them as complex as you like.
+            </p>
+
+            <pre editor>
+from JoBase import *
+
+box = Rectangle(-150, 0, 100, 30, 50)
+circle = Circle(150, 0, 80, GOLD)
+
+shape = Shape((
+    (0, 50), (15, 15),
+    (50, 0), (15, -15),
+    (0, -50), (-15, -15),
+    (-50, 0), (-15, 15)), color = LIGHT_BLUE)
+
+def loop():
+    box.draw()
+    circle.draw()
+    shape.draw()
+
+run()
+            </pre>
+
+            <p>
+                Now you can draw things in JoBase!
+                Experiment with different combinations and add them to your next game.
+            </p>
+        </section>
+
+        <footer>
+            <span>
+                © Copyright <span id = year></span> JoBase ·
+                <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+            </span>
+        </footer>
+    </body>
+</html>

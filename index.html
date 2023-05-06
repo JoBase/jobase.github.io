@@ -3,45 +3,75 @@
     <head>
         <meta name = viewport content = "width=device-width,initial-scale=1">
         <meta name = description content = "Welcome to JoBase. Learn how to code with the fastest Python tools.">
-        <link rel = icon href = assets/images/favicon.ico sizes = "16x16 32x32 48x48 64x64" type = image/vnd.microsoft.icon>
+        <link rel = icon href = data/images/favicon.ico sizes = "16x16 32x32 48x48 64x64">
 
-        <script async src = "//www.googletagmanager.com/gtag/js?id=G-DKHQZ28TR3"></script>
-        <script src = js/setup.js></script>
-        <script src = js/main.js></script>
-
-        <script src = Browser/dist/skulpt.js></script>
-        <script src = Browser/dist/skulpt-stdlib.js></script>
-        <script src = assets/codemirror/lib/codemirror.js></script>
-        <script src = assets/codemirror/mode/python/python.js></script>
+        <script src = data/js/setup.js></script>
+        <script src = /data/js/codemirror.js></script>
+        <script src = /data/js/syntax.js></script>
+        <script src = /data/js/code.js></script>
         
-        <link rel = stylesheet href = assets/codemirror/lib/codemirror.css>
-        <link rel = stylesheet href = assets/fontawesome/css/fontawesome.min.css>
-        <link rel = stylesheet href = assets/fontawesome/css/all.min.css>
+        <link rel = stylesheet href = data/css/codemirror.css>
+        <link rel = stylesheet href = data/css/fontawesome.css>
+        <link rel = stylesheet href = data/css/solid.css>
+        <link rel = stylesheet href = data/css/main.css>
 
-        <link rel = stylesheet href = css/color.css>
-        <link rel = stylesheet href = css/main.css>
+        <title>JoBase &middot; The Fast Python Game Library</title>
 
-        <title>JoBase · The Fast Python Game Library</title>
-        
         <style>
             .header {
+                position: relative;
                 height: 10em;
-                background-color: #999;
-                color: #ddd;
                 display: flex;
                 justify-content: center;
                 align-items: center
             }
 
             .header h1 {
-                font-size: var(--large);
+                font-size: var(--header);
                 font-family: dyslexic;
-                margin-left: 0.4em
+                margin-left: .4em;
+                color: #fff
             }
 
             .header img {
-                height: 60%;
-                float: left
+                height: 6em
+            }
+
+            .header canvas {
+                border-radius: var(--radius);
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: -1
+            }
+
+            .button {
+                text-align: center;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                padding: 1em
+            }
+
+            .button a {
+                width: 10em;
+                padding: .5em;
+                background-color: var(--green);
+                border-radius: var(--radius) 1em;
+                font-size: var(--font);
+                font-family: varela;
+                color: #fff;
+                cursor: pointer;
+                border: none
+            }
+
+            .button a:hover {
+                border-radius: 1em;
+                background-color: var(--hover)
+            }
+
+            li {
+                margin: 1em
             }
         </style>
     </head>
@@ -49,98 +79,149 @@
     <body>
         <section class = top>
             <a href = "/">JoBase</a>
-            <i onclick = toggleBars(this) class = "fa-solid fa-bars"></i>
-            <i onclick = toggleTheme(this) class = theme></i>
+            <i class = "fa-solid fa-bars"></i>
+            <i class = "fa-solid fa-sun"></i>
             <a href = "/" class = this>Home</a>
-            <a href = tutorials>Tutorials</a>
+            <a href = lessons>Lessons</a>
             <a href = games>Games</a>
             <a href = reference>Reference</a>
 
-            <a href = //github.com/JoBase target = _blank>
+            <a href = https://github.com/JoBase target = _blank>
                 <i class = "fa-brands fa-github"></i>
             </a>
         </section>
 
         <section class = main>
             <div class = header>
-                <img src = assets/images/logo.svg>
+                <canvas id = canvas>
+                    <script type = vs>
+                        in vec2 vert;
+
+                        void main() {
+                            gl_Position = vec4(vert, 0, 1);
+                        }
+                    </script>
+
+                    <script type = fs>
+                        precision mediump float;
+
+                        uniform float time;
+                        out vec4 color;
+
+                        vec2 random(vec2 pos) {
+                            return fract(sin(vec2(dot(pos, vec2(127.1, 311.7)), dot(pos, vec2(269.5, 183.3)))) * 43758.5453);
+                        }
+
+                        void main() {
+                            vec2 pos = floor(gl_FragCoord.xy * .08) * .1;
+                            vec2 index = floor(pos);
+                            vec2 value = fract(pos);
+                            float dist = 1.;
+
+                            for (int y = -1; y <= 1; y ++)
+                                for (int x = -1; x <= 1; x ++) {
+                                    vec2 next = vec2(x, y);
+                                    vec2 point = sin(time + 6.2831 * random(index + next)) / 2. + .5;
+                                    dist = min(dist, length(next + point - value));
+                                }
+
+                            color = vec4(pow(dist, 3.), pow(dist, 2.), dist * .8, .5 + dist);
+                        }
+                    </script>
+
+                    <script>
+                        const gl = canvas.getContext("webgl2")
+                        const program = gl.createProgram()
+                        const time = Date.now()
+
+                        function compile(id, type) {
+                            const shader = gl.createShader(id)
+                            const item = document.querySelector(`[type=${type}]`)
+
+                            gl.shaderSource(shader, "#version 300 es\n" + item.textContent)
+                            gl.compileShader(shader)
+                            gl.attachShader(program, shader)
+
+                            return shader
+                        }
+
+                        function start() {
+                            const vertex = compile(gl.VERTEX_SHADER, "vs")
+                            const fragment = compile(gl.FRAGMENT_SHADER, "fs")
+
+                            gl.linkProgram(program)
+                            gl.useProgram(program)
+                            gl.deleteShader(vertex)
+                            gl.deleteShader(fragment)
+
+                            gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer())
+                            gl.bufferData(gl.ARRAY_BUFFER, new Int8Array([-1, 1, 1, 1, -1, -1, 1, -1]), gl.STATIC_DRAW)
+                            gl.vertexAttribPointer(0, 2, gl.BYTE, false, 0, 0)
+                            gl.enableVertexAttribArray(0)
+
+                            new ResizeObserver(() => {
+                                canvas.width = canvas.clientWidth
+                                canvas.height = canvas.clientHeight
+
+                                gl.viewport(0, 0, canvas.width, canvas.height)
+                                render()
+                            }).observe(canvas)
+
+                            loop()
+                        }
+
+                        function loop() {
+                            requestAnimationFrame(loop)
+                            render()
+                        }
+
+                        function render() {
+                            gl.clear(gl.COLOR_BUFFER_BIT)
+                            gl.uniform1f(gl.getUniformLocation(program, "time"), (Date.now() - time) * 5e-4)
+                            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
+                        }
+
+                        start()
+                    </script>
+                </canvas>
+
+                <img src = data/images/logo.svg>
                 <h1>JoBase</h1>
             </div>
 
-            <h2>Welcome to JoBase</h2>
-            
-            <p>
-                JoBase is a really fast Python game library for beginner coders.
-                It is written in pure C and uses the same modern tools as high-end games like Minecraft.
-            </p>
+            <h2>Learn to Code</h2>
+
+            <ul>
+                <li>Learn with quick lessons that teach you how to use the most popular programming language.</li>
+                <li>Make games and develop your abilites.</li>
+                <li>Have lots of fun as you explore the fastest and easiest Python game library.</li>
+            </ul>
+
+            <div class = button>
+                <a href = lessons/first-steps>Get Started</a>
+            </div>
 
             <p>
-                If you haven't installed Python already, visit <a href = //python.org/downloads target = _blank>python.org</a> and download the latest version for your computer.
-                To install <mark>JoBase</mark>, type the following into the <mark>Command Terminal</mark>.
+                JoBase is a fast Python game engine for beginner coders.
+                It is written in pure C and also runs in Web Assembly.
+                The syntax is simple and easy to use.
             </p>
 
-            <pre>pip install JoBase</pre>
+            <script>
+                snippet(`from JoBase import *
 
-            <p>
-                If the installation fails, check your version of Python isn't too old.
-                JoBase is compatible on Python 3.6 or greater.
-                Run the command below to test our coolest game.
-            </p>
-
-            <pre>python -m JoBase.examples.blue_hue</pre>
-
-            <p>
-                If everything works, you are ready to start coding!
-                Get started with our easy <a href = tutorials>tutorials</a>.
-            </p>
-
-            <pre editor>
-from JoBase import *
-
-window.color = LIGHT_BLUE
-man = Image(MAN, color = GOLD)
+man = Image(MAN)
 
 def loop():
-    man.angle += 1
     man.draw()
 
-run()
-            </pre>
-
-            <h2>Performance</h2>
-
-            <img src = assets/images/graph.png>
-
-            <p>
-                Above is a speed comparison with other popular Python libraries.
-                The graph compares the performance of the libraries without batch rendering.
-                Hundreds of images were drawn on the screen in random places and rotated in the game loop.
-            </p>
-
-            <pre editor>
-from JoBase import *
-images = []
-
-for i in range(100):
-    man = Image(MAN, angle = random(1, 360))
-    man.x = random(camera.left, camera.right)
-    man.y = random(camera.top, camera.bottom)
-
-    images.append(man)
-
-def loop():
-    for man in images:
-        man.angle += 1
-        man.draw()
-
-run()
-            </pre>
+run()`)
+            </script>
         </section>
 
         <footer>
             <span>
-                © Copyright <span id = year></span> JoBase ·
-                <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+                &copy; Copyright <span id = year></span> JoBase &middot; <a href = mailto:hello@jobase.org>hello@jobase.org</a>
             </span>
         </footer>
     </body>
