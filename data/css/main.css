@@ -179,7 +179,6 @@ mark {
 }
 
 .editor {
-    margin: 1em 0;
     position: relative;
     mask-image: radial-gradient(#fff, #000);
     border-radius: var(--radius);
