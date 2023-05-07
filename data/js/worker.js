@@ -13,40 +13,19 @@ var Module = {
     stderr: e => postMessage({type: "stderr", code: e})
 }
 
-// function wait() {
-//     postMessage({type: "update", image: canvas.transferToImageBitmap()})
-//     return window.terminate
-// }
-
-// function end() {
-//     postMessage({type: "end"})
-// }
-
 async function init() {
-    const images = ["man", "coin", "enemy"].map(e => "images/" + e + ".png")
-    const fonts = ["default", "code", "pencil", "serif", "handwriting", "typewriter", "joined"].map(e => "fonts/" + e + ".ttf")
     const blobs = [{name: "__init__.cpython-312-wasm32-emscripten.so", data: await (await fetch("JoBase.so")).blob()}]
 
     const add = async array => {
         for (const file of array)
-            blobs.push({
-                name: file,
-                data: await (await fetch("https://jobase.org/JoBase/" + file)).blob()
-            })
+            blobs.push({name: file, data: await (await fetch("https://jobase.org/JoBase/" + file)).blob()})
     }
-
-    importScripts("python.js")
-    await add(images)
-    await add(fonts)
-
-    FS.mkdir("/JoBase")
-    FS.mkdir("/JoBase/fonts")
-    FS.mkdir("/JoBase/images")
-    FS.mount(WORKERFS, {blobs}, "/JoBase")
 
     window.scrollX = 0
     window.scrollY = 0
-    window.removeEventListener = () => {}
+
+    window.ready = new Promise(e => Module.onRuntimeInitialized = e)
+    window.removeEventListener = () => null
 
     document.addEventListener = (name, value) => {
         postMessage({type: "add", root: "document", name})
@@ -102,6 +81,16 @@ async function init() {
             Module.setCanvasSize(event.data.width, event.data.height)
     }
 
+    importScripts("python.js")
+    await add(["man", "coin", "enemy"].map(e => "images/" + e + ".png"))
+    await add(["default", "code", "pencil", "serif", "handwriting", "typewriter", "joined"].map(e => "fonts/" + e + ".ttf"))
+
+    FS.mkdir("/JoBase")
+    FS.mkdir("/JoBase/fonts")
+    FS.mkdir("/JoBase/images")
+    FS.mount(WORKERFS, {blobs}, "/JoBase")
+
+    await window.ready
     postMessage({type: "ready"})
 }
 
