@@ -1,8 +1,7 @@
 "use strict"
 
 const offscreen = typeof OffscreenCanvas !== "undefined"
-const context = new OffscreenCanvas(0, 0).getContext("webgl2")
-const support = offscreen && context
+const support = offscreen && new OffscreenCanvas(0, 0).getContext("webgl2")
 
 class Game extends Worker {
     constructor(canvas) {
