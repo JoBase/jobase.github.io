@@ -9,6 +9,7 @@ const document = {}
 var Module = {
     canvas,
     noInitialRun: true,
+    preRun: [init],
     stdout: e => postMessage({type: "stdout", code: e}),
     stderr: e => postMessage({type: "stderr", code: e})
 }
@@ -21,10 +22,16 @@ async function init() {
             blobs.push({name: file, data: await (await fetch("https://jobase.org/JoBase/" + file)).blob()})
     }
 
+    await add(["man", "coin", "enemy"].map(e => "images/" + e + ".png"))
+    await add(["default", "code", "pencil", "serif", "handwriting", "typewriter", "joined"].map(e => "fonts/" + e + ".ttf"))
+
+    FS.mkdir("/JoBase")
+    FS.mkdir("/JoBase/fonts")
+    FS.mkdir("/JoBase/images")
+    FS.mount(WORKERFS, {blobs}, "/JoBase")
+
     window.scrollX = 0
     window.scrollY = 0
-
-    window.ready = new Promise(e => Module.onRuntimeInitialized = e)
     window.removeEventListener = () => null
 
     document.addEventListener = (name, value) => {
@@ -62,7 +69,7 @@ async function init() {
 
         else if (event.data.type == "end")
             window.terminate = true
-    
+
         else if (event.data.type == "event") {
             if (event.data.data.target)
                 event.data.data.target = canvas
@@ -81,17 +88,7 @@ async function init() {
             Module.setCanvasSize(event.data.width, event.data.height)
     }
 
-    importScripts("python.js")
-    await add(["man", "coin", "enemy"].map(e => "images/" + e + ".png"))
-    await add(["default", "code", "pencil", "serif", "handwriting", "typewriter", "joined"].map(e => "fonts/" + e + ".ttf"))
-
-    FS.mkdir("/JoBase")
-    FS.mkdir("/JoBase/fonts")
-    FS.mkdir("/JoBase/images")
-    FS.mount(WORKERFS, {blobs}, "/JoBase")
-
-    await window.ready
     postMessage({type: "ready"})
 }
 
-init()
+importScripts("python.js")

@@ -4,50 +4,51 @@ const offscreen = typeof OffscreenCanvas !== "undefined"
 const support = offscreen && new OffscreenCanvas(0, 0).getContext("webgl2")
 
 class Game extends Worker {
-    constructor(canvas, code, message) {
+    constructor(canvas) {
         super("/data/js/worker.js")
 
-        const bitmap = canvas.getContext("bitmaprenderer")
-        const observer = new ResizeObserver(() => resize({type: "resize"}))
+        this.ready = new Promise(m => this.onmessage = e => e.data.type == "ready" && m())
+        this.bitmap = canvas.getContext("bitmaprenderer")
+        this.canvas = canvas
+    }
+
+    resize(data) {
+        this.canvas.width = this.canvas.clientWidth * devicePixelRatio,
+        this.canvas.height = this.canvas.clientHeight * devicePixelRatio
+        this.postMessage(Object.assign(data, {width: this.canvas.width, height: this.canvas.height}))
+    }
+
+    async run(code) {
+        const observer = new ResizeObserver(() => this.resize({type: "resize"}))
         const events = []
 
-        const resize = data => {
-            canvas.width = canvas.clientWidth
-            canvas.height = canvas.clientHeight
-
-            this.postMessage(Object.assign(data, {width: canvas.width, height: canvas.height}))
-        }
-
-        this.onmessage = event => {
-            if (event.data.type == "ready")
-                resize({type: "run", code})
-
-            else if (event.data.type == "start")
-                observer.observe(canvas)
+        const update = event => {
+            if (event.data.type == "start")
+                observer.observe(this.canvas)
 
             else if (event.data.type == "update")
-                bitmap.transferFromImageBitmap(event.data.image)
+                this.bitmap.transferFromImageBitmap(event.data.image)
 
             else if (event.data.type == "add") {
                 const mouse = event => {
-                    const rect = canvas.getBoundingClientRect()
+                    const rect = this.canvas.getBoundingClientRect()
 
                     return {
                         type: event.type,
                         pageX: event.pageX - scrollX - rect.left,
                         pageY: event.pageY - scrollY - rect.top,
-                        target: event.target == canvas
+                        target: event.target == this.canvas
                     }
                 }
 
                 const table = [
                     {list: ["keydown", "keyup"], value: e => ({keyCode: e.keyCode})},
                     {list: ["wheel", "mousewheel"], value: e => ({type: e.type, deltaMode: e.deltaMode})},
-                    {list: ["mouseenter", "mouseleave"], value: e => ({target: e.target == canvas})},
+                    {list: ["mouseenter", "mouseleave"], value: e => ({target: e.target == this.canvas})},
                     {list: ["mousemove", "mousedown", "mouseup", "touchmove", "touchstart", "touchcancel", "touchend"], value: mouse}
                 ]
 
-                const root = event.data.root == "window" ? window : event.data.root == "document" ? document : canvas
+                const root = event.data.root == "window" ? window : event.data.root == "document" ? document : this.canvas
                 const entry = table.find(e => e.list.includes(event.data.name))
 
                 const method = entry ? entry.value : (() => ({}))
@@ -58,17 +59,17 @@ class Game extends Worker {
             }
 
             else if (event.data.type == "end") {
-                events.forEach(e => e())
                 observer.disconnect()
+                events.forEach(e => e())
+
+                this.removeEventListener("message", update)
                 this.terminate()
             }
-
-            message(event.data)
         }
-    }
 
-    end() {
-        this.postMessage({type: "end"})
+        await this.ready
+        this.addEventListener("message", update)
+        this.resize({type: "run", code})
     }
 }
 
@@ -100,23 +101,36 @@ class Editor {
 
         new ResizeObserver(() => this.mirror.refresh()).observe(this.editor)
         this.mirror.refresh()
+
+        this.reset()
         this.start()
     }
 
-    message(data) {
-        if (data.type == "start") {
-            this.button.onclick = () => this.game.end()
-            this.flex.style.right = 0
-        }
-
-        else if (data.type == "end")
-            this.flex.style.right = "-100%"
-    }
-
     run() {
-        this.game = new Game(this.canvas, this.mirror.getValue(), e => this.message(e))
         this.icon.className = "fa-solid fa-spin fa-arrows-rotate"
         this.button.onclick = null
+        console.log("START!!!")
+        this.worker.run(this.mirror.getValue())
+
+        this.worker.onmessage = event => {
+            if (event.data.type == "start") {
+                console.log("READY TO STOP")
+                this.button.onclick = () => this.worker.postMessage({type: "end"})
+                this.flex.style.right = 0
+            }
+
+            else if (event.data.type == "end") {
+                console.log("END")
+                this.flex.style.right = "-100%"
+                this.reset()
+            }
+
+            this.message && this.message(event.data)
+        }
+    }
+
+    reset() {
+        support && (this.worker = new Game(this.canvas))
     }
 
     start() {
@@ -132,8 +146,9 @@ class Editor {
 
 class Lesson extends Editor {
     constructor(array) {
-        super(array.map(e => e.code).join(""))
+        const disable = e => e.preventDefault()
 
+        super(array.map(e => e.code).join(""))
         this.log = document.createElement("div")
         this.array = array
         this.stdout = []
@@ -142,47 +157,41 @@ class Lesson extends Editor {
         this.log.className = "console"
         this.editor.appendChild(this.log)
         this.editor.after(this.button)
-    }
 
-    disable(event) {
-        event.preventDefault()
-    }
-
-    message(data) {
-        super.message(data)
-
-        if (data.type == "start") {
-            addEventListener("keydown", this.disable)
-            addEventListener("mousedown", this.disable)
-            addEventListener("contextmenu", this.disable)
-        }
-
-        else if (data.type == "stdout") {
-            this.stdout.push(data.code)
-
-            if (data.code == 10) {
-                const span = document.createElement("span")
-
-                span.textContent = String.fromCharCode(...this.stdout)
-                this.stdout = []
-                this.add(span)
-            }
-        }
-
-        else if (data.type == "stderr")
-            this.stderr.push(data.code)
-
-        else if (data.type == "end") {
-            removeEventListener("keydown", this.disable)
-            removeEventListener("mousedown", this.disable)
-            removeEventListener("contextmenu", this.disable)
-
-            if (this.stderr.length) {
-                this.error(String.fromCharCode(...this.stderr))
-                this.stderr = []
+        this.message = data => {
+            if (data.type == "start") {
+                addEventListener("keydown", disable)
+                addEventListener("mousedown", disable)
+                addEventListener("contextmenu", disable)
             }
 
-            else this.check()
+            else if (data.type == "stdout") {
+                this.stdout.push(data.code)
+
+                if (data.code == 10) {
+                    const span = document.createElement("span")
+
+                    span.textContent = String.fromCharCode(...this.stdout)
+                    this.stdout = []
+                    this.add(span)
+                }
+            }
+
+            else if (data.type == "stderr")
+                this.stderr.push(data.code)
+
+            else if (data.type == "end") {
+                removeEventListener("keydown", disable)
+                removeEventListener("mousedown", disable)
+                removeEventListener("contextmenu", disable)
+
+                if (this.stderr.length) {
+                    this.error(String.fromCharCode(...this.stderr))
+                    this.stderr = []
+                }
+
+                else this.check()
+            }
         }
     }
 
@@ -241,20 +250,22 @@ class Lesson extends Editor {
     }
 }
 
-class Snippet extends Editor {
-    constructor(value) {
-        super(value)
-        support && this.editor.appendChild(this.button)
+async function game(name) {
+    if (support) {
+        const canvas = document.currentScript.previousElementSibling
+        const file = await fetch("https://jobase.org/JoBase/examples/" + name + ".py")
+
+        new Game(canvas).run(await file.text())
     }
 
-    message(data) {
-        super.message(data)
-        data.type == "end" && this.start()
-    }
+    else alert("OffscreenCanvas not available in your browser.")
 }
 
 function snippet(value) {
-    new Snippet(value)
+    const box = new Editor(value)
+
+    box.message = e => e.type == "end" && box.start()
+    support && box.editor.appendChild(box.button)
 }
 
 function load(array) {
