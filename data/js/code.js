@@ -63,7 +63,7 @@ class Game extends Worker {
                 this.terminate()
             }
 
-            message(event.data)
+            message && message(event.data)
         }
     }
 
@@ -251,6 +251,17 @@ class Snippet extends Editor {
         super.message(data)
         data.type == "end" && this.start()
     }
+}
+
+async function game(name) {
+    if (support) {
+        const canvas = document.currentScript.previousElementSibling
+        const file = await fetch("https://jobase.org/JoBase/examples/" + name + ".py")
+
+        new Game(canvas, await file.text())
+    }
+
+    else alert("OffscreenCanvas not available in your browser.")
 }
 
 function snippet(value) {
