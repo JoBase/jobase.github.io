@@ -125,7 +125,7 @@
                                     dist = min(dist, length(next + point - value));
                                 }
 
-                            color = vec4(pow(dist, 3.), pow(dist, 2.), dist * .8, .5 + dist);
+                            color = vec4(pow(dist + gl_FragCoord.x * 5e-4, 4.), pow(dist, 3.), dist, 1);
                         }
                     </script>
 

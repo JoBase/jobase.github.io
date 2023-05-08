@@ -179,6 +179,7 @@ mark {
 }
 
 .editor {
+    margin-top: 1em;
     position: relative;
     mask-image: radial-gradient(#fff, #000);
     border-radius: var(--radius);
@@ -227,6 +228,10 @@ mark {
     background-color: var(--box);
     flex: 0 0 4em;
     padding: .8em
+}
+
+.active .error {
+    margin-bottom: 1em
 }
 
 .error {

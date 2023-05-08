@@ -17,7 +17,7 @@
         <title>JoBase &middot; Reference</title>
 
         <style>
-            /* @font-face {
+            @font-face {
                 font-family: "code";
                 src: url(https://raw.githubusercontent.com/JoBase/JoBase/main/JoBase/fonts/code.ttf)
             }
@@ -50,7 +50,7 @@
             @font-face {
                 font-family: "typewriter";
                 src: url(https://raw.githubusercontent.com/JoBase/JoBase/main/JoBase/fonts/typewriter.ttf)
-            } */
+            }
 
             div[font = code] {
                 font-family: "code"
@@ -88,7 +88,7 @@
                 font-size: var(--font)
             }
 
-            .main > pre, .indent > pre {
+            .main > pre, .indent > pre[id] {
                 display: table;
                 font-weight: bold;
                 white-space: pre-wrap;
@@ -137,20 +137,20 @@
             .list span div {
                 visibility: hidden;
                 position: absolute;
-                background-color: #fff;
+                background-color: var(--text);
                 transform: translateX(50%);
                 bottom: calc(100% + .5em);
                 border-radius: var(--radius);
-                padding: var(--padding);
+                padding: .5em;
                 font-size: var(--font);
                 box-shadow: 0 0 5px var(--text);
-                color: #000;
+                color: var(--background);
                 z-index: 1;
                 right: 50%
             }
 
             .list span div::after {
-                border-color: #fff transparent transparent transparent;
+                border-color: var(--text) transparent transparent transparent;
                 content: "";
                 position: absolute;
                 top: 100%;
@@ -243,11 +243,9 @@
             <pre id = Window>class Window(caption = "JoBase", width = 640, height = 480, color = WHITE)</pre>
 
             <div class = indent>
-                <p>
-                    This class is for managing the main window.
-                    The inbuilt <mark>window</mark> variable is an instance of this class.
-                    Do not try to instance this class directly.
-                </p>
+                This class is for managing the main window.
+                The inbuilt <mark>window</mark> variable is an instance of this class.
+                Do not try to instance this class directly.
 
                 <script>
                     snippet(`from JoBase import *
@@ -718,12 +716,10 @@ run()`)
             <pre id = Base>class Base()</pre>
 
             <div class = indent>
-                <p>
-                    This is the base class for all drawing primitives.
-                    The attributes of this class are shared with other objects.
-                    Some of the attributes are only useful when the object is added to the <a href = #Physics>physics engine</a>.
-                    Do not try to instance this class directly.
-                </p>
+                This is the base class for all drawing primitives.
+                The attributes of this class are shared with other objects.
+                Some of the attributes are only useful when the object is added to the <a href = #Physics>physics engine</a>.
+                Do not try to instance this class directly.
 
                 <pre id = Base.x>x, pos.x, position.x: float</pre>
 
@@ -950,9 +946,9 @@ run()`)
                 JoBase contains the following built in images.
 
                 <div class = list>
-                    <!-- <span>MAN<div><img src = https://raw.githubusercontent.com/JoBase/JoBase/main/JoBase/images/man.png></div></span>
-                    <span>COIN<div><img src = https://raw.githubusercontent.com/JoBase/JoBase/main/JoBase/images/coin.png></div></span>
-                    <span>ENEMY<div><img src = https://raw.githubusercontent.com/JoBase/JoBase/main/JoBase/images/enemy.png></div></span> -->
+                    <span>MAN<div><img src = JoBase/images/man.png></div></span>
+                    <span>COIN<div><img src = JoBase/images/coin.png></div></span>
+                    <span>ENEMY<div><img src = JoBase/images/enemy.png></div></span>
                 </div>
 
                 The example below loads the enemy image and draws it.
@@ -1044,12 +1040,12 @@ run()`)
                 This class is for drawing lines.
                 Although lines are limited, we hope to improve them soon.
                 Because it extends the <a href = #Base>Base</a> class, it contains all the same attributes.
-            </div>
 
-            <pre id = Line.diameter>width: float</pre>
+                <pre id = Line.diameter>width: float</pre>
 
-            <div class = indent>
-                The thickness of the line.
+                <div class = indent>
+                    The thickness of the line.
+                </div>
             </div>
 
             <pre id = Shape>class Shape(points = ((0, 25), (25, -25), (-25, -25)), x = 0, y = 0, angle = 0, color = BLACK)</pre>
