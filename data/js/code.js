@@ -274,7 +274,7 @@ function load(array) {
     if (parent.className == "active" && !support) {
         const text = document.createElement("p")
 
-        text.textContent = "It seems like your browser can't run JoBase online. You won't be able to run the code in this lesson."
+        text.textContent = "It seems like your browser can't run JoBase online. Safari iOS is not supported."
         text.className = "error"
         parent.prepend(text)
     }
