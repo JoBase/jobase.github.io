@@ -189,7 +189,7 @@ mark {
 }
 
 .editor > section {
-    text-shadow: 0 0 5px var(--background);
+    text-shadow: 0 0 5px var(--block);
     cursor: pointer;
     position: absolute;
     top: 1em;
