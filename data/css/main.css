@@ -48,7 +48,7 @@ body[theme = sun] {
 
 body[theme = moon] {
     --background: #333;
-    --text: #bbb;
+    --text: #aaa;
     --mark: #ddd;
     --border: #666;
     --off: #444;
@@ -189,7 +189,7 @@ mark {
 }
 
 .editor > section {
-    text-shadow: 0px 0px 5px var(--background);
+    text-shadow: 0 0 5px var(--background);
     cursor: pointer;
     position: absolute;
     top: 1em;

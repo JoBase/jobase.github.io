@@ -70,6 +70,69 @@
                 background-color: var(--hover)
             }
 
+            .options {
+                display: flex;
+                flex-wrap: wrap
+            }
+
+            .options > input:checked + label + div {
+                display: block
+            }
+
+            .options > input:checked + label {
+                border-color: var(--link)
+            }
+
+            .options div {
+                border-radius: 0 var(--radius) var(--radius) var(--radius);
+                background-color: var(--block);
+                padding: 1em;
+                width: 100%;
+                order: 1;
+                display: none
+            }
+
+            input {
+                display: none
+            }
+
+            label {
+                border-bottom: 2px solid var(--off);
+                font-weight: bold;
+                background-color: var(--block);
+                padding: .5em 1em;
+                cursor: pointer
+            }
+
+            label:first-of-type {
+                border-top-left-radius: var(--radius)
+            }
+
+            label:last-of-type {
+                border-top-right-radius: var(--radius)
+            }
+
+            label:hover {
+                color: var(--mark);
+                background-color: var(--box)
+            }
+
+            h3 {
+                color: var(--mark);
+                padding-top: .5em;
+                margin: 0
+            }
+
+            .options pre {
+                background-color: var(--background)
+            }
+
+            .options img {
+                vertical-align: sub;
+                display: inline-block;
+                width: 1em
+            }
+
             li {
                 margin: 1em
             }
@@ -205,6 +268,156 @@
                 JoBase is a fast Python game engine for beginner coders.
                 It is written in pure C and also runs in Web Assembly.
                 The syntax is simple and easy to use.
+            </p>
+
+            <div class = options>
+                <input id = linux type = radio name = os>
+                <label for = linux>Linux</label>
+
+                <div>
+                    <h3>Download Python</h3>
+
+                    <p>
+                        Visit <a href = https://www.python.org/downloads target = _blank>python.org</a> and click the <mark>Download</mark> button.
+                        This will download the latest Python source release.
+                    </p>
+
+                    <p>
+                        Extract the file and open the terminal.
+                        Use <mark>cd</mark> to navigate to the Python folder, then type the following command.
+                    </p>
+
+                    <pre>./configure</pre>
+
+                    <p>
+                        Now you can build Python with <mark>GNU make</mark>.
+                        This may take a while.
+                    </p>
+
+                    <pre>make</pre>
+
+                    <p>
+                        Finally, use the command below to install Python.
+                        You may need to enter your password.
+                    </p>
+
+                    <pre>sudo make install</pre>
+
+                    <h3>Install JoBase</h3>
+
+                    <p>
+                        Now you are ready to install JoBase.
+                        Type the following command into the terminal and hit enter.
+                    </p>
+
+                    <pre>pip install JoBase</pre>
+
+                    <p>
+                        You can test the installation by running one of our games.
+                    </p>
+
+                    <pre>python3 -m JoBase.examples.blue_hue</pre>
+
+                    <h3>Install an IDE (optional)</h3>
+
+                    <p>
+                        We recommend using <mark>PyCharm</mark> to write and run your code.
+                        Visit <a href = https://www.jetbrains.com/pycharm/download target = _blank>jetbrains.com</a> and download the community edition.
+                        Extract and install the program.
+                    </p>
+                </div>
+
+                <input id = windows type = radio name = os>
+                <label for = windows>Windows</label>
+
+                <div>
+                    <h3>Download Python</h3>
+
+                    <p>
+                        Visit <a href = https://www.python.org/downloads target = _blank>python.org</a> and click the <mark>Download</mark> button.
+                        Run the executable, you will see a welcome screen.
+                        Check the box <mark>Add python.exe to PATH</mark>, then click <mark>Install Now</mark>.
+                    </p>
+
+                    <p>
+                        Wait for the setup to complete and close the installer.
+                    </p>
+
+                    <h3>Install JoBase</h3>
+
+                    <p>
+                        Right click on the <mark>Start</mark> menu icon, then select <mark>Terminal</mark>.
+                        To install JoBase, type the following command and hit enter.
+                    </p>
+
+                    <pre>pip install JoBase</pre>
+
+                    <p>
+                        You can test the installation by running one of our demos.
+                    </p>
+
+                    <pre>python -m JoBase.examples.physics</pre>
+
+                    <h3>Install an IDE (optional)</h3>
+
+                    <p>
+                        We recommend using <mark>PyCharm</mark> to write and run your code.
+                        Visit <a href = https://www.jetbrains.com/pycharm/download target = _blank>jetbrains.com</a> and download the community edition.
+                    </p>
+                </div>
+
+                <input id = mac type = radio name = os>
+                <label for = mac>MacOS</label>
+
+                <div>
+                    <h3>Download Python</h3>
+
+                    <p>
+                        Visit <a href = https://www.python.org/downloads target = _blank>python.org</a> and click the <mark>Download</mark> button.
+                        Open the file and click <mark>Continue</mark>.
+                        Keep clicking continue and agree to the Python licence.
+                        Finally, click the <mark>Install</mark> button.
+                        You may be prompted to enter your password.
+                    </p>
+
+                    <p>
+                        Once Python has successfully installed, you can close the installer.
+                    </p>
+
+                    <h3>Install JoBase</h3>
+
+                    <p>
+                        First, go to the <img src = data/images/finder.png> <mark>Finder</mark> and search <mark>Terminal.app</mark>.
+                        Click the <img src = data/images/terminal.png> icon to open the terminal.
+                        Then type the following command and hit enter.
+                    </p>
+
+                    <pre>pip install JoBase</pre>
+
+                    <p>
+                        You can test the installation by running one of our games.
+                    </p>
+
+                    <pre>python -m JoBase.examples.squirtcopter</pre>
+
+                    <h3>Install an IDE (optional)</h3>
+
+                    <p>
+                        We recommend using <mark>PyCharm</mark> to write and run your code.
+                        Visit <a href = https://www.jetbrains.com/pycharm/download target = _blank>jetbrains.com</a> and download the community edition.
+                    </p>
+                </div>
+
+                <script>
+                    const input = Array.from(document.currentScript.parentNode.querySelectorAll("input"))
+                    const check = input.find(e => navigator.userAgent.includes(e.id[0].toUpperCase() + e.id.slice(1)))
+
+                    check.checked = true
+                </script>
+            </div>
+
+            <p>
+                After following the installation steps above, click <a href = lessons/first-steps>here</a> to get started with JoBase.
             </p>
 
             <script>
