@@ -63,7 +63,7 @@ class Game extends Worker {
                 this.terminate()
             }
 
-            message(event.data)
+            message && message(event.data)
         }
     }
 
@@ -253,6 +253,17 @@ class Snippet extends Editor {
     }
 }
 
+async function game(name) {
+    if (support) {
+        const canvas = document.currentScript.previousElementSibling
+        const file = await fetch("https://jobase.org/JoBase/examples/" + name + ".py")
+
+        new Game(canvas, await file.text())
+    }
+
+    else alert("OffscreenCanvas not available in your browser.")
+}
+
 function snippet(value) {
     new Snippet(value)
 }
@@ -263,7 +274,7 @@ function load(array) {
     if (parent.className == "active" && !support) {
         const text = document.createElement("p")
 
-        text.textContent = "It seems like your browser can't run JoBase online. You won't be able to run the code in this lesson."
+        text.textContent = "It seems like your browser can't run JoBase online. Safari iOS is not supported."
         text.className = "error"
         parent.prepend(text)
     }
