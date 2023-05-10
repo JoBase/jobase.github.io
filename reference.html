@@ -1069,17 +1069,14 @@ run()`)
                 <script>
                     snippet(`from JoBase import *
 
+box = Rectangle(y = 300, angle = 10)
+
 floor = Rectangle(width = window.width, height = 20)
 floor.bottom = camera.bottom
 floor.type = STATIC
-floor.elasticity = 0.9
-
-box = Rectangle(angle = 10)
-box.elasticity = 0.9
 
 engine = Physics()
-engine.add(floor)
-engine.add(box)
+engine.add(floor, box)
 
 def loop():
     engine.update()
@@ -1109,16 +1106,16 @@ run()`)
                     The gravity in the physics environment.
                 </div>
 
-                <pre id = Physics.add>add(other: object)</pre>
+                <pre id = Physics.add>add(*objects)</pre>
 
                 <div class = indent>
-                    Add a <a href = #Base>Base</a> object to the physics engine.
+                    Add any number of <a href = #Base>Base</a> or <a href = #Joint>Joint</a> objects to the physics engine.
                 </div>
 
-                <pre id = Physics.remove>remove(other: object)</pre>
+                <pre id = Physics.remove>remove(*objects)</pre>
 
                 <div class = indent>
-                    Remove a <a href = #Base>Base</a> object from the physics engine.
+                    Remove any number of <a href = #Base>Base</a> or <a href = #Joint>Joint</a> objects previously added to the physics engine.
                 </div>
 
                 <pre id = Physics.update>update()</pre>
@@ -1126,6 +1123,114 @@ run()`)
                 <div class = indent>
                     Calculate the next frame for the physics.
                     It is best to call this function every frame.
+                </div>
+            </div>
+
+            <pre id = Joint>class Joint()</pre>
+
+            <div class = indent>
+                <p>
+                    This is the base class for all joint objects.
+                    A joint affects the relationships between two bodies.
+                    They only work when you add them to a <a href = #Physics>physics engine</a>.
+                </p>
+
+                <pre id = Joint.red>red, color.r: float</pre>
+
+                <div class = indent>
+                    The red color of the joint.
+                </div>
+
+                <pre id = Joint.green>green, color.g: float</pre>
+
+                <div class = indent>
+                    The green color of the joint.
+                </div>
+
+                <pre id = Joint.blue>blue, color.b: float</pre>
+
+                <div class = indent>
+                    The blue color of the joint.
+                </div>
+
+                <pre id = Joint.alpha>alpha, color.a: float</pre>
+
+                <div class = indent>
+                    The transparency of the joint.
+                </div>
+
+                <pre id = Joint.color>color: (float, float, float, float)</pre>
+
+                <div class = indent>
+                    The color of the joint.
+                </div>
+
+                <pre id = Joint.width>width: float</pre>
+
+                <div class = indent>
+                    The visual thickness of the joint.
+                </div>
+
+                <pre id = Joint.draw>draw()</pre>
+
+                <div class = indent>
+                    Render the joint to the screen.
+                </div>
+            </div>
+
+            <pre id = Groove>class Groove(a: object, b: object, start = (50, 0), end = (100, 0), width = 2, color = BLACK)</pre>
+
+            <div class = indent>
+                <p>
+                    This class creates a groove joint between two bodies.
+                    Parameters <mark>a</mark> and <mark>b</mark> must be instances of <a href = #Base>Base</a>.
+                    The joint is attached to body <mark>a</mark>.
+                </p>
+
+                <script>
+                    snippet(`from JoBase import *
+
+floor = Rectangle(width = window.width, height = 20)
+floor.elasticity = 0.9
+floor.bottom = camera.bottom
+floor.type = STATIC
+
+a = Rectangle(50, 100, color = GRAY)
+a.elasticity = 0.9
+
+b = Rectangle(0, 300, color = LIGHT_BLUE)
+b.elasticity = 0.9
+
+engine = Physics()
+groove = Groove(a, b, color = RED, width = 10)
+
+engine.add(floor, a, b, groove)
+
+def loop():
+    engine.update()
+
+    for item in engine:
+        item.draw()
+
+run()`)
+                </script>
+
+                <pre id = Groove.start>start: (float, float)</pre>
+
+                <div class = indent>
+                    The beginning position of the groove in relation to the first body.
+                </div>
+
+                <pre id = Groove.end>end: (float, float)</pre>
+
+                <div class = indent>
+                    The end position of the groove in relation to the first body.
+                </div>
+
+                <pre id = Groove.b>b: (float, float)</pre>
+
+                <div class = indent>
+                    The position on the last body to attach the groove.
                 </div>
             </div>
 

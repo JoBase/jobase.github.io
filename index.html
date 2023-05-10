@@ -38,9 +38,7 @@
             }
 
             .header canvas {
-                border-radius: var(--radius);
                 position: absolute;
-                width: 100%;
                 height: 100%;
                 z-index: -1
             }
@@ -90,6 +88,11 @@
                 width: 100%;
                 order: 1;
                 display: none
+            }
+
+            canvas {
+                border-radius: var(--radius);
+                width: 100%
             }
 
             input {
@@ -156,94 +159,95 @@
 
         <section class = main>
             <div class = header>
-                <canvas id = canvas>
+                <canvas>
                     <script type = vs>
                         in vec2 vert;
-
+    
                         void main() {
                             gl_Position = vec4(vert, 0, 1);
                         }
                     </script>
-
+    
                     <script type = fs>
                         precision mediump float;
-
+    
                         uniform float time;
                         out vec4 color;
-
+    
                         vec2 random(vec2 pos) {
                             return fract(sin(vec2(dot(pos, vec2(127.1, 311.7)), dot(pos, vec2(269.5, 183.3)))) * 43758.5453);
                         }
-
+    
                         void main() {
                             vec2 pos = floor(gl_FragCoord.xy * .08) * .1;
                             vec2 index = floor(pos);
                             vec2 value = fract(pos);
                             float dist = 1.;
-
+    
                             for (int y = -1; y <= 1; y ++)
                                 for (int x = -1; x <= 1; x ++) {
                                     vec2 next = vec2(x, y);
                                     vec2 point = sin(time + 6.2831 * random(index + next)) / 2. + .5;
                                     dist = min(dist, length(next + point - value));
                                 }
-
+    
                             color = vec4(pow(dist + gl_FragCoord.x * 5e-4, 4.), pow(dist, 3.), dist, 1);
                         }
                     </script>
 
                     <script>
+                        const canvas = document.currentScript.parentNode
                         const gl = canvas.getContext("webgl2")
                         const program = gl.createProgram()
                         const time = Date.now()
-
+    
                         function compile(id, type) {
                             const shader = gl.createShader(id)
-                            const item = document.querySelector(`[type=${type}]`)
-
+                            const item = canvas.querySelector(`[type=${type}]`)
+    
                             gl.shaderSource(shader, "#version 300 es\n" + item.textContent)
                             gl.compileShader(shader)
                             gl.attachShader(program, shader)
-
+    
                             return shader
                         }
-
+    
                         function start() {
                             const vertex = compile(gl.VERTEX_SHADER, "vs")
                             const fragment = compile(gl.FRAGMENT_SHADER, "fs")
-
+    
                             gl.linkProgram(program)
                             gl.useProgram(program)
                             gl.deleteShader(vertex)
                             gl.deleteShader(fragment)
-
+    
                             gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer())
                             gl.bufferData(gl.ARRAY_BUFFER, new Int8Array([-1, 1, 1, 1, -1, -1, 1, -1]), gl.STATIC_DRAW)
                             gl.vertexAttribPointer(0, 2, gl.BYTE, false, 0, 0)
                             gl.enableVertexAttribArray(0)
-
+    
                             new ResizeObserver(() => {
                                 canvas.width = canvas.clientWidth
                                 canvas.height = canvas.clientHeight
-
+    
                                 gl.viewport(0, 0, canvas.width, canvas.height)
                                 render()
                             }).observe(canvas)
-
+    
                             loop()
                         }
-
+    
                         function loop() {
                             requestAnimationFrame(loop)
                             render()
                         }
-
+    
                         function render() {
                             gl.clear(gl.COLOR_BUFFER_BIT)
                             gl.uniform1f(gl.getUniformLocation(program, "time"), (Date.now() - time) * 5e-4)
                             gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
                         }
-
+    
                         start()
                     </script>
                 </canvas>
@@ -419,6 +423,26 @@
             <p>
                 After following the installation steps above, click <a href = lessons/first-steps>here</a> to get started with JoBase.
             </p>
+
+            <!-- <h2>Why Choose JoBase?</h2>
+
+            <p>
+                Performance
+            </p>
+
+            <canvas width = 950 height = 540>
+                <script>
+                    const base = new Image()
+                    const image = document.currentScript.parentNode
+                    const ctx = image.getContext("2d")
+
+                    base.onload = () => {
+                        ctx.drawImage(base, 0, 0)
+                    }
+
+                    base.src = "data/images/base.png"
+                </script>
+            </canvas> -->
 
             <script>
                 snippet(`from JoBase import *
