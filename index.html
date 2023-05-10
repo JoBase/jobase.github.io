@@ -392,8 +392,7 @@
 
                     <p>
                         First, go to the <img src = data/images/finder.png> <mark>Finder</mark> and search <mark>Terminal.app</mark>.
-                        Click the <img src = data/images/terminal.png> icon to open the terminal.
-                        Then type the following command and hit enter.
+                        Click the <img src = data/images/terminal.png> icon to open the terminal, then type the following command and hit enter.
                     </p>
 
                     <pre>pip install JoBase</pre>
@@ -414,7 +413,7 @@
 
                 <script>
                     const input = Array.from(document.currentScript.parentNode.querySelectorAll("input"))
-                    const check = input.find(e => navigator.userAgent.includes(e.id[0].toUpperCase() + e.id.slice(1)))
+                    const check = input.find(e => navigator.userAgent.includes(e.id[0].toUpperCase() + e.id.slice(1))) || input[0]
 
                     check.checked = true
                 </script>
