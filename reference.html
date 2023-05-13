@@ -1177,6 +1177,34 @@ run()`)
                     Render the joint to the screen.
                 </div>
             </div>
+        
+            <pre id = Pin>class Pin(a: object, b: object, length = 0, width = 2, color = BLACK)</pre>
+
+            <div class = indent>
+                <p>
+                    This class constrains two bodies at a fixed distance from each other.
+                    Parameters <mark>a</mark> and <mark>b</mark> must be instances of <a href = #Base>Base</a>.
+                    If <mark>length</mark> is <mark>0</mark>, the distance will be calculated automatically.
+                </p>
+                
+                <pre id = Pin.a>a: (float, float)</pre>
+
+                <div class = indent>
+                    The anchor between the joint and the first body.
+                </div>
+                
+                <pre id = Pin.b>b: (float, float)</pre>
+
+                <div class = indent>
+                    The anchor between the joint and the second body.
+                </div>
+                
+                <pre id = Pin.length>length: float</pre>
+
+                <div class = indent>
+                    The fixed distance between the two bodies.
+                </div>
+            </div>
 
             <pre id = Groove>class Groove(a: object, b: object, start = (50, 0), end = (100, 0), width = 2, color = BLACK)</pre>
 
@@ -1202,7 +1230,7 @@ b = Rectangle(0, 300, color = LIGHT_BLUE)
 b.elasticity = 0.9
 
 engine = Physics()
-groove = Groove(a, b, color = RED, width = 10)
+groove = Groove(a, b, width = 10)
 
 engine.add(floor, a, b, groove)
 
@@ -1276,7 +1304,7 @@ run()`)
 
         <footer>
             <span>
-                © Copyright <span id = year></span> JoBase · <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+                &copy; Copyright <span id = year></span> JoBase &middot; <a href = mailto:hello@jobase.org>hello@jobase.org</a>
             </span>
         </footer>
     </body>
