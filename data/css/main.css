@@ -14,7 +14,6 @@ body[theme = sun] {
     --gold: #c82;
     --shine: #a60;
     --link: #47b;
-
     --comment: #999;
     --code: #555;
     --string: #6a3;
@@ -42,8 +41,7 @@ body[theme = sun] {
     --built_in: #088;
     --number: #960;
     --variable: #d55;
-    --title: #06c;
-    color-scheme: light */
+    --title: #06c;*/
 }
 
 body[theme = moon] {
@@ -62,7 +60,6 @@ body[theme = moon] {
     --gold: #d93;
     --shine: #fb5;
     --link: #5af;
-
     --comment: #888;
     --string: #8c5;
     --keyword: #c7f;
@@ -88,8 +85,7 @@ body[theme = moon] {
     --built_in: #2cc;
     --number: #d92;
     --variable: #f66;
-    --title: #6af;
-    color-scheme: dark */
+    --title: #6af;*/
 }
 
 :root {

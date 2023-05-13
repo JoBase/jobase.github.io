@@ -38,6 +38,7 @@
             }
 
             .header canvas {
+                border-radius: var(--radius);
                 position: absolute;
                 height: 100%;
                 z-index: -1
@@ -91,7 +92,6 @@
             }
 
             canvas {
-                border-radius: var(--radius);
                 width: 100%
             }
 
@@ -120,6 +120,10 @@
                 background-color: var(--box)
             }
 
+            h2 {
+                color: var(--mark)
+            }
+
             h3 {
                 color: var(--mark);
                 padding-top: .5em;
@@ -136,7 +140,71 @@
                 width: 1em
             }
 
-            li {
+            .graph {
+                font-size: 12px;
+                position: relative;
+                background-color: var(--block);
+                border-radius: var(--radius);
+                padding: 1.5em 0 0 1.5em;
+                height: 25em;
+            }
+
+            .graph canvas {
+                font-size: var(--font);
+                background-color: var(--off);
+                border-bottom-right-radius: var(--radius);
+                width: 100%;
+                height: 100%
+            }
+
+            .x, .y {
+                font-family: monospace;
+                position: absolute;
+                counter-reset: i 0;
+                display: flex;
+                list-style: none;
+                padding: 0;
+                margin: 0
+            }
+
+            .graph .x {
+                width: calc(100% - 1.5em);
+                height: 100%;
+                bottom: 0
+            }
+
+            .graph .y {
+                flex-direction: column-reverse;
+                left: 0;
+                height: calc(100% - 1.5em);
+                width: 100%
+            }
+
+            .y li:after, .x li:after {
+                content: counter(i)"";
+            }
+
+            .x li:not(:first-child) {
+                counter-increment: i 250
+            }
+
+            .x li, .y li {
+                position: relative;
+                padding: 2px
+            }
+
+            .x li {
+                border-left: 1px solid var(--border);
+                flex: 0 0 calc(100% / 9)
+            }
+
+            .y li {
+                counter-increment: i 10;
+                border-top: 1px solid var(--border);
+                flex: 0 0 calc(100% / 8)
+            }
+
+            .list li {
                 margin: 1em
             }
         </style>
@@ -233,7 +301,7 @@
                                 gl.viewport(0, 0, canvas.width, canvas.height)
                                 render()
                             }).observe(canvas)
-    
+
                             loop()
                         }
     
@@ -258,7 +326,7 @@
 
             <h2>Learn to Code</h2>
 
-            <ul>
+            <ul class = list>
                 <li>Learn with quick lessons that teach you how to use the most popular programming language.</li>
                 <li>Make games and develop your abilites.</li>
                 <li>Have lots of fun as you explore the fastest and easiest Python game library.</li>
@@ -423,36 +491,91 @@
                 After following the installation steps above, click <a href = lessons/first-steps>here</a> to get started with JoBase.
             </p>
 
-            <!-- <h2>Why Choose JoBase?</h2>
+            <h2>JoBase is Fast</h2>
 
             <p>
-                Performance
+                Compared to other popular Python game libraries, JoBase is much faster.
+                Below is an example of a JoBase program that renders polygons on the screen.
             </p>
-
-            <canvas width = 950 height = 540>
-                <script>
-                    const base = new Image()
-                    const image = document.currentScript.parentNode
-                    const ctx = image.getContext("2d")
-
-                    base.onload = () => {
-                        ctx.drawImage(base, 0, 0)
-                    }
-
-                    base.src = "data/images/base.png"
-                </script>
-            </canvas> -->
 
             <script>
                 snippet(`from JoBase import *
 
-man = Image(MAN)
+sprites = []
+
+for i in range(500):
+    coords = [
+        (randint(10, 20), randint(10, 20)),
+        (-randint(10, 20), randint(10, 20)),
+        (-randint(10, 20), -randint(10, 20)),
+        (randint(10, 20), -randint(10, 20))
+    ]
+
+    shape = Shape(coords)
+    shape.angle = randint(1, 360)
+
+    shape.color = random(0, 1), random(0, 1), random(0, 1), random(0, 1)
+    shape.pos = random(camera.left, camera.right), random(camera.bottom, camera.top)
+    shape.speed = random(-2, 2), random(-2, 2)
+
+    sprites.append(shape)
 
 def loop():
-    man.draw()
+    global time
+
+    for shape in sprites:
+        if shape.x < camera.left:
+            shape.speed.x += .1
+
+        elif shape.x > camera.right:
+            shape.speed.x -= .1
+
+        if shape.y < camera.bottom:
+            shape.speed.y += .1
+
+        elif shape.y > camera.top:
+            shape.speed.y -= .1
+
+        shape.pos += shape.speed
+        shape.angle += 1
+        shape.draw()
 
 run()`)
             </script>
+
+            <p>
+                This same example was tested on <mark>Pygame</mark> and <mark>Pyglet</mark>.
+                The graph below shows the <mark>frames per second</mark> for the number of polygons on the screen with batch rendering.
+            </p>
+
+            <script>
+                graph([
+                    {name: "Pygame", color: "variable", file: "pygame"},
+                    {name: "Pyglet", color: "string", file: "pyglet"},
+                    {name: "JoBase", color: "mark", file: "jobase"}
+                ])
+            </script>
+
+            <p>
+                The same example was also tested without batch rendering.
+                As you can see, JoBase maintains a stable framerate.
+            </p>
+
+            <script>
+                graph([
+                    {name: "Pygame", color: "variable", file: "pygame-2"},
+                    {name: "Pyglet", color: "string", file: "pyglet-2"},
+                    {name: "JoBase", color: "mark", file: "jobase"}
+                ])
+            </script>
+
+            <!-- <h2>JoBase is Simple</h2>
+
+            <pre>
+from JoBase import *
+
+run()
+            </pre> -->
         </section>
 
         <footer>
