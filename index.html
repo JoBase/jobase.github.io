@@ -525,16 +525,16 @@ def loop():
 
     for shape in sprites:
         if shape.x < camera.left:
-            shape.speed.x += .1
+            shape.speed.x += 0.1
 
         elif shape.x > camera.right:
-            shape.speed.x -= .1
+            shape.speed.x -= 0.1
 
         if shape.y < camera.bottom:
-            shape.speed.y += .1
+            shape.speed.y += 0.1
 
         elif shape.y > camera.top:
-            shape.speed.y -= .1
+            shape.speed.y -= 0.1
 
         shape.pos += shape.speed
         shape.angle += 1
