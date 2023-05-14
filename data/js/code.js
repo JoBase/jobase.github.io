@@ -341,7 +341,7 @@ async function graph(data) {
 
         ctx.lineWidth = 4
         ctx.lineJoin = "bevel"
-        ctx.font = "bold 15px monospace"
+        ctx.font = "bold 18px monospace"
         ctx.textBaseline = "middle"
 
         draw()

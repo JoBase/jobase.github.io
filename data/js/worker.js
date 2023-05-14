@@ -15,7 +15,7 @@ var Module = {
 }
 
 async function init() {
-    const file = await fetch("__init__.so")
+    const file = await fetch("python.so")
     const blobs = [{name: "__init__.cpython-312-wasm32-emscripten.so", data: await file.blob()}]
 
     const add = async array => {
