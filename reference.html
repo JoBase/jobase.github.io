@@ -167,6 +167,30 @@
             .list span:hover div {
                 visibility: visible
             }
+
+            .box {
+                padding: 1em;
+                border-radius: var(--radius);
+                background-color: var(--off);
+                display: grid;
+                grid-template-columns: auto auto;
+                gap: 1em
+            }
+
+            .box div {
+                height: 8em;
+                border-radius: var(--radius);
+                background-color: var(--block);
+                display: flex;
+                flex-direction: column;
+                overflow: auto;
+                padding: .8em
+            }
+
+            .box span {
+                font-weight: bold;
+                color: var(--mark)
+            }
         </style>
     </head>
 
@@ -186,12 +210,42 @@
         </section>
 
         <section class = main>
+            <div class = box>
+                <span>Classes</span>
+                <span>Functions</span>
+
+                <div>
+                    <a href = #Window>Window</a>
+                    <a href = #Camera>Camera</a>
+                    <a href = #Cursor>Cursor</a>
+                    <a href = #Key>Key</a>
+                    <a href = #Base>Base</a>
+                    <a href = #Rectangle>Rectangle</a>
+                    <a href = #Image>Image</a>
+                    <a href = #Text>Text</a>
+                    <a href = #Circle>Circle</a>
+                    <a href = #Line>Line</a>
+                    <a href = #Shape>Shape</a>
+                    <a href = #Physics>Physics</a>
+                    <a href = #Joint>Joint</a>
+                    <a href = #Pin>Pin</a>
+                    <a href = #Groove>Groove</a>
+                </div>
+
+                <div>
+                    <a href = #random>random</a>
+                    <a href = #randint>randint</a>
+                    <a href = #sin>sin</a>
+                    <a href = #cos>cos</a>
+                    <a href = #tan>tan</a>
+                    <a href = #run>run</a>
+                </div>
+            </div>
+
             <p>
                 Welcome to the reference manual.
                 Once you are familiar with JoBase, use this page to discover all the JoBase features.
             </p>
-
-            <!-- <h1>Constants</h1> -->
 
             <p>
                 Below is a list of built in colors.
@@ -237,8 +291,6 @@
                     }
                 </script>
             </p>
-
-            <!-- <h1>Classes</h1> -->
 
             <pre id = Window code>class Window(caption = "JoBase", width = 640, height = 480, color = WHITE)</pre>
 
@@ -1261,8 +1313,6 @@ run()`)
                     The position on the last body to attach the groove.
                 </div>
             </div>
-
-            <!-- <h1>Methods</h1> -->
 
             <pre id = random code>def random(a: float, b: float) -> float</pre>
 
