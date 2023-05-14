@@ -207,6 +207,22 @@
             .list li {
                 margin: 1em
             }
+
+            .code div {
+                display: flex;
+                gap: 1em
+            }
+
+            .code pre {
+                flex: 1 1 0;
+                font-size: 8px;
+                border: 1px solid var(--border)
+            }
+
+            .code div > span {
+                flex: 1 1 0;
+                color: var(--link)
+            }
         </style>
     </head>
 
@@ -491,10 +507,76 @@
                 After following the installation steps above, click <a href = lessons/first-steps>here</a> to get started with JoBase.
             </p>
 
+            <h2>JoBase is Simple</h2>
+
+            <p>
+                Compared to other popular game libraries, the JoBase code is smaller and more concise.
+                JoBase has maximun scope with minimum complexity.
+            </p>
+
+            <div class = code>
+                <div>
+                    <span>JoBase</span>
+                    <span>Pygame</span>
+                    <span>Pyglet</span>
+                </div>
+
+                <div>
+                    <pre code>
+from JoBase import *
+
+man = Image("man.png")
+
+def loop():
+    man.draw()
+
+run()
+                    </pre>
+
+                    <pre code>
+import pygame
+
+pygame.init()
+
+display = pygame.display.set_mode((640, 480))
+image = pygame.image.load("man.png")
+close = False
+
+while not close:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            close = True
+
+    display.fill((255, 255, 255))
+    display.blit(image, (0, 0))
+
+    pygame.display.update()
+
+pygame.quit()
+                    </pre>
+
+                    <pre code>
+import pyglet
+
+window = pyglet.window.Window(640, 480)
+image = pyglet.resource.image("man.png")
+sprite = pyglet.sprite.Sprite(image)
+
+@window.event
+def on_draw():
+    window.clear()
+    sprite.draw()
+
+pyglet.gl.glClearColor(1, 1, 1, 1)
+pyglet.app.run()
+                    </pre>
+                </div>
+            </div>
+
             <h2>JoBase is Fast</h2>
 
             <p>
-                Compared to other popular Python game libraries, JoBase is much faster.
+                JoBase has a very high performance.
                 Below is an example of a JoBase program that renders polygons on the screen.
             </p>
 
@@ -544,7 +626,7 @@ run()`)
             </script>
 
             <p>
-                This same example was tested on <mark>Pygame</mark> and <mark>Pyglet</mark>.
+                This same example was tested on two other popular game libraries, <mark>Pygame</mark> and <mark>Pyglet</mark>.
                 The graph below shows the <mark>frames per second</mark> for the number of polygons on the screen with batch rendering.
             </p>
 
@@ -568,14 +650,6 @@ run()`)
                     {name: "JoBase", color: "mark", file: "jobase"}
                 ])
             </script>
-
-            <!-- <h2>JoBase is Simple</h2>
-
-            <pre>
-from JoBase import *
-
-run()
-            </pre> -->
         </section>
 
         <footer>

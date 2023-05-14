@@ -10,7 +10,7 @@ function start() {
             const set = e => theme.className = theme.className.replace(/moon|sun/, e)
             const theme = document.querySelector(".fa-sun")
             const bars = document.querySelector(".fa-bars")
-            const code = document.querySelectorAll(".main>pre,.indent>pre[id]")
+            const code = document.querySelectorAll("[code]")
 
             const data = [
                 {class: "string", regex: /("""[\s\S]*?"""|".*?"|'.*?'|#.*)/},
