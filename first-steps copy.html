@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = viewport content = "width=device-width,initial-scale=1">
+        <link rel = icon href = data/images/favicon.ico sizes = "16x16 32x32 48x48 64x64">
+
+        <script src = data/js/setup.js></script>
+        <script src = data/js/codemirror.js></script>
+        <script src = data/js/syntax.js></script>
+        <script src = data/js/code.js></script>
+        <script src = data/js/python.js></script>
+        <script src = data/js/package.js></script>
+
+        <link rel = stylesheet href = data/css/codemirror.css>
+        <link rel = stylesheet href = data/css/fontawesome.css>
+        <link rel = stylesheet href = data/css/all.css>
+        <link rel = stylesheet href = data/css/main.css>
+
+        <title>JoBase &middot; First Steps</title>
+
+        <style>
+            body {
+                padding: 0 2em 0 2em
+            }
+
+            .lesson button {
+                border-radius: 1em;
+                background-color: var(--link);
+                border: none;
+                color: #fff;
+                font-size: var(--small);
+                cursor: pointer;
+                padding: .2em 1em
+            }
+
+            .lesson button:hover {
+                background-color: var(--blue)
+            }
+
+            .lesson {
+                overflow: auto;
+                width: 50%;
+                padding: 1em
+            }
+
+            .lesson > div {
+                display: none
+            }
+
+            .lesson .current, .lesson .active {
+                display: block;
+                animation-duration: 1s;
+                animation-name: fade;
+                opacity: 1
+            }
+
+            .panel {
+                position: fixed;
+                height: 100vh;
+                width: 50%;
+                top: 0;
+                left: 50%;
+                padding: 1em
+            }
+
+            .panel > div {
+                display: flex;
+                flex-direction: column;
+                border: 1px solid var(--off);
+                border-radius: var(--radius);
+                mask-image: radial-gradient(#fff, #000);
+                height: 100%
+            }
+
+            .panel > div > div:first-child {
+                background-color: var(--box)
+            }
+
+            .panel button {
+                background-color: var(--box);
+                border: none;
+                border-right: 1px solid var(--off);
+                font-size: var(--small);
+                padding: .2em;
+                width: 3em;
+                color: var(--text);
+                cursor: pointer
+            }
+
+            .panel button:hover {
+                color: var(--mark);
+                background-color: var(--off)
+            }
+
+            canvas {
+                background-color: #fff;
+                width: 100%;
+                height: 10em
+            }
+
+            .log {
+                min-height: 2em;
+                flex: 1 1 0
+            }
+
+            @keyframes fade {
+                from {opacity: 0}
+                to {opacity: 1}
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class = lesson>
+            <a href = lessons>&lt;- Back</a>
+
+            <div class = current>
+                <p>
+                    Welcome to JoBase!
+                    In this lesson you will learn how to create your first program.
+                    Write the following code.
+                </p>
+
+                <script>
+                    snippet([
+                        {code: "import JoBase", add: true}
+                    ])
+                </script>
+            </div>
+
+            <div>
+                <p>
+                    Add some more lines, then write the code below.
+                </p>
+
+                <script>
+                    snippet([
+                        {code: "import JoBase"},
+                        {code: "\n\nrun()", add: true}
+                    ])
+                </script>
+            </div>
+
+            <div>
+                <p>
+                    That's it for the setup!
+                    Let's create an image for the content of our game.
+                </p>
+
+                <script>
+                    snippet([
+                        {code: "import JoBase"},
+                        {code: "\n\nimage = Image(MAN)", add: true},
+                        {code: "\n\nrun()"}
+                    ])
+                </script>
+            </div>
+
+            <div>
+                <p>
+                    Now we can display the image.
+                    The block called <mark>def loop()</mark> is where we draw things.
+                </p>
+
+                <script>
+                    snippet([
+                        {code: "import JoBase\n\nimage = Image(MAN)"},
+                        {code: "\n\ndef loop():\n    image.draw()", add: true},
+                        {code: "\n\nrun()"}
+                    ])
+                </script>
+            </div>
+
+            <div>
+                <p>
+                    What if we want a different image?
+                    Change the image name from <mark>MAN</mark> to <mark>ENEMY</mark>.
+                </p>
+
+                <script>
+                    snippet([
+                        {code: "import JoBase\n\nimage = Image("},
+                        {code: "ENEMY", add: true},
+                        {code: ")\n\ndef loop():\n    image.draw()\n\nrun()"},
+                    ])
+                </script>
+            </div>
+
+            <button onclick = next()>Next</button>
+        </div>
+
+        <div class = panel>
+            <script>
+                editor("import JoBase")
+            </script>
+        </div>
+    </body>
+</html>

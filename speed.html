@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = viewport content = "width=device-width,initial-scale=1">
+        <link rel = icon href = data/images/favicon.ico sizes = "16x16 32x32 48x48 64x64">
+
+        <script src = data/js/setup.js></script>
+        <script src = data/js/code.js></script>
+        <script src = data/js/codemirror.js></script>
+        
+        <link rel = stylesheet href = data/css/fontawesome.css>
+        <link rel = stylesheet href = data/css/all.css>
+        <link rel = stylesheet href = data/css/main.css>
+
+        <title>JoBase &middot; Performance Comparison</title>
+
+        <style>
+            .graph, .code {
+                margin: 2em 0
+            }
+        </style>
+    </head>
+
+    <body>
+        <section class = top>
+            <a href = "/">JoBase</a>
+            <i class = "fa-solid fa-bars"></i>
+            <i class = "fa-solid fa-sun"></i>
+            <a href = lessons>Lessons</a>
+            <!-- <a href = demos>Demos</a> -->
+            <a href = games>Games</a>
+            <a href = reference>Reference</a>
+            <a href = download>Download</a>
+
+            <a href = https://github.com/JoBase target = _blank>
+                <i class = "fa-brands fa-github"></i>
+            </a>
+
+            <a href = https://discord.gg/DzHyvZfa5q target = _blank>
+                <i class = "fa-brands fa-discord"></i>
+            </a>
+        </section>
+
+        <section class = main>
+            <h1>Performance Comparison</h1>
+
+            <p>
+                JoBase is written in pure C, which is the fastest programming language.
+                Let's compare the speed of JoBase with two other popular Python game libraries.
+                The boxes below show equivalent code in JoBase, Pygame and Pyglet.
+            </p>
+
+            <div class = code>
+                <div>
+                    <span>JoBase</span>
+                    <span>Pygame</span>
+                    <span>Pyglet</span>
+                </div>
+
+                <div>
+                    <pre code>
+import JoBase
+
+group = []
+
+def loop():
+    for man in group:
+        man.draw()
+
+    image = Image(MAN, randint(-320, 320), randint(-240, 240))
+    group.append(image)
+
+run()
+                    </pre>
+
+                    <pre code>
+import pygame, random
+
+class Sprite(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+
+        self.rect = image.get_rect()
+        self.image = image
+
+pygame.init()
+
+display = pygame.display.set_mode((640, 480))
+image = pygame.image.load("man.png")
+group = pygame.sprite.Group()
+clock = pygame.time.Clock()
+
+run = True
+
+while run:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+    display.fill((255, 255, 255))
+    group.draw(display)
+
+    man = Sprite()
+    group.add(man)
+
+    man.rect.x = random.randint(0, 640)
+    man.rect.y = random.randint(0, 480)
+
+    pygame.display.update()
+    clock.tick(60)
+
+pygame.quit()
+                    </pre>
+
+                    <pre code>
+import pyglet, random
+
+window = pyglet.window.Window(640, 480, vsync = 0)
+image = pyglet.resource.image("man.png")
+batch = pyglet.graphics.Batch()
+
+sprites = []
+
+def render(dt):
+    window.clear()
+    batch.draw()
+
+    x = random.randint(0, 640)
+    y = random.randint(0, 480)
+
+    sprite = pyglet.sprite.Sprite(image, x, y, batch = batch)
+    sprites.append(sprite)
+
+pyglet.clock.schedule_interval(render, 1 / 60)
+pyglet.gl.glClearColor(1, 1, 1, 1)
+pyglet.app.run()
+                    </pre>
+                </div>
+            </div>
+
+            <p>
+                In the Pygame and Pyglet equivalent, we attempt to batch render the images.
+                This makes the drawing much faster.
+                As you can see, JoBase still maintains a stable framerate, even after 2000 images.
+            </p>
+
+            <script>
+                graph([
+                    {name: "Pygame", color: "variable", file: "pygame"},
+                    {name: "Pyglet", color: "string", file: "pyglet"},
+                    {name: "JoBase", color: "mark", file: "jobase"}
+                ])
+            </script>
+
+            <p>
+                What if we don't want to render our images in batches?
+                The code below achieves the same results without batch rendering.
+            </p>
+
+            <div class = code>
+                <div>
+                    <span>JoBase</span>
+                    <span>Pygame</span>
+                    <span>Pyglet</span>
+                </div>
+
+                <div>
+                    <pre code>
+import JoBase
+
+group = []
+
+def loop():
+    for man in group:
+        man.draw()
+
+    image = Image(MAN, randint(-320, 320), randint(-240, 240))
+    group.append(image)
+
+run()
+                    </pre>
+
+                    <pre code>
+import pygame, random
+
+pygame.init()
+
+display = pygame.display.set_mode((640, 480))
+image = pygame.image.load("man.png")
+clock = pygame.time.Clock()
+
+group = []
+run = True
+
+while run:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+    display.fill((255, 255, 255))
+
+    for man in group:
+        display.blit(image, man)
+
+    man = image.get_rect()
+    group.append(man)
+
+    man.x = random.randint(0, 640)
+    man.y = random.randint(0, 480)
+
+    pygame.display.update()
+    clock.tick(60)
+
+pygame.quit()
+                    </pre>
+
+                    <pre code>
+import pyglet, random
+
+window = pyglet.window.Window(640, 480, vsync = 0)
+image = pyglet.resource.image("man.png")
+
+sprites = []
+
+def render(dt):
+    window.clear()
+
+    for sprite in sprites:
+        sprite.draw()
+
+    x = random.randint(0, 640)
+    y = random.randint(0, 480)
+
+    sprite = pyglet.sprite.Sprite(image, x, y)
+    sprites.append(sprite)
+
+pyglet.clock.schedule_interval(render, 1 / 60)
+pyglet.gl.glClearColor(1, 1, 1, 1)
+pyglet.app.run()
+                    </pre>
+                </div>
+            </div>
+
+            <p>
+                The JoBase code remains the same, as it doesn't support batch rendering.
+                Notice how individually rendering each image affects the performance of Pyglet and Pygame.
+            </p>
+
+            <script>
+                graph([
+                    {name: "Pygame", color: "variable", file: "pygame-2"},
+                    {name: "Pyglet", color: "string", file: "pyglet-2"},
+                    {name: "JoBase", color: "mark", file: "jobase"}
+                ])
+            </script>
+
+            <p>
+                JoBase beats the performance of both libraries!
+                You can create games and animations with thousands of particles without the framerate being affected.
+                As you explore the JoBase library, feel free to suggest improvements and ask questions on <a href = https://github.com/JoBase/JoBase target = _blank>GitHub</a> or <a href = https://discord.gg/DzHyvZfa5q>Discord</a>.
+                Your small contributions will help us make JoBase even better.
+            </p>
+        </section>
+
+        <footer>
+            <span>
+                &copy; Copyright <span id = year></span> JoBase &middot; <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+            </span>
+        </footer>
+    </body>
+</html>

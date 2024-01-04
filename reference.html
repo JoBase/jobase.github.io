@@ -119,8 +119,8 @@
                 font-size: var(--small);
                 display: inline-block;
                 border-radius: var(--radius);
-                background-color: var(--off);
-                border: 1px solid var(--shade);
+                background-color: var(--box);
+                border: 1px solid var(--off);
                 padding: .5em 1em;
                 margin: .2em
             }
@@ -137,7 +137,7 @@
             .list span div {
                 visibility: hidden;
                 position: absolute;
-                background-color: var(--text);
+                background-color: var(--mark);
                 transform: translateX(50%);
                 bottom: calc(100% + .5em);
                 border-radius: var(--radius);
@@ -150,7 +150,7 @@
             }
 
             .list span div::after {
-                border-color: var(--text) transparent transparent transparent;
+                border-color: var(--mark) transparent transparent transparent;
                 content: "";
                 position: absolute;
                 top: 100%;
@@ -199,13 +199,18 @@
             <a href = "/">JoBase</a>
             <i class = "fa-solid fa-bars"></i>
             <i class = "fa-solid fa-sun"></i>
-            <a href = "/">Home</a>
             <a href = lessons>Lessons</a>
+            <!-- <a href = demos>Demos</a> -->
             <a href = games>Games</a>
             <a href = reference class = this>Reference</a>
+            <a href = download>Download</a>
 
             <a href = https://github.com/JoBase target = _blank>
                 <i class = "fa-brands fa-github"></i>
+            </a>
+
+            <a href = https://discord.gg/DzHyvZfa5q target = _blank>
+                <i class = "fa-brands fa-discord"></i>
             </a>
         </section>
 
@@ -227,18 +232,28 @@
                     <a href = #Line>Line</a>
                     <a href = #Shape>Shape</a>
                     <a href = #Physics>Physics</a>
+                    <a href = #Body>Body</a>
+                    <a href = #Group>Group</a>
                     <a href = #Joint>Joint</a>
                     <a href = #Pin>Pin</a>
+                    <a href = #Spring>Spring</a>
                     <a href = #Groove>Groove</a>
                 </div>
 
                 <div>
+                    <a href = #run>run</a>
                     <a href = #random>random</a>
                     <a href = #randint>randint</a>
                     <a href = #sin>sin</a>
                     <a href = #cos>cos</a>
                     <a href = #tan>tan</a>
-                    <a href = #run>run</a>
+                    <a href = #asin>asin</a>
+                    <a href = #acos>acos</a>
+                    <a href = #atan>atan</a>
+                    <a href = #sqrt>sqrt</a>
+                    <a href = #cbrt>cbrt</a>
+                    <a href = #ceil>ceil</a>
+                    <a href = #floor>floor</a>
                 </div>
             </div>
 
@@ -246,6 +261,10 @@
                 Welcome to the reference manual.
                 Once you are familiar with JoBase, use this page to discover all the JoBase features.
             </p>
+
+            <!-- <p style = "color:red">
+                Things to do: add methods for applying force, inpulse and torque to bodies, finish code snippets, add demo page, add performance graph page, fix images on this page.
+            </p> -->
 
             <p>
                 Below is a list of built in colors.
@@ -292,15 +311,14 @@
                 </script>
             </p>
 
-            <pre id = Window code>class Window(caption = "JoBase", width = 640, height = 480, color = WHITE)</pre>
+            <pre id = Window code>class Window(title = "JoBase", width = 640, height = 480, color = WHITE)</pre>
 
             <div class = indent>
                 This class is for managing the main window.
-                The inbuilt <mark>window</mark> variable is an instance of this class.
-                Do not try to instance this class directly.
+                Don't try to instance this class directly, use the inbuilt <mark>window</mark> variable instead.
 
-                <script>
-                    snippet(`from JoBase import *
+                <pre code>
+import JoBase
 
 window.color = BLUE
 window.size = 300, 300
@@ -308,10 +326,10 @@ window.size = 300, 300
 def loop():
     window.red += 0.01
 
-run()`)
-                </script>
+run()
+                </pre>
 
-                <pre id = Window.caption code>caption: str</pre>
+                <pre id = Window.title code>title: str</pre>
 
                 <div class = indent>
                     The title of the window.
@@ -359,30 +377,16 @@ run()`)
                     The dimensions of the window in pixels.
                 </div>
 
-                <pre id = Window.resizable code>resizable: bool</pre>
-
-                <div class = indent>
-                    Make the window resizable.
-                </div>
-
-                <pre id = Window.decorated code>decorated: bool</pre>
-
-                <div class = indent>
-                    Determine whether the window sould have edge decorations.
-                    When this value is <mark>False</mark>, the window buttons are hidden.
-                </div>
-
                 <pre id = Window.resize code>resize: bool</pre>
 
                 <div class = indent>
-                    Detect when the window is resized.
+                    Check if the window has been resized.
                 </div>
 
                 <pre id = Window.close code>close()</pre>
 
                 <div class = indent>
-                    Close the window.
-                    The program finishes and the window cannot be opened again.
+                    Close the window and terminate the program.
                 </div>
 
                 <pre id = Window.maximize code>maximize()</pre>
@@ -414,13 +418,12 @@ run()`)
                 </div>
             </div>
 
-            <pre id = Camera code>class Camera()</pre>
+            <pre id = Camera code>class Camera(x = 0, y = 0)</pre>
 
             <div class = indent>
                 This class is for managing the game camera.
-                By moving it around, you can change your view of the objects on the screen.
-                The inbuilt <mark>camera</mark> variable is an instance of this class.
-                Do not try to instance this class directly.
+                By moving it around, you can change your view of things on the screen.
+                Don't try to instance this class directly, use the inbuilt <mark>camera</mark> variable instead.
 
                 <pre id = Camera.x code>x, pos.x, position.x: float</pre>
 
@@ -438,19 +441,6 @@ run()`)
 
                 <div class = indent>
                     The position of the camera.
-                </div>
-
-                <pre id = Camera.move_toward code>move_toward(other: object, speed = 1)</pre>
-
-                <div class = indent>
-                    Move the camera toward another object at a constant speed.
-                </div>
-
-                <pre id = Camera.move_smooth code>move_smooth(other: object, speed = 0.1)</pre>
-
-                <div class = indent>
-                    Move the camera smoothly toward another object.
-                    It is best to keep the speed between <mark>0</mark> (not moving) and <mark>1</mark> (instant snapping).
                 </div>
 
                 <pre id = Camera.top code>top: float</pre>
@@ -482,17 +472,16 @@ run()`)
 
             <div class = indent>
                 This class represents the cursor.
-                The inbuilt <mark>cursor</mark> variable is an instance of this class.
-                Do not try to instance this class directly.
+                Don't try to instance this class directly, use the inbuilt <mark>cursor</mark> variable instead.
 
-                <script>
-                    snippet(`from JoBase import *
+                <pre code>
+import JoBase
 
 def loop():
     window.color = GOLD if cursor.hold else LIGHT_BLUE
 
-run()`)
-                </script>
+run()
+                </pre>
 
                 <pre id = Cursor.x code>x, pos.x, position.x: float</pre>
 
@@ -570,16 +559,22 @@ run()`)
                 <pre id = Cursor.[name].press code>[name].press: bool</pre>
 
                 <div class = indent>
-                    A specific button is pressed.
+                    A cursor button is pressed.
                 </div>
 
                 <pre id = Cursor.[name].release code>[name].release: bool</pre>
 
                 <div class = indent>
-                    A specific button is released.
+                    A cursor button is released.
                 </div>
 
-                <pre id = Cursor.collide code>collide, collides_with(other: object) -> bool</pre>
+                <pre id = Cursor.[name].hold code>[name].hold: bool</pre>
+
+                <div class = indent>
+                    A cursor button is held down.
+                </div>
+
+                <pre id = Cursor.collide code>collide, collides_with(object) -> bool</pre>
 
                 <div class = indent>
                     Check if the cursor collides with the another object.
@@ -590,8 +585,7 @@ run()`)
 
             <div class = indent>
                 This class is for detecting keyboard input.
-                The inbuilt <mark>key</mark> variable is an instance of this class.
-                Do not try to instance this class directly.
+                Don't try to instance this class directly, use the inbuilt <mark>key</mark> variable instead.
 
                 <pre id = Key.press code>press: bool</pre>
 
@@ -609,7 +603,6 @@ run()`)
 
                 <div class = indent>
                     When the user holds a key down, a series of events are fired.
-                    These events do not occur every frame.
                 </div>
 
                 <pre id = Key.hold code>hold: bool</pre>
@@ -749,19 +742,25 @@ run()`)
                 <pre id = Key.[name].press code>[name].press: bool</pre>
 
                 <div class = indent>
-                    A specific key is pressed.
+                    The key is pressed.
                 </div>
 
                 <pre id = Key.[name].release code>[name].release: bool</pre>
 
                 <div class = indent>
-                    A specific key is released.
+                    The key is released.
                 </div>
 
                 <pre id = Key.[name].repeat code>[name].repeat: bool</pre>
 
                 <div class = indent>
-                    The repeat attribute of a specific key is triggered.
+                    When the key is held down, a series of events are fired.
+                </div>
+
+                <pre id = Key.[name].hold code>[name].hold: bool</pre>
+
+                <div class = indent>
+                    The key is held down.
                 </div>
             </div>
 
@@ -887,80 +886,44 @@ run()`)
                     The color of the object.
                 </div>
 
-                <pre id = Base.type code>type: int</pre>
+                <pre id = Base.body code>body: Body</pre>
 
                 <div class = indent>
-                    The physics body type of the object.
-                    It can be <mark>STATIC</mark> or <mark>DYNAMIC</mark> (default).
+                    The body that the object is attached to.
+                    This attribute is used to give your object physics properties.
+                    See the <a href = #Body>Body</a> documentation to learn more about this feature.
                 </div>
 
                 <pre id = Base.mass code>mass, weight: float</pre>
 
                 <div class = indent>
-                    The physics weight of the object - high means heavy.
+                    The weight of the object in a physics environment - high means heavy.
                 </div>
 
                 <pre id = Base.elasticity code>elasticity: float</pre>
 
                 <div class = indent>
-                    The physics bounciness of the object.
-                    In most cases, it is best to keep this value between <mark>0</mark> (not bouncy) and <mark>1</mark> (perfectly bouncy).
+                    The bounciness of the object in a physics environment.
+                    It is best to keep this value between <mark>0</mark> (not bouncy) and <mark>1</mark> (perfectly bouncy).
                 </div>
 
                 <pre id = Base.friction code>friction: float</pre>
 
                 <div class = indent>
-                    The physics roughness of the object.
-                    In most cases, it is best to keep this value between <mark>0</mark> (not slippery) and <mark>1</mark> (really slippery).
+                    The roughness of the object in a physics environment.
+                    It is best to keep this value between <mark>0</mark> (slippery) and <mark>1</mark> (rough).
                 </div>
 
-                <pre id = Base.velocity.x code>velocity.x, speed.x: float</pre>
-
-                <div class = indent>
-                    The physics x speed of the object.
-                </div>
-
-                <pre id = Base.velocity.y code>velocity.y, speed.y: float</pre>
-
-                <div class = indent>
-                    The physics y speed of the object.
-                </div>
-
-                <pre id = Base.velocity code>velocity, speed: (float, float)</pre>
-
-                <div class = indent>
-                    The physics speed of the object.
-                </div>
-
-                <pre id = Base.angular_velocity code>angular_velocity, rotate_speed: float</pre>
-
-                <div class = indent>
-                    The physics rotation speed of the object (how fast it's spinning).
-                </div>
-
-                <pre id = Base.rotate code>rotate: bool</pre>
-
-                <div class = indent>
-                    The object is allowed to rotate in a physics engine.
-                    Set it to <mark>False</mark> if you want the object to stay the same angle.
-                </div>
-
-                <pre id = Base.look_at code>look_at(other: object)</pre>
-
-                <div class = indent>
-                    Rotate the object to look at another object.
-                </div>
-
-                <pre id = Base.move_toward code>move_toward(other: object, speed = 1)</pre>
-
-                <div class = indent>
-                    Move the object toward another object at a constant speed.
-                </div>
-
-                <pre id = Base.collide code>collide, collides_with(other: object) -> bool</pre>
+                <pre id = Base.collide code>collide, collides_with(object) -> bool</pre>
 
                 <div class = indent>
                     Check if the object collides with the another object.
+                </div>
+
+                <pre id = Base.draw code>draw()</pre>
+
+                <div class = indent>
+                    Draw the object on the screen.
                 </div>
             </div>
 
@@ -968,7 +931,7 @@ run()`)
 
             <div class = indent>
                 This class is for drawing rectangles.
-                Because it extends the <a href = #Base>Base</a> class, it contains all the same attributes.
+                Because it extends the <a href = #Base>Base</a> class, it contains the same attributes.
 
                 <pre id = Rectangle.width code>width, size.x: float</pre>
 
@@ -989,11 +952,11 @@ run()`)
                 </div>
             </div>
 
-            <pre id = Image code>class Image(name = MAN, x = 0, y = 0, width = 0, height = 0, angle = 0, color = WHITE)</pre>
+            <pre id = Image code>class Image(name = MAN, x = 0, y = 0, angle = 0, width = 0, height = 0, color = WHITE)</pre>
 
             <div class = indent>
                 This class is for drawing images.
-                Because it extends the <a href = #Rectangle>Rectangle</a> class, it contains all the same attributes.
+                Because it extends the <a href = #Rectangle>Rectangle</a> class, it contains the same attributes.
                 The <mark>name</mark> is a string of the filepath to the image.
                 JoBase contains the following built in images.
 
@@ -1003,25 +966,25 @@ run()`)
                     <span>ENEMY<div><img src = JoBase/images/enemy.png></div></span>
                 </div>
 
-                The example below loads the enemy image and draws it.
+                The example below loads an image and renders it to the screen.
 
-                <script>
-                    snippet(`from JoBase import *
+                <pre code>
+import JoBase
 
 enemy = Image(ENEMY)
 
 def loop():
     enemy.draw()
 
-run()`)
-                </script>
+run()
+                </pre>
             </div>
 
             <pre id = Text code>class Text(content = "Text", x = 0, y = 0, font_size = 50, angle = 0, color = BLACK, font = DEFAULT)</pre>
 
             <div class = indent>
-                This class is for drawing text messages.
-                Because it extends the <a href = #Rectangle>Rectangle</a> class, it contains all the same attributes.
+                This class is for drawing text.
+                Because it extends the <a href = #Rectangle>Rectangle</a> class, it contains the same attributes.
 
                 <pre id = Text.content code>content: str</pre>
 
@@ -1047,8 +1010,8 @@ run()`)
 
                     The example below loads the pencil font and draws the text.
 
-                    <script>
-                        snippet(`from JoBase import *
+                    <pre code>
+import JoBase
 
 text = Text("Pencil Font", font = PENCIL)
 text.font_size = 80
@@ -1056,8 +1019,8 @@ text.font_size = 80
 def loop():
     text.draw()
 
-run()`)
-                    </script>
+run()
+                    </pre>
                 </div>
 
                 <pre id = Text.font_size code>font_size: float</pre>
@@ -1071,12 +1034,12 @@ run()`)
 
             <div class = indent>
                 This class is for drawing circles.
-                Because it extends the <a href = #Base>Base</a> class, it contains all the same attributes.
+                Because it extends the <a href = #Base>Base</a> class, it contains the same attributes.
 
                 <pre id = Circle.diameter code>diameter: float</pre>
 
                 <div class = indent>
-                    The width of the circle.
+                    The diameter of the circle.
                 </div>
 
                 <pre id = Circle.radius code>radius: float</pre>
@@ -1086,25 +1049,31 @@ run()`)
                 </div>
             </div>
 
-            <pre id = Line code>class Line(points = ((-25, -25), (25, 25)), width = 1, color = BLACK)</pre>
+            <pre id = Shape code>class Shape(points = ((0, 25), (25, -25), (-25, -25)), x = 0, y = 0, angle = 0, color = BLACK)</pre>
+
+            <div class = indent>
+                This class is for drawing polygons.
+                Because it extends the <a href = #Base>Base</a> class, it contains the same attributes.
+            </div>
+
+            <pre id = Shape.points code>points: ((float, float), ...)</pre>
+
+            <div class = indent>
+                The coordinates that define the shape.
+                Setting this attribute can be computationally expensive, beware of using this feature on large batches of shapes.
+            </div>
+
+            <pre id = Line code>class Line(points = ((-25, -25), (25, 25)), width = 2, x = 0, y = 0, angle = 0, color = BLACK)</pre>
 
             <div class = indent>
                 This class is for drawing lines.
-                Although lines are limited, we hope to improve them soon.
-                Because it extends the <a href = #Base>Base</a> class, it contains all the same attributes.
+                Because it extends the <a href = #Shape>Shape</a> class, it contains the same attributes.
 
-                <pre id = Line.diameter code>width: float</pre>
+                <pre id = Line.width code>width: float</pre>
 
                 <div class = indent>
                     The thickness of the line.
                 </div>
-            </div>
-
-            <pre id = Shape code>class Shape(points = ((0, 25), (25, -25), (-25, -25)), x = 0, y = 0, angle = 0, color = BLACK)</pre>
-
-            <div class = indent>
-                This class is for drawing polygon shapes.
-                Because it extends the <a href = #Base>Base</a> class, it contains all the same attributes.
             </div>
 
             <pre id = Physics code>class Physics(gravity_x: 0, gravity_y: -500)</pre>
@@ -1118,17 +1087,17 @@ run()`)
 
                 The example below creates a box that bounces on the ground.
 
-                <script>
-                    snippet(`from JoBase import *
-
-box = Rectangle(y = 300, angle = 10)
-
-floor = Rectangle(width = window.width, height = 20)
-floor.bottom = camera.bottom
-floor.type = STATIC
+                <pre code>
+import JoBase
 
 engine = Physics()
-engine.add(floor, box)
+
+box = Rectangle(y = 300, angle = 10)
+box.body = engine.body()
+
+floor = Rectangle(width = window.width, height = 20)
+floor.body = engine.body(STATIC)
+floor.bottom = camera.bottom
 
 def loop():
     engine.update()
@@ -1136,8 +1105,8 @@ def loop():
     floor.draw()
     box.draw()
 
-run()`)
-                </script>
+run()
+                </pre>
 
                 <pre id = Physics.gravity.x code>gravity.x: float</pre>
 
@@ -1158,24 +1127,69 @@ run()`)
                     The gravity in the physics environment.
                 </div>
 
-                <pre id = Physics.add code>add(*objects)</pre>
+                <pre id = Physics.group code>group() -> object</pre>
 
                 <div class = indent>
-                    Add any number of <a href = #Base>Base</a> or <a href = #Joint>Joint</a> objects to the physics engine.
+                    Create a group for the physics environment.
+                    Check the <a href = #Group>Group</a> documentation to learn how to use this feature.
                 </div>
 
-                <pre id = Physics.remove code>remove(*objects)</pre>
+                <pre id = Physics.body code>body(int = DYNAMIC) -> object</pre>
 
                 <div class = indent>
-                    Remove any number of <a href = #Base>Base</a> or <a href = #Joint>Joint</a> objects previously added to the physics engine.
+                    Create a body for the physics environment.
+                    The body type can be <mark>DYNAMIC</mark> (default) or <mark>STATIC</mark>.
+                    Check the <a href = #Body>Body</a> documentation to learn how to use this feature.
                 </div>
 
                 <pre id = Physics.update code>update()</pre>
 
                 <div class = indent>
-                    Calculate the next frame for the physics.
-                    It is best to call this function every frame.
+                    Calculate the next step for the physics engine.
+                    It's good practice to call this in the game loop.
                 </div>
+            </div>
+
+            <pre id = Body code>class Body()</pre>
+
+            <div class = indent>
+                <p>
+                    This object represents a body in a physics environment.
+                    A body can have multiple shapes attached.
+                    Don't try to instance this class directly, call the <a href = #Physics.body>Physics.body()</a> method instead.
+                </p>
+
+                <pre code>
+                    # TODO
+                </pre>
+
+                <pre id = Body.type code>type: int</pre>
+
+                <div class = indent>
+                    The body type in a physics environment.
+                    When it is <mark>DYNAMIC</mark>, the body can move about.
+                    If you set the type to <mark>STATIC</mark>, the body acts as a solid wall that can't move.
+                </div>
+
+                <pre id = Body.speed code>speed, velocity: (float, float)</pre>
+
+                <div class = indent>
+                    The speed of the body in a physics environment.
+                </div>
+            </div>
+
+            <pre id = Group code>class Group()</pre>
+
+            <div class = indent>
+                <p>
+                    This object represents a group in a physics environment.
+                    Shapes with the same group don't have collisions with each other.
+                    Don't try to instance this class directly, call the <a href = #Physics.group>Physics.group()</a> method instead.
+                </p>
+
+                <pre code>
+                    # TODO
+                </pre>
             </div>
 
             <pre id = Joint code>class Joint()</pre>
@@ -1183,8 +1197,7 @@ run()`)
             <div class = indent>
                 <p>
                     This is the base class for all joint objects.
-                    A joint affects the relationships between two bodies.
-                    They only work when you add them to a <a href = #Physics>physics engine</a>.
+                    A joint is a constraint between two bodies.
                 </p>
 
                 <pre id = Joint.red code>red, color.r: float</pre>
@@ -1220,41 +1233,84 @@ run()`)
                 <pre id = Joint.width code>width: float</pre>
 
                 <div class = indent>
-                    The visual thickness of the joint.
+                    The thickness of the joint when rendered.
                 </div>
 
                 <pre id = Joint.draw code>draw()</pre>
 
                 <div class = indent>
-                    Render the joint to the screen.
+                    Draw the joint on the screen.
                 </div>
             </div>
-        
+
             <pre id = Pin code>class Pin(a: object, b: object, length = 0, width = 2, color = BLACK)</pre>
 
             <div class = indent>
                 <p>
                     This class constrains two bodies at a fixed distance from each other.
+                    It is an extension of the <a href = #Joint>Joint</a> class.
                     Parameters <mark>a</mark> and <mark>b</mark> must be instances of <a href = #Base>Base</a>.
                     If <mark>length</mark> is <mark>0</mark>, the distance will be calculated automatically.
                 </p>
-                
-                <pre id = Pin.a code>a: (float, float)</pre>
+
+                <pre id = Pin.start code>start: (float, float)</pre>
 
                 <div class = indent>
-                    The anchor between the joint and the first body.
+                    The anchor of the joint on the first body.
                 </div>
-                
-                <pre id = Pin.b code>b: (float, float)</pre>
+
+                <pre id = Pin.end code>end: (float, float)</pre>
 
                 <div class = indent>
-                    The anchor between the joint and the second body.
+                    The anchor of the joint on the second body.
                 </div>
                 
                 <pre id = Pin.length code>length: float</pre>
 
                 <div class = indent>
-                    The fixed distance between the two bodies.
+                    The distance to set between the two bodies.
+                </div>
+            </div>
+
+            <pre id = Spring code>class Spring(a: object, b: object, length = 0, stiffness = 10, damping = .5, width = 2, color = BLACK)</pre>
+
+            <div class = indent>
+                <p>
+                    This class constrains two bodies with a spring joint.
+                    It is an extension of the <a href = #Joint>Joint</a> class.
+                    Parameters <mark>a</mark> and <mark>b</mark> must be instances of <a href = #Base>Base</a>.
+                    If <mark>length</mark> is <mark>0</mark>, the distance will be calculated automatically.
+                </p>
+
+                <pre id = Spring.start code>start: (float, float)</pre>
+
+                <div class = indent>
+                    The anchor of the joint on the first body.
+                </div>
+
+                <pre id = Spring.end code>end: (float, float)</pre>
+
+                <div class = indent>
+                    The anchor of the joint on the second body.
+                </div>
+
+                <pre id = Spring.length code>length: float</pre>
+
+                <div class = indent>
+                    The resting length of the spring.
+                </div>
+
+                <pre id = Spring.stiffness code>stiffness: float</pre>
+
+                <div class = indent>
+                    The strength of the spring.
+                </div>
+
+                <pre id = Spring.damping code>damping: float</pre>
+
+                <div class = indent>
+                    This reduces the bounciness of the spring.
+                    It is best to keep this attribute between <mark>0</mark> (bouncy) and <mark>1</mark> (smooth).
                 </div>
             </div>
 
@@ -1262,86 +1318,60 @@ run()`)
 
             <div class = indent>
                 <p>
-                    This class creates a groove joint between two bodies.
+                    This class links a body to a groove on another body.
+                    It is an extension of the <a href = #Joint>Joint</a> class.
                     Parameters <mark>a</mark> and <mark>b</mark> must be instances of <a href = #Base>Base</a>.
-                    The joint is attached to body <mark>a</mark>.
+                    The groove is attached to body <mark>a</mark>.
                 </p>
 
-                <script>
-                    snippet(`from JoBase import *
+                <pre code>
+import JoBase
+
+engine = Physics()
 
 floor = Rectangle(width = window.width, height = 20)
 floor.elasticity = 0.9
 floor.bottom = camera.bottom
-floor.type = STATIC
+floor.body = engine.body(STATIC)
 
 a = Rectangle(50, 100, color = GRAY)
 a.elasticity = 0.9
+a.body = engine.body()
 
 b = Rectangle(0, 300, color = LIGHT_BLUE)
 b.elasticity = 0.9
+b.body = engine.body()
 
-engine = Physics()
 groove = Groove(a, b, width = 10)
-
-engine.add(floor, a, b, groove)
 
 def loop():
     engine.update()
 
-    for item in engine:
-        item.draw()
+    a.draw()
+    b.draw()
+    floor.draw()
+    groove.draw()
 
-run()`)
-                </script>
+run()
+                </pre>
 
                 <pre id = Groove.start code>start: (float, float)</pre>
 
                 <div class = indent>
-                    The beginning position of the groove in relation to the first body.
+                    The anchor of the joint on the first body.
                 </div>
 
                 <pre id = Groove.end code>end: (float, float)</pre>
 
                 <div class = indent>
-                    The end position of the groove in relation to the first body.
+                    The anchor of the joint on the second body.
                 </div>
 
-                <pre id = Groove.b code>b: (float, float)</pre>
+                <pre id = Groove.groove code>groove: (float, float)</pre>
 
                 <div class = indent>
-                    The position on the last body to attach the groove.
+                    The ending position of the groove in relation to the first body.
                 </div>
-            </div>
-
-            <pre id = random code>def random(a: float, b: float) -> float</pre>
-
-            <div class = indent>
-                Find a random decimal between <mark>a</mark> and <mark>b</mark>.
-            </div>
-
-            <pre id = randint code>def randint(a: int, b: int) -> int</pre>
-
-            <div class = indent>
-                Find a random integer between <mark>a</mark> and <mark>b</mark> inclusive.
-            </div>
-
-            <pre id = sin code>def sin(value: float) -> float</pre>
-
-            <div class = indent>
-                Find the sine of a number.
-            </div>
-
-            <pre id = cos code>def cos(value: float) -> float</pre>
-
-            <div class = indent>
-                Find the cosine of a number.
-            </div>
-
-            <pre id = tan code>def tan(value: float) -> float</pre>
-
-            <div class = indent>
-                Find the tangent of a number.
             </div>
 
             <pre id = run code>def run()</pre>
@@ -1349,6 +1379,78 @@ run()`)
             <div class = indent>
                 Run the game and display the window.
                 Always call this method at the bottom of your code.
+            </div>
+
+            <pre id = random code>def random(float, float) -> float</pre>
+
+            <div class = indent>
+                Find a random decimal between two numbers.
+            </div>
+
+            <pre id = randint code>def randint(int, int) -> int</pre>
+
+            <div class = indent>
+                Find a random integer between two whole numbers inclusively.
+            </div>
+
+            <pre id = sin code>def sin(float) -> float</pre>
+
+            <div class = indent>
+                Find the sine of a number.
+            </div>
+
+            <pre id = cos code>def cos(float) -> float</pre>
+
+            <div class = indent>
+                Find the cosine of a number.
+            </div>
+
+            <pre id = tan code>def tan(float) -> float</pre>
+
+            <div class = indent>
+                Find the tangent of a number.
+            </div>
+
+            <pre id = asin code>def asin(float) -> float</pre>
+
+            <div class = indent>
+                Find the inverse sine of a number.
+            </div>
+
+            <pre id = acos code>def acos(float) -> float</pre>
+
+            <div class = indent>
+                Find the inverse cosine of a number.
+            </div>
+
+            <pre id = atan code>def atan(float) -> float</pre>
+
+            <div class = indent>
+                Find the inverse tangent of a number.
+            </div>
+
+            <pre id = sqrt code>def sqrt(float) -> float</pre>
+
+            <div class = indent>
+                Find the square root of a number.
+            </div>
+
+            <pre id = cbrt code>def cbrt(float) -> float</pre>
+
+            <div class = indent>
+                Find the cube root of a number.
+            </div>
+
+            <pre id = ceil code>def ceil(float) -> float</pre>
+
+            <div class = indent>
+                Round up to the nearest whole number
+            </div>
+
+            <pre id = floor code>def floor(float) -> float</pre>
+
+            <div class = indent>
+                Round down to the nearest whole number
             </div>
         </section>
 

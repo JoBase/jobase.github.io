@@ -2,17 +2,16 @@ body[theme = sun] {
     --background: #eee;
     --text: #666;
     --mark: #444;
-    --border: #bbb;
-    --off: #ddd;
     --block: #fff;
-    --shade: #ccc;
-    --box: #ccc;
+    --box: #ddd;
+    --off: #ccc;
     --green: #6c6;
     --hover: #4a4;
     --red: #e66;
     --float: #c44;
     --gold: #c82;
     --shine: #a60;
+    --blue: #259;
     --link: #47b;
     --comment: #999;
     --code: #555;
@@ -45,21 +44,20 @@ body[theme = sun] {
 }
 
 body[theme = moon] {
-    --background: #333;
+    --background: #222;
     --text: #aaa;
     --mark: #ddd;
-    --border: #666;
-    --off: #444;
-    --block: #222;
-    --shade: #555;
+    --block: #111;
     --box: #333;
+    --off: #444;
     --green: #393;
     --hover: #5b5;
     --red: #b33;
     --float: #d55;
     --gold: #d93;
     --shine: #fb5;
-    --link: #5af;
+    --blue: #16b;
+    --link: #38d;
     --comment: #888;
     --string: #8c5;
     --keyword: #c7f;
@@ -111,14 +109,14 @@ mark {
     background: none
 }
 
-.full {
+/* .full {
     overflow: hidden
 }
 
 .full canvas {
     width: 100vw;
     height: 100vh
-}
+} */
 
 .cm-string, .cm-string-2 {
     color: var(--string)
@@ -153,11 +151,7 @@ mark {
 }
 
 .CodeMirror-focused .CodeMirror-selected, .CodeMirror-selected {
-    background-color: var(--background)
-}
-
-.CodeMirror-lines {
-    padding: .8em 0
+    background-color: var(--off)
 }
 
 .CodeMirror-gutters {
@@ -165,79 +159,86 @@ mark {
     border-color: var(--box)
 }
 
+.CodeMirror-lines {
+    padding: .8em 0
+}
+
 .CodeMirror-linenumber {
-    color: var(--border)
+    color: var(--off)
+}
+
+.CodeMirror-scrollbar-filler {
+    background-color: var(--text)
 }
 
 .CodeMirror {
-    background: none;
-    height: 100%
+    background: none
+    /* height: 100% */
 }
 
 .editor {
-    margin-top: 1em;
-    position: relative;
-    mask-image: radial-gradient(#fff, #000);
     border-radius: var(--radius);
-    height: 12em;
-    display: flex;
-    flex-direction: column
-}
-
-.editor > section {
-    text-shadow: 0 0 5px var(--block);
-    cursor: pointer;
-    position: absolute;
-    top: 1em;
-    right: 1em
-}
-
-.editor > section:hover {
-    color: var(--mark)
+    mask-image: radial-gradient(#fff, #000)
 }
 
 .editor > div:first-child {
-    position: relative;
-    overflow: hidden;
-    flex: 1 1 0
+    background-color: var(--box)
 }
 
-.editor > div > div {
-    transition: background-color var(--fade), right 1s;
+.editor > section {
+    position: relative;
+    overflow: hidden;
+    height: 20em;
+}
+
+.editor > section > div {
     background-color: var(--block);
+    transition: background-color var(--fade), right .5s;
     position: absolute;
     display: flex;
     width: 200%;
-    height: 100%;
-    right: -100%
+    height: 100%
 }
 
-.editor > div > div > * {
-    flex: 1 1 0
+.editor > section > div > * {
+    flex: 1 1 0;
+    width: 50%
 }
 
-.console {
+.log {
+    background-color: var(--box);
     overflow: auto;
     white-space: pre-wrap;
     font-family: monospace;
     font-size: var(--small);
-    background-color: var(--box);
-    flex: 0 0 4em;
+    height: 5em;
     padding: .8em
 }
 
-.active .error {
-    margin-bottom: 1em
+.log > span {
+    color: var(--float)
 }
 
-.error {
-    color: var(--float)
+.editor > div > button {
+    border: none;
+    border-right: 1px solid var(--off);
+    font-size: var(--font);
+    background-color: var(--box);
+    color: var(--text);
+    padding: .2em;
+    width: 3em;
+    cursor: pointer
+}
+
+.editor > div > button:hover {
+    background-color: var(--off);
+    color: var(--mark)
 }
 
 pre {
     background-color: var(--block);
     padding: .8em;
-    margin: 1em 0;
+    margin: 1em 0 1.5em 0;
     border-radius: var(--radius);
     overflow: auto
 }
@@ -253,10 +254,14 @@ a {
     text-decoration: none
 }
 
-video, .main > img {
+a:hover {
+    color: var(--comment)
+}
+
+/* video, .main > img {
     width: 100%;
     border-radius: var(--radius);
-}
+} */
 
 footer {
     width: 100%;
@@ -268,17 +273,9 @@ footer span {
     color: var(--text)
 }
 
-a:hover {
-    color: var(--comment)
-}
-
-html {
-    scroll-behavior: smooth
-}
-
-canvas:focus {
+/* canvas:focus {
     outline: none
-}
+} */
 
 .top {
     overflow: hidden;
@@ -288,7 +285,7 @@ canvas:focus {
 .top a:first-child {
     font-family: dyslexic;
     font-size: 40px;
-    padding-right: .2em;
+    padding-right: 1em;
     color: var(--main)
 }
 
@@ -302,9 +299,9 @@ canvas:focus {
     padding-left: .8em
 }
 
-.top a:not(:first-child) {
+.top a:not(:first-child):not([target]) {
     font-family: varela;
-    padding-left: 1em
+    padding-right: 1em
 }
 
 .top .fa-bars {
@@ -323,28 +320,120 @@ canvas:focus {
     min-height: 100vh
 }
 
-.image {
-    margin-bottom: 2em
+.full {
+    overflow: hidden
 }
 
-.image img {
-    border-radius: var(--radius);
-    margin-right: 1em
+.full canvas {
+    width: 100vw;
+    height: 100vh
 }
 
-.image div {
-    display: inline-block;
-    inline-size: min-content;
-    vertical-align: top
+.snippet {
+    max-width: 40em
 }
 
-.image h2 {
-    color: var(--link);
-    margin: .2em 0 .5em 0
+.right {
+    float: right
 }
 
-.image img:hover {
-    opacity: .5
+.slot {
+    width: 100%;
+}
+
+.slot img {
+    width: 100%;
+    max-width: 30em
+}
+
+.graph {
+    position: relative;
+    background-color: var(--block);
+    padding: 1em 0 0 1em;
+    min-height: 15em
+}
+
+.graph canvas {
+    position: absolute;
+    border-bottom-right-radius: var(--radius);
+    width: calc(100% - 1em);
+    height: calc(100% - 1em)
+}
+
+.x, .y {
+    font-size: 12px;
+    font-family: monospace;
+    position: absolute;
+    counter-reset: i 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+.x {
+    width: calc(100% - 1.5em);
+    height: 100%;
+    bottom: 0
+}
+
+.y {
+    flex-direction: column-reverse;
+    left: 0;
+    height: calc(100% - 1.5em);
+    width: 100%
+}
+
+.y li:after, .x li:after {
+    content: counter(i)"";
+}
+
+.x li:not(:first-child) {
+    counter-increment: i 250
+}
+
+.x li, .y li {
+    position: relative;
+    padding: 2px
+}
+
+.x li {
+    border-left: 1px solid var(--box);
+    flex: 0 0 calc(100% / 9)
+}
+
+.y li {
+    counter-increment: i 10;
+    border-top: 1px solid var(--box);
+    flex: 0 0 calc(100% / 8)
+}
+
+.code div {
+    display: flex;
+    gap: 1em
+}
+
+.code pre {
+    overflow: hidden;
+    flex: 1 1 0;
+    font-size: 8px;
+    border: 1px solid var(--off);
+    border-radius: .8em;
+    padding: 1.5em
+}
+
+.code div > span {
+    flex: 1 1 0;
+    color: var(--link)
+}
+
+video, .graph {
+    max-width: 30em;
+    border-radius: var(--radius)
+}
+
+video {
+    width: 100%
 }
 
 * {
@@ -363,7 +452,7 @@ canvas:focus {
     src: url(/data/webfonts/varela.ttf)
 }
 
-@media screen and (min-width: 48em) and (max-width: 64em) {
+@media screen and (min-width: 56em) and (max-width: 66em) {
     .top {
         padding: 2em 4em
     }
@@ -372,27 +461,19 @@ canvas:focus {
         padding: 1em 4em
     }
 
-    .image img {
-        max-width: 60%
-    }
-
     :root {
         --font: 18px;
         --header: 90px
     }
 }
 
-@media screen and (max-width: 48em) {
+@media screen and (max-width: 56em) {
     .top {
         padding: 2em 1em
     }
 
     .main {
         padding: 1em 1em 2em 1em
-    }
-
-    .image img {
-        max-width: 80%
     }
 
     :root {
@@ -414,7 +495,7 @@ canvas:focus {
     }
 }
 
-@media screen and (min-width: 64em) {
+@media screen and (min-width: 66em) {
     .top {
         max-width: 64em;
         padding: 2em 6em;
@@ -425,10 +506,6 @@ canvas:focus {
         max-width: 64em;
         padding: 1em 6em;
         margin: 0 auto
-    }
-
-    .image img {
-        max-width: 50%
     }
 
     :root {

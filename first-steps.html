@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = viewport content = "width=device-width,initial-scale=1">
+        <link rel = icon href = data/images/favicon.ico sizes = "16x16 32x32 48x48 64x64">
+
+        <script src = data/js/setup.js></script>
+        <script src = data/js/code.js></script>
+
+        <link rel = stylesheet href = data/css/fontawesome.css>
+        <link rel = stylesheet href = data/css/all.css>
+        <link rel = stylesheet href = data/css/main.css>
+
+        <title>JoBase &middot; First Steps</title>
+    </head>
+
+    <body>
+        <section class = top>
+            <a href = "/">JoBase</a>
+            <i class = "fa-solid fa-bars"></i>
+            <i class = "fa-solid fa-sun"></i>
+            <a href = lessons class = this>Lessons</a>
+            <!-- <a href = demos>Demos</a> -->
+            <a href = games>Games</a>
+            <a href = reference>Reference</a>
+            <a href = download>Download</a>
+
+            <a href = https://github.com/JoBase target = _blank>
+                <i class = "fa-brands fa-github"></i>
+            </a>
+
+            <a href = https://discord.gg/DzHyvZfa5q target = _blank>
+                <i class = "fa-brands fa-discord"></i>
+            </a>
+        </section>
+
+        <section class = main>
+            <a href = lessons>&lt;- Back</a>
+            <a class = right href = drawing-things>Next -></a>
+
+            <h1>First Steps</h1>
+
+            <p>
+                Welcome to JoBase!
+                In this lesson you will learn how to create your first program.
+                If you haven't done it already, click <a href = download>here</a> to set up JoBase on your PC.
+            </p>
+
+            <p>
+                Create a file and write the following code.
+            </p>
+
+            <script>
+                snippet([
+                    "",
+                    "import JoBase"
+                ])
+            </script>
+
+            <p>
+                Add some more lines, then write the code below.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase",
+                    "\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                That's it for the setup!
+                When you run the code above, a blank window should appear.
+                Let's create an image for the content of our game.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase",
+                    "\n\nimage = Image(MAN)",
+                    "\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                Now we can display the image.
+                The block called <mark>def loop()</mark> is where we draw things.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nimage = Image(MAN)",
+                    "\n\ndef loop():\n    image.draw()",
+                    "\n\nrun()"
+                ])
+            </script>
+
+            <div class = slot>
+                <img src = data/images/man.png>
+            </div>
+
+            <p>
+                What if we want to give the image a tint?
+                We can do this by changing the <mark>color</mark> attribute.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nimage = Image(MAN",
+                    ", color = GREEN",
+                    ")\n\ndef loop():\n    image.draw()\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                Finally, let's animate our image.
+                Each loop we increase the angle by <mark>1&deg;</mark>.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nimage = Image(MAN, color = GREEN)\n\ndef loop():",
+                    "\n    image.angle += 1",
+                    "\n    image.draw()\n\nrun()"
+                ])
+            </script>
+
+            <div class = slot>
+                <img src = data/images/green.png>
+            </div>
+
+            <p>
+                Now we have a rotating green image!
+                You can learn more about the <a href = reference#Image>Image</a> class in the JoBase reference.
+                Of course, you will want more than images in your games.
+                In the next tutorial, we will see how to draw other shapes.
+            </p>
+
+            <a href = lessons>&lt;- Back</a>
+            <a class = right href = drawing-things>Next -></a>
+        </section>
+
+        <footer>
+            <span>
+                &copy; Copyright <span id = year></span> JoBase &middot; <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+            </span>
+        </footer>
+    </body>
+</html>

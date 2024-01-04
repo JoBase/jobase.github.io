@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = viewport content = "width=device-width,initial-scale=1">
+        <meta name = description content = "Welcome to JoBase. Learn how to code with the fastest Python tools.">
+        <link rel = icon href = data/images/favicon.ico sizes = "16x16 32x32 48x48 64x64">
+
+        <script src = data/js/setup.js></script>
+        <script src = data/js/codemirror.js></script>
+        <script src = data/js/syntax.js></script>
+        <script src = data/js/code.js></script>
+        <script src = data/js/python.js></script>
+        
+        <link rel = stylesheet href = data/css/codemirror.css>
+        <link rel = stylesheet href = data/css/fontawesome.css>
+        <link rel = stylesheet href = data/css/all.css>
+        <link rel = stylesheet href = data/css/main.css>
+
+        <title>JoBase &middot; Download</title>
+
+        <style>
+            .options {
+                display: flex;
+                flex-wrap: wrap
+            }
+
+            .options > input:checked + label + div {
+                display: block
+            }
+
+            .options > input:checked + label {
+                border-color: var(--link)
+            }
+
+            .options div {
+                border-radius: 0 var(--radius) var(--radius) var(--radius);
+                background-color: var(--block);
+                padding: 1em;
+                width: 100%;
+                order: 1;
+                display: none
+            }
+
+            .options input {
+                display: none
+            }
+
+            .options label {
+                border-bottom: 2px solid var(--off);
+                font-weight: bold;
+                background-color: var(--block);
+                padding: .5em 1em;
+                cursor: pointer
+            }
+
+            .options label:first-of-type {
+                border-top-left-radius: var(--radius)
+            }
+
+            .options label:last-of-type {
+                border-top-right-radius: var(--radius)
+            }
+
+            .options label:hover {
+                color: var(--mark);
+                background-color: var(--box)
+            }
+
+            .options pre {
+                background-color: var(--background)
+            }
+
+            .options img {
+                vertical-align: sub;
+                display: inline-block;
+                width: 1em
+            }
+
+            h3 {
+                color: var(--mark);
+                padding-top: .5em;
+                margin: 0
+            }
+        </style>
+    </head>
+
+    <body>
+        <section class = top>
+            <a href = "/">JoBase</a>
+            <i class = "fa-solid fa-bars"></i>
+            <i class = "fa-solid fa-sun"></i>
+            <a href = lessons>Lessons</a>
+            <!-- <a href = demos>Demos</a> -->
+            <a href = games>Games</a>
+            <a href = reference>Reference</a>
+            <a href = download class = this>Download</a>
+
+            <a href = https://github.com/JoBase target = _blank>
+                <i class = "fa-brands fa-github"></i>
+            </a>
+
+            <a href = https://discord.gg/DzHyvZfa5q target = _blank>
+                <i class = "fa-brands fa-discord"></i>
+            </a>
+        </section>
+
+        <section class = main>
+            <div class = options>
+                <input id = linux type = radio name = os>
+                <label for = linux>Linux</label>
+
+                <div>
+                    <h3>Download Python</h3>
+
+                    <p>
+                        Visit <a href = https://www.python.org/downloads target = _blank>python.org</a> and click the <mark>Download</mark> button.
+                        This will download the latest Python source release.
+                    </p>
+
+                    <p>
+                        Extract the file and open the terminal.
+                        Use <mark>cd</mark> to navigate to the Python folder, then type the following command.
+                    </p>
+
+                    <pre>./configure</pre>
+
+                    <p>
+                        Now you can build Python with <mark>GNU make</mark>.
+                        This may take a while.
+                    </p>
+
+                    <pre>make</pre>
+
+                    <p>
+                        Finally, use the command below to install Python.
+                        You may need to enter your password.
+                    </p>
+
+                    <pre>sudo make install</pre>
+
+                    <h3>Install JoBase</h3>
+
+                    <p>
+                        Now you are ready to install JoBase.
+                        Type the following command into the terminal and hit enter.
+                    </p>
+
+                    <pre>pip install JoBase</pre>
+
+                    <p>
+                        You can test the installation by running one of our games.
+                    </p>
+
+                    <pre>python3 -m JoBase.examples.blue_hue</pre>
+
+                    <h3>Install an IDE (optional)</h3>
+
+                    <p>
+                        We recommend using <mark>PyCharm</mark> to write and run your code.
+                        Visit <a href = https://www.jetbrains.com/pycharm/download target = _blank>jetbrains.com</a> and download the community edition.
+                        Extract and install the program.
+                    </p>
+                </div>
+
+                <input id = windows type = radio name = os>
+                <label for = windows>Windows</label>
+
+                <div>
+                    <h3>Download Python</h3>
+
+                    <p>
+                        Visit <a href = https://www.python.org/downloads target = _blank>python.org</a> and click the <mark>Download</mark> button.
+                        Run the executable, you will see a welcome screen.
+                        Check the box <mark>Add python.exe to PATH</mark>, then click <mark>Install Now</mark>.
+                    </p>
+
+                    <p>
+                        Wait for the setup to complete and close the installer.
+                    </p>
+
+                    <h3>Install JoBase</h3>
+
+                    <p>
+                        Right click on the <mark>Start</mark> menu icon, then select <mark>Terminal</mark>.
+                        To install JoBase, type the following command and hit enter.
+                    </p>
+
+                    <pre>pip install JoBase</pre>
+
+                    <p>
+                        You can test the installation by running one of our demos.
+                    </p>
+
+                    <pre>python -m JoBase.examples.physics</pre>
+
+                    <h3>Install an IDE (optional)</h3>
+
+                    <p>
+                        We recommend using <mark>PyCharm</mark> to write and run your code.
+                        Visit <a href = https://www.jetbrains.com/pycharm/download target = _blank>jetbrains.com</a> and download the community edition.
+                    </p>
+                </div>
+
+                <input id = mac type = radio name = os>
+                <label for = mac>MacOS</label>
+
+                <div>
+                    <h3>Download Python</h3>
+
+                    <p>
+                        Visit <a href = https://www.python.org/downloads target = _blank>python.org</a> and click the <mark>Download</mark> button.
+                        Open the file and click <mark>Continue</mark>.
+                        Keep clicking continue and agree to the Python licence.
+                        Finally, click the <mark>Install</mark> button.
+                        You may be prompted to enter your password.
+                    </p>
+
+                    <p>
+                        Once Python has successfully installed, you can close the installer.
+                    </p>
+
+                    <h3>Install JoBase</h3>
+
+                    <p>
+                        First, go to the <img src = data/images/finder.png> <mark>Finder</mark> and search <mark>Terminal.app</mark>.
+                        Click the <img src = data/images/terminal.png> icon to open the terminal, then type the following command and hit enter.
+                    </p>
+
+                    <pre>pip install JoBase</pre>
+
+                    <p>
+                        You can test the installation by running one of our games.
+                    </p>
+
+                    <pre>python -m JoBase.examples.squirtcopter</pre>
+
+                    <h3>Install an IDE (optional)</h3>
+
+                    <p>
+                        We recommend using <mark>PyCharm</mark> to write and run your code.
+                        Visit <a href = https://www.jetbrains.com/pycharm/download target = _blank>jetbrains.com</a> and download the community edition.
+                    </p>
+                </div>
+
+                <script>
+                    const input = Array.from(document.currentScript.parentNode.querySelectorAll("input"))
+                    const check = input.find(e => navigator.userAgent.includes(e.id[0].toUpperCase() + e.id.slice(1))) || input[0]
+
+                    check.checked = true
+                </script>
+            </div>
+
+            <p>
+                Now you have the power to build awesome projects!
+                Head to our <a href = lessons>lessons</a> to get started with the basics of JoBase.
+            </p>
+        </section>
+
+        <footer>
+            <span>
+                &copy; Copyright <span id = year></span> JoBase &middot; <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+            </span>
+        </footer>
+    </body>
+</html>

@@ -1,6 +1,6 @@
 "use strict"
 
-const canvas = new OffscreenCanvas(600, 400)
+const canvas = new OffscreenCanvas(640, 480)
 const window = {location: {pathname: "JoBase"}, encodeURIComponent}
 
 const screen = {}
@@ -64,12 +64,20 @@ async function init() {
             canvas.width = event.data.width
             canvas.height = event.data.height
 
+            window.terminate = false
+            window.process = false
+
+            console.log("RUN")
+
             callMain(["-c", event.data.code])
+
             window.process || postMessage({type: "end"})
         }
 
-        else if (event.data.type == "end")
+        else if (event.data.type == "end") {
+            console.log("FORCE END")
             window.terminate = true
+        }
 
         else if (event.data.type == "event") {
             if (event.data.data.target)

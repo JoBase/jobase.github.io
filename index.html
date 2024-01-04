@@ -6,11 +6,8 @@
         <link rel = icon href = data/images/favicon.ico sizes = "16x16 32x32 48x48 64x64">
 
         <script src = data/js/setup.js></script>
-        <script src = /data/js/codemirror.js></script>
-        <script src = /data/js/syntax.js></script>
-        <script src = /data/js/code.js></script>
+        <script src = data/js/code.js></script>
         
-        <link rel = stylesheet href = data/css/codemirror.css>
         <link rel = stylesheet href = data/css/fontawesome.css>
         <link rel = stylesheet href = data/css/all.css>
         <link rel = stylesheet href = data/css/main.css>
@@ -30,7 +27,8 @@
                 font-size: var(--header);
                 font-family: dyslexic;
                 margin-left: .4em;
-                color: #fff
+                color: #fff;
+                text-shadow: 0 0 20px #0005
             }
 
             .header img {
@@ -41,187 +39,90 @@
                 border-radius: var(--radius);
                 position: absolute;
                 height: 100%;
+                width: 100%;
                 z-index: -1
-            }
-
-            .button {
-                text-align: center;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                padding: 1em
-            }
-
-            .button a {
-                width: 10em;
-                padding: .5em;
-                background-color: var(--green);
-                border-radius: var(--radius) 1em;
-                font-size: var(--font);
-                font-family: varela;
-                color: #fff;
-                cursor: pointer;
-                border: none
-            }
-
-            .button a:hover {
-                border-radius: 1em;
-                background-color: var(--hover)
-            }
-
-            .options {
-                display: flex;
-                flex-wrap: wrap
-            }
-
-            .options > input:checked + label + div {
-                display: block
-            }
-
-            .options > input:checked + label {
-                border-color: var(--link)
-            }
-
-            .options div {
-                border-radius: 0 var(--radius) var(--radius) var(--radius);
-                background-color: var(--block);
-                padding: 1em;
-                width: 100%;
-                order: 1;
-                display: none
-            }
-
-            canvas {
-                width: 100%
-            }
-
-            input {
-                display: none
-            }
-
-            label {
-                border-bottom: 2px solid var(--off);
-                font-weight: bold;
-                background-color: var(--block);
-                padding: .5em 1em;
-                cursor: pointer
-            }
-
-            label:first-of-type {
-                border-top-left-radius: var(--radius)
-            }
-
-            label:last-of-type {
-                border-top-right-radius: var(--radius)
-            }
-
-            label:hover {
-                color: var(--mark);
-                background-color: var(--box)
-            }
-
-            h2 {
-                color: var(--mark)
-            }
-
-            h3 {
-                color: var(--mark);
-                padding-top: .5em;
-                margin: 0
-            }
-
-            .options pre {
-                background-color: var(--background)
-            }
-
-            .options img {
-                vertical-align: sub;
-                display: inline-block;
-                width: 1em
-            }
-
-            .graph {
-                font-size: 12px;
-                position: relative;
-                background-color: var(--block);
-                border-radius: var(--radius);
-                padding: 1.5em 0 0 1.5em;
-                height: 25em;
-            }
-
-            .graph canvas {
-                font-size: var(--font);
-                background-color: var(--off);
-                border-bottom-right-radius: var(--radius);
-                width: 100%;
-                height: 100%
-            }
-
-            .x, .y {
-                font-family: monospace;
-                position: absolute;
-                counter-reset: i 0;
-                display: flex;
-                list-style: none;
-                padding: 0;
-                margin: 0
-            }
-
-            .graph .x {
-                width: calc(100% - 1.5em);
-                height: 100%;
-                bottom: 0
-            }
-
-            .graph .y {
-                flex-direction: column-reverse;
-                left: 0;
-                height: calc(100% - 1.5em);
-                width: 100%
-            }
-
-            .y li:after, .x li:after {
-                content: counter(i)"";
-            }
-
-            .x li:not(:first-child) {
-                counter-increment: i 250
-            }
-
-            .x li, .y li {
-                position: relative;
-                padding: 2px
-            }
-
-            .x li {
-                border-left: 1px solid var(--border);
-                flex: 0 0 calc(100% / 9)
-            }
-
-            .y li {
-                counter-increment: i 10;
-                border-top: 1px solid var(--border);
-                flex: 0 0 calc(100% / 8)
             }
 
             .list li {
                 margin: 1em
             }
 
-            .code div {
+            .side {
+                margin-bottom: 2em;
                 display: flex;
                 gap: 1em
             }
 
-            .code pre {
-                flex: 1 1 0;
-                font-size: 8px;
-                border: 1px solid var(--border)
+            .side > * {
+                flex: 0 1 50%
             }
 
-            .code div > span {
-                flex: 1 1 0;
-                color: var(--link)
+            .button {
+                display: flex;
+                justify-content: center;
+                padding: 1em
+            }
+
+            .button a {
+                margin: .4em;
+                position: relative;
+                border-width: 5px;
+                border-style: solid;
+                border-radius: var(--radius) .8em;
+                transition: all .5s ease;
+                padding: .5em 2em;
+                color: #fff
+            }
+
+            .green {
+                background-color: var(--hover);
+                border-color: var(--green)
+            }
+
+            .green:hover {
+                background-color: var(--green);
+                border-color: var(--hover)
+            }
+
+            .green:hover::before {
+                border-color: var(--green)
+            }
+
+            .blue {
+                background-color: var(--link);
+                border-color: var(--blue)
+            }
+
+            .blue:hover {
+                background-color: var(--blue);
+                border-color: var(--link)
+            }
+
+            .blue:hover::before {
+                border-color: var(--blue)
+            }
+
+            .button a::before {
+                content: ' ';
+                border: 2px transparent solid;
+                border-radius: var(--radius) .8em;
+                position: absolute;
+                left: -.5em;
+                top: -.5em;
+                box-sizing: border-box;
+                width: calc(100% + 1em);
+                height: calc(100% + 1em);
+                transition: all .7s ease
+            }
+
+            .button a:hover, .button a:hover::before {
+                border-radius: 2em
+            }
+
+            @media screen and (max-width: 42em) {
+                .side {
+                    flex-direction: column
+                }
             }
         </style>
     </head>
@@ -231,107 +132,92 @@
             <a href = "/">JoBase</a>
             <i class = "fa-solid fa-bars"></i>
             <i class = "fa-solid fa-sun"></i>
-            <a href = "/" class = this>Home</a>
             <a href = lessons>Lessons</a>
+            <!-- <a href = demos>Demos</a> -->
             <a href = games>Games</a>
             <a href = reference>Reference</a>
+            <a href = download>Download</a>
 
             <a href = https://github.com/JoBase target = _blank>
                 <i class = "fa-brands fa-github"></i>
+            </a>
+
+            <a href = https://discord.gg/DzHyvZfa5q target = _blank>
+                <i class = "fa-brands fa-discord"></i>
             </a>
         </section>
 
         <section class = main>
             <div class = header>
                 <canvas>
-                    <script type = vs>
-                        in vec2 vert;
-    
-                        void main() {
-                            gl_Position = vec4(vert, 0, 1);
-                        }
-                    </script>
-    
-                    <script type = fs>
-                        precision mediump float;
-    
-                        uniform float time;
-                        out vec4 color;
-    
-                        vec2 random(vec2 pos) {
-                            return fract(sin(vec2(dot(pos, vec2(127.1, 311.7)), dot(pos, vec2(269.5, 183.3)))) * 43758.5453);
-                        }
-    
-                        void main() {
-                            vec2 pos = floor(gl_FragCoord.xy * .08) * .1;
-                            vec2 index = floor(pos);
-                            vec2 value = fract(pos);
-                            float dist = 1.;
-    
-                            for (int y = -1; y <= 1; y ++)
-                                for (int x = -1; x <= 1; x ++) {
-                                    vec2 next = vec2(x, y);
-                                    vec2 point = sin(time + 6.2831 * random(index + next)) / 2. + .5;
-                                    dist = min(dist, length(next + point - value));
-                                }
-    
-                            color = vec4(pow(dist + gl_FragCoord.x * 5e-4, 4.), pow(dist, 3.), dist, 1);
-                        }
-                    </script>
-
                     <script>
                         const canvas = document.currentScript.parentNode
-                        const gl = canvas.getContext("webgl2")
-                        const program = gl.createProgram()
-                        const time = Date.now()
-    
-                        function compile(id, type) {
-                            const shader = gl.createShader(id)
-                            const item = canvas.querySelector(`[type=${type}]`)
-    
-                            gl.shaderSource(shader, "#version 300 es\n" + item.textContent)
-                            gl.compileShader(shader)
-                            gl.attachShader(program, shader)
-    
-                            return shader
-                        }
-    
+                        const ctx = canvas.getContext("2d")
+                        const time = {clock: 0}
+
                         function start() {
-                            const vertex = compile(gl.VERTEX_SHADER, "vs")
-                            const fragment = compile(gl.FRAGMENT_SHADER, "fs")
-    
-                            gl.linkProgram(program)
-                            gl.useProgram(program)
-                            gl.deleteShader(vertex)
-                            gl.deleteShader(fragment)
-    
-                            gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer())
-                            gl.bufferData(gl.ARRAY_BUFFER, new Int8Array([-1, 1, 1, 1, -1, -1, 1, -1]), gl.STATIC_DRAW)
-                            gl.vertexAttribPointer(0, 2, gl.BYTE, false, 0, 0)
-                            gl.enableVertexAttribArray(0)
-    
                             new ResizeObserver(() => {
                                 canvas.width = canvas.clientWidth
                                 canvas.height = canvas.clientHeight
-    
-                                gl.viewport(0, 0, canvas.width, canvas.height)
+
                                 render()
                             }).observe(canvas)
 
                             loop()
                         }
-    
+
                         function loop() {
+                            time.clock ++
+
                             requestAnimationFrame(loop)
                             render()
                         }
-    
-                        function render() {
-                            gl.clear(gl.COLOR_BUFFER_BIT)
-                            gl.uniform1f(gl.getUniformLocation(program, "time"), (Date.now() - time) * 5e-4)
-                            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
+
+                        function random(value) {
+                            const x = Math.sin(value) * 1000
+                            return x - Math.floor(x)
                         }
-    
+
+                        function render() {
+                            ctx.fillStyle = "#6bf"
+                            ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+                            for (let i = 0; i < 3; i ++) {
+                                const width = random(i) * 100 + 100
+                                const height = random(width) * 50 + 50
+                                const x = random(height) * canvas.width + time.clock * random(width) / 5
+
+                                ctx.fillStyle = "#fff3"
+                                ctx.fillRect(x % (canvas.width + width) - width, random(i) * 50, width, height)
+                            }
+
+                            for (let i = 0; i < canvas.width / 20; i ++) {
+                                const height = random(i) * 5 + 20
+                                const color = random(i) * 20
+
+                                const x = i * 20
+                                const y = canvas.height - height
+
+                                if (random(height) < .1) {
+                                    ctx.fillStyle = "#280"
+
+                                    ctx.save()
+                                    ctx.translate(x + 11, y)
+                                    ctx.rotate(Math.PI - .8)
+
+                                    for (let i = 0; i < 3; i ++) {
+                                        ctx.fillRect(-2, 0, 4, 15)
+                                        ctx.rotate(.8)
+                                    }
+
+                                    ctx.restore()
+                                }
+
+                                ctx.fillStyle = `rgb(${120 + color}, ${90 + color}, ${70 + color})`
+                                ctx.fillRect(x, y, 20, height)
+                            }
+                        }
+
                         start()
                     </script>
                 </canvas>
@@ -340,178 +226,36 @@
                 <h1>JoBase</h1>
             </div>
 
-            <h2>Learn to Code</h2>
+            <h2>Learn to Code With Python</h2>
 
             <ul class = list>
-                <li>Learn with quick lessons that teach you how to use the most popular programming language.</li>
-                <li>Make games and develop your abilites.</li>
-                <li>Have lots of fun as you explore the fastest and easiest Python game library.</li>
+                <li>Learn with quick lessons that show you how to use the most popular programming language.</li>
+                <li>Make cool projects and develop your abilities.</li>
+                <li>Create your own games.</li>
             </ul>
 
             <div class = button>
-                <a href = lessons/first-steps>Get Started</a>
+                <a class = green href = download>Download JoBase</a>
             </div>
 
-            <p>
-                JoBase is a fast Python game engine for beginner coders.
-                It is written in pure C and also runs in Web Assembly.
-                The syntax is simple and easy to use.
-            </p>
+            <h2>JoBase is Fun</h2>
 
-            <div class = options>
-                <input id = linux type = radio name = os>
-                <label for = linux>Linux</label>
+            <div class = side>
+                <video autoplay loop>
+                    <source src = data/images/trailer.mp4 type = video/mp4>
+                </video>
 
                 <div>
-                    <h3>Download Python</h3>
-
-                    <p>
-                        Visit <a href = https://www.python.org/downloads target = _blank>python.org</a> and click the <mark>Download</mark> button.
-                        This will download the latest Python source release.
-                    </p>
-
-                    <p>
-                        Extract the file and open the terminal.
-                        Use <mark>cd</mark> to navigate to the Python folder, then type the following command.
-                    </p>
-
-                    <pre>./configure</pre>
-
-                    <p>
-                        Now you can build Python with <mark>GNU make</mark>.
-                        This may take a while.
-                    </p>
-
-                    <pre>make</pre>
-
-                    <p>
-                        Finally, use the command below to install Python.
-                        You may need to enter your password.
-                    </p>
-
-                    <pre>sudo make install</pre>
-
-                    <h3>Install JoBase</h3>
-
-                    <p>
-                        Now you are ready to install JoBase.
-                        Type the following command into the terminal and hit enter.
-                    </p>
-
-                    <pre>pip install JoBase</pre>
-
-                    <p>
-                        You can test the installation by running one of our games.
-                    </p>
-
-                    <pre>python3 -m JoBase.examples.blue_hue</pre>
-
-                    <h3>Install an IDE (optional)</h3>
-
-                    <p>
-                        We recommend using <mark>PyCharm</mark> to write and run your code.
-                        Visit <a href = https://www.jetbrains.com/pycharm/download target = _blank>jetbrains.com</a> and download the community edition.
-                        Extract and install the program.
-                    </p>
+                    Build exciting games with minimum effort.
+                    Use the physics engine to make realistic simulations and share your creations with friends.
                 </div>
-
-                <input id = windows type = radio name = os>
-                <label for = windows>Windows</label>
-
-                <div>
-                    <h3>Download Python</h3>
-
-                    <p>
-                        Visit <a href = https://www.python.org/downloads target = _blank>python.org</a> and click the <mark>Download</mark> button.
-                        Run the executable, you will see a welcome screen.
-                        Check the box <mark>Add python.exe to PATH</mark>, then click <mark>Install Now</mark>.
-                    </p>
-
-                    <p>
-                        Wait for the setup to complete and close the installer.
-                    </p>
-
-                    <h3>Install JoBase</h3>
-
-                    <p>
-                        Right click on the <mark>Start</mark> menu icon, then select <mark>Terminal</mark>.
-                        To install JoBase, type the following command and hit enter.
-                    </p>
-
-                    <pre>pip install JoBase</pre>
-
-                    <p>
-                        You can test the installation by running one of our demos.
-                    </p>
-
-                    <pre>python -m JoBase.examples.physics</pre>
-
-                    <h3>Install an IDE (optional)</h3>
-
-                    <p>
-                        We recommend using <mark>PyCharm</mark> to write and run your code.
-                        Visit <a href = https://www.jetbrains.com/pycharm/download target = _blank>jetbrains.com</a> and download the community edition.
-                    </p>
-                </div>
-
-                <input id = mac type = radio name = os>
-                <label for = mac>MacOS</label>
-
-                <div>
-                    <h3>Download Python</h3>
-
-                    <p>
-                        Visit <a href = https://www.python.org/downloads target = _blank>python.org</a> and click the <mark>Download</mark> button.
-                        Open the file and click <mark>Continue</mark>.
-                        Keep clicking continue and agree to the Python licence.
-                        Finally, click the <mark>Install</mark> button.
-                        You may be prompted to enter your password.
-                    </p>
-
-                    <p>
-                        Once Python has successfully installed, you can close the installer.
-                    </p>
-
-                    <h3>Install JoBase</h3>
-
-                    <p>
-                        First, go to the <img src = data/images/finder.png> <mark>Finder</mark> and search <mark>Terminal.app</mark>.
-                        Click the <img src = data/images/terminal.png> icon to open the terminal, then type the following command and hit enter.
-                    </p>
-
-                    <pre>pip install JoBase</pre>
-
-                    <p>
-                        You can test the installation by running one of our games.
-                    </p>
-
-                    <pre>python -m JoBase.examples.squirtcopter</pre>
-
-                    <h3>Install an IDE (optional)</h3>
-
-                    <p>
-                        We recommend using <mark>PyCharm</mark> to write and run your code.
-                        Visit <a href = https://www.jetbrains.com/pycharm/download target = _blank>jetbrains.com</a> and download the community edition.
-                    </p>
-                </div>
-
-                <script>
-                    const input = Array.from(document.currentScript.parentNode.querySelectorAll("input"))
-                    const check = input.find(e => navigator.userAgent.includes(e.id[0].toUpperCase() + e.id.slice(1))) || input[0]
-
-                    check.checked = true
-                </script>
             </div>
-
-            <p>
-                After following the installation steps above, click <a href = lessons/first-steps>here</a> to get started with JoBase.
-            </p>
 
             <h2>JoBase is Simple</h2>
 
             <p>
                 Compared to other popular game libraries, the JoBase code is smaller and more concise.
-                JoBase has maximun scope with minimum complexity.
+                JoBase has maximum scope with minimum complexity.
             </p>
 
             <div class = code>
@@ -523,7 +267,7 @@
 
                 <div>
                     <pre code>
-from JoBase import *
+import JoBase
 
 man = Image("man.png")
 
@@ -575,81 +319,29 @@ pyglet.app.run()
 
             <h2>JoBase is Fast</h2>
 
-            <p>
-                JoBase has a very high performance.
-                Below is an example of a JoBase program that renders polygons on the screen.
-            </p>
+            <div class = side>
+                <script>
+                    graph([
+                        {name: "Pygame", color: "variable", file: "pygame-2"},
+                        {name: "Pyglet", color: "string", file: "pyglet-2"},
+                        {name: "JoBase", color: "mark", file: "jobase"}
+                    ])
+                </script>
 
-            <script>
-                snippet(`from JoBase import *
-
-sprites = []
-
-for i in range(500):
-    coords = [
-        (randint(10, 20), randint(10, 20)),
-        (-randint(10, 20), randint(10, 20)),
-        (-randint(10, 20), -randint(10, 20)),
-        (randint(10, 20), -randint(10, 20))
-    ]
-
-    shape = Shape(coords)
-    shape.angle = randint(1, 360)
-
-    shape.color = random(0, 1), random(0, 1), random(0, 1), random(0, 1)
-    shape.pos = random(camera.left, camera.right), random(camera.bottom, camera.top)
-    shape.speed = random(-2, 2), random(-2, 2)
-
-    sprites.append(shape)
-
-def loop():
-    global time
-
-    for shape in sprites:
-        if shape.x < camera.left:
-            shape.speed.x += 0.1
-
-        elif shape.x > camera.right:
-            shape.speed.x -= 0.1
-
-        if shape.y < camera.bottom:
-            shape.speed.y += 0.1
-
-        elif shape.y > camera.top:
-            shape.speed.y -= 0.1
-
-        shape.pos += shape.speed
-        shape.angle += 1
-        shape.draw()
-
-run()`)
-            </script>
+                <div>
+                    JoBase is one of the fastest Python tools!
+                    You can draw thousands of things without hitting a performance limit.
+                    Click <a href = speed>here</a> to see how the graph was generated.
+                </div>
+            </div>
 
             <p>
-                This same example was tested on two other popular game libraries, <mark>Pygame</mark> and <mark>Pyglet</mark>.
-                The graph below shows the <mark>frames per second</mark> for the number of polygons on the screen with batch rendering.
+                <!-- We hope you're super excited now. -->
             </p>
 
-            <script>
-                graph([
-                    {name: "Pygame", color: "variable", file: "pygame"},
-                    {name: "Pyglet", color: "string", file: "pyglet"},
-                    {name: "JoBase", color: "mark", file: "jobase"}
-                ])
-            </script>
-
-            <p>
-                The same example was also tested without batch rendering.
-                As you can see, JoBase maintains a stable framerate.
-            </p>
-
-            <script>
-                graph([
-                    {name: "Pygame", color: "variable", file: "pygame-2"},
-                    {name: "Pyglet", color: "string", file: "pyglet-2"},
-                    {name: "JoBase", color: "mark", file: "jobase"}
-                ])
-            </script>
+            <div class = button>
+                <a class = blue href = first-steps>Get Started</a>
+            </div>
         </section>
 
         <footer>
