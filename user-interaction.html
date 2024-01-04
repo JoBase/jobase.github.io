@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = viewport content = "width=device-width,initial-scale=1">
+        <link rel = icon href = data/images/favicon.ico sizes = "16x16 32x32 48x48 64x64">
+
+        <script src = data/js/setup.js></script>
+        <script src = data/js/code.js></script>
+
+        <link rel = stylesheet href = data/css/fontawesome.css>
+        <link rel = stylesheet href = data/css/all.css>
+        <link rel = stylesheet href = data/css/main.css>
+
+        <title>JoBase &middot; User Interaction</title>
+    </head>
+
+    <body>
+        <section class = top>
+            <a href = "/">JoBase</a>
+            <i class = "fa-solid fa-bars"></i>
+            <i class = "fa-solid fa-sun"></i>
+            <a href = lessons class = this>Lessons</a>
+            <!-- <a href = demos>Demos</a> -->
+            <a href = games>Games</a>
+            <a href = reference>Reference</a>
+            <a href = download>Download</a>
+
+            <a href = https://github.com/JoBase target = _blank>
+                <i class = "fa-brands fa-github"></i>
+            </a>
+
+            <a href = https://discord.gg/DzHyvZfa5q target = _blank>
+                <i class = "fa-brands fa-discord"></i>
+            </a>
+        </section>
+
+        <section class = main>
+            <a href = drawing-things><i class = "fa-solid fa-chevron-left"></i> Back</a>
+            <a class = right href = lessons>Next <i class = "fa-solid fa-chevron-right"></i></a>
+
+            <h1>User Interaction</h1>
+
+            <p>
+                In the previous lesson, we learned how to draw various things on the screen.
+                This lesson will introduce keyboard and mouse controls.
+                Let's start with our <mark>MAN</mark> image.
+            </p>
+
+            <script>
+                snippet([
+                    "",
+                    "import JoBase\n\nman = Image(MAN)\n\ndef loop():\n    man.draw()\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                To put the image in motion, we'll increment its position on the <mark>x</mark> axis.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nman = Image(MAN)\n\ndef loop():",
+                    "\n    man.x += 1",
+                    "\n    man.draw()\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                You should see our image moving to the right.
+                How can we control this with the keyboard?
+                The code below uses an <mark>if</mark> condition to check if the <mark>right</mark> arrow is being pressed.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nman = Image(MAN)\n\ndef loop():",
+                    "\n    if key.right:",
+                    "\n        man.x += 1\n\n    man.draw()\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                Let's add a new control for moving to the left.
+                For this, we decrement the position on the <mark>x</mark> axis.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nman = Image(MAN)\n\ndef loop():\n    if key.right:\n        man.x += 1",
+                    "\n\n    if key.left:\n        man.x -= 1",
+                    "\n\n    man.draw()\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                Now our image can move left and right!
+                We can also add up and down controls by changing the <mark>y</mark> position.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nman = Image(MAN)\n\ndef loop():\n    if key.right:\n        man.x += 1\n\n    if key.left:\n        man.x -= 1",
+                    "\n\n    if key.up:\n        man.y += 1\n\n    if key.down:\n        man.y -= 1",
+                    "\n\n    man.draw()\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                Check the <a href = reference#Key>Key</a> class for more information on keyboard controls.
+                Now let's change the image tint when the mouse is pressed.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nman = Image(MAN)\n\ndef loop():\n    if key.right:\n        man.x += 1\n\n    if key.left:\n        man.x -= 1\n\n    if key.up:\n        man.y += 1\n\n    if key.down:\n        man.y -= 1",
+                    "\n\n    if cursor.press:\n        man.color = YELLOW\n\n    if cursor.release:\n        man.color = WHITE",
+                    "\n\n    man.draw()\n\nrun()"
+                ])
+            </script>
+
+            <div class = slot>
+                <img src = data/images/input.png>
+            </div>
+
+            <p>
+                In the code above, we use the <a href = reference#Cursor>cursor</a> variable to access the state of the mouse.
+                Cursor <a href = reference#Cursor.press>press</a> and <a href = reference#Cursor.release>release</a> are activated whenever the user presses or releases a button.
+            </p>
+
+            <p>
+                User input is one of the most import functions of a game.
+                Try controlling the image with different keys.
+            </p>
+
+            <a href = drawing-things><i class = "fa-solid fa-chevron-left"></i> Back</a>
+            <a class = right href = lessons>Next <i class = "fa-solid fa-chevron-right"></i></a>
+        </section>
+
+        <footer>
+            <span>
+                &copy; Copyright <span id = year></span> JoBase &middot; <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+            </span>
+        </footer>
+    </body>
+</html>
