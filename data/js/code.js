@@ -16,7 +16,7 @@ function snippet(code) {
 
 async function game(name) {
     const canvas = document.currentScript.previousElementSibling
-    const file = await fetch("https://jobase.org/JoBase/examples/" + name + ".py")
+    const file = await fetch("JoBase/examples/" + name + ".py")
 
     Module.canvas = canvas
     new ResizeObserver(() => Module.setCanvasSize(canvas.clientWidth, canvas.clientHeight)).observe(canvas)

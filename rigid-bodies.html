@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = viewport content = "width=device-width,initial-scale=1">
+        <link rel = icon href = data/images/favicon.ico sizes = "16x16 32x32 48x48 64x64">
+
+        <script src = data/js/setup.js></script>
+        <script src = data/js/code.js></script>
+
+        <link rel = stylesheet href = data/css/fontawesome.css>
+        <link rel = stylesheet href = data/css/all.css>
+        <link rel = stylesheet href = data/css/main.css>
+
+        <title>JoBase &middot; Rigid Bodies</title>
+    </head>
+
+    <body>
+        <section class = top>
+            <a href = "/">JoBase</a>
+            <i class = "fa-solid fa-bars"></i>
+            <i class = "fa-solid fa-sun"></i>
+            <a href = lessons class = this>Lessons</a>
+            <!-- <a href = demos>Demos</a> -->
+            <a href = games>Games</a>
+            <a href = reference>Reference</a>
+            <a href = download>Download</a>
+
+            <a href = https://github.com/JoBase target = _blank>
+                <i class = "fa-brands fa-github"></i>
+            </a>
+
+            <a href = https://discord.gg/DzHyvZfa5q target = _blank>
+                <i class = "fa-brands fa-discord"></i>
+            </a>
+        </section>
+
+        <section class = main>
+            <a href = lessons><i class = "fa-solid fa-chevron-left"></i> Back</a>
+            <a class = right href = lessons>Next <i class = "fa-solid fa-chevron-right"></i></a>
+
+            <h1>Rigid Bodies</h1>
+
+            <p>
+                This lesson will introduce you to the basics of the physics engine.
+                It is a great tool for simulating realistic 2D physics in your game.
+                Let's set up our engine by calling the <a href = reference#Physics>Physics</a> class.
+            </p>
+
+            <script>
+                snippet([
+                    "",
+                    "import JoBase\n\nengine = Physics()\n\ndef loop():\n    engine.update()\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                First we create our variable <mark>engine</mark>, then we call <mark>engine.update()</mark> in the game loop.
+                This calculates each frame for the physics simulation.
+                Now let's create a box and rotate it by <mark>10&deg;</mark>.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nengine = Physics()",
+                    "\n\nbox = Rectangle(angle = 10)",
+                    "\n\ndef loop():\n    engine.update()",
+                    "\n\n    box.draw()",
+                    "\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                We can add it to the physics environment by giving it a body.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nengine = Physics()\n\nbox = Rectangle(angle = 10)",
+                    "\nbox.body = engine.body()",
+                    "\n\ndef loop():\n    engine.update()\n\n    box.draw()\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                Now our box falls from the sky!
+                We can give it something to land on by creating another rectangle for the ground.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nengine = Physics()\n\nbox = Rectangle(angle = 10)\nbox.body = engine.body()",
+                    "\n\nfloor = Rectangle(0, -200, 600, 20)",
+                    "\n\ndef loop():\n    engine.update()\n\n    box.draw()",
+                    "\n    floor.draw()",
+                    "\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                But our box falls through the ground!
+                This is because we haven't given the ground a rigid body.
+                We don't want the ground to be affected by gravity, so we use the <mark>STATIC</mark> variable to keep it in the same place.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nengine = Physics()\n\nbox = Rectangle(angle = 10)\nbox.body = engine.body()\n\nfloor = Rectangle(0, -200, 600, 20)",
+                    "\nfloor.body = engine.body(STATIC)",
+                    "\n\ndef loop():\n    engine.update()\n\n    box.draw()\n    floor.draw()\n\nrun()"
+                ])
+            </script>
+
+            <div class = slot>
+                <img src = data/images/box.png>
+            </div>
+
+            <p>
+                Now our box falls and hits the ground.
+                How can we make it more interesting?
+                We could try changing the elasticity (bounciness) of the box.
+            </p>
+
+            <script>
+                snippet([
+                    "import JoBase\n\nengine = Physics()\n\nbox = Rectangle(angle = 10)",
+                    "\nbox.elasticity = 0.8",
+                    "\nbox.body = engine.body()\n\nfloor = Rectangle(0, -200, 600, 20)",
+                    "\nfloor.elasticity = 0.8",
+                    "\nfloor.body = engine.body(STATIC)\n\ndef loop():\n    engine.update()\n\n    box.draw()\n    floor.draw()\n\nrun()"
+                ])
+            </script>
+
+            <p>
+                In the code above, we also change the ground's elasticity to make the bounce more effective.
+                An elasticity of <mark>0</mark> prevents the object from bouncing, and an elasticity of <mark>1</mark> makes the object bounce forever.
+            </p>
+
+            <div class = slot>
+                <img src = data/images/bounce.png>
+            </div>
+
+            <p>
+                Now you know the basics of simulating 2D physics!
+                You could even try changing the direction of gravity...
+            </p>
+
+            <script>
+                snippet([
+                    "engine = Physics(",
+                    "gravity_y = 500",
+                    ")"
+                ])
+            </script>
+
+            <p>
+                ...but you'll need to add a ceiling for the box that falls upwards.
+            </p>
+
+            <a href = lessons><i class = "fa-solid fa-chevron-left"></i> Back</a>
+            <a class = right href = lessons>Next <i class = "fa-solid fa-chevron-right"></i></a>
+        </section>
+
+        <footer>
+            <span>
+                &copy; Copyright <span id = year></span> JoBase &middot; <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+            </span>
+        </footer>
+    </body>
+</html>
