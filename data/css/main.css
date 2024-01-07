@@ -428,6 +428,7 @@ footer span {
 }
 
 .demo {
+    background-color: #fff;
     border-radius: .3em;
     width: 100%;
     height: 20em

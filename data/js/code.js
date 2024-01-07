@@ -14,9 +14,12 @@ function snippet(code) {
     document.currentScript.replaceWith(pre)
 }
 
-async function game(name) {
+async function load(name) {
+    return await (await fetch("https://jobase.org/JoBase/examples/" + name + ".py")).text()
+}
+
+async function main(text) {
     const canvas = document.querySelector("canvas")
-    const text = await (await fetch("https://jobase.org/JoBase/examples/" + name + ".py")).text()
 
     Module.canvas = canvas
     canvas.oncontextmenu = e => e.preventDefault()
@@ -25,14 +28,20 @@ async function game(name) {
     await Module.ready
 
     callMain(["-c", text])
-    return text
+}
+
+async function game(name) {
+    main(await load(name))
 }
 
 async function demo(name) {
     const code = document.createElement("pre")
-
     document.currentScript.replaceWith(code)
-    code.innerHTML = syntax(await game(name))
+
+    const text = await load(name)
+    code.innerHTML = syntax(text)
+
+    main(text)
 }
 
 async function graph(data) {
