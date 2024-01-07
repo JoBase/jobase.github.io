@@ -301,7 +301,7 @@ footer span {
 
 .top a:not(:first-child):not([target]) {
     font-family: varela;
-    padding-right: 1em
+    padding-right: .6em
 }
 
 .top .fa-bars {
@@ -488,7 +488,7 @@ video {
     src: url(/data/webfonts/varela.ttf)
 }
 
-@media screen and (min-width: 58em) and (max-width: 68em) {
+@media screen and (min-width: 56em) and (max-width: 66em) {
     .top {
         padding: 2em 4em
     }
@@ -503,7 +503,7 @@ video {
     }
 }
 
-@media screen and (max-width: 58em) {
+@media screen and (max-width: 56em) {
     .top {
         padding: 2em 1em
     }
@@ -535,7 +535,7 @@ video {
     }
 }
 
-@media screen and (min-width: 68em) {
+@media screen and (min-width: 66em) {
     .top {
         max-width: 64em;
         padding: 2em 6em;
