@@ -427,6 +427,41 @@ footer span {
     color: var(--link)
 }
 
+.demo {
+    border-radius: .3em;
+    width: 100%;
+    height: 20em
+}
+
+.image {
+    display: flex;
+    gap: 1.5em;
+    margin-bottom: 2em
+}
+
+.image div {
+    min-width: 0;
+    flex: 1 1 0
+}
+
+.image a {
+    flex: 0 1 30%
+}
+
+.image img {
+    max-width: 30em;
+    width: 100%;
+    border-radius: var(--radius)
+}
+
+.image h2 {
+    margin-top: 0
+}
+
+.image pre {
+    overflow: hidden
+}
+
 video, .graph {
     max-width: 30em;
     border-radius: var(--radius)
@@ -474,6 +509,10 @@ video {
 
     .main {
         padding: 1em 1em 2em 1em
+    }
+
+    .image {
+        flex-direction: column
     }
 
     :root {

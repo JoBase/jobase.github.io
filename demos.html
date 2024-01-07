@@ -6,14 +6,18 @@
 
         <script src = data/js/setup.js></script>
         <script src = data/js/code.js></script>
-        <script src = data/js/python.js></script>
-        <script src = data/js/package.js></script>
 
         <link rel = stylesheet href = data/css/fontawesome.css>
         <link rel = stylesheet href = data/css/all.css>
         <link rel = stylesheet href = data/css/main.css>
 
-        <title>JoBase &middot; Basic Physics</title>
+        <title>JoBase &middot; Demos</title>
+
+        <style>
+            .image a {
+                flex-basis: 30%
+            }
+        </style>
     </head>
 
     <body>
@@ -37,20 +41,16 @@
         </section>
 
         <section class = main>
-            <h1>Basic Physics</h1>
+            <div class = image>
+                <a href = basic-physics>
+                    <img src = data/images/basic_physics.png>
+                </a>
 
-            <p>
-                Use the mouse to drop shapes in a physics world.
-                This demo uses the same concepts as our <a href = rigid-bodies>rigid bodies</a> tutorial.
-                If you have JoBase installed, you can run this demo by typing the following command.
-            </p>
-
-            <pre>python -m JoBase.examples.physics</pre>
-            <canvas class = demo></canvas>
-
-            <script>
-                demo("physics")
-            </script>
+                <div>
+                    <h2>Basic Physics</h2>
+                    <pre>python -m JoBase.examples.physics</pre>
+                </div>
+            </div>
         </section>
 
         <footer>

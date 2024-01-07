@@ -15,14 +15,24 @@ function snippet(code) {
 }
 
 async function game(name) {
-    const canvas = document.currentScript.previousElementSibling
-    const file = await fetch("JoBase/examples/" + name + ".py")
+    const canvas = document.querySelector("canvas")
+    const text = await (await fetch("https://jobase.org/JoBase/examples/" + name + ".py")).text()
 
     Module.canvas = canvas
+    canvas.oncontextmenu = e => e.preventDefault()
+
     new ResizeObserver(() => Module.setCanvasSize(canvas.clientWidth, canvas.clientHeight)).observe(canvas)
     await Module.ready
 
-    callMain(["-c", await file.text()])
+    callMain(["-c", text])
+    return text
+}
+
+async function demo(name) {
+    const code = document.createElement("pre")
+
+    document.currentScript.replaceWith(code)
+    code.innerHTML = syntax(await game(name))
 }
 
 async function graph(data) {
