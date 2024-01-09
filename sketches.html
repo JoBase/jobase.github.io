@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = viewport content = "width=device-width,initial-scale=1">
+        <link rel = icon href = data/images/favicon.ico sizes = "16x16 32x32 48x48 64x64">
+
+        <script src = data/js/setup.js></script>
+        <script src = data/js/code.js></script>
+        <script src = data/js/python.js></script>
+        <script src = data/js/package.js></script>
+
+        <link rel = stylesheet href = data/css/fontawesome.css>
+        <link rel = stylesheet href = data/css/all.css>
+        <link rel = stylesheet href = data/css/main.css>
+
+        <title>JoBase &middot; Sketches</title>
+    </head>
+
+    <body>
+        <section class = top>
+            <a href = "/">JoBase</a>
+            <i class = "fa-solid fa-bars"></i>
+            <i class = "fa-solid fa-sun"></i>
+            <a href = lessons>Lessons</a>
+            <a href = demos class = this>Demos</a>
+            <a href = games>Games</a>
+            <a href = reference>Reference</a>
+            <a href = download>Download</a>
+
+            <a href = https://github.com/JoBase target = _blank>
+                <i class = "fa-brands fa-github"></i>
+            </a>
+
+            <a href = https://discord.gg/DzHyvZfa5q target = _blank>
+                <i class = "fa-brands fa-discord"></i>
+            </a>
+        </section>
+
+        <section class = main>
+            <h1>Sketches</h1>
+
+            <p>
+                Use the mouse to draw lines on the screen.
+                Black lines have static bodies and red lines have dynamic bodies.
+                If you have JoBase installed, you can run this demo by typing the following command.
+            </p>
+
+            <pre>python -m JoBase.examples.sketches</pre>
+            <canvas class = demo></canvas>
+
+            <script>
+                demo("sketches")
+            </script>
+        </section>
+
+        <footer>
+            <span>
+                &copy; Copyright <span id = year></span> JoBase &middot; <a href = mailto:hello@jobase.org>hello@jobase.org</a>
+            </span>
+        </footer>
+    </body>
+</html>
