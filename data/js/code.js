@@ -23,6 +23,7 @@ async function main(text) {
 
     Module.canvas = canvas
     canvas.oncontextmenu = e => e.preventDefault()
+    canvas.focus()
 
     new ResizeObserver(() => Module.setCanvasSize(canvas.clientWidth, canvas.clientHeight)).observe(canvas)
     await Module.ready
