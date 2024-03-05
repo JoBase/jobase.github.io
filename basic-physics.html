@@ -6,8 +6,6 @@
 
         <script src = data/js/setup.js></script>
         <script src = data/js/code.js></script>
-        <script src = data/js/python.js></script>
-        <script src = data/js/package.js></script>
 
         <link rel = stylesheet href = data/css/fontawesome.css>
         <link rel = stylesheet href = data/css/all.css>
@@ -46,7 +44,15 @@
             </p>
 
             <pre>python -m JoBase.examples.physics</pre>
-            <canvas class = demo></canvas>
+
+            <div class = display>
+                <canvas></canvas>
+    
+                <div>
+                    <span class = text></span>
+                    <div class = loader></div>
+                </div>
+            </div>
 
             <script>
                 demo("physics")

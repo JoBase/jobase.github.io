@@ -1,10 +1,5 @@
 "use strict"
 
-function start() {
-    window.Module = {noInitialRun: true}
-    Module.ready = new Promise(r => Module.onRuntimeInitialized = r)
-}
-
 function snippet(code) {
     const pre = document.createElement("pre")
 
@@ -19,30 +14,52 @@ async function load(name) {
 }
 
 async function main(text) {
+    const loading = document.querySelector(".text")
     const canvas = document.querySelector("canvas")
+    const resize = () => Module.setCanvasSize(canvas.clientWidth, canvas.clientHeight)
 
-    Module.canvas = canvas
+    const script = src => new Promise(resolve => {
+        const script = document.createElement("script")
+
+        script.onload = resolve
+        script.src = src
+        document.head.appendChild(script)
+    })
+
+    loading.textContent = "Downloading Python..."
     canvas.oncontextmenu = e => e.preventDefault()
     canvas.focus()
 
-    new ResizeObserver(() => Module.setCanvasSize(canvas.clientWidth, canvas.clientHeight)).observe(canvas)
-    await Module.ready
+    window.Module = {
+        noInitialRun: true,
+        canvas,
 
-    callMain(["-c", text])
+        onRuntimeInitialized: async () => {
+            loading.parentNode.remove()
+            new ResizeObserver(resize).observe(canvas)
+
+            resize()
+            callMain(["-c", await text])
+        }
+    }
+
+    await script("/data/js/python.js")
+    await script("/data/js/package.js")
+
+    loading.textContent = "Loading game..."
 }
 
-async function game(name) {
-    main(await load(name))
+function game(name) {
+    main(load(name))
 }
 
 async function demo(name) {
     const code = document.createElement("pre")
-    document.currentScript.replaceWith(code)
-
-    const text = await load(name)
-    code.innerHTML = syntax(text)
+    const text = load(name)
 
     main(text)
+    document.currentScript.replaceWith(code)
+    code.innerHTML = syntax(await text)
 }
 
 async function graph(data) {
@@ -132,5 +149,3 @@ async function graph(data) {
         else cancelAnimationFrame(index.frame)
     }, {threshold: .8}).observe(graph)
 }
-
-start()

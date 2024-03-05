@@ -5,15 +5,20 @@
         <link rel = icon href = data/images/favicon.ico sizes = "16x16 32x32 48x48 64x64">
 
         <script src = data/js/code.js></script>
-        <script src = data/js/python.js></script>
-        <script src = data/js/package.js></script>
         <link rel = stylesheet href = data/css/main.css>
 
         <title>JoBase &middot; Squirtcopter</title>
     </head>
 
     <body class = full>
-        <canvas></canvas>
+        <div class = display>
+            <canvas></canvas>
+
+            <div>
+                <span class = text></span>
+                <div class = loader></div>
+            </div>
+        </div>
 
         <script>
             game("squirtcopter/__main__")
