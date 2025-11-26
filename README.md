@@ -1,3 +1,6 @@
+> [!WARNING]
+> Say your goodbyes, this website will soon be replaced with a better one
+
 ### Welcome to JoBase
 
 JoBase is a Python game library for beginner coders.
